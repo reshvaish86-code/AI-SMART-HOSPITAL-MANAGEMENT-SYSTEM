@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Portal | AI Smart Hospital Management System</title>
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome 6.5 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/dashboard.css">
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <i class="fa-solid fa-user-doctor text-info fs-3"></i>
+        <div>
+          <h6 class="text-white fw-bold mb-0">AI Smart Hospital</h6>
+          <small class="text-secondary">Doctor Clinical Portal</small>
+        </div>
+      </div>
+      <ul class="sidebar-menu nav nav-pills flex-column" id="doctorTab" role="tablist">
+        <li class="nav-item">
+          <a class="sidebar-link active" id="queue-tab" data-bs-toggle="pill" href="#queue">
+            <i class="fa-solid fa-list-check"></i> Today's Queue
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="sidebar-link" id="all-appts-tab" data-bs-toggle="pill" href="#all-appts">
+            <i class="fa-solid fa-calendar-days"></i> All Appointments
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="sidebar-link" id="schedule-tab" data-bs-toggle="pill" href="#schedule">
+            <i class="fa-solid fa-sliders"></i> Schedule & Profile
+          </a>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <button class="btn btn-outline-danger btn-sm w-100 rounded-3" onclick="Auth.logout()">
+          <i class="fa-solid fa-arrow-right-from-bracket me-1"></i> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <header class="top-nav">
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-light d-lg-none" onclick="document.querySelector('.sidebar').classList.toggle('show')">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h5 class="fw-bold mb-0 text-dark">Clinical Management Dashboard</h5>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <!-- Notification Dropdown -->
+          <div class="dropdown">
+            <button class="btn btn-light rounded-circle position-relative p-2" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-bell text-secondary"></i>
+            </button>
+            <ul id="notificationsDropdownList" class="dropdown-menu dropdown-menu-end shadow-lg" style="width: 320px;">
+              <li class="p-2 text-center text-muted small">Loading notifications...</li>
+            </ul>
+          </div>
+
+          <!-- Doctor Info -->
+          <div class="d-flex align-items-center gap-2">
+            <div class="bg-info text-dark p-2 rounded-circle fw-bold" style="width: 38px; height: 38px; display:flex; align-items:center; justify-content:center;">
+              <i class="fa-solid fa-user-doctor"></i>
+            </div>
+            <div>
+              <div class="fw-bold small text-dark auth-user-name">Doctor</div>
+              <div class="text-muted" style="font-size: 0.72rem;">PHYSICIAN PORTAL</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="content-body">
+        <!-- KPI Cards -->
+        <div class="row g-3 mb-4">
+          <div class="col-6 col-lg-3">
+            <div class="kpi-card">
+              <div>
+                <span class="text-muted small">Today's Appointments</span>
+                <div id="statTodayAppts" class="kpi-value text-primary">0</div>
+              </div>
+              <div class="kpi-icon bg-primary-subtle text-primary"><i class="fa-solid fa-calendar-day"></i></div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="kpi-card">
+              <div>
+                <span class="text-muted small">Pending Requests</span>
+                <div id="statPendingRequests" class="kpi-value text-warning">0</div>
+              </div>
+              <div class="kpi-icon bg-warning-subtle text-warning"><i class="fa-solid fa-clock-rotate-left"></i></div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="kpi-card">
+              <div>
+                <span class="text-muted small">Patients Treated</span>
+                <div id="statTotalTreated" class="kpi-value text-success">0</div>
+              </div>
+              <div class="kpi-icon bg-success-subtle text-success"><i class="fa-solid fa-circle-check"></i></div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="kpi-card">
+              <div>
+                <span class="text-muted small">Estimated Earnings</span>
+                <div id="statEarnings" class="kpi-value text-info">₹0</div>
+              </div>
+              <div class="kpi-icon bg-info-subtle text-info"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="doctorTabContent">
+
+          <!-- TAB 1: TODAY'S QUEUE -->
+          <div class="tab-pane fade show active" id="queue" role="tabpanel">
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold mb-0"><i class="fa-solid fa-user-clock text-primary me-2"></i> Today's Patient Queue</h5>
+                <button class="btn btn-outline-primary btn-sm rounded-pill" onclick="DoctorApp.loadAppointments()">
+                  <i class="fa-solid fa-rotate-right me-1"></i> Refresh Queue
+                </button>
+              </div>
+              <div id="todayQueueContainer"></div>
+            </div>
+          </div>
+
+          <!-- TAB 2: ALL APPOINTMENTS -->
+          <div class="tab-pane fade" id="all-appts" role="tabpanel">
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+              <h5 class="fw-bold mb-3"><i class="fa-solid fa-table-list text-primary me-2"></i> All Scheduled Appointments</h5>
+              <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                  <thead class="table-light">
+                    <tr>
+                      <th>#</th>
+                      <th>Patient Name</th>
+                      <th>Date</th>
+                      <th>Slot</th>
+                      <th>Reason for Visit</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="allAppointmentsTableBody">
+                    <tr><td colspan="7" class="text-center py-4 text-muted">Loading appointments...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 3: SCHEDULE & PROFILE -->
+          <div class="tab-pane fade" id="schedule" role="tabpanel">
+            <div class="row g-4">
+              <div class="col-lg-6">
+                <div class="card border-0 shadow-sm rounded-4 p-4">
+                  <h5 class="fw-bold mb-3"><i class="fa-solid fa-sliders text-primary me-2"></i> Consultation Fee & Location</h5>
+                  <div class="mb-3">
+                    <label class="form-label text-muted small fw-semibold">Consultation Fee (INR ₹) *</label>
+                    <input type="number" id="profileFee" class="form-control" placeholder="500">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label text-muted small fw-semibold">Hospital / Clinic Name</label>
+                    <input type="text" id="profileHospital" class="form-control" placeholder="Apollo Hospitals">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label text-muted small fw-semibold">District (Tamil Nadu)</label>
+                    <input type="text" id="profileDistrict" class="form-control" placeholder="Chennai">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label text-muted small fw-semibold">Doctor Bio / Specialties</label>
+                    <textarea id="profileBio" class="form-control" rows="3"></textarea>
+                  </div>
+                  <button id="btnSaveSchedule" class="btn btn-primary-custom w-100 rounded-3">
+                    <i class="fa-solid fa-floppy-disk me-1"></i> Save Profile Settings
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- CLINICAL CONSULTATION & DIGITAL PRESCRIPTION BUILDER MODAL -->
+  <div class="modal fade" id="consultationModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content rounded-4 border-0 shadow-lg">
+        <div class="modal-header bg-primary text-white border-0 py-3">
+          <h5 class="modal-title fw-bold"><i class="fa-solid fa-stethoscope me-2"></i> Clinical Consultation & Prescription Builder</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <!-- Patient Summary Strip -->
+          <div class="bg-light p-3 rounded-4 mb-4 d-flex flex-wrap justify-content-between align-items-center gap-2">
+            <div>
+              <strong id="rxPatientName" class="fs-5 text-dark">Patient Name</strong>
+              <span id="rxPatientAgeGender" class="text-muted ms-2">30 yrs / Male</span>
+              <span class="badge bg-danger-subtle text-danger ms-2">Blood: <span id="rxPatientBlood">O+</span></span>
+            </div>
+            <div>
+              <span class="text-muted small">Chief Complaint:</span>
+              <span id="rxPatientReason" class="fw-semibold text-dark">Chest pain</span>
+            </div>
+          </div>
+
+          <div class="row g-3 mb-4">
+            <div class="col-md-12">
+              <label class="form-label fw-bold text-dark small">1. Clinical Diagnosis *</label>
+              <input type="text" id="rxDiagnosis" class="form-control" placeholder="e.g. Acute Bronchitis / Stage 1 Essential Hypertension" required>
+            </div>
+            <div class="col-md-3">
+              <label class="form-label text-muted small">Blood Pressure (BP)</label>
+              <input type="text" id="rxVitalsBp" class="form-control form-control-sm" value="120/80 mmHg">
+            </div>
+            <div class="col-md-3">
+              <label class="form-label text-muted small">Heart Rate (Pulse)</label>
+              <input type="text" id="rxVitalsPulse" class="form-control form-control-sm" value="72 bpm">
+            </div>
+            <div class="col-md-3">
+              <label class="form-label text-muted small">Body Temp</label>
+              <input type="text" id="rxVitalsTemp" class="form-control form-control-sm" value="98.6 °F">
+            </div>
+            <div class="col-md-3">
+              <label class="form-label text-muted small">SpO2 Oxygen</label>
+              <input type="text" id="rxVitalsSpo2" class="form-control form-control-sm" value="99%">
+            </div>
+          </div>
+
+          <!-- Structured Medication Builder -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <label class="form-label fw-bold text-dark small mb-0">2. Medications & Dosage Schedule *</label>
+              <button type="button" id="btnAddMedRow" class="btn btn-outline-primary btn-sm rounded-pill">
+                <i class="fa-solid fa-plus me-1"></i> Add Medication Row
+              </button>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-bordered table-sm align-middle">
+                <thead class="table-light small">
+                  <tr>
+                    <th style="width: 28%;">Medicine Name</th>
+                    <th style="width: 15%;">Dosage</th>
+                    <th style="width: 22%;">Frequency / Timing</th>
+                    <th style="width: 15%;">Duration</th>
+                    <th style="width: 15%;">Instructions</th>
+                    <th style="width: 5%;"></th>
+                  </tr>
+                </thead>
+                <tbody id="rxMedicineRows">
+                  <!-- Dynamic rows added via DoctorApp.addMedicineRow() -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label text-muted small fw-semibold">Clinical Findings & Doctor Notes</label>
+              <textarea id="rxDoctorNotes" class="form-control form-control-sm" rows="2" placeholder="Clinical notes, auscultation findings..."></textarea>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-muted small fw-semibold">Dietary Advice & Lifestyle Recommendations</label>
+              <textarea id="rxGeneralAdvice" class="form-control form-control-sm" rows="2" placeholder="Low sodium, drink adequate fluids..."></textarea>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label text-muted small fw-semibold">Recommended Follow-up Date</label>
+              <input type="date" id="rxFollowUpDate" class="form-control form-control-sm">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer bg-light border-0 py-3">
+          <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" id="btnSubmitPrescription" class="btn btn-primary-custom rounded-pill px-4">
+            <i class="fa-solid fa-file-signature me-1"></i> Issue E-Prescription & Complete Visit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/config.js"></script>
+  <script src="../../js/api.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script src="../../js/doctor-dashboard.js"></script>
+</body>
+</html>

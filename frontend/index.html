@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Smart Hospital Management System | Intelligent Healthcare</title>
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome 6.5 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-custom sticky-top py-3">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center text-white fw-bold fs-4" href="index.html">
+        <i class="fa-solid fa-hospital-user text-info fs-3 me-2"></i>
+        <span>AI Smart Hospital</span>
+      </a>
+      <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center gap-2">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html"><i class="fa-solid fa-house me-1"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#specialties"><i class="fa-solid fa-stethoscope me-1"></i> Specialists</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#ai-assistant"><i class="fa-solid fa-robot me-1 text-info"></i> AI Assistant</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#features"><i class="fa-solid fa-sparkles me-1 text-warning"></i> Features</a>
+          </li>
+          <li class="nav-item ms-lg-3">
+            <a class="btn btn-outline-light px-3 py-2 rounded-3" href="pages/login.html">
+              <i class="fa-solid fa-right-to-bracket me-1"></i> Login
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-primary-custom px-3 py-2 rounded-3" href="pages/register.html">
+              <i class="fa-solid fa-user-plus me-1"></i> Register
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section text-center text-lg-start">
+    <div class="container">
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-7">
+          <div class="hero-badge mb-3">
+            <i class="fa-solid fa-microchip-ai"></i> Intelligent Clinical Platform Across Tamil Nadu
+          </div>
+          <h1 class="display-4 fw-extrabold text-white mb-3">
+            Next-Generation <span class="text-info">AI Smart Hospital</span> Ecosystem
+          </h1>
+          <p class="lead text-light opacity-75 mb-4 max-w-700">
+            A unified clinical operating system empowering Patients, Doctors, and Administrators with smart AI symptom triage, district-level specialist discovery (Chennai, Coimbatore, Madurai, Salem, etc.), collision-free appointment scheduling, and certified digital prescriptions.
+          </p>
+          <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+            <a href="pages/register.html" class="btn btn-primary-custom btn-lg px-4 shadow">
+              <i class="fa-solid fa-calendar-check me-2"></i> Book Doctor Appointment
+            </a>
+            <a href="#ai-assistant" class="btn btn-outline-light btn-lg px-4">
+              <i class="fa-solid fa-robot me-2 text-info"></i> Try AI Symptom Checker
+            </a>
+          </div>
+          <div class="row mt-5 pt-3 border-top border-secondary border-opacity-25 text-white g-3 text-center text-lg-start">
+            <div class="col-4">
+              <div class="fs-4 fw-bold text-info">14+</div>
+              <div class="small text-secondary">Medical Specialties</div>
+            </div>
+            <div class="col-4">
+              <div class="fs-4 fw-bold text-info">38</div>
+              <div class="small text-secondary">TN Districts Covered</div>
+            </div>
+            <div class="col-4">
+              <div class="fs-4 fw-bold text-info">100%</div>
+              <div class="small text-secondary">Collision-Free Slots</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 text-center">
+          <div class="bg-white bg-opacity-10 p-4 rounded-4 shadow-lg backdrop-blur border border-white border-opacity-10 text-start text-white">
+            <h5 class="fw-bold mb-3 d-flex align-items-center gap-2">
+              <i class="fa-solid fa-hospital-symbol text-warning"></i> Access Role Portals
+            </h5>
+            <div class="d-flex flex-column gap-3">
+              <a href="pages/login.html" class="d-flex align-items-center gap-3 p-3 bg-white bg-opacity-10 rounded-3 text-white text-decoration-none border border-white border-opacity-10 hover-card">
+                <div class="bg-primary p-3 rounded-circle text-white fs-5"><i class="fa-solid fa-user-injured"></i></div>
+                <div>
+                  <h6 class="mb-0 fw-bold">Patient Portal</h6>
+                  <small class="text-light opacity-75">Find specialists, book slots, view prescriptions & reminders</small>
+                </div>
+              </a>
+              <a href="pages/login.html" class="d-flex align-items-center gap-3 p-3 bg-white bg-opacity-10 rounded-3 text-white text-decoration-none border border-white border-opacity-10 hover-card">
+                <div class="bg-info p-3 rounded-circle text-dark fs-5"><i class="fa-solid fa-user-doctor"></i></div>
+                <div>
+                  <h6 class="mb-0 fw-bold">Doctor Portal</h6>
+                  <small class="text-light opacity-75">Manage queue, update diagnoses & issue digital prescriptions</small>
+                </div>
+              </a>
+              <a href="pages/login.html" class="d-flex align-items-center gap-3 p-3 bg-white bg-opacity-10 rounded-3 text-white text-decoration-none border border-white border-opacity-10 hover-card">
+                <div class="bg-danger p-3 rounded-circle text-white fs-5"><i class="fa-solid fa-shield-halved"></i></div>
+                <div>
+                  <h6 class="mb-0 fw-bold">Admin Portal</h6>
+                  <small class="text-light opacity-75">System analytics, user controls & global hospital broadcast</small>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Interactive AI Symptom Checker Section -->
+  <section id="ai-assistant" class="py-5 bg-white border-bottom">
+    <div class="container py-4">
+      <div class="row align-items-center gy-4">
+        <div class="col-lg-5">
+          <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill fw-semibold mb-3">
+            <i class="fa-solid fa-robot me-1"></i> AI Health Assistant
+          </span>
+          <h2 class="fw-bold display-6 mb-3">Not Sure Which Specialist to Consult?</h2>
+          <p class="text-muted mb-4">
+            Our intelligent clinical triage engine analyzes your symptoms in real-time, estimates urgency levels, suggests tailored home guidance, and recommends the exact specialist you need across Tamil Nadu.
+          </p>
+          <div class="disclaimer-card mb-4">
+            <strong>Clinical Safety Notice:</strong> The AI Assistant is an informational triage tool, not a doctor. In emergency cases, please dial 108/112 immediately.
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="card border-0 shadow-lg rounded-4 p-4 bg-light">
+            <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-stethoscope text-primary me-2"></i> Instant Clinical Triage</h5>
+            <div class="mb-3">
+              <label class="form-label text-secondary small fw-semibold">Describe your symptoms, duration, and discomfort:</label>
+              <textarea id="homeAITriageInput" class="form-control rounded-3" rows="3" placeholder="e.g. Mild chest pain and shortness of breath when climbing stairs since yesterday..."></textarea>
+            </div>
+            <button id="btnHomeRunTriage" class="btn btn-primary-custom rounded-pill px-4">
+              <i class="fa-solid fa-wand-magic-sparkles me-1"></i> Analyze Symptoms with AI
+            </button>
+            <div id="homeAITriageResult" class="mt-3 d-none"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Medical Specialties Grid -->
+  <section id="specialties" class="py-5 bg-light">
+    <div class="container py-4 text-center">
+      <h2 class="fw-bold mb-2">14 Medical Specialties Supported</h2>
+      <p class="text-muted max-w-700 mx-auto mb-5">
+        Search and book appointments with verified healthcare consultants across all districts in Tamil Nadu.
+      </p>
+      <div class="row g-3">
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="specialist-card">
+            <i class="fa-solid fa-heart-pulse text-danger"></i>
+            <h6 class="fw-bold mb-1">Cardiologist</h6>
+            <span class="badge bg-light text-muted border">Heart & Vascular</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="specialist-card">
+            <i class="fa-solid fa-hand-dots text-warning"></i>
+            <h6 class="fw-bold mb-1">Dermatologist</h6>
+            <span class="badge bg-light text-muted border">Skin, Hair & Nails</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="specialist-card">
+            <i class="fa-solid fa-brain text-info"></i>
+            <h6 class="fw-bold mb-1">Neurologist</h6>
+            <span class="badge bg-light text-muted border">Brain & Nerves</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="specialist-card">
+            <i class="fa-solid fa-baby text-primary"></i>
+            <h6 class="fw-bold mb-1">Pediatrician</h6>
+            <span class="badge bg-light text-muted border">Child Healthcare</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="specialist-card">
+            <i class="fa-solid fa-bone text-secondary"></i>
+            <h6 class="fw-bold mb-1">Orthopedic</h6>
+            <span class="badge bg-light text-muted border">Bones & Joints</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="specialist-card">
+            <i class="fa-solid fa-user-doctor text-success"></i>
+            <h6 class="fw-bold mb-1">General Physician</h6>
+            <span class="badge bg-light text-muted border">Primary Care</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="specialist-card">
+            <i class="fa-solid fa-person-pregnant text-danger"></i>
+            <h6 class="fw-bold mb-1">Gynecologist</h6>
+            <span class="badge bg-light text-muted border">Womens Health</span>
+          </div>
+        </div>
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="specialist-card">
+            <i class="fa-solid fa-ear-listen text-warning"></i>
+            <h6 class="fw-bold mb-1">ENT Specialist</h6>
+            <span class="badge bg-light text-muted border">Ear, Nose & Throat</span>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4">
+        <a href="pages/login.html" class="btn btn-outline-primary rounded-pill px-4">
+          View All Doctors & Book Online <i class="fa-solid fa-arrow-right ms-1"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Features Section -->
+  <section id="features" class="py-5 bg-white border-top">
+    <div class="container py-4">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold">Enterprise Healthcare Capabilities</h2>
+        <p class="text-muted">Built with robust validation, data integrity, and high-performance technologies.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="feature-icon-wrapper bg-primary-subtle text-primary">
+              <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <h5 class="fw-bold">Collision-Free Booking</h5>
+            <p class="text-muted small">
+              Strict compound database validations ensure zero double-booking on any doctor slot, with full past-date protections.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="feature-icon-wrapper bg-success-subtle text-success">
+              <i class="fa-solid fa-file-prescription"></i>
+            </div>
+            <h5 class="fw-bold">Digital Prescriptions</h5>
+            <p class="text-muted small">
+              Structured e-prescriptions with dosage, frequency, and instructions seamlessly archived and printable anytime.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="feature-card">
+            <div class="feature-icon-wrapper bg-warning-subtle text-warning">
+              <i class="fa-solid fa-bell"></i>
+            </div>
+            <h5 class="fw-bold">In-App Notification Stream</h5>
+            <p class="text-muted small">
+              Automated reminders, appointment confirmation alerts, and hospital-wide emergency broadcasts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-5 mt-auto">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-md-6">
+          <h5 class="fw-bold text-info mb-2"><i class="fa-solid fa-hospital-user me-2"></i> AI SMART HOSPITAL</h5>
+          <p class="text-secondary small max-w-700">
+            Next-generation full-stack healthcare ecosystem engineered with Node.js, Express, MongoDB Atlas, Mongoose, Bootstrap 5.3, and Artificial Intelligence.
+          </p>
+        </div>
+        <div class="col-md-3">
+          <h6 class="text-white fw-bold mb-3">Quick Links</h6>
+          <ul class="list-unstyled small text-secondary">
+            <li><a href="pages/login.html" class="text-secondary text-decoration-none">Login Portal</a></li>
+            <li><a href="pages/register.html" class="text-secondary text-decoration-none">Register Account</a></li>
+            <li><a href="/api/health" class="text-secondary text-decoration-none" target="_blank">API Health Status</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h6 class="text-white fw-bold mb-3">Emergency Contacts</h6>
+          <p class="text-secondary small mb-1"><i class="fa-solid fa-phone text-danger me-1"></i> Ambulance: 108 / 112</p>
+          <p class="text-secondary small"><i class="fa-solid fa-location-dot text-info me-1"></i> Tamil Nadu, India</p>
+        </div>
+      </div>
+      <div class="pt-4 mt-4 border-top border-secondary border-opacity-25 text-center text-secondary small">
+        &copy; 2026 AI Smart Hospital Management System. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ai-assistant.js"></script>
+  <script>
+    document.getElementById('btnHomeRunTriage')?.addEventListener('click', async () => {
+      const input = document.getElementById('homeAITriageInput').value;
+      const resBox = document.getElementById('homeAITriageResult');
+      if (!input.trim()) {
+        alert('Please describe your symptoms first.');
+        return;
+      }
+      resBox.innerHTML = '<div class="text-center py-3 text-primary"><i class="fa-solid fa-spinner fa-spin me-1"></i> Running Clinical Triage...</div>';
+      resBox.classList.remove('d-none');
+      const data = await AIAssistant.triageSymptoms(input);
+      if (data) {
+        resBox.innerHTML = `
+          <div class="alert alert-info rounded-3 p-3 mt-3">
+            <h6 class="fw-bold mb-1"><i class="fa-solid fa-user-doctor me-1"></i> Suggested Specialist: <span class="text-primary">${data.recommendedSpecialist}</span></h6>
+            <div class="badge bg-${data.urgencyLevel === 'Emergency' ? 'danger' : 'warning'} mb-2">Urgency: ${data.urgencyLevel}</div>
+            <p class="small mb-2">${data.clinicalSummary}</p>
+            <div class="small p-2 bg-white rounded border mb-2">
+              <strong>Home Care Tip:</strong> ${data.homeCareAdvice[0] || 'Take proper rest and stay hydrated.'}
+            </div>
+            <a href="pages/login.html" class="btn btn-primary-custom btn-sm rounded-pill mt-2">
+              Book ${data.recommendedSpecialist} Now <i class="fa-solid fa-arrow-right ms-1"></i>
+            </a>
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

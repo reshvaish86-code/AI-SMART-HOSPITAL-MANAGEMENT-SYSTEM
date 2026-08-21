@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Portal | AI Smart Hospital Management System</title>
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome 6.5 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/dashboard.css">
+</head>
+<body>
+
+  <div class="dashboard-wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <i class="fa-solid fa-hospital-user text-info fs-3"></i>
+        <div>
+          <h6 class="text-white fw-bold mb-0">AI Smart Hospital</h6>
+          <small class="text-secondary">Patient Portal</small>
+        </div>
+      </div>
+      <ul class="sidebar-menu nav nav-pills flex-column" id="patientTab" role="tablist">
+        <li class="nav-item">
+          <a class="sidebar-link active" id="overview-tab" data-bs-toggle="pill" href="#overview">
+            <i class="fa-solid fa-chart-pie"></i> Overview
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="sidebar-link" id="specialists-tab" data-bs-toggle="pill" href="#specialists">
+            <i class="fa-solid fa-user-doctor"></i> Find Doctors
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="sidebar-link" id="appointments-tab" data-bs-toggle="pill" href="#appointments">
+            <i class="fa-solid fa-calendar-check"></i> My Appointments
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="sidebar-link" id="records-tab" data-bs-toggle="pill" href="#records">
+            <i class="fa-solid fa-notes-medical"></i> Medical Records
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="sidebar-link" id="prescriptions-tab" data-bs-toggle="pill" href="#prescriptions">
+            <i class="fa-solid fa-file-prescription"></i> Prescriptions
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="sidebar-link" id="reminders-tab" data-bs-toggle="pill" href="#reminders">
+            <i class="fa-solid fa-pills"></i> Medicine Reminders
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="sidebar-link" id="ai-tab" data-bs-toggle="pill" href="#ai-assistant-tab">
+            <i class="fa-solid fa-robot text-info"></i> AI Health Assistant
+          </a>
+        </li>
+      </ul>
+      <div class="sidebar-footer">
+        <button class="btn btn-outline-danger btn-sm w-100 rounded-3" onclick="Auth.logout()">
+          <i class="fa-solid fa-arrow-right-from-bracket me-1"></i> Sign Out
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Top Nav -->
+      <header class="top-nav">
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-light d-lg-none" onclick="document.querySelector('.sidebar').classList.toggle('show')">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+          <h5 class="fw-bold mb-0 text-dark">Patient Healthcare Hub</h5>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <!-- Notification Dropdown -->
+          <div class="dropdown">
+            <button class="btn btn-light rounded-circle position-relative p-2" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-bell text-secondary"></i>
+              <span id="notifCountBadge" class="badge bg-danger rounded-pill notification-badge" style="display:none;">0</span>
+            </button>
+            <ul id="notificationsDropdownList" class="dropdown-menu dropdown-menu-end shadow-lg" style="width: 320px;">
+              <li class="p-2 text-center text-muted small">Loading notifications...</li>
+            </ul>
+          </div>
+
+          <!-- User Info -->
+          <div class="d-flex align-items-center gap-2">
+            <div class="bg-primary text-white p-2 rounded-circle fw-bold" style="width: 38px; height: 38px; display:flex; align-items:center; justify-content:center;">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <div>
+              <div class="fw-bold small text-dark auth-user-name">Patient</div>
+              <div class="text-muted" style="font-size: 0.72rem;">PATIENT PORTAL</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <div class="content-body">
+        <div class="tab-content" id="patientTabContent">
+
+          <!-- TAB 1: OVERVIEW -->
+          <div class="tab-pane fade show active" id="overview" role="tabpanel">
+            <div class="row g-3 mb-4">
+              <div class="col-6 col-lg-3">
+                <div class="kpi-card">
+                  <div>
+                    <span class="text-muted small">Total Bookings</span>
+                    <div id="statTotalAppts" class="kpi-value text-primary">0</div>
+                  </div>
+                  <div class="kpi-icon bg-primary-subtle text-primary"><i class="fa-solid fa-calendar-check"></i></div>
+                </div>
+              </div>
+              <div class="col-6 col-lg-3">
+                <div class="kpi-card">
+                  <div>
+                    <span class="text-muted small">Upcoming Consultations</span>
+                    <div id="statUpcomingAppts" class="kpi-value text-info">0</div>
+                  </div>
+                  <div class="kpi-icon bg-info-subtle text-info"><i class="fa-solid fa-clock"></i></div>
+                </div>
+              </div>
+              <div class="col-6 col-lg-3">
+                <div class="kpi-card">
+                  <div>
+                    <span class="text-muted small">Digital Prescriptions</span>
+                    <div id="statPrescriptions" class="kpi-value text-success">0</div>
+                  </div>
+                  <div class="kpi-icon bg-success-subtle text-success"><i class="fa-solid fa-file-prescription"></i></div>
+                </div>
+              </div>
+              <div class="col-6 col-lg-3">
+                <div class="kpi-card">
+                  <div>
+                    <span class="text-muted small">Medicine Reminders</span>
+                    <div id="statReminders" class="kpi-value text-warning">0</div>
+                  </div>
+                  <div class="kpi-icon bg-warning-subtle text-warning"><i class="fa-solid fa-pills"></i></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-4">
+              <div class="col-lg-8">
+                <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="fw-bold mb-0">Quick Specialist Search (Tamil Nadu)</h5>
+                    <button class="btn btn-sm btn-link text-decoration-none" onclick="document.getElementById('specialists-tab').click()">View All Doctors</button>
+                  </div>
+                  <p class="text-muted small">Find cardiologists, dermatologists, pediatricians, and more across all districts.</p>
+                  <div class="row g-2">
+                    <div class="col-md-5">
+                      <select id="overviewSpecialty" class="form-select">
+                        <option value="Cardiologist">Cardiologist</option>
+                        <option value="Dermatologist">Dermatologist</option>
+                        <option value="General Physician">General Physician</option>
+                        <option value="Pediatrician">Pediatrician</option>
+                      </select>
+                    </div>
+                    <div class="col-md-5">
+                      <select id="overviewDistrict" class="form-select">
+                        <option value="Chennai">Chennai</option>
+                        <option value="Coimbatore">Coimbatore</option>
+                        <option value="Madurai">Madurai</option>
+                        <option value="Salem">Salem</option>
+                      </select>
+                    </div>
+                    <div class="col-md-2">
+                      <button class="btn btn-primary-custom w-100" onclick="
+                        document.getElementById('filterSpecialty').value = document.getElementById('overviewSpecialty').value;
+                        document.getElementById('filterDistrict').value = document.getElementById('overviewDistrict').value;
+                        document.getElementById('specialists-tab').click();
+                        PatientApp.loadDoctors();
+                      ">Search</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card border-0 shadow-sm rounded-4 p-4">
+                  <h5 class="fw-bold mb-3"><i class="fa-solid fa-clock-rotate-left text-primary me-2"></i> Recent Consultation Records</h5>
+                  <div id="medicalRecordsOverview">
+                    <p class="text-muted small mb-0">View complete diagnostics and prescriptions in the respective tabs.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-4">
+                <!-- AI Quick Triage Card -->
+                <div class="card border-0 shadow-sm rounded-4 p-4 bg-primary text-white mb-4">
+                  <div class="d-flex align-items-center gap-2 mb-2">
+                    <i class="fa-solid fa-robot fs-4 text-warning"></i>
+                    <h5 class="fw-bold mb-0">AI Symptom Triage</h5>
+                  </div>
+                  <p class="small text-light opacity-75 mb-3">Unsure what is wrong? Type your symptoms for instant specialist recommendation.</p>
+                  <textarea id="aiTriageInput" class="form-control mb-3 text-dark" rows="3" placeholder="e.g. Sharp pain in knee joint after morning run..."></textarea>
+                  <button id="btnRunAITriage" class="btn btn-warning text-dark fw-bold w-100 rounded-pill">
+                    <i class="fa-solid fa-wand-magic-sparkles me-1"></i> Analyze Symptoms
+                  </button>
+                  <div id="aiTriageResultBox" class="mt-3 text-dark d-none"></div>
+                </div>
+
+                <!-- Active Medicine Reminders Card -->
+                <div class="card border-0 shadow-sm rounded-4 p-4">
+                  <h6 class="fw-bold mb-3 d-flex align-items-center justify-content-between">
+                    <span><i class="fa-solid fa-bell text-warning me-1"></i> Medicine Alerts</span>
+                    <button class="btn btn-sm btn-link p-0 text-decoration-none" onclick="document.getElementById('reminders-tab').click()">+ Add</button>
+                  </h6>
+                  <div id="medicineRemindersOverview">
+                    <p class="text-muted small mb-0">Your daily dose schedule is active.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 2: FIND DOCTORS & BOOK APPOINTMENT -->
+          <div class="tab-pane fade" id="specialists" role="tabpanel">
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+              <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-user-doctor text-primary me-2"></i> Search Verified Medical Specialists</h5>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <label class="form-label text-muted small fw-semibold">Specialization</label>
+                  <select id="filterSpecialty" class="form-select"></select>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label text-muted small fw-semibold">District (Tamil Nadu)</label>
+                  <select id="filterDistrict" class="form-select"></select>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label text-muted small fw-semibold">Doctor / Hospital Name</label>
+                  <input type="text" id="searchDoctorQuery" class="form-control" placeholder="Search keywords...">
+                </div>
+                <div class="col-md-1 d-flex align-items-end">
+                  <button id="btnFilterDoctors" class="btn btn-primary-custom w-100">
+                    <i class="fa-solid fa-filter"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div id="doctorListContainer" class="row">
+              <!-- Loaded dynamically via PatientApp.loadDoctors() -->
+            </div>
+          </div>
+
+          <!-- TAB 3: MY APPOINTMENTS -->
+          <div class="tab-pane fade" id="appointments" role="tabpanel">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <div>
+                <h5 class="fw-bold mb-1">My Booked Appointments</h5>
+                <p class="text-muted small mb-0">Track confirmation status and appointment history</p>
+              </div>
+              <button class="btn btn-primary-custom btn-sm rounded-pill" onclick="document.getElementById('specialists-tab').click()">
+                <i class="fa-solid fa-plus me-1"></i> Book New Appointment
+              </button>
+            </div>
+            <div id="myAppointmentsContainer"></div>
+          </div>
+
+          <!-- TAB 4: MEDICAL RECORDS -->
+          <div class="tab-pane fade" id="records" role="tabpanel">
+            <div class="mb-4">
+              <h5 class="fw-bold mb-1">Personal Medical Consultation Records</h5>
+              <p class="text-muted small">Clinical diagnoses, vitals, and physician notes recorded during your visits</p>
+            </div>
+            <div id="medicalRecordsContainer"></div>
+          </div>
+
+          <!-- TAB 5: DIGITAL PRESCRIPTIONS -->
+          <div class="tab-pane fade" id="prescriptions" role="tabpanel">
+            <div class="mb-4">
+              <h5 class="fw-bold mb-1">Digital Prescriptions (E-Rx)</h5>
+              <p class="text-muted small">Access and print certified digital prescriptions issued by your doctors</p>
+            </div>
+            <div id="prescriptionsContainer"></div>
+          </div>
+
+          <!-- TAB 6: MEDICINE REMINDERS -->
+          <div class="tab-pane fade" id="reminders" role="tabpanel">
+            <div class="row g-4">
+              <div class="col-lg-5">
+                <div class="card border-0 shadow-sm rounded-4 p-4">
+                  <h5 class="fw-bold mb-3"><i class="fa-solid fa-plus text-primary me-2"></i> Add Medicine Reminder</h5>
+                  <div class="mb-3">
+                    <label class="form-label text-muted small fw-semibold">Medicine Name *</label>
+                    <input type="text" id="remMedName" class="form-control" placeholder="e.g. Metformin 500mg">
+                  </div>
+                  <div class="row g-2 mb-3">
+                    <div class="col-6">
+                      <label class="form-label text-muted small fw-semibold">Dosage</label>
+                      <input type="text" id="remMedDosage" class="form-control" placeholder="1 Tablet">
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label text-muted small fw-semibold">Time *</label>
+                      <input type="text" id="remMedTime" class="form-control" placeholder="08:00 AM">
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label text-muted small fw-semibold">Frequency</label>
+                    <input type="text" id="remMedFreq" class="form-control" placeholder="Daily after breakfast">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label text-muted small fw-semibold">Instructions</label>
+                    <input type="text" id="remMedInst" class="form-control" placeholder="Take with water">
+                  </div>
+                  <button id="btnAddReminder" class="btn btn-primary-custom w-100 rounded-3">
+                    <i class="fa-solid fa-bell me-1"></i> Save Reminder
+                  </button>
+                </div>
+              </div>
+              <div class="col-lg-7">
+                <div class="card border-0 shadow-sm rounded-4 p-4">
+                  <h5 class="fw-bold mb-3"><i class="fa-solid fa-pills text-warning me-2"></i> Active Reminders</h5>
+                  <div id="medicineRemindersContainer"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB 7: AI HEALTH ASSISTANT -->
+          <div class="tab-pane fade" id="ai-assistant-tab" role="tabpanel">
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+              <div class="d-flex align-items-center gap-3 mb-3 border-bottom pb-3">
+                <div class="bg-primary text-white p-3 rounded-4 fs-3">
+                  <i class="fa-solid fa-robot"></i>
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-1">AI Clinical Health Assistant</h5>
+                  <p class="text-muted small mb-0">Preliminary triage, symptom analysis, and specialty guidance</p>
+                </div>
+              </div>
+              <div class="disclaimer-card mb-4">
+                <strong><i class="fa-solid fa-shield-halved me-1"></i> Medical Disclaimer:</strong> This system uses clinical rule-based triage. It is not a certified diagnostic doctor. If you experience severe emergencies (e.g. chest pain, breathing trouble), immediately dial 108/112.
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-bold">Describe your symptoms or ask a health question:</label>
+                <textarea id="aiFullChatInput" class="form-control rounded-3" rows="4" placeholder="e.g. I have a high fever with chills and throat irritation for 2 days. What specialist should I consult and what home care should I take?"></textarea>
+              </div>
+              <button id="btnAIFullChatSubmit" class="btn btn-primary-custom rounded-pill px-4">
+                <i class="fa-solid fa-paper-plane me-1"></i> Ask AI Health Assistant
+              </button>
+              <div id="aiFullChatResponse" class="mt-4 d-none"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- BOOKING MODAL WITH SLOT COLLISION VISUALIZER -->
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content rounded-4 border-0 shadow-lg">
+        <div class="modal-header bg-light border-0 py-3">
+          <h5 class="modal-title fw-bold text-dark"><i class="fa-solid fa-calendar-plus text-primary me-2"></i> Schedule Doctor Consultation</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4">
+          <!-- Doctor Summary Banner -->
+          <div class="bg-primary-subtle p-3 rounded-4 mb-3 d-flex justify-content-between align-items-center">
+            <div>
+              <h6 id="modalDocName" class="fw-bold text-primary mb-1">Doctor Name</h6>
+              <div class="small text-muted">
+                <span id="modalDocSpecialty" class="badge bg-primary text-white me-1">Specialty</span>
+                <span id="modalDocHospital">Hospital</span>
+              </div>
+            </div>
+            <div class="text-end">
+              <span class="text-muted small d-block">Consultation Fee</span>
+              <span id="modalDocFee" class="fs-5 fw-bold text-success">₹500</span>
+            </div>
+          </div>
+
+          <!-- Date Picker -->
+          <div class="mb-3">
+            <label class="form-label text-dark fw-semibold small">1. Select Appointment Date *</label>
+            <input type="date" id="bookingDateInput" class="form-control" required>
+            <small class="text-muted">Past dates are automatically restricted.</small>
+          </div>
+
+          <!-- Time Slot Chips with Live Collision Prevention -->
+          <div class="mb-3">
+            <label class="form-label text-dark fw-semibold small">2. Select Time Slot *</label>
+            <div id="slotChipsContainer" class="slot-grid">
+              <!-- Loaded dynamically with taken slots disabled -->
+            </div>
+          </div>
+
+          <!-- Reason for Visit -->
+          <div class="mb-3">
+            <label class="form-label text-dark fw-semibold small">3. Reason for Visit / Symptoms *</label>
+            <textarea id="bookingReasonInput" class="form-control" rows="2" placeholder="Briefly describe your symptoms or reason for visit..." required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer bg-light border-0 py-3">
+          <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" id="btnConfirmBooking" class="btn btn-primary-custom rounded-pill px-4">
+            <i class="fa-solid fa-check me-1"></i> Confirm Booking
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINTABLE DIGITAL PRESCRIPTION MODAL -->
+  <div class="modal fade" id="prescriptionDetailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content rounded-4 border-0 shadow-lg">
+        <div class="modal-header border-0 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4" id="prescriptionModalBody">
+          <!-- Formatted printable Rx template loaded via PatientApp.viewPrescriptionModal() -->
+        </div>
+        <div class="modal-footer border-0 pt-0">
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary rounded-pill px-4" onclick="window.print()">
+            <i class="fa-solid fa-print me-1"></i> Print Prescription
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../js/config.js"></script>
+  <script src="../../js/api.js"></script>
+  <script src="../../js/auth.js"></script>
+  <script src="../../js/ai-assistant.js"></script>
+  <script src="../../js/patient-dashboard.js"></script>
+  <script>
+    document.getElementById('btnAIFullChatSubmit')?.addEventListener('click', async () => {
+      const input = document.getElementById('aiFullChatInput').value;
+      const respBox = document.getElementById('aiFullChatResponse');
+      if (!input.trim()) return;
+
+      respBox.innerHTML = '<div class="text-primary small py-3"><i class="fa-solid fa-spinner fa-spin me-1"></i> AI Assistant is evaluating clinical guidelines...</div>';
+      respBox.classList.remove('d-none');
+
+      const data = await AIAssistant.sendMessage(input);
+      if (data) {
+        respBox.innerHTML = `
+          <div class="card border-0 bg-light p-4 rounded-4 shadow-sm">
+            <h6 class="fw-bold text-primary mb-2"><i class="fa-solid fa-robot me-1"></i> Clinical Evaluation Report</h6>
+            <div class="mb-3" style="white-space: pre-line;">${data.reply}</div>
+            <button class="btn btn-primary-custom btn-sm rounded-pill" onclick="PatientApp.filterBySuggestedSpecialist('${data.recommendedSpecialist}')">
+              <i class="fa-solid fa-calendar-plus me-1"></i> Book ${data.recommendedSpecialist} in Tamil Nadu
+            </button>
+          </div>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

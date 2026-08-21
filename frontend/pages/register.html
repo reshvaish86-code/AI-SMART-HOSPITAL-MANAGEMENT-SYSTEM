@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | AI Smart Hospital Management System</title>
+  <!-- Bootstrap 5.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome 6.5 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/auth.css">
+</head>
+<body>
+
+  <div class="auth-wrapper py-4">
+    <div class="auth-card auth-card-wide">
+      <div class="auth-header">
+        <a href="../index.html" class="text-info text-decoration-none d-inline-flex align-items-center gap-2 mb-2">
+          <i class="fa-solid fa-hospital-user fs-4"></i>
+          <span class="fw-bold fs-5 text-white">AI Smart Hospital</span>
+        </a>
+        <h4 class="fw-bold mb-1 text-white">Create New Healthcare Account</h4>
+        <p class="text-light opacity-75 small mb-0">Join our intelligent hospital ecosystem in Tamil Nadu</p>
+      </div>
+
+      <div class="auth-body">
+        <!-- Role Switcher Tabs -->
+        <div class="role-tabs">
+          <button type="button" id="tabBtnPatient" class="role-tab-btn active" onclick="switchRole('patient')">
+            <i class="fa-solid fa-user-injured"></i> Register as Patient
+          </button>
+          <button type="button" id="tabBtnDoctor" class="role-tab-btn" onclick="switchRole('doctor')">
+            <i class="fa-solid fa-user-doctor"></i> Register as Doctor
+          </button>
+        </div>
+
+        <!-- Patient Registration Form -->
+        <form id="patientRegisterForm">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label text-dark fw-semibold small">Full Name *</label>
+              <input type="text" id="pName" class="form-control" placeholder="e.g. Rahul Sharma" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-dark fw-semibold small">Email Address *</label>
+              <input type="email" id="pEmail" class="form-control" placeholder="rahul@example.com" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-dark fw-semibold small">Mobile Number *</label>
+              <input type="tel" id="pMobile" class="form-control" placeholder="+91 9876543210" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-dark fw-semibold small">Password *</label>
+              <input type="password" id="pPassword" class="form-control" placeholder="Min 6 characters" required>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label text-dark fw-semibold small">Age *</label>
+              <input type="number" id="pAge" class="form-control" placeholder="e.g. 32" required min="1" max="120">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label text-dark fw-semibold small">Gender *</label>
+              <select id="pGender" class="form-select" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label text-dark fw-semibold small">Blood Group</label>
+              <select id="pBlood" class="form-select">
+                <option value="Unknown">Unknown</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-dark fw-semibold small">District (Tamil Nadu) *</label>
+              <select id="pDistrict" class="form-select" required></select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-dark fw-semibold small">Residential Address *</label>
+              <input type="text" id="pAddress" class="form-control" placeholder="Street, Area, City" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label text-dark fw-semibold small">Known Allergies (Optional)</label>
+              <input type="text" id="pAllergies" class="form-control" placeholder="e.g. Penicillin, Peanuts (comma separated)">
+            </div>
+          </div>
+          <button type="submit" id="btnRegisterPatient" class="btn btn-primary-custom w-100 py-2 mt-4">
+            <i class="fa-solid fa-user-check me-1"></i> Complete Patient Registration
+          </button>
+        </form>
+
+        <!-- Doctor Registration Form (Hidden by default) -->
+        <form id="doctorRegisterForm" class="d-none">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label text-dark fw-semibold small">Doctor Full Name *</label>
+              <input type="text" id="dName" class="form-control" placeholder="Dr. Firstname Lastname" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-dark fw-semibold small">Email Address *</label>
+              <input type="email" id="dEmail" class="form-control" placeholder="doctor@hospital.com" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-dark fw-semibold small">Mobile Number *</label>
+              <input type="tel" id="dMobile" class="form-control" placeholder="+91 9840123456" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-dark fw-semibold small">Password *</label>
+              <input type="password" id="dPassword" class="form-control" placeholder="Min 6 characters" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-dark fw-semibold small">Qualification *</label>
+              <input type="text" id="dQualification" class="form-control" placeholder="e.g. MBBS, MD, DNB" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label text-dark fw-semibold small">Medical Specialization *</label>
+              <select id="dSpecialization" class="form-select" required></select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label text-dark fw-semibold small">Experience (Years) *</label>
+              <input type="number" id="dExperience" class="form-control" placeholder="e.g. 10" required min="0">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label text-dark fw-semibold small">Consultation Fee (INR ₹) *</label>
+              <input type="number" id="dFee" class="form-control" placeholder="e.g. 500" required min="0">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label text-dark fw-semibold small">Location / District *</label>
+              <select id="dDistrict" class="form-select" required></select>
+            </div>
+            <div class="col-md-12">
+              <label class="form-label text-dark fw-semibold small">Hospital / Clinic Name *</label>
+              <input type="text" id="dHospital" class="form-control" placeholder="e.g. Apollo Hospitals / Ganga Medical" required>
+            </div>
+            <div class="col-md-12">
+              <label class="form-label text-dark fw-semibold small">Professional Bio</label>
+              <textarea id="dBio" class="form-control" rows="2" placeholder="Brief background about clinical expertise and patient care..."></textarea>
+            </div>
+          </div>
+          <button type="submit" id="btnRegisterDoctor" class="btn btn-secondary-custom w-100 py-2 mt-4">
+            <i class="fa-solid fa-user-doctor me-1"></i> Complete Doctor Registration
+          </button>
+        </form>
+
+        <div class="text-center mt-4 pt-3 border-top small text-muted">
+          Already registered? <a href="login.html" class="text-primary fw-semibold text-decoration-none">Sign in here</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/config.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script>
+    function populateFormDropdowns() {
+      const pDist = document.getElementById('pDistrict');
+      const dDist = document.getElementById('dDistrict');
+      const dSpec = document.getElementById('dSpecialization');
+
+      CONFIG.TAMIL_NADU_DISTRICTS.forEach(d => {
+        if (pDist) pDist.innerHTML += `<option value="${d}">${d}</option>`;
+        if (dDist) dDist.innerHTML += `<option value="${d}">${d}</option>`;
+      });
+
+      CONFIG.SPECIALIZATIONS.forEach(s => {
+        if (dSpec) dSpec.innerHTML += `<option value="${s}">${s}</option>`;
+      });
+    }
+
+    function switchRole(role) {
+      const pTab = document.getElementById('tabBtnPatient');
+      const dTab = document.getElementById('tabBtnDoctor');
+      const pForm = document.getElementById('patientRegisterForm');
+      const dForm = document.getElementById('doctorRegisterForm');
+
+      if (role === 'patient') {
+        pTab.classList.add('active');
+        dTab.classList.remove('active');
+        pForm.classList.remove('d-none');
+        dForm.classList.add('d-none');
+      } else {
+        dTab.classList.add('active');
+        pTab.classList.remove('active');
+        dForm.classList.remove('d-none');
+        pForm.classList.add('d-none');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      populateFormDropdowns();
+
+      // Patient submit
+      document.getElementById('patientRegisterForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const payload = {
+          name: document.getElementById('pName').value,
+          email: document.getElementById('pEmail').value,
+          mobile: document.getElementById('pMobile').value,
+          password: document.getElementById('pPassword').value,
+          age: document.getElementById('pAge').value,
+          gender: document.getElementById('pGender').value,
+          bloodGroup: document.getElementById('pBlood').value,
+          district: document.getElementById('pDistrict').value,
+          address: document.getElementById('pAddress').value,
+          allergies: document.getElementById('pAllergies').value
+        };
+        await Auth.registerPatient(payload);
+      });
+
+      // Doctor submit
+      document.getElementById('doctorRegisterForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const payload = {
+          name: document.getElementById('dName').value,
+          email: document.getElementById('dEmail').value,
+          mobile: document.getElementById('dMobile').value,
+          password: document.getElementById('dPassword').value,
+          qualification: document.getElementById('dQualification').value,
+          specialization: document.getElementById('dSpecialization').value,
+          experience: document.getElementById('dExperience').value,
+          consultationFee: document.getElementById('dFee').value,
+          district: document.getElementById('dDistrict').value,
+          hospital: document.getElementById('dHospital').value,
+          bio: document.getElementById('dBio').value
+        };
+        await Auth.registerDoctor(payload);
+      });
+    });
+  </script>
+</body>
+</html>
