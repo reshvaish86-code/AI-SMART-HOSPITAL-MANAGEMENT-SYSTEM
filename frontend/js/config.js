@@ -2,10 +2,14 @@
  * AI Smart Hospital Management System - Frontend Configuration
  */
 
+// Live Render Backend API URL (Replace with your actual Render URL after deploying backend)
+const BACKEND_RENDER_URL = 'https://ai-smart-hospital-backend.onrender.com/api';
+
 const CONFIG = {
-  API_BASE_URL: window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1')
+  // Automatically detects local environment vs live deployment (Vercel / Netlify / Render)
+  API_BASE_URL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? 'http://localhost:5000/api'
-    : '/api',
+    : (localStorage.getItem('CUSTOM_API_URL') || BACKEND_RENDER_URL),
 
   SPECIALIZATIONS: [
     'General Physician',
