@@ -1,7 +1,10 @@
 const Appointment = require('../models/Appointment');
 const Doctor = require('../models/Doctor');
 const Patient = require('../models/Patient');
-const { sendNotification } = require('../services/notificationService');
+const { 
+  sendAppointmentConfirmation, 
+  sendAppointmentStatusUpdate 
+} = require('../services/notificationService');
 const { APPOINTMENT_STATUS } = require('../utils/constants');
 
 /**
@@ -75,26 +78,16 @@ const bookAppointment = async (req, res, next) => {
       hospital: doctor.hospital,
       reasonForVisit,
       consultationFee: doctor.consultationFee || 500,
-      status: APPOINTMENT_STATUS.PENDING
+      status: APPOINTMENT_STATUS.PENDING,
+      reminderSent: false
     });
 
-    // 6. Dispatch Notifications
-    // To Doctor
-    await sendNotification({
-      recipient: doctor.user._id,
-      title: 'New Appointment Booking Request',
-      message: `Patient ${patient.user.name} requested an appointment on ${appointmentDate} at ${timeSlot} for "${reasonForVisit}".`,
-      type: 'appointment',
-      relatedId: appointment._id.toString()
-    });
-
-    // To Patient
-    await sendNotification({
-      recipient: req.user._id,
-      title: 'Appointment Request Submitted',
-      message: `Your appointment with Dr. ${doctor.user.name} (${doctor.specialization}) on ${appointmentDate} at ${timeSlot} has been submitted (Status: Pending).`,
-      type: 'appointment',
-      relatedId: appointment._id.toString()
+    // 6. Dispatch Multi-Channel Notifications (Email, SMS & In-App)
+    await sendAppointmentConfirmation({
+      appointment,
+      patientUser: patient.user,
+      doctorUser: doctor.user,
+      doctorProfile: doctor
     });
 
     res.status(201).json({
@@ -199,8 +192,8 @@ const updateAppointmentStatus = async (req, res, next) => {
   try {
     const { status, doctorNotes, cancellationReason, newDate, newTimeSlot } = req.body;
     const appointment = await Appointment.findById(req.params.id)
-      .populate('patientUser', 'name email')
-      .populate('doctorUser', 'name email');
+      .populate('patientUser', 'name email mobile')
+      .populate('doctorUser', 'name email mobile');
 
     if (!appointment) {
       return res.status(404).json({
@@ -244,6 +237,7 @@ const updateAppointmentStatus = async (req, res, next) => {
 
       appointment.appointmentDate = newDate;
       appointment.timeSlot = newTimeSlot;
+      appointment.reminderSent = false; // Reset reminder flag for new date
     }
 
     if (status) appointment.status = status;
@@ -252,16 +246,13 @@ const updateAppointmentStatus = async (req, res, next) => {
 
     await appointment.save();
 
-    // Send notifications regarding status update
-    const notificationTarget = req.user.role === 'doctor' ? appointment.patientUser._id : appointment.doctorUser._id;
-    const actionBy = req.user.role === 'doctor' ? `Dr. ${req.user.name}` : req.user.name;
-
-    await sendNotification({
-      recipient: notificationTarget,
-      title: `Appointment ${status}`,
-      message: `Your appointment for ${appointment.appointmentDate} (${appointment.timeSlot}) has been marked as '${status}' by ${actionBy}.`,
-      type: 'appointment',
-      relatedId: appointment._id.toString()
+    // Dispatch status update notifications (Email, In-App)
+    await sendAppointmentStatusUpdate({
+      appointment,
+      patientUser: appointment.patientUser,
+      doctorUser: appointment.doctorUser,
+      status,
+      reason: cancellationReason || doctorNotes
     });
 
     res.status(200).json({

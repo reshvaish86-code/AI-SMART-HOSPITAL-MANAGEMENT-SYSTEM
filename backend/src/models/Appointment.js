@@ -62,6 +62,11 @@ const appointmentSchema = new mongoose.Schema({
     enum: ['Unpaid', 'Paid', 'Waived'],
     default: 'Unpaid'
   },
+  reminderSent: {
+    type: Boolean,
+    default: false,
+    index: true
+  },
   doctorNotes: {
     type: String,
     default: ''
@@ -81,8 +86,9 @@ const appointmentSchema = new mongoose.Schema({
   }
 });
 
-// Index for query optimization on appointments by doctor and date
+// Index for query optimization & collision prevention on appointments by doctor and date
 appointmentSchema.index({ doctor: 1, appointmentDate: 1, timeSlot: 1 });
 appointmentSchema.index({ patient: 1, appointmentDate: 1 });
+appointmentSchema.index({ reminderSent: 1, status: 1 });
 
 module.exports = mongoose.model('Appointment', appointmentSchema);

@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 const path = require('path');
 const connectDB = require('./src/config/db');
 const errorHandler = require('./src/middleware/errorHandler');
+const { initCronJobs } = require('./src/services/cronService');
 
 // Route Handlers
 const authRoutes = require('./src/routes/authRoutes');
@@ -25,6 +26,9 @@ const PORT = process.env.PORT || 5000;
 
 // Initialize Database Connection
 connectDB();
+
+// Initialize Automated Background Cron Schedulers
+initCronJobs();
 
 // Core Middleware
 app.use(cors({

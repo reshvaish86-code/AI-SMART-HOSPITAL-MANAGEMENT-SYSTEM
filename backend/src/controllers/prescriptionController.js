@@ -2,7 +2,7 @@ const Prescription = require('../models/Prescription');
 const Patient = require('../models/Patient');
 const Doctor = require('../models/Doctor');
 const Appointment = require('../models/Appointment');
-const { sendNotification } = require('../services/notificationService');
+const { sendPrescriptionNotification } = require('../services/notificationService');
 
 /**
  * @desc    Create Digital Prescription (by Doctor)
@@ -18,7 +18,7 @@ const createPrescription = async (req, res, next) => {
       return res.status(403).json({ status: 'fail', message: 'Doctor profile required' });
     }
 
-    const patient = await Patient.findById(patientId).populate('user', 'name email');
+    const patient = await Patient.findById(patientId).populate('user', 'name email mobile');
     if (!patient) {
       return res.status(404).json({ status: 'fail', message: 'Patient not found' });
     }
@@ -35,7 +35,8 @@ const createPrescription = async (req, res, next) => {
       medicines,
       generalAdvice: generalAdvice || 'Take rest and drink plenty of water.',
       dietaryRestrictions: dietaryRestrictions || '',
-      isDigitallySigned: true
+      isDigitallySigned: true,
+      signatureDate: new Date()
     });
 
     // Optionally mark appointment as completed if associated
@@ -58,18 +59,16 @@ const createPrescription = async (req, res, next) => {
       await patient.save();
     }
 
-    // Send Notification to Patient
-    await sendNotification({
-      recipient: patient.user._id,
-      title: 'Digital Prescription Generated',
-      message: `Dr. ${req.user.name} has issued a digital prescription for "${diagnosis}" with ${medicines.length} medication(s).`,
-      type: 'prescription',
-      relatedId: prescription._id.toString()
+    // Send multi-channel Notification to Patient (Email & In-App)
+    await sendPrescriptionNotification({
+      prescription,
+      patientUser: patient.user,
+      doctorUser: req.user
     });
 
     res.status(201).json({
       status: 'success',
-      message: 'Prescription generated successfully',
+      message: 'Prescription generated and signed successfully',
       data: prescription
     });
   } catch (error) {
