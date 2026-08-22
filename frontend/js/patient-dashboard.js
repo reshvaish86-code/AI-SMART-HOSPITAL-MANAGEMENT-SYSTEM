@@ -1,9 +1,11 @@
 /**
  * Patient Dashboard Application Logic
+ * Enhanced with Live Client Alarm Monitor & Browser Notifications
  */
 
 let selectedDoctorForBooking = null;
 let selectedSlotForBooking = null;
+let triggeredRemindersCache = new Set(); // To prevent duplicate alerts within same minute
 
 const PatientApp = {
   async init() {
@@ -16,6 +18,106 @@ const PatientApp = {
     await this.loadReminders();
     await this.loadNotifications();
     this.setupEventListeners();
+    this.initBrowserNotificationPermission();
+    this.startClientReminderMonitor();
+  },
+
+  initBrowserNotificationPermission() {
+    if ('Notification' in window && Notification.permission !== 'granted' && Notification.permission !== 'denied') {
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          console.log('✅ [Browser Notification] Permission granted for medicine & appointment reminders.');
+        }
+      });
+    }
+  },
+
+  startClientReminderMonitor() {
+    // Check every 10 seconds if any medicine reminder or appointment is due
+    setInterval(() => {
+      this.checkDueRemindersLocally();
+    }, 10000);
+  },
+
+  async checkDueRemindersLocally() {
+    try {
+      const now = new Date();
+      const currentHour24 = String(now.getHours()).padStart(2, '0');
+      const currentMin = String(now.getMinutes()).padStart(2, '0');
+      const currentMinuteKey = `${currentHour24}:${currentMin}`;
+
+      if (triggeredRemindersCache.has(currentMinuteKey)) return;
+
+      const res = await API.get('/patients/profile');
+      const reminders = res.data?.medicineReminders || [];
+
+      for (const r of reminders) {
+        if (!r.isActive || !r.time) continue;
+
+        const targetNorm = this.normalizeTimeStr(r.time);
+        if (targetNorm === currentMinuteKey) {
+          triggeredRemindersCache.add(currentMinuteKey);
+          this.triggerLiveMedicineAlarm(r);
+          break;
+        }
+      }
+    } catch (e) {
+      // Ignore background check errors
+    }
+  },
+
+  normalizeTimeStr(tStr) {
+    if (!tStr) return '';
+    const cleaned = tStr.trim().replace('.', ':');
+    const match12 = cleaned.match(/(\d+):?(\d*)\s*(AM|PM)/i);
+    if (match12) {
+      let h = parseInt(match12[1], 10);
+      const m = match12[2] ? parseInt(match12[2], 10) : 0;
+      const p = match12[3].toUpperCase();
+      if (p === 'PM' && h < 12) h += 12;
+      if (p === 'AM' && h === 12) h = 0;
+      return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+    }
+    const match24 = cleaned.match(/(\d+):(\d+)/);
+    if (match24) {
+      return `${String(match24[1]).padStart(2, '0')}:${String(match24[2]).padStart(2, '0')}`;
+    }
+    return '';
+  },
+
+  triggerLiveMedicineAlarm(reminder) {
+    // 1. Play Audio Chime
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
+      osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.15); // A5
+      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.6);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.6);
+    } catch (err) {
+      // Audio not permitted
+    }
+
+    // 2. Native OS / Browser Push Notification
+    if ('Notification' in window && Notification.permission === 'granted') {
+      new Notification(`💊 Medicine Time: ${reminder.medicineName}`, {
+        body: `Dosage: ${reminder.dosage || '1 dose'} | Instructions: ${reminder.instructions || 'Take as advised'}`,
+        icon: 'https://cdn-icons-png.flaticon.com/512/2966/2966327.png'
+      });
+    }
+
+    // 3. Prominent Visual Modal/Toast on Screen
+    API.toast(`⏰ MEDICINE ALERT: Time to take ${reminder.medicineName} (${reminder.dosage || ''}) - ${reminder.instructions || ''}`, 'warning');
+
+    // Reload notifications
+    this.loadStats();
+    this.loadNotifications();
   },
 
   populateDropdowns() {
@@ -137,7 +239,6 @@ const PatientApp = {
       document.getElementById('modalDocHospital').textContent = `${selectedDoctorForBooking.hospital} (${selectedDoctorForBooking.district})`;
       document.getElementById('modalDocFee').textContent = `₹${selectedDoctorForBooking.consultationFee}`;
 
-      // Set min date to today
       const today = new Date().toISOString().split('T')[0];
       const dateInput = document.getElementById('bookingDateInput');
       dateInput.min = today;
@@ -208,14 +309,14 @@ const PatientApp = {
       });
 
       if (res && res.status === 'success') {
-        API.toast('Appointment request submitted successfully!', 'success');
+        API.toast('Appointment request submitted successfully! Confirmation email dispatched.', 'success');
         bootstrap.Modal.getInstance(document.getElementById('bookingModal')).hide();
         document.getElementById('bookingReasonInput').value = '';
         await this.loadStats();
         await this.loadAppointments();
       }
     } catch (e) {
-      // Handled in API.toast
+      // Handled
     }
   },
 
@@ -454,6 +555,7 @@ const PatientApp = {
 
   async loadReminders() {
     const container = document.getElementById('medicineRemindersContainer');
+    const overviewContainer = document.getElementById('medicineRemindersOverview');
     if (!container) return;
 
     try {
@@ -462,21 +564,34 @@ const PatientApp = {
 
       if (reminders.length === 0) {
         container.innerHTML = '<div class="text-muted small py-3 text-center">No medicine reminders set.</div>';
+        if (overviewContainer) overviewContainer.innerHTML = '<p class="text-muted small mb-0">No active medicine reminders.</p>';
         return;
       }
 
       container.innerHTML = reminders.map(r => `
-        <div class="d-flex justify-content-between align-items-center bg-light p-2 rounded-3 mb-2 small">
+        <div class="d-flex justify-content-between align-items-center bg-light p-3 rounded-4 mb-2 shadow-sm">
           <div>
-            <span class="fw-bold text-dark"><i class="fa-solid fa-pills text-primary me-1"></i> ${r.medicineName}</span>
-            <span class="text-muted ms-2">(${r.dosage} - ${r.time})</span>
-            <div class="text-secondary small">${r.frequency} • ${r.instructions}</div>
+            <span class="fw-bold text-dark fs-6"><i class="fa-solid fa-pills text-warning me-2"></i> ${r.medicineName}</span>
+            <span class="badge bg-primary-subtle text-primary ms-2"><i class="fa-solid fa-clock me-1"></i> ${r.time}</span>
+            <div class="text-secondary small mt-1"><strong>Dosage:</strong> ${r.dosage || '1 dose'} • ${r.frequency || 'Daily'} • <em>${r.instructions || 'Take as advised'}</em></div>
           </div>
-          <button class="btn btn-outline-danger btn-sm py-0 px-2" onclick="PatientApp.deleteReminder('${r._id}')">
+          <button class="btn btn-outline-danger btn-sm rounded-circle p-2" title="Delete Reminder" onclick="PatientApp.deleteReminder('${r._id}')">
             <i class="fa-solid fa-trash"></i>
           </button>
         </div>
       `).join('');
+
+      if (overviewContainer) {
+        overviewContainer.innerHTML = reminders.slice(0, 3).map(r => `
+          <div class="d-flex justify-content-between align-items-center border-bottom py-2 small">
+            <div>
+              <strong class="text-dark">${r.medicineName}</strong>
+              <div class="text-muted" style="font-size: 0.75rem;">${r.dosage} • ${r.instructions}</div>
+            </div>
+            <span class="badge bg-warning text-dark"><i class="fa-regular fa-clock me-1"></i> ${r.time}</span>
+          </div>
+        `).join('');
+      }
     } catch (e) {
       container.innerHTML = '<div class="text-danger small">Error loading reminders</div>';
     }
@@ -502,8 +617,9 @@ const PatientApp = {
         frequency: freq || 'Daily',
         instructions: inst || 'After food'
       });
-      API.toast('Reminder added!', 'success');
+      API.toast(`Medicine reminder set for ${time}! You will receive live alerts.`, 'success');
       document.getElementById('remMedName').value = '';
+      document.getElementById('remMedTime').value = '';
       await this.loadStats();
       await this.loadReminders();
     } catch (e) {
@@ -535,8 +651,8 @@ const PatientApp = {
         return;
       }
 
-      list.innerHTML = notifs.slice(0, 5).map(n => `
-        <li class="dropdown-item py-2 border-bottom ${!n.isRead ? 'bg-light' : ''}">
+      list.innerHTML = notifs.slice(0, 8).map(n => `
+        <li class="dropdown-item py-2 border-bottom ${!n.isRead ? 'bg-light fw-semibold' : ''}">
           <div class="d-flex justify-content-between align-items-center">
             <strong class="small text-dark">${n.title}</strong>
             <span class="text-muted" style="font-size: 0.7rem;">${new Date(n.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
@@ -569,7 +685,6 @@ const PatientApp = {
     document.getElementById('bookingDateInput')?.addEventListener('change', (e) => this.loadDoctorSlots(e.target.value));
     document.getElementById('btnAddReminder')?.addEventListener('click', () => this.addReminder());
 
-    // AI Triage widget button inside patient dashboard
     document.getElementById('btnRunAITriage')?.addEventListener('click', async () => {
       const symptoms = document.getElementById('aiTriageInput').value;
       const resultBox = document.getElementById('aiTriageResultBox');
