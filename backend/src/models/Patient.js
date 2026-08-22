@@ -1,17 +1,43 @@
 const mongoose = require('mongoose');
 
 const medicineReminderSchema = new mongoose.Schema({
+  patientName: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  mobileNumber: {
+    type: String,
+    trim: true
+  },
   medicineName: {
     type: String,
+    required: true,
+    trim: true
+  },
+  dosage: {
+    type: String,
+    default: '1 Tablet'
+  },
+  time: {
+    type: String, // e.g. '08:00 AM' or '21:00'
     required: true
   },
-  dosage: String,
-  time: String, // e.g. '08:00 AM'
-  frequency: String, // e.g. 'Daily', 'Twice a day'
-  instructions: String,
+  frequency: {
+    type: String, // e.g. 'Daily', 'Twice a day'
+    default: 'Daily'
+  },
+  instructions: {
+    type: String, // e.g. 'After food with warm water'
+    default: 'After food'
+  },
   isActive: {
     type: Boolean,
     default: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
   }
 });
 

@@ -5,12 +5,14 @@
 
 let selectedDoctorForBooking = null;
 let selectedSlotForBooking = null;
-let triggeredRemindersCache = new Set(); // To prevent duplicate alerts within same minute
+let triggeredRemindersCache = new Set(); // Prevent duplicate alarms in same minute
+let currentLoggedInPatient = null;
 
 const PatientApp = {
   async init() {
     this.populateDropdowns();
     await this.loadStats();
+    await this.loadPatientProfile();
     await this.loadDoctors();
     await this.loadAppointments();
     await this.loadMedicalRecords();
@@ -20,6 +22,26 @@ const PatientApp = {
     this.setupEventListeners();
     this.initBrowserNotificationPermission();
     this.startClientReminderMonitor();
+  },
+
+  async loadPatientProfile() {
+    try {
+      const res = await API.get('/patients/profile');
+      if (res && res.data) {
+        currentLoggedInPatient = res.data;
+        // Pre-fill reminder name and phone if fields exist
+        const nameField = document.getElementById('remPatientName');
+        const phoneField = document.getElementById('remPatientMobile');
+        if (nameField && !nameField.value) {
+          nameField.value = currentLoggedInPatient.user?.name || '';
+        }
+        if (phoneField && !phoneField.value) {
+          phoneField.value = currentLoggedInPatient.user?.mobile || '';
+        }
+      }
+    } catch (e) {
+      console.error('Error loading patient profile:', e);
+    }
   },
 
   initBrowserNotificationPermission() {
@@ -86,7 +108,9 @@ const PatientApp = {
   },
 
   triggerLiveMedicineAlarm(reminder) {
-    // 1. Play Audio Chime
+    const targetName = reminder.patientName || currentLoggedInPatient?.user?.name || 'Patient';
+
+    // 1. Play Multi-Tone Medical Chime
     try {
       const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       const osc = audioCtx.createOscillator();
@@ -94,26 +118,39 @@ const PatientApp = {
       osc.type = 'sine';
       osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
       osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.15); // A5
-      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.6);
+      osc.frequency.setValueAtTime(1174.66, audioCtx.currentTime + 0.35); // D6
+      gain.gain.setValueAtTime(0.4, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.9);
       osc.connect(gain);
       gain.connect(audioCtx.destination);
       osc.start();
-      osc.stop(audioCtx.currentTime + 0.6);
+      osc.stop(audioCtx.currentTime + 0.9);
     } catch (err) {
-      // Audio not permitted
+      // Audio autoplay restrictions
     }
 
     // 2. Native OS / Browser Push Notification
     if ('Notification' in window && Notification.permission === 'granted') {
-      new Notification(`💊 Medicine Time: ${reminder.medicineName}`, {
-        body: `Dosage: ${reminder.dosage || '1 dose'} | Instructions: ${reminder.instructions || 'Take as advised'}`,
+      new Notification(`💊 Medicine Alert for ${targetName}`, {
+        body: `Time to take ${reminder.medicineName} (${reminder.dosage || '1 dose'}) - ${reminder.instructions || 'Take as advised'}.`,
         icon: 'https://cdn-icons-png.flaticon.com/512/2966/2966327.png'
       });
     }
 
-    // 3. Prominent Visual Modal/Toast on Screen
-    API.toast(`⏰ MEDICINE ALERT: Time to take ${reminder.medicineName} (${reminder.dosage || ''}) - ${reminder.instructions || ''}`, 'warning');
+    // 3. Open Interactive Alarm Modal Popup on Screen
+    const modalEl = document.getElementById('liveMedicineAlarmModal');
+    if (modalEl) {
+      document.getElementById('alarmModalPatientName').textContent = targetName;
+      document.getElementById('alarmModalMedName').textContent = reminder.medicineName;
+      document.getElementById('alarmModalDosage').textContent = reminder.dosage || '1 dose';
+      document.getElementById('alarmModalTime').textContent = reminder.time;
+      document.getElementById('alarmModalInstructions').textContent = reminder.instructions || 'Take with water';
+
+      const alarmModal = new bootstrap.Modal(modalEl);
+      alarmModal.show();
+    } else {
+      API.toast(`⏰ MEDICINE ALERT for ${targetName}: Time to take ${reminder.medicineName} (${reminder.dosage || ''})`, 'warning');
+    }
 
     // Reload notifications
     this.loadStats();
@@ -309,7 +346,7 @@ const PatientApp = {
       });
 
       if (res && res.status === 'success') {
-        API.toast('Appointment request submitted successfully! Confirmation email dispatched.', 'success');
+        API.toast('Appointment booked! Confirmation Email & SMS dispatched.', 'success');
         bootstrap.Modal.getInstance(document.getElementById('bookingModal')).hide();
         document.getElementById('bookingReasonInput').value = '';
         await this.loadStats();
@@ -563,21 +600,30 @@ const PatientApp = {
       const reminders = res.data?.medicineReminders || [];
 
       if (reminders.length === 0) {
-        container.innerHTML = '<div class="text-muted small py-3 text-center">No medicine reminders set.</div>';
+        container.innerHTML = '<div class="text-muted small py-3 text-center">No active medicine reminders. Set one on the left!</div>';
         if (overviewContainer) overviewContainer.innerHTML = '<p class="text-muted small mb-0">No active medicine reminders.</p>';
         return;
       }
 
       container.innerHTML = reminders.map(r => `
-        <div class="d-flex justify-content-between align-items-center bg-light p-3 rounded-4 mb-2 shadow-sm">
-          <div>
-            <span class="fw-bold text-dark fs-6"><i class="fa-solid fa-pills text-warning me-2"></i> ${r.medicineName}</span>
-            <span class="badge bg-primary-subtle text-primary ms-2"><i class="fa-solid fa-clock me-1"></i> ${r.time}</span>
-            <div class="text-secondary small mt-1"><strong>Dosage:</strong> ${r.dosage || '1 dose'} • ${r.frequency || 'Daily'} • <em>${r.instructions || 'Take as advised'}</em></div>
+        <div class="card border-0 shadow-sm rounded-4 p-3 mb-3 bg-light">
+          <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
+            <div>
+              <span class="badge bg-primary-subtle text-primary mb-1"><i class="fa-solid fa-user me-1"></i> ${r.patientName || 'Patient'}</span>
+              <h6 class="fw-bold text-dark mb-0"><i class="fa-solid fa-pills text-warning me-1"></i> ${r.medicineName}</h6>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge bg-warning text-dark fs-6"><i class="fa-solid fa-clock me-1"></i> ${r.time}</span>
+              <button class="btn btn-outline-danger btn-sm rounded-circle p-1" title="Delete Reminder" onclick="PatientApp.deleteReminder('${r._id}')">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
           </div>
-          <button class="btn btn-outline-danger btn-sm rounded-circle p-2" title="Delete Reminder" onclick="PatientApp.deleteReminder('${r._id}')">
-            <i class="fa-solid fa-trash"></i>
-          </button>
+          <div class="small text-secondary">
+            <div><strong>Dosage:</strong> ${r.dosage || '1 dose'} • <strong>Frequency:</strong> ${r.frequency || 'Daily'}</div>
+            <div><strong>Instructions:</strong> ${r.instructions || 'Take as advised'}</div>
+            ${r.mobileNumber ? `<div><strong>Alert Mobile:</strong> ${r.mobileNumber}</div>` : ''}
+          </div>
         </div>
       `).join('');
 
@@ -586,7 +632,7 @@ const PatientApp = {
           <div class="d-flex justify-content-between align-items-center border-bottom py-2 small">
             <div>
               <strong class="text-dark">${r.medicineName}</strong>
-              <div class="text-muted" style="font-size: 0.75rem;">${r.dosage} • ${r.instructions}</div>
+              <div class="text-muted" style="font-size: 0.75rem;">${r.patientName || 'Patient'} • ${r.dosage}</div>
             </div>
             <span class="badge bg-warning text-dark"><i class="fa-regular fa-clock me-1"></i> ${r.time}</span>
           </div>
@@ -598,26 +644,42 @@ const PatientApp = {
   },
 
   async addReminder() {
-    const name = document.getElementById('remMedName').value;
-    const dosage = document.getElementById('remMedDosage').value;
-    const time = document.getElementById('remMedTime').value;
-    const freq = document.getElementById('remMedFreq').value;
-    const inst = document.getElementById('remMedInst').value;
+    const patientName = document.getElementById('remPatientName').value.trim();
+    const mobileNumber = document.getElementById('remPatientMobile').value.trim();
+    const name = document.getElementById('remMedName').value.trim();
+    const dosage = document.getElementById('remMedDosage').value.trim();
+    let rawTime = document.getElementById('remMedTime').value.trim();
+    const freq = document.getElementById('remMedFreq').value.trim();
+    const inst = document.getElementById('remMedInst').value.trim();
 
-    if (!name || !time) {
-      API.toast('Please enter medicine name and time', 'warning');
+    if (!patientName || !name || !rawTime) {
+      API.toast('Please enter Patient Name, Medicine Name, and Scheduled Time', 'warning');
       return;
+    }
+
+    // Convert input type="time" (e.g. 21:00 or 09:00) into friendly 12H string or keep 24H
+    let formattedTime = rawTime;
+    const match = rawTime.match(/^(\d{1,2}):(\d{2})$/);
+    if (match) {
+      let h = parseInt(match[1], 10);
+      const m = match[2];
+      const period = h >= 12 ? 'PM' : 'AM';
+      h = h % 12;
+      h = h ? h : 12;
+      formattedTime = `${String(h).padStart(2, '0')}:${m} ${period}`;
     }
 
     try {
       await API.post('/patients/reminders', {
+        patientName: patientName,
+        mobileNumber: mobileNumber,
         medicineName: name,
-        dosage: dosage || '1 Tab',
-        time: time,
+        dosage: dosage || '1 Tablet',
+        time: formattedTime,
         frequency: freq || 'Daily',
         instructions: inst || 'After food'
       });
-      API.toast(`Medicine reminder set for ${time}! You will receive live alerts.`, 'success');
+      API.toast(`Medicine alarm activated for ${patientName} at ${formattedTime}!`, 'success');
       document.getElementById('remMedName').value = '';
       document.getElementById('remMedTime').value = '';
       await this.loadStats();

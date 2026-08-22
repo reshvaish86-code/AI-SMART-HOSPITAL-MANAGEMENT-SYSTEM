@@ -102,25 +102,27 @@ const getPatientDashboardStats = async (req, res, next) => {
 };
 
 /**
- * @desc    Add Medicine Reminder
+ * @desc    Add Medicine Reminder with Patient Name & Mobile Number
  * @route   POST /api/patients/reminders
  * @access  Private (Patient only)
  */
 const addMedicineReminder = async (req, res, next) => {
   try {
-    const { medicineName, dosage, time, frequency, instructions } = req.body;
-    const patient = await Patient.findOne({ user: req.user._id });
+    const { patientName, mobileNumber, medicineName, dosage, time, frequency, instructions } = req.body;
+    const patient = await Patient.findOne({ user: req.user._id }).populate('user', 'name mobile');
 
     if (!patient) {
       return res.status(404).json({ status: 'fail', message: 'Patient profile not found' });
     }
 
     patient.medicineReminders.push({
+      patientName: patientName || patient.user.name,
+      mobileNumber: mobileNumber || patient.user.mobile,
       medicineName,
-      dosage,
+      dosage: dosage || '1 Tablet',
       time,
-      frequency,
-      instructions,
+      frequency: frequency || 'Daily',
+      instructions: instructions || 'After food',
       isActive: true
     });
 
