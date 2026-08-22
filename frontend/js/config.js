@@ -2,8 +2,8 @@
  * AI Smart Hospital Management System - Frontend Configuration
  */
 
-// Live Render Backend API URL (Replace with your actual Render URL after deploying backend)
-const BACKEND_RENDER_URL = 'https://ai-smart-hospital-backend.onrender.com/api';
+// Live Render Backend API URL
+const BACKEND_RENDER_URL = 'https://ai-smart-hospital-backend-w26k.onrender.com/api';
 
 const CONFIG = {
   // Automatically detects local environment vs live deployment (Vercel / Netlify / Render)
