@@ -1,37 +1,39 @@
-# Dependencies
+# Node modules & dependencies
 node_modules/
-package-lock.json
+backend/node_modules/
+frontend/node_modules/
 
-# Environment variables
+# Environment variables & secrets
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+backend/.env
+frontend/.env
+*.env.local
 
-# Logs
+# Logs & debug files
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-lerna-debug.log*
-.pnpm-debug.log*
 logs/
 *.log
 
-# OS Metadata & IDE
+# OS generated files
 .DS_Store
 Thumbs.db
-.idea/
+desktop.ini
+
+# IDE & Editor files
 .vscode/
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 
-# Build & uploads
+# Temporary build artifacts & cache
+.system_generated/
+.gemini/
 dist/
 build/
-uploads/
-temp/
-scratch/
+.cache/
+.vercel/
