@@ -109,6 +109,40 @@ async function createInAppNotification({ recipient, type = 'appointment', title,
   }
 }
 
+/**
+ * Generic sendNotification wrapper for backward compatibility across auth/records
+ */
+async function sendNotification({ recipient, title, message, type = 'system', relatedId = '' }) {
+  return await createInAppNotification({
+    recipient,
+    title,
+    message,
+    type,
+    link: '/pages/patient/dashboard.html'
+  });
+}
+
+/**
+ * Broadcast Notification (Admin dispatch to all users or role)
+ */
+async function broadcastNotification({ targetRole = 'all', title, message }) {
+  const User = require('../models/User');
+  let query = { isActive: true };
+  if (targetRole !== 'all') {
+    query.role = targetRole;
+  }
+  const users = await User.find(query).select('_id email mobile');
+  for (const user of users) {
+    await createInAppNotification({
+      recipient: user._id,
+      title,
+      message,
+      type: 'broadcast'
+    });
+  }
+  return users.length;
+}
+
 // ==========================================
 // 3. HIGH-LEVEL DOMAIN NOTIFICATION HANDLERS
 // ==========================================
@@ -366,6 +400,8 @@ module.exports = {
   sendEmail,
   sendSMS,
   createInAppNotification,
+  sendNotification,
+  broadcastNotification,
   sendAppointmentConfirmation,
   sendPreAppointmentReminder,
   sendAppointmentStatusUpdate,
