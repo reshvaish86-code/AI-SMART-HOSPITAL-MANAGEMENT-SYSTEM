@@ -3,33 +3,34 @@ const mongoose = require('mongoose');
 const medicineReminderSchema = new mongoose.Schema({
   patientName: {
     type: String,
-    required: true,
+    required: [true, 'Please enter patient name for this reminder'],
     trim: true
   },
   mobileNumber: {
     type: String,
+    required: [true, 'Please enter mobile number to receive reminder alerts'],
     trim: true
   },
   medicineName: {
     type: String,
-    required: true,
+    required: [true, 'Please provide medicine name'],
     trim: true
   },
   dosage: {
     type: String,
-    default: '1 Tablet'
+    default: '1 Tablet / Dose'
   },
   time: {
-    type: String, // e.g. '08:00 AM' or '21:00'
-    required: true
+    type: String, // e.g. '09:00 PM' or '21:00'
+    required: [true, 'Please select reminder time']
   },
   frequency: {
-    type: String, // e.g. 'Daily', 'Twice a day'
+    type: String,
     default: 'Daily'
   },
   instructions: {
-    type: String, // e.g. 'After food with warm water'
-    default: 'After food'
+    type: String,
+    default: 'Take after meals with water'
   },
   isActive: {
     type: Boolean,

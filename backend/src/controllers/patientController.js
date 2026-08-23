@@ -109,20 +109,24 @@ const getPatientDashboardStats = async (req, res, next) => {
 const addMedicineReminder = async (req, res, next) => {
   try {
     const { patientName, mobileNumber, medicineName, dosage, time, frequency, instructions } = req.body;
-    const patient = await Patient.findOne({ user: req.user._id }).populate('user', 'name mobile');
+    const patient = await Patient.findOne({ user: req.user._id }).populate('user', 'name mobile email');
 
     if (!patient) {
       return res.status(404).json({ status: 'fail', message: 'Patient profile not found' });
+    }
+
+    if (!medicineName || !time) {
+      return res.status(400).json({ status: 'fail', message: 'Medicine name and reminder time are required' });
     }
 
     patient.medicineReminders.push({
       patientName: patientName || patient.user.name,
       mobileNumber: mobileNumber || patient.user.mobile,
       medicineName,
-      dosage: dosage || '1 Tablet',
+      dosage: dosage || '1 Tablet / Dose',
       time,
       frequency: frequency || 'Daily',
-      instructions: instructions || 'After food',
+      instructions: instructions || 'Take after meals with water',
       isActive: true
     });
 
@@ -130,7 +134,7 @@ const addMedicineReminder = async (req, res, next) => {
 
     res.status(201).json({
       status: 'success',
-      message: 'Medicine reminder added successfully',
+      message: `Medicine reminder registered for ${patientName || patient.user.name} at ${time}`,
       data: patient.medicineReminders
     });
   } catch (error) {

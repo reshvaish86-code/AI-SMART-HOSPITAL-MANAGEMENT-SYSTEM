@@ -291,20 +291,22 @@
             <div class="row g-4">
               <div class="col-lg-5">
                 <div class="card border-0 shadow-sm rounded-4 p-4">
-                  <h5 class="fw-bold mb-1"><i class="fa-solid fa-plus text-primary me-2"></i> Add Medicine Reminder</h5>
-                  <p class="text-muted small mb-3">Set personalized dose alarms with SMS & sound notifications.</p>
+                  <h5 class="fw-bold mb-3"><i class="fa-solid fa-plus text-primary me-2"></i> Add Medicine Reminder</h5>
+                  
+                  <div class="mb-3">
+                    <label class="form-label text-muted small fw-semibold">Patient Name for Alarm *</label>
+                    <input type="text" id="remPatientName" class="form-control" placeholder="e.g. Saran Senthilkumar (or Family Member)">
+                    <small class="text-muted" style="font-size: 0.75rem;">Specify who this dose is for so alerts are never confused.</small>
+                  </div>
 
                   <div class="mb-3">
-                    <label class="form-label text-muted small fw-semibold">Patient Name *</label>
-                    <input type="text" id="remPatientName" class="form-control" placeholder="e.g. Ramesh Kumar">
+                    <label class="form-label text-muted small fw-semibold">Patient Mobile Number for SMS *</label>
+                    <input type="text" id="remPatientMobile" class="form-control" placeholder="e.g. +91 9840123456">
                   </div>
-                  <div class="mb-3">
-                    <label class="form-label text-muted small fw-semibold">Mobile Number (For SMS Alert) *</label>
-                    <input type="tel" id="remPatientMobile" class="form-control" placeholder="e.g. +91 9840123456">
-                  </div>
+
                   <div class="mb-3">
                     <label class="form-label text-muted small fw-semibold">Medicine Name *</label>
-                    <input type="text" id="remMedName" class="form-control" placeholder="e.g. Paracetamol 650mg">
+                    <input type="text" id="remMedName" class="form-control" placeholder="e.g. Tab. Metformin 500mg">
                   </div>
                   <div class="row g-2 mb-3">
                     <div class="col-6">
@@ -312,26 +314,26 @@
                       <input type="text" id="remMedDosage" class="form-control" placeholder="1 Tablet">
                     </div>
                     <div class="col-6">
-                      <label class="form-label text-muted small fw-semibold">Time *</label>
-                      <input type="time" id="remMedTime" class="form-control" required>
+                      <label class="form-label text-muted small fw-semibold">Scheduled Time *</label>
+                      <input type="text" id="remMedTime" class="form-control" placeholder="09:00 PM or 21:00">
                     </div>
                   </div>
                   <div class="mb-3">
                     <label class="form-label text-muted small fw-semibold">Frequency</label>
-                    <input type="text" id="remMedFreq" class="form-control" placeholder="Daily / After meals">
+                    <input type="text" id="remMedFreq" class="form-control" placeholder="Daily (Morning / Night)">
                   </div>
                   <div class="mb-3">
-                    <label class="form-label text-muted small fw-semibold">Intake Instructions</label>
-                    <input type="text" id="remMedInst" class="form-control" placeholder="Take with warm water">
+                    <label class="form-label text-muted small fw-semibold">Instructions</label>
+                    <input type="text" id="remMedInst" class="form-control" placeholder="Take after dinner with warm water">
                   </div>
                   <button id="btnAddReminder" class="btn btn-primary-custom w-100 rounded-3">
-                    <i class="fa-solid fa-bell me-1"></i> Save & Activate Reminder Alarm
+                    <i class="fa-solid fa-bell me-1"></i> Save Reminder & Set Alarm
                   </button>
                 </div>
               </div>
               <div class="col-lg-7">
                 <div class="card border-0 shadow-sm rounded-4 p-4">
-                  <h5 class="fw-bold mb-3"><i class="fa-solid fa-pills text-warning me-2"></i> Active Patient Medicine Schedules</h5>
+                  <h5 class="fw-bold mb-3"><i class="fa-solid fa-pills text-warning me-2"></i> Active Reminders & Live Alarms</h5>
                   <div id="medicineRemindersContainer"></div>
                 </div>
               </div>
@@ -438,47 +440,6 @@
           <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary rounded-pill px-4" onclick="window.print()">
             <i class="fa-solid fa-print me-1"></i> Print Prescription
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- LIVE MEDICINE ALARM MODAL -->
-  <div class="modal fade" id="liveMedicineAlarmModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content rounded-4 border-0 shadow-lg" style="border-top: 6px solid #d97706 !important;">
-        <div class="modal-body text-center p-4">
-          <div class="display-3 text-warning mb-2">
-            <i class="fa-solid fa-bell fa-shake"></i>
-          </div>
-          <h4 class="fw-bold text-dark mb-1">⏰ Medicine Dose Alert!</h4>
-          <p class="text-muted small">It is time for your scheduled medication</p>
-
-          <div class="bg-light p-3 rounded-4 my-3 text-start">
-            <div class="d-flex justify-content-between mb-2">
-              <span class="text-muted small"><i class="fa-solid fa-user me-1 text-primary"></i> Patient Name:</span>
-              <strong id="alarmModalPatientName" class="text-dark">Patient</strong>
-            </div>
-            <div class="d-flex justify-content-between mb-2">
-              <span class="text-muted small"><i class="fa-solid fa-pills me-1 text-warning"></i> Medicine:</span>
-              <strong id="alarmModalMedName" class="text-primary fs-6">Medicine</strong>
-            </div>
-            <div class="d-flex justify-content-between mb-2">
-              <span class="text-muted small"><i class="fa-solid fa-prescription-bottle me-1"></i> Dosage:</span>
-              <span id="alarmModalDosage" class="fw-semibold text-dark">1 Tablet</span>
-            </div>
-            <div class="d-flex justify-content-between mb-2">
-              <span class="text-muted small"><i class="fa-solid fa-clock me-1 text-danger"></i> Scheduled Time:</span>
-              <span id="alarmModalTime" class="badge bg-warning text-dark">08:00 AM</span>
-            </div>
-            <div class="border-top pt-2 mt-2 small text-secondary">
-              <strong>Instructions:</strong> <span id="alarmModalInstructions">Take after meals with water</span>
-            </div>
-          </div>
-
-          <button type="button" class="btn btn-warning text-dark fw-bold w-100 rounded-pill py-2" data-bs-dismiss="modal">
-            <i class="fa-solid fa-check me-1"></i> I Have Taken My Medicine
           </button>
         </div>
       </div>
