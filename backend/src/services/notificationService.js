@@ -14,15 +14,18 @@ function getEmailTransporter() {
 
   if (user && pass) {
     try {
+      // Port 465 with direct SSL is universally reliable on cloud hosts (Render / AWS)
       const transport = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
         auth: {
           user: user,
           pass: pass
         },
-        tls: {
-          rejectUnauthorized: false
-        }
+        connectionTimeout: 8000,
+        greetingTimeout: 8000,
+        socketTimeout: 8000
       });
       return transport;
     } catch (err) {
@@ -34,19 +37,6 @@ function getEmailTransporter() {
 }
 
 transporter = getEmailTransporter();
-if (transporter) {
-  console.log(`✅ [Notification Service] Nodemailer Gmail Transporter configured for: ${process.env.EMAIL_USER}`);
-  transporter.verify((error, success) => {
-    if (error) {
-      console.error('❌ [Gmail SMTP Auth Error]:', error.message);
-      console.warn('💡 Make sure you use a 16-character Google App Password (not your normal Gmail login password) from https://myaccount.google.com/apppasswords');
-    } else {
-      console.log('🎉 [Gmail SMTP Success] Server is ready to deliver real emails to patient inboxes!');
-    }
-  });
-} else {
-  console.log('ℹ️ [Notification Service] EMAIL_USER / EMAIL_PASS not set. Email alerts will log to console & MongoDB in-app inbox.');
-}
 
 // ==========================================
 // 2. TWILIO SMS CLIENT INITIALIZATION
@@ -70,7 +60,7 @@ if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.e
 async function sendEmail({ to, subject, html, text }) {
   if (!to) {
     console.warn('⚠️ [Email Warning] No recipient email provided.');
-    return;
+    return { success: false, error: 'No recipient email' };
   }
 
   // Re-check transporter in case env vars were loaded dynamically
@@ -78,7 +68,7 @@ async function sendEmail({ to, subject, html, text }) {
     transporter = getEmailTransporter();
   }
 
-  if (transporter && process.env.EMAIL_USER) {
+  if (transporter && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
     try {
       const cleanUser = process.env.EMAIL_USER.trim();
       const mailOptions = {
@@ -97,7 +87,7 @@ async function sendEmail({ to, subject, html, text }) {
       return { success: false, error: error.message };
     }
   } else {
-    console.log(`📫 [Mock Email Dispatch] To: ${to} | Subject: "${subject}"`);
+    console.log(`📫 [Mock Email Dispatch] To: ${to} | Subject: "${subject}" (EMAIL_USER/PASS not configured)`);
     return { success: false, reason: 'EMAIL_USER / EMAIL_PASS not set' };
   }
 }
@@ -106,7 +96,7 @@ async function sendEmail({ to, subject, html, text }) {
  * Universal SMS Sender Helper
  */
 async function sendSMS({ to, body }) {
-  if (!to) return;
+  if (!to) return { success: false, error: 'No phone number' };
 
   if (twilioClient && process.env.TWILIO_PHONE_NUMBER) {
     try {
@@ -122,7 +112,7 @@ async function sendSMS({ to, body }) {
       return { success: false, error: error.message };
     }
   } else {
-    console.log(`📲 [Mock SMS Dispatch] To: ${to} | Body: ${body}`);
+    console.log(`📲 [Mock SMS Dispatch] To: ${to} | Body: ${body} (Twilio not configured)`);
     return { success: false, reason: 'Twilio not configured' };
   }
 }
@@ -240,17 +230,18 @@ async function sendAppointmentConfirmation({ appointment, patientUser, doctorUse
       </div>
     `;
 
-    await sendEmail({
+    // Non-blocking asynchronous dispatch
+    sendEmail({
       to: patientEmail,
       subject: `Appointment Confirmed with ${doctorName} - AI Smart Hospital`,
       html
-    });
+    }).catch(err => console.error('Error in sendEmail:', err));
   }
 
   // SMS to Patient
   if (patientMobile) {
     const body = `AI Smart Hospital: Hi ${patientUser ? patientUser.name : 'Patient'}, your appointment with ${doctorName} is confirmed for ${appointment.appointmentDate} at ${appointment.timeSlot} at ${hospitalName}.`;
-    await sendSMS({ to: patientMobile, body });
+    sendSMS({ to: patientMobile, body }).catch(err => console.error('Error in sendSMS:', err));
   }
 }
 
@@ -289,16 +280,16 @@ async function sendPreAppointmentReminder({ appointment, patientUser, doctorUser
       </div>
     `;
 
-    await sendEmail({
+    sendEmail({
       to: patientEmail,
       subject: `⏰ 1-Hour Reminder: Consultation with ${doctorName} at ${appointment.timeSlot}`,
       html
-    });
+    }).catch(err => console.error('Error in sendEmail:', err));
   }
 
   if (patientMobile) {
     const body = `AI Hospital Reminder: Hi ${patientUser ? patientUser.name : 'Patient'}, your consultation with ${doctorName} at ${hospital} is starting in ~1 hour (${appointment.timeSlot}). Please be ready!`;
-    await sendSMS({ to: patientMobile, body });
+    sendSMS({ to: patientMobile, body }).catch(err => console.error('Error in sendSMS:', err));
   }
 }
 
@@ -337,11 +328,11 @@ async function sendAppointmentStatusUpdate({ appointment, patientUser, doctorUse
       </div>
     `;
 
-    await sendEmail({
+    sendEmail({
       to: patientEmail,
       subject: `Appointment Status Update: ${status} - AI Smart Hospital`,
       html
-    });
+    }).catch(err => console.error('Error in sendEmail:', err));
   }
 }
 
@@ -372,11 +363,11 @@ async function sendPrescriptionNotification({ prescription, patientUser, doctorU
       </div>
     `;
 
-    await sendEmail({
+    sendEmail({
       to: patientEmail,
       subject: `Your Digital Prescription from ${doctorName} is Ready - AI Smart Hospital`,
       html
-    });
+    }).catch(err => console.error('Error in sendEmail:', err));
   }
 }
 
@@ -420,16 +411,16 @@ async function sendMedicineReminderNotification({ patientUser, medicine }) {
       </div>
     `;
 
-    await sendEmail({
+    sendEmail({
       to: patientEmail,
       subject: `💊 Medicine Reminder for ${targetPatientName}: ${medicine.medicineName}`,
       html
-    });
+    }).catch(err => console.error('Error in sendEmail:', err));
   }
 
   if (targetMobile) {
     const body = `AI Hospital Alert for ${targetPatientName}: Time to take ${medicine.medicineName} (${medicine.dosage || ''}). Instructions: ${medicine.instructions || 'As prescribed'}.`;
-    await sendSMS({ to: targetMobile, body });
+    sendSMS({ to: targetMobile, body }).catch(err => console.error('Error in sendSMS:', err));
   }
 }
 
