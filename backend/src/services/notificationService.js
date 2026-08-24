@@ -3,10 +3,8 @@ const twilio = require('twilio');
 const Notification = require('../models/Notification');
 
 // ==========================================
-// 1. NODEMAILER TRANSPORTER INITIALIZATION
+// 1. UNIVERSAL EMAIL DISPATCH ENGINE
 // ==========================================
-let transporter = null;
-
 function getEmailTransporter() {
   const user = process.env.EMAIL_USER ? process.env.EMAIL_USER.trim() : '';
   const rawPass = process.env.EMAIL_PASS ? process.env.EMAIL_PASS.trim() : '';
@@ -14,20 +12,19 @@ function getEmailTransporter() {
 
   if (user && pass) {
     try {
-      // Port 465 with direct SSL is universally reliable on cloud hosts (Render / AWS)
-      const transport = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 465,
-        secure: true,
+      // Use standard Gmail service with TLS
+      return nodemailer.createTransport({
+        service: 'gmail',
         auth: {
           user: user,
           pass: pass
         },
-        connectionTimeout: 8000,
-        greetingTimeout: 8000,
-        socketTimeout: 8000
+        pool: true,
+        maxConnections: 3,
+        maxMessages: 100,
+        rateDelta: 1000,
+        rateLimit: 5
       });
-      return transport;
     } catch (err) {
       console.warn('⚠️ [Notification Service] Nodemailer initialization failed:', err.message);
       return null;
@@ -36,7 +33,7 @@ function getEmailTransporter() {
   return null;
 }
 
-transporter = getEmailTransporter();
+let transporter = getEmailTransporter();
 
 // ==========================================
 // 2. TWILIO SMS CLIENT INITIALIZATION
@@ -55,7 +52,7 @@ if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.e
 }
 
 /**
- * Universal Email Sender Helper
+ * Universal Email Sender Helper (Supports Gmail SMTP & Resend / Brevo API Fallback)
  */
 async function sendEmail({ to, subject, html, text }) {
   if (!to) {
@@ -63,7 +60,35 @@ async function sendEmail({ to, subject, html, text }) {
     return { success: false, error: 'No recipient email' };
   }
 
-  // Re-check transporter in case env vars were loaded dynamically
+  // Check if Resend API key is provided (Best for Cloud Servers where SMTP ports are firewalled)
+  if (process.env.RESEND_API_KEY) {
+    try {
+      const fetch = (await import('node-fetch')).default || global.fetch;
+      const res = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.RESEND_API_KEY.trim()}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: process.env.EMAIL_FROM || 'AI Smart Hospital <onboarding@resend.dev>',
+          to: [to.trim()],
+          subject: subject,
+          html: html
+        })
+      });
+      const data = await res.json();
+      if (res.ok) {
+        console.log(`📧 [Resend HTTP API Email Sent] To: ${to} | Id: ${data.id}`);
+        return { success: true, messageId: data.id };
+      }
+      console.warn('⚠️ [Resend API Error]:', data);
+    } catch (apiErr) {
+      console.error('❌ [Resend API Fetch Error]:', apiErr.message);
+    }
+  }
+
+  // Re-check transporter
   if (!transporter) {
     transporter = getEmailTransporter();
   }
@@ -80,10 +105,10 @@ async function sendEmail({ to, subject, html, text }) {
       };
 
       const info = await transporter.sendMail(mailOptions);
-      console.log(`📧 [Real Email Sent Successfully] To: ${to} | Subject: "${subject}" | MessageId: ${info.messageId}`);
+      console.log(`📧 [Real Gmail SMTP Sent Successfully] To: ${to} | Subject: "${subject}" | MessageId: ${info.messageId}`);
       return { success: true, messageId: info.messageId };
     } catch (error) {
-      console.error(`❌ [Email Delivery Failed] to ${to}:`, error.message);
+      console.error(`❌ [Gmail SMTP Delivery Failed] to ${to}:`, error.message);
       return { success: false, error: error.message };
     }
   } else {
