@@ -7,21 +7,43 @@ const Notification = require('../models/Notification');
 // ==========================================
 let transporter = null;
 
-if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
-  try {
-    transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-      port: parseInt(process.env.EMAIL_PORT, 10) || 587,
-      secure: process.env.EMAIL_SECURE === 'true',
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    });
-    console.log('✅ [Notification Service] Nodemailer email transporter initialized');
-  } catch (err) {
-    console.warn('⚠️ [Notification Service] Nodemailer initialization failed:', err.message);
+function getEmailTransporter() {
+  const user = process.env.EMAIL_USER ? process.env.EMAIL_USER.trim() : '';
+  const rawPass = process.env.EMAIL_PASS ? process.env.EMAIL_PASS.trim() : '';
+  const pass = rawPass.replace(/\s+/g, ''); // Strip any spaces from 16-letter App Password
+
+  if (user && pass) {
+    try {
+      const transport = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: user,
+          pass: pass
+        },
+        tls: {
+          rejectUnauthorized: false
+        }
+      });
+      return transport;
+    } catch (err) {
+      console.warn('⚠️ [Notification Service] Nodemailer initialization failed:', err.message);
+      return null;
+    }
   }
+  return null;
+}
+
+transporter = getEmailTransporter();
+if (transporter) {
+  console.log(`✅ [Notification Service] Nodemailer Gmail Transporter configured for: ${process.env.EMAIL_USER}`);
+  transporter.verify((error, success) => {
+    if (error) {
+      console.error('❌ [Gmail SMTP Auth Error]:', error.message);
+      console.warn('💡 Make sure you use a 16-character Google App Password (not your normal Gmail login password) from https://myaccount.google.com/apppasswords');
+    } else {
+      console.log('🎉 [Gmail SMTP Success] Server is ready to deliver real emails to patient inboxes!');
+    }
+  });
 } else {
   console.log('ℹ️ [Notification Service] EMAIL_USER / EMAIL_PASS not set. Email alerts will log to console & MongoDB in-app inbox.');
 }
@@ -33,7 +55,7 @@ let twilioClient = null;
 
 if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.env.TWILIO_PHONE_NUMBER) {
   try {
-    twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
+    twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID.trim(), process.env.TWILIO_AUTH_TOKEN.trim());
     console.log('✅ [Notification Service] Twilio SMS client initialized');
   } catch (err) {
     console.warn('⚠️ [Notification Service] Twilio initialization failed:', err.message);
@@ -46,24 +68,37 @@ if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.e
  * Universal Email Sender Helper
  */
 async function sendEmail({ to, subject, html, text }) {
-  if (!to) return;
+  if (!to) {
+    console.warn('⚠️ [Email Warning] No recipient email provided.');
+    return;
+  }
 
-  if (transporter) {
+  // Re-check transporter in case env vars were loaded dynamically
+  if (!transporter) {
+    transporter = getEmailTransporter();
+  }
+
+  if (transporter && process.env.EMAIL_USER) {
     try {
-      const info = await transporter.sendMail({
-        from: process.env.EMAIL_FROM || `"AI Smart Hospital" <${process.env.EMAIL_USER}>`,
-        to,
-        subject,
+      const cleanUser = process.env.EMAIL_USER.trim();
+      const mailOptions = {
+        from: process.env.EMAIL_FROM || `"AI Smart Hospital" <${cleanUser}>`,
+        to: to.trim(),
+        subject: subject,
         text: text || subject,
-        html
-      });
-      console.log(`📧 [Real Email Sent Successfully] To: ${to} | Subject: ${subject} | MessageId: ${info.messageId}`);
-      return info;
+        html: html
+      };
+
+      const info = await transporter.sendMail(mailOptions);
+      console.log(`📧 [Real Email Sent Successfully] To: ${to} | Subject: "${subject}" | MessageId: ${info.messageId}`);
+      return { success: true, messageId: info.messageId };
     } catch (error) {
-      console.error(`❌ [Email Error] Could not send email to ${to}: ${error.message}`);
+      console.error(`❌ [Email Delivery Failed] to ${to}:`, error.message);
+      return { success: false, error: error.message };
     }
   } else {
-    console.log(`📫 [Mock Email Dispatch] To: ${to} | Subject: ${subject}`);
+    console.log(`📫 [Mock Email Dispatch] To: ${to} | Subject: "${subject}"`);
+    return { success: false, reason: 'EMAIL_USER / EMAIL_PASS not set' };
   }
 }
 
@@ -77,16 +112,18 @@ async function sendSMS({ to, body }) {
     try {
       const message = await twilioClient.messages.create({
         body,
-        from: process.env.TWILIO_PHONE_NUMBER,
-        to
+        from: process.env.TWILIO_PHONE_NUMBER.trim(),
+        to: to.trim()
       });
       console.log(`📱 [Real SMS Sent Successfully] To: ${to} | SID: ${message.sid}`);
-      return message;
+      return { success: true, sid: message.sid };
     } catch (error) {
-      console.error(`❌ [SMS Error] Could not send SMS to ${to}: ${error.message}`);
+      console.error(`❌ [SMS Error] Could not send SMS to ${to}:`, error.message);
+      return { success: false, error: error.message };
     }
   } else {
     console.log(`📲 [Mock SMS Dispatch] To: ${to} | Body: ${body}`);
+    return { success: false, reason: 'Twilio not configured' };
   }
 }
 
