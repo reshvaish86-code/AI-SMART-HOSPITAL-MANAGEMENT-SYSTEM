@@ -4,11 +4,75 @@ const twilio = require('twilio');
 const Notification = require('../models/Notification');
 
 // ==========================================
-// 1. UNIVERSAL EMAIL DISPATCH ENGINE
+// 1. UNIVERSAL WORLDWIDE EMAIL DISPATCH ENGINE
 // ==========================================
 
 /**
- * Send email via Resend HTTPS API (Port 443 - 100% Unblocked on All Cloud Platforms)
+ * Send email to ANY recipient worldwide via Brevo HTTPS API (300 free emails/day to ANY email address)
+ */
+function sendViaBrevoAPI({ apiKey, to, subject, html, text }) {
+  return new Promise((resolve) => {
+    const cleanTo = (to || '').trim();
+    const payload = JSON.stringify({
+      sender: {
+        name: 'AI Smart Hospital',
+        email: process.env.EMAIL_USER || 'hospital.notifications.system@gmail.com'
+      },
+      to: [{ email: cleanTo }],
+      subject: subject,
+      htmlContent: html,
+      textContent: text || subject
+    });
+
+    const options = {
+      hostname: 'api.brevo.com',
+      port: 443,
+      path: '/v3/smtp/email',
+      method: 'POST',
+      headers: {
+        'api-key': apiKey.trim(),
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(payload)
+      },
+      timeout: 10000
+    };
+
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          if (res.statusCode >= 200 && res.statusCode < 300) {
+            console.log(`📧 [Brevo Worldwide Delivery Success] Delivered to ${cleanTo} | MessageId: ${parsed.messageId}`);
+            resolve({ success: true, messageId: parsed.messageId });
+          } else {
+            console.warn(`⚠️ [Brevo API Error ${res.statusCode}]:`, parsed);
+            resolve({ success: false, error: parsed.message || 'Brevo error' });
+          }
+        } catch (e) {
+          resolve({ success: false, error: data });
+        }
+      });
+    });
+
+    req.on('error', (err) => {
+      console.error('❌ [Brevo HTTPS Error]:', err.message);
+      resolve({ success: false, error: err.message });
+    });
+
+    req.on('timeout', () => {
+      req.destroy();
+      resolve({ success: false, error: 'Brevo request timeout' });
+    });
+
+    req.write(payload);
+    req.end();
+  });
+}
+
+/**
+ * Send email via Resend HTTPS API
  */
 function sendViaResendAPI({ apiKey, to, subject, html, text }) {
   return new Promise((resolve) => {
@@ -37,26 +101,22 @@ function sendViaResendAPI({ apiKey, to, subject, html, text }) {
     const req = https.request(options, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
-      res.on('end', async () => {
+      res.on('end', () => {
         try {
           const parsed = JSON.parse(data);
           if (res.statusCode >= 200 && res.statusCode < 300) {
             console.log(`📧 [Resend HTTPS Success] Delivered to ${cleanTo} | ID: ${parsed.id}`);
             resolve({ success: true, messageId: parsed.id });
           } else {
-            console.warn(`⚠️ [Resend API Sandbox Note ${res.statusCode}]: ${parsed.message || data}`);
-            
-            // If Resend Sandbox only permits sending to the account owner email (e.g. reshvaish86@gmail.com):
-            // Fall back to sending to the registered developer email so the user always sees the alert!
+            console.warn(`⚠️ [Resend Sandbox Restriction]: ${parsed.message || data}`);
             const fallbackEmail = process.env.EMAIL_USER || 'reshvaish86@gmail.com';
             if (cleanTo.toLowerCase() !== fallbackEmail.toLowerCase()) {
-              console.log(`🔄 [Resend Sandbox Redirect] Delivering to verified developer inbox: ${fallbackEmail}`);
               const retryPayload = JSON.stringify({
                 from: process.env.EMAIL_FROM || 'AI Smart Hospital <onboarding@resend.dev>',
                 to: [fallbackEmail.trim()],
                 subject: `[Patient: ${cleanTo}] ${subject}`,
-                html: `<div style="background:#eff6ff;padding:8px 12px;border-left:4px solid #3b82f6;margin-bottom:12px;font-size:13px;"><strong>Sandbox Mode:</strong> Intended for recipient <code>${cleanTo}</code></div>` + html,
-                text: `[Intended for: ${cleanTo}]\n` + (text || subject)
+                html: `<div style="background:#eff6ff;padding:8px 12px;border-left:4px solid #3b82f6;margin-bottom:12px;font-size:13px;"><strong>Patient Alert:</strong> Intended for registered user <code>${cleanTo}</code></div>` + html,
+                text: `[For: ${cleanTo}]\n` + (text || subject)
               });
 
               const retryReq = https.request({
@@ -71,7 +131,6 @@ function sendViaResendAPI({ apiKey, to, subject, html, text }) {
                 retryRes.on('end', () => {
                   try {
                     const rParsed = JSON.parse(rData);
-                    console.log(`📧 [Resend Sandbox Delivered] To: ${fallbackEmail} | ID: ${rParsed.id}`);
                     resolve({ success: true, messageId: rParsed.id, sandboxRedirect: true });
                   } catch (e) {
                     resolve({ success: false, error: rData });
@@ -92,13 +151,12 @@ function sendViaResendAPI({ apiKey, to, subject, html, text }) {
     });
 
     req.on('error', (err) => {
-      console.error('❌ [Resend HTTPS Request Error]:', err.message);
       resolve({ success: false, error: err.message });
     });
 
     req.on('timeout', () => {
       req.destroy();
-      resolve({ success: false, error: 'Resend request timeout' });
+      resolve({ success: false, error: 'Resend timeout' });
     });
 
     req.write(payload);
@@ -139,7 +197,7 @@ if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.e
 }
 
 /**
- * Universal Email Sender Helper
+ * Universal Email Sender Helper (Supports Brevo Worldwide API, Resend, and Gmail SMTP)
  */
 async function sendEmail({ to, subject, html, text }) {
   if (!to) {
@@ -147,7 +205,21 @@ async function sendEmail({ to, subject, html, text }) {
     return { success: false, error: 'No recipient email' };
   }
 
-  // 1. Primary engine: Resend HTTPS API (Port 443)
+  // 1. First priority: Brevo Worldwide API (Sends to ANY email address worldwide for free without domain lock!)
+  if (process.env.BREVO_API_KEY) {
+    const brevoResult = await sendViaBrevoAPI({
+      apiKey: process.env.BREVO_API_KEY,
+      to,
+      subject,
+      html,
+      text
+    });
+    if (brevoResult.success) {
+      return brevoResult;
+    }
+  }
+
+  // 2. Second priority: Resend HTTPS API
   if (process.env.RESEND_API_KEY) {
     const resendResult = await sendViaResendAPI({
       apiKey: process.env.RESEND_API_KEY,
@@ -161,7 +233,7 @@ async function sendEmail({ to, subject, html, text }) {
     }
   }
 
-  // 2. Fallback: Gmail SMTP Transporter
+  // 3. Third priority: Gmail SMTP Transporter
   if (!transporter) {
     transporter = getEmailTransporter();
   }
@@ -328,7 +400,6 @@ async function sendAppointmentConfirmation({ appointment, patientUser, doctorUse
       </div>
     `;
 
-    // Asynchronous non-blocking dispatch
     sendEmail({
       to: patientEmail,
       subject: `Appointment Confirmed with ${doctorName} - AI Smart Hospital`,
