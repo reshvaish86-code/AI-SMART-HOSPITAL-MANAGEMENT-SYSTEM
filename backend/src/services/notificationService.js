@@ -1,3 +1,4 @@
+const https = require('https');
 const nodemailer = require('nodemailer');
 const twilio = require('twilio');
 const Notification = require('../models/Notification');
@@ -5,28 +6,79 @@ const Notification = require('../models/Notification');
 // ==========================================
 // 1. UNIVERSAL EMAIL DISPATCH ENGINE
 // ==========================================
+
+/**
+ * Send email via Resend HTTPS API (Port 443 - 100% Unblocked on All Cloud Platforms)
+ */
+function sendViaResendAPI({ apiKey, to, subject, html, text }) {
+  return new Promise((resolve, reject) => {
+    const payload = JSON.stringify({
+      from: process.env.EMAIL_FROM || 'AI Smart Hospital <onboarding@resend.dev>',
+      to: [to.trim()],
+      subject: subject,
+      html: html,
+      text: text || subject
+    });
+
+    const options = {
+      hostname: 'api.resend.com',
+      port: 443,
+      path: '/emails',
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey.trim()}`,
+        'Content-Type': 'application/json',
+        'Content-Length': Buffer.byteLength(payload)
+      },
+      timeout: 10000
+    };
+
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          if (res.statusCode >= 200 && res.statusCode < 300) {
+            console.log(`📧 [Resend HTTPS Success] Delivered to ${to} | ID: ${parsed.id}`);
+            resolve({ success: true, messageId: parsed.id });
+          } else {
+            console.warn(`⚠️ [Resend API Response ${res.statusCode}]:`, parsed);
+            resolve({ success: false, error: parsed.message || 'Resend error' });
+          }
+        } catch (e) {
+          resolve({ success: false, error: data });
+        }
+      });
+    });
+
+    req.on('error', (err) => {
+      console.error('❌ [Resend HTTPS Request Error]:', err.message);
+      resolve({ success: false, error: err.message });
+    });
+
+    req.on('timeout', () => {
+      req.destroy();
+      resolve({ success: false, error: 'Resend request timeout' });
+    });
+
+    req.write(payload);
+    req.end();
+  });
+}
+
 function getEmailTransporter() {
   const user = process.env.EMAIL_USER ? process.env.EMAIL_USER.trim() : '';
   const rawPass = process.env.EMAIL_PASS ? process.env.EMAIL_PASS.trim() : '';
-  const pass = rawPass.replace(/\s+/g, ''); // Strip any spaces from 16-letter App Password
+  const pass = rawPass.replace(/\s+/g, '');
 
   if (user && pass) {
     try {
-      // Use standard Gmail service with TLS
       return nodemailer.createTransport({
         service: 'gmail',
-        auth: {
-          user: user,
-          pass: pass
-        },
-        pool: true,
-        maxConnections: 3,
-        maxMessages: 100,
-        rateDelta: 1000,
-        rateLimit: 5
+        auth: { user, pass }
       });
     } catch (err) {
-      console.warn('⚠️ [Notification Service] Nodemailer initialization failed:', err.message);
       return null;
     }
   }
@@ -44,15 +96,11 @@ if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.e
   try {
     twilioClient = twilio(process.env.TWILIO_ACCOUNT_SID.trim(), process.env.TWILIO_AUTH_TOKEN.trim());
     console.log('✅ [Notification Service] Twilio SMS client initialized');
-  } catch (err) {
-    console.warn('⚠️ [Notification Service] Twilio initialization failed:', err.message);
-  }
-} else {
-  console.log('ℹ️ [Notification Service] Twilio credentials not set. SMS alerts will log to console & MongoDB in-app inbox.');
+  } catch (err) {}
 }
 
 /**
- * Universal Email Sender Helper (Supports Gmail SMTP & Resend / Brevo API Fallback)
+ * Universal Email Sender Helper
  */
 async function sendEmail({ to, subject, html, text }) {
   if (!to) {
@@ -60,35 +108,21 @@ async function sendEmail({ to, subject, html, text }) {
     return { success: false, error: 'No recipient email' };
   }
 
-  // Check if Resend API key is provided (Best for Cloud Servers where SMTP ports are firewalled)
+  // 1. First priority: Resend HTTPS API (100% reliable on Render/Vercel)
   if (process.env.RESEND_API_KEY) {
-    try {
-      const fetch = (await import('node-fetch')).default || global.fetch;
-      const res = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.RESEND_API_KEY.trim()}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          from: process.env.EMAIL_FROM || 'AI Smart Hospital <onboarding@resend.dev>',
-          to: [to.trim()],
-          subject: subject,
-          html: html
-        })
-      });
-      const data = await res.json();
-      if (res.ok) {
-        console.log(`📧 [Resend HTTP API Email Sent] To: ${to} | Id: ${data.id}`);
-        return { success: true, messageId: data.id };
-      }
-      console.warn('⚠️ [Resend API Error]:', data);
-    } catch (apiErr) {
-      console.error('❌ [Resend API Fetch Error]:', apiErr.message);
+    const resendResult = await sendViaResendAPI({
+      apiKey: process.env.RESEND_API_KEY,
+      to,
+      subject,
+      html,
+      text
+    });
+    if (resendResult.success) {
+      return resendResult;
     }
   }
 
-  // Re-check transporter
+  // 2. Fallback: Gmail SMTP Transporter
   if (!transporter) {
     transporter = getEmailTransporter();
   }
@@ -105,16 +139,16 @@ async function sendEmail({ to, subject, html, text }) {
       };
 
       const info = await transporter.sendMail(mailOptions);
-      console.log(`📧 [Real Gmail SMTP Sent Successfully] To: ${to} | Subject: "${subject}" | MessageId: ${info.messageId}`);
+      console.log(`📧 [Gmail SMTP Sent Successfully] To: ${to} | MessageId: ${info.messageId}`);
       return { success: true, messageId: info.messageId };
     } catch (error) {
       console.error(`❌ [Gmail SMTP Delivery Failed] to ${to}:`, error.message);
       return { success: false, error: error.message };
     }
-  } else {
-    console.log(`📫 [Mock Email Dispatch] To: ${to} | Subject: "${subject}" (EMAIL_USER/PASS not configured)`);
-    return { success: false, reason: 'EMAIL_USER / EMAIL_PASS not set' };
   }
+
+  console.log(`📫 [Mock Email Dispatch] To: ${to} | Subject: "${subject}" (RESEND_API_KEY or EMAIL_USER/PASS needed)`);
+  return { success: false, reason: 'No email service configured' };
 }
 
 /**
@@ -137,7 +171,7 @@ async function sendSMS({ to, body }) {
       return { success: false, error: error.message };
     }
   } else {
-    console.log(`📲 [Mock SMS Dispatch] To: ${to} | Body: ${body} (Twilio not configured)`);
+    console.log(`📲 [Mock SMS Dispatch] To: ${to} | Body: ${body}`);
     return { success: false, reason: 'Twilio not configured' };
   }
 }
@@ -255,7 +289,7 @@ async function sendAppointmentConfirmation({ appointment, patientUser, doctorUse
       </div>
     `;
 
-    // Non-blocking asynchronous dispatch
+    // Asynchronous non-blocking dispatch
     sendEmail({
       to: patientEmail,
       subject: `Appointment Confirmed with ${doctorName} - AI Smart Hospital`,
