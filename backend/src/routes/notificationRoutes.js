@@ -4,11 +4,13 @@ const {
   getMyNotifications,
   markAsRead,
   markAllAsRead,
+  getNotificationConfigStatus,
   testEmail
 } = require('../controllers/notificationController');
 const { protect } = require('../middleware/authMiddleware');
 
-// Diagnostic test endpoint (public for quick health validation)
+// Public diagnostic endpoints
+router.get('/status', getNotificationConfigStatus);
 router.get('/test-email', testEmail);
 
 // Protected routes
