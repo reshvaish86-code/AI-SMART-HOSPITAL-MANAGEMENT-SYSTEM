@@ -85,7 +85,7 @@ const bookAppointment = async (req, res, next) => {
     // 6. Dispatch Multi-Channel Notifications (Email, SMS & In-App)
     await sendAppointmentConfirmation({
       appointment,
-      patientUser: patient.user,
+      patientUser: req.user,
       doctorUser: doctor.user,
       doctorProfile: doctor
     });

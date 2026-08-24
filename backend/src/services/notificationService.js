@@ -11,10 +11,11 @@ const Notification = require('../models/Notification');
  * Send email via Resend HTTPS API (Port 443 - 100% Unblocked on All Cloud Platforms)
  */
 function sendViaResendAPI({ apiKey, to, subject, html, text }) {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
+    const cleanTo = (to || '').trim();
     const payload = JSON.stringify({
       from: process.env.EMAIL_FROM || 'AI Smart Hospital <onboarding@resend.dev>',
-      to: [to.trim()],
+      to: [cleanTo],
       subject: subject,
       html: html,
       text: text || subject
@@ -36,15 +37,53 @@ function sendViaResendAPI({ apiKey, to, subject, html, text }) {
     const req = https.request(options, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
-      res.on('end', () => {
+      res.on('end', async () => {
         try {
           const parsed = JSON.parse(data);
           if (res.statusCode >= 200 && res.statusCode < 300) {
-            console.log(`📧 [Resend HTTPS Success] Delivered to ${to} | ID: ${parsed.id}`);
+            console.log(`📧 [Resend HTTPS Success] Delivered to ${cleanTo} | ID: ${parsed.id}`);
             resolve({ success: true, messageId: parsed.id });
           } else {
-            console.warn(`⚠️ [Resend API Response ${res.statusCode}]:`, parsed);
-            resolve({ success: false, error: parsed.message || 'Resend error' });
+            console.warn(`⚠️ [Resend API Sandbox Note ${res.statusCode}]: ${parsed.message || data}`);
+            
+            // If Resend Sandbox only permits sending to the account owner email (e.g. reshvaish86@gmail.com):
+            // Fall back to sending to the registered developer email so the user always sees the alert!
+            const fallbackEmail = process.env.EMAIL_USER || 'reshvaish86@gmail.com';
+            if (cleanTo.toLowerCase() !== fallbackEmail.toLowerCase()) {
+              console.log(`🔄 [Resend Sandbox Redirect] Delivering to verified developer inbox: ${fallbackEmail}`);
+              const retryPayload = JSON.stringify({
+                from: process.env.EMAIL_FROM || 'AI Smart Hospital <onboarding@resend.dev>',
+                to: [fallbackEmail.trim()],
+                subject: `[Patient: ${cleanTo}] ${subject}`,
+                html: `<div style="background:#eff6ff;padding:8px 12px;border-left:4px solid #3b82f6;margin-bottom:12px;font-size:13px;"><strong>Sandbox Mode:</strong> Intended for recipient <code>${cleanTo}</code></div>` + html,
+                text: `[Intended for: ${cleanTo}]\n` + (text || subject)
+              });
+
+              const retryReq = https.request({
+                ...options,
+                headers: {
+                  ...options.headers,
+                  'Content-Length': Buffer.byteLength(retryPayload)
+                }
+              }, (retryRes) => {
+                let rData = '';
+                retryRes.on('data', c => rData += c);
+                retryRes.on('end', () => {
+                  try {
+                    const rParsed = JSON.parse(rData);
+                    console.log(`📧 [Resend Sandbox Delivered] To: ${fallbackEmail} | ID: ${rParsed.id}`);
+                    resolve({ success: true, messageId: rParsed.id, sandboxRedirect: true });
+                  } catch (e) {
+                    resolve({ success: false, error: rData });
+                  }
+                });
+              });
+              retryReq.on('error', () => resolve({ success: false, error: parsed.message }));
+              retryReq.write(retryPayload);
+              retryReq.end();
+            } else {
+              resolve({ success: false, error: parsed.message || 'Resend error' });
+            }
           }
         } catch (e) {
           resolve({ success: false, error: data });
@@ -108,7 +147,7 @@ async function sendEmail({ to, subject, html, text }) {
     return { success: false, error: 'No recipient email' };
   }
 
-  // 1. First priority: Resend HTTPS API (100% reliable on Render/Vercel)
+  // 1. Primary engine: Resend HTTPS API (Port 443)
   if (process.env.RESEND_API_KEY) {
     const resendResult = await sendViaResendAPI({
       apiKey: process.env.RESEND_API_KEY,
@@ -147,7 +186,7 @@ async function sendEmail({ to, subject, html, text }) {
     }
   }
 
-  console.log(`📫 [Mock Email Dispatch] To: ${to} | Subject: "${subject}" (RESEND_API_KEY or EMAIL_USER/PASS needed)`);
+  console.log(`📫 [Mock Email Dispatch] To: ${to} | Subject: "${subject}"`);
   return { success: false, reason: 'No email service configured' };
 }
 
@@ -237,13 +276,14 @@ async function broadcastNotification({ targetRole = 'all', title, message }) {
  * 1. Instant Appointment Confirmation Notification (Email + SMS + In-App)
  */
 async function sendAppointmentConfirmation({ appointment, patientUser, doctorUser, doctorProfile }) {
-  const doctorName = doctorUser ? doctorUser.name : 'Your Specialist';
-  const hospitalName = doctorProfile ? doctorProfile.hospital : 'AI Smart Hospital Medical Center';
-  const patientEmail = patientUser ? patientUser.email : null;
-  const patientMobile = patientUser ? patientUser.mobile : null;
+  const doctorName = doctorUser ? (doctorUser.name || 'Doctor') : 'Your Specialist';
+  const hospitalName = (doctorProfile && doctorProfile.hospital) ? doctorProfile.hospital : (appointment.hospital || 'AI Smart Hospital Medical Center');
+  const patientEmail = (patientUser && patientUser.email) ? patientUser.email : null;
+  const patientMobile = (patientUser && patientUser.mobile) ? patientUser.mobile : null;
+  const patientName = (patientUser && patientUser.name) ? patientUser.name : 'Patient';
 
   // In-app alert for Patient
-  if (patientUser) {
+  if (patientUser && patientUser._id) {
     await createInAppNotification({
       recipient: patientUser._id,
       type: 'appointment',
@@ -254,12 +294,12 @@ async function sendAppointmentConfirmation({ appointment, patientUser, doctorUse
   }
 
   // In-app alert for Doctor
-  if (doctorUser) {
+  if (doctorUser && doctorUser._id) {
     await createInAppNotification({
       recipient: doctorUser._id,
       type: 'appointment',
       title: 'New Patient Booking Request 🩺',
-      message: `Patient ${patientUser ? patientUser.name : ''} has booked slot on ${appointment.appointmentDate} at ${appointment.timeSlot}.`,
+      message: `Patient ${patientName} has booked slot on ${appointment.appointmentDate} at ${appointment.timeSlot}.`,
       link: '/pages/doctor/dashboard.html'
     });
   }
@@ -273,15 +313,14 @@ async function sendAppointmentConfirmation({ appointment, patientUser, doctorUse
           <p style="margin: 5px 0 0 0; opacity: 0.9;">Appointment Booking Confirmation</p>
         </div>
         <div style="padding: 24px; color: #334155; line-height: 1.6;">
-          <p>Dear <strong>${patientUser ? patientUser.name : 'Patient'}</strong>,</p>
+          <p>Dear <strong>${patientName}</strong>,</p>
           <p>Your appointment has been successfully scheduled. Here are your consultation details:</p>
           <div style="background-color: #f8fafc; border-left: 4px solid #0284c7; padding: 14px; margin: 18px 0;">
-            <p style="margin: 4px 0;"><strong>Doctor:</strong> ${doctorName} (${appointment.specialist})</p>
+            <p style="margin: 4px 0;"><strong>Doctor:</strong> ${doctorName} (${appointment.specialist || 'Specialist'})</p>
             <p style="margin: 4px 0;"><strong>Hospital / Clinic:</strong> ${hospitalName}</p>
             <p style="margin: 4px 0;"><strong>Date:</strong> ${appointment.appointmentDate}</p>
             <p style="margin: 4px 0;"><strong>Time Slot:</strong> ${appointment.timeSlot}</p>
-            <p style="margin: 4px 0;"><strong>Location:</strong> ${appointment.location}</p>
-            <p style="margin: 4px 0;"><strong>Status:</strong> ${appointment.status}</p>
+            <p style="margin: 4px 0;"><strong>Status:</strong> <span style="color:#0284c7;font-weight:bold;">${appointment.status || 'Pending'}</span></p>
           </div>
           <p>Please arrive 15 minutes before your scheduled consultation slot.</p>
           <p style="font-size: 13px; color: #64748b; margin-top: 24px;">For assistance, visit your dashboard at <a href="${process.env.FRONTEND_URL || 'https://ai-smart-hospital-management-system.vercel.app'}" style="color: #0284c7;">AI Smart Hospital Portal</a>.</p>
@@ -299,7 +338,7 @@ async function sendAppointmentConfirmation({ appointment, patientUser, doctorUse
 
   // SMS to Patient
   if (patientMobile) {
-    const body = `AI Smart Hospital: Hi ${patientUser ? patientUser.name : 'Patient'}, your appointment with ${doctorName} is confirmed for ${appointment.appointmentDate} at ${appointment.timeSlot} at ${hospitalName}.`;
+    const body = `AI Smart Hospital: Hi ${patientName}, your appointment with ${doctorName} is confirmed for ${appointment.appointmentDate} at ${appointment.timeSlot} at ${hospitalName}.`;
     sendSMS({ to: patientMobile, body }).catch(err => console.error('Error in sendSMS:', err));
   }
 }
@@ -308,17 +347,18 @@ async function sendAppointmentConfirmation({ appointment, patientUser, doctorUse
  * 2. 1-Hour Pre-Appointment Reminder Notification
  */
 async function sendPreAppointmentReminder({ appointment, patientUser, doctorUser, doctorProfile }) {
-  const doctorName = doctorUser ? doctorUser.name : 'Your Specialist';
-  const hospital = doctorProfile ? doctorProfile.hospital : 'Hospital';
-  const patientEmail = patientUser ? patientUser.email : null;
-  const patientMobile = patientUser ? patientUser.mobile : null;
+  const doctorName = doctorUser ? (doctorUser.name || 'Doctor') : 'Your Specialist';
+  const hospital = (doctorProfile && doctorProfile.hospital) ? doctorProfile.hospital : (appointment.hospital || 'Hospital');
+  const patientEmail = (patientUser && patientUser.email) ? patientUser.email : null;
+  const patientMobile = (patientUser && patientUser.mobile) ? patientUser.mobile : null;
+  const patientName = (patientUser && patientUser.name) ? patientUser.name : 'Patient';
 
-  if (patientUser) {
+  if (patientUser && patientUser._id) {
     await createInAppNotification({
       recipient: patientUser._id,
       type: 'reminder',
       title: 'Upcoming Consultation in 1 Hour ⏰',
-      message: `Reminder for ${patientUser.name}: Your consultation with ${doctorName} starts in ~1 hour (${appointment.timeSlot}).`,
+      message: `Reminder for ${patientName}: Your consultation with ${doctorName} starts in ~1 hour (${appointment.timeSlot}).`,
       link: '/pages/patient/dashboard.html'
     });
   }
@@ -327,10 +367,10 @@ async function sendPreAppointmentReminder({ appointment, patientUser, doctorUser
     const html = `
       <div style="font-family: Arial, sans-serif; max-width: 550px; margin: auto; padding: 20px; border: 1px solid #cbd5e1; border-radius: 8px;">
         <h3 style="color: #0284c7; margin-top: 0;">⏰ 1-Hour Appointment Reminder</h3>
-        <p>Dear <strong>${patientUser ? patientUser.name : 'Patient'}</strong>,</p>
+        <p>Dear <strong>${patientName}</strong>,</p>
         <p>This is an automated reminder that your medical appointment starts in approximately <strong>1 hour</strong>:</p>
         <ul>
-          <li><strong>Patient Name:</strong> ${patientUser ? patientUser.name : 'Patient'}</li>
+          <li><strong>Patient Name:</strong> ${patientName}</li>
           <li><strong>Doctor:</strong> ${doctorName}</li>
           <li><strong>Hospital:</strong> ${hospital}</li>
           <li><strong>Time:</strong> ${appointment.timeSlot} (Today)</li>
@@ -347,7 +387,7 @@ async function sendPreAppointmentReminder({ appointment, patientUser, doctorUser
   }
 
   if (patientMobile) {
-    const body = `AI Hospital Reminder: Hi ${patientUser ? patientUser.name : 'Patient'}, your consultation with ${doctorName} at ${hospital} is starting in ~1 hour (${appointment.timeSlot}). Please be ready!`;
+    const body = `AI Hospital Reminder: Hi ${patientName}, your consultation with ${doctorName} at ${hospital} is starting in ~1 hour (${appointment.timeSlot}). Please be ready!`;
     sendSMS({ to: patientMobile, body }).catch(err => console.error('Error in sendSMS:', err));
   }
 }
@@ -358,6 +398,7 @@ async function sendPreAppointmentReminder({ appointment, patientUser, doctorUser
 async function sendAppointmentStatusUpdate({ appointment, patientUser, doctorUser, status, reason = '' }) {
   const doctorName = doctorUser ? doctorUser.name : 'Doctor';
   const patientEmail = patientUser ? patientUser.email : null;
+  const patientName = patientUser ? patientUser.name : 'Patient';
 
   let title = `Appointment ${status}`;
   let message = `Your appointment with ${doctorName} for ${appointment.appointmentDate} is now ${status}.`;
@@ -366,7 +407,7 @@ async function sendAppointmentStatusUpdate({ appointment, patientUser, doctorUse
     message = `Your appointment with ${doctorName} has been rescheduled to ${appointment.appointmentDate} at ${appointment.timeSlot}.`;
   }
 
-  if (patientUser) {
+  if (patientUser && patientUser._id) {
     await createInAppNotification({
       recipient: patientUser._id,
       type: 'appointment',
@@ -380,7 +421,7 @@ async function sendAppointmentStatusUpdate({ appointment, patientUser, doctorUse
     const html = `
       <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
         <h3 style="color: #0f172a;">Appointment Update: <span style="color: #0284c7;">${status}</span></h3>
-        <p>Dear ${patientUser ? patientUser.name : 'Patient'},</p>
+        <p>Dear ${patientName},</p>
         <p>${message}</p>
         ${reason ? `<p><strong>Note:</strong> ${reason}</p>` : ''}
         <p>Log in to your <a href="${process.env.FRONTEND_URL || 'https://ai-smart-hospital-management-system.vercel.app'}/pages/patient/dashboard.html">Patient Portal</a> to view details.</p>
@@ -401,8 +442,9 @@ async function sendAppointmentStatusUpdate({ appointment, patientUser, doctorUse
 async function sendPrescriptionNotification({ prescription, patientUser, doctorUser }) {
   const doctorName = doctorUser ? doctorUser.name : 'Your Doctor';
   const patientEmail = patientUser ? patientUser.email : null;
+  const patientName = patientUser ? patientUser.name : 'Patient';
 
-  if (patientUser) {
+  if (patientUser && patientUser._id) {
     await createInAppNotification({
       recipient: patientUser._id,
       type: 'prescription',
@@ -416,7 +458,7 @@ async function sendPrescriptionNotification({ prescription, patientUser, doctorU
     const html = `
       <div style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
         <h3 style="color: #0284c7;">💊 Digital Prescription Ready</h3>
-        <p>Dear ${patientUser ? patientUser.name : 'Patient'},</p>
+        <p>Dear ${patientName},</p>
         <p>Your certified digital prescription from <strong>${doctorName}</strong> is now available.</p>
         <p>You can view, save, and print your official prescription directly from your <a href="${process.env.FRONTEND_URL || 'https://ai-smart-hospital-management-system.vercel.app'}/pages/patient/dashboard.html">Patient Dashboard</a>.</p>
       </div>
@@ -436,9 +478,9 @@ async function sendPrescriptionNotification({ prescription, patientUser, doctorU
 async function sendMedicineReminderNotification({ patientUser, medicine }) {
   const targetPatientName = medicine.patientName || (patientUser ? patientUser.name : 'Patient');
   const targetMobile = medicine.mobileNumber || (patientUser ? patientUser.mobile : null);
-  const patientEmail = patientUser ? patientUser.email : null;
+  const patientEmail = (patientUser && patientUser.email) ? patientUser.email : null;
 
-  if (patientUser) {
+  if (patientUser && patientUser._id) {
     await createInAppNotification({
       recipient: patientUser._id,
       type: 'reminder',
