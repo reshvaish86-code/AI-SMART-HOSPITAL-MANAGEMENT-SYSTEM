@@ -473,9 +473,9 @@
       </div>
 
       <div class="mt-4">
-        <a href="pages/login.html" class="btn btn-primary-custom rounded-pill px-4 shadow-sm">
+        <button type="button" class="btn btn-primary-custom rounded-pill px-4 shadow-sm">
           View All Doctors & Book Online <i class="fa-solid fa-arrow-right ms-1"></i>
-        </a>
+        </button>
       </div>
     </div>
   </section>
@@ -510,9 +510,9 @@
         <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Kanniyakumari</span>
       </div>
       
-      <a href="pages/login.html" class="btn btn-secondary-custom px-4 rounded-pill">
+      <button type="button" class="btn btn-secondary-custom px-4 rounded-pill">
         Find Specialist in Your District <i class="fa-solid fa-chevron-right ms-1"></i>
-      </a>
+      </button>
     </div>
   </section>
 
@@ -527,7 +527,7 @@
         
         <!-- Patient Portal -->
         <div class="col-md-4">
-          <a href="pages/login.html" class="role-portal-card-large">
+          <div class="role-portal-card-large">
             <div class="role-icon-circle bg-primary shadow-sm">
               <i class="fa-solid fa-user-injured"></i>
             </div>
@@ -539,12 +539,12 @@
             <div class="mt-auto fw-bold text-primary small d-flex align-items-center gap-1">
               Access Patient Services <i class="fa-solid fa-arrow-right ms-1"></i>
             </div>
-          </a>
+          </div>
         </div>
 
         <!-- Doctor Portal -->
         <div class="col-md-4">
-          <a href="pages/login.html" class="role-portal-card-large">
+          <div class="role-portal-card-large">
             <div class="role-icon-circle bg-info shadow-sm">
               <i class="fa-solid fa-user-doctor"></i>
             </div>
@@ -556,12 +556,12 @@
             <div class="mt-auto fw-bold text-info small d-flex align-items-center gap-1">
               Access Clinical Workspace <i class="fa-solid fa-arrow-right ms-1"></i>
             </div>
-          </a>
+          </div>
         </div>
 
         <!-- Admin Portal -->
         <div class="col-md-4">
-          <a href="pages/login.html" class="role-portal-card-large">
+          <div class="role-portal-card-large">
             <div class="role-icon-circle bg-danger shadow-sm">
               <i class="fa-solid fa-shield-halved"></i>
             </div>
@@ -573,7 +573,7 @@
             <div class="mt-auto fw-bold text-danger small d-flex align-items-center gap-1">
               Access Hospital Command <i class="fa-solid fa-arrow-right ms-1"></i>
             </div>
-          </a>
+          </div>
         </div>
 
       </div>
@@ -668,9 +668,9 @@
             <div class="small p-2 bg-white rounded border mb-2">
               <strong><i class="fa-solid fa-kit-medical text-success me-1"></i> Home Care Guidance:</strong> ${data.homeCareAdvice[0] || 'Take proper rest and stay hydrated.'}
             </div>
-            <a href="pages/login.html" class="btn btn-primary-custom btn-sm rounded-pill mt-2">
-              Book ${data.recommendedSpecialist} Slot Now <i class="fa-solid fa-arrow-right ms-1"></i>
-            </a>
+            <div class="mt-2 text-muted small fw-semibold">
+              <i class="fa-solid fa-check-circle text-success me-1"></i> Suggested discipline: <span class="text-primary">${data.recommendedSpecialist}</span>
+            </div>
           </div>
         `;
       }
