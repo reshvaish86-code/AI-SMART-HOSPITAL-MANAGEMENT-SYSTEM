@@ -93,6 +93,45 @@ const Auth = {
     }
   },
 
+  async forgotPassword(email) {
+    try {
+      const response = await API.post('/auth/forgot-password', { email });
+      if (response && response.status === 'success') {
+        API.toast(response.message || 'Verification code sent to your email!', 'success');
+        return true;
+      }
+      return false;
+    } catch (err) {
+      return false;
+    }
+  },
+
+  async verifyOTP(email, otp) {
+    try {
+      const response = await API.post('/auth/verify-otp', { email, otp });
+      if (response && response.status === 'success') {
+        API.toast(response.message || 'OTP verified successfully!', 'success');
+        return true;
+      }
+      return false;
+    } catch (err) {
+      return false;
+    }
+  },
+
+  async resetPassword(email, otp, newPassword) {
+    try {
+      const response = await API.post('/auth/reset-password', { email, otp, newPassword });
+      if (response && response.status === 'success') {
+        API.toast(response.message || 'Password reset successfully!', 'success');
+        return true;
+      }
+      return false;
+    } catch (err) {
+      return false;
+    }
+  },
+
   logout() {
     API.clearAuth();
     API.toast('Logged out successfully', 'info');

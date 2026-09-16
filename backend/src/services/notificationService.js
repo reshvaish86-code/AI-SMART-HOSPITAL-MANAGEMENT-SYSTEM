@@ -596,6 +596,78 @@ async function sendMedicineReminderNotification({ patientUser, medicine }) {
   }
 }
 
+/**
+ * 6. Password Reset 6-Digit OTP Email Dispatch
+ */
+async function sendPasswordResetEmail({ user, otp }) {
+  const userName = user ? (user.name || 'User') : 'User';
+  const email = user ? user.email : null;
+
+  if (!email) return { success: false, error: 'No email provided' };
+
+  const html = `
+    <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 580px; margin: auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background: #ffffff;">
+      <div style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); padding: 24px; text-align: center; color: #ffffff;">
+        <h2 style="margin: 0; font-size: 22px; font-weight: bold;">AI Smart Hospital</h2>
+        <p style="margin: 6px 0 0 0; opacity: 0.9; font-size: 14px;">Secure Account Password Recovery</p>
+      </div>
+      <div style="padding: 28px; color: #334155; line-height: 1.6;">
+        <p style="font-size: 15px;">Hello <strong>${userName}</strong>,</p>
+        <p style="font-size: 14px; color: #475569;">We received a request to reset the password for your AI Smart Hospital account. Use the following 6-digit verification code to complete the process:</p>
+        
+        <div style="background: #f0f9ff; border: 2px dashed #0284c7; border-radius: 10px; padding: 20px; text-align: center; margin: 24px 0;">
+          <div style="font-size: 13px; color: #0369a1; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">Your 6-Digit Verification Code</div>
+          <div style="font-size: 36px; font-weight: 800; letter-spacing: 8px; color: #0284c7; font-family: monospace;">${otp}</div>
+          <div style="font-size: 12px; color: #64748b; margin-top: 8px;">⏳ Valid for <strong>10 minutes</strong> only</div>
+        </div>
+
+        <p style="font-size: 13px; color: #64748b; margin-bottom: 4px;"><strong>Security Notice:</strong></p>
+        <ul style="font-size: 13px; color: #64748b; padding-left: 20px; margin-top: 4px;">
+          <li>Never share this verification code with anyone. Hospital staff will never ask for your code.</li>
+          <li>If you did not request a password reset, you can safely ignore this email — your account remains completely secure.</li>
+        </ul>
+
+        <div style="border-top: 1px solid #e2e8f0; margin-top: 24px; padding-top: 16px; font-size: 12px; color: #94a3b8; text-align: center;">
+          AI Smart Hospital Management System • Intelligent Cloud Healthcare
+        </div>
+      </div>
+    </div>
+  `;
+
+  return await sendEmail({
+    to: email,
+    subject: `🔒 ${otp} is your AI Smart Hospital Password Reset Code`,
+    html,
+    text: `Your password reset code is ${otp}. Valid for 10 minutes. If you did not request this, please ignore.`
+  });
+}
+
+/**
+ * 7. Password Reset Success Confirmation Email
+ */
+async function sendPasswordResetSuccessEmail({ user }) {
+  const userName = user ? (user.name || 'User') : 'User';
+  const email = user ? user.email : null;
+
+  if (!email) return;
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 550px; margin: auto; border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px;">
+      <h3 style="color: #16a34a; margin-top: 0;">✅ Password Successfully Reset</h3>
+      <p>Hello <strong>${userName}</strong>,</p>
+      <p>Your password for your AI Smart Hospital account (<code>${email}</code>) was successfully updated.</p>
+      <p>You can now sign in using your new password at the <a href="${process.env.FRONTEND_URL || 'https://ai-smart-hospital-management-system.vercel.app'}/pages/login.html" style="color: #0284c7; font-weight: bold;">Sign In Portal</a>.</p>
+      <p style="font-size: 12px; color: #64748b; margin-top: 20px;">If you did not perform this change, please contact hospital support immediately.</p>
+    </div>
+  `;
+
+  sendEmail({
+    to: email,
+    subject: `✅ Security Alert: Password Changed Successfully - AI Smart Hospital`,
+    html
+  }).catch(err => console.error('Error in sendEmail:', err));
+}
+
 module.exports = {
   sendEmail,
   sendSMS,
@@ -606,5 +678,7 @@ module.exports = {
   sendPreAppointmentReminder,
   sendAppointmentStatusUpdate,
   sendPrescriptionNotification,
-  sendMedicineReminderNotification
+  sendMedicineReminderNotification,
+  sendPasswordResetEmail,
+  sendPasswordResetSuccessEmail
 };

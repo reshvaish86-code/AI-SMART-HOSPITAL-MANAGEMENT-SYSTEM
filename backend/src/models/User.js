@@ -46,6 +46,14 @@ const userSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now
+  },
+  resetPasswordOTP: {
+    type: String,
+    select: false
+  },
+  resetPasswordExpire: {
+    type: Date,
+    select: false
   }
 });
 
@@ -62,6 +70,15 @@ userSchema.pre('save', async function (next) {
 // Instance method to compare password
 userSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
+};
+
+// Instance method to generate 6-digit OTP for Password Reset (10 mins expiry)
+userSchema.methods.generatePasswordResetOTP = function () {
+  // Generate random 6-digit number between 100000 and 999999
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  this.resetPasswordOTP = otp;
+  this.resetPasswordExpire = Date.now() + 10 * 60 * 1000; // 10 minutes from now
+  return otp;
 };
 
 module.exports = mongoose.model('User', userSchema);

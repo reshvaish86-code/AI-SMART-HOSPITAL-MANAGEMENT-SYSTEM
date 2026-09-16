@@ -2,7 +2,11 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const Patient = require('../models/Patient');
 const Doctor = require('../models/Doctor');
-const { sendNotification } = require('../services/notificationService');
+const { 
+  sendNotification, 
+  sendPasswordResetEmail, 
+  sendPasswordResetSuccessEmail 
+} = require('../services/notificationService');
 
 // Helper to generate JWT Token
 const generateToken = (id) => {
@@ -247,9 +251,146 @@ const getMe = async (req, res, next) => {
   }
 };
 
+/**
+ * @desc    Request Password Reset 6-Digit OTP via Email
+ * @route   POST /api/auth/forgot-password
+ * @access  Public
+ */
+const forgotPassword = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Please provide your registered email address'
+      });
+    }
+
+    const user = await User.findOne({ email: email.toLowerCase().trim() });
+
+    if (!user) {
+      return res.status(404).json({
+        status: 'fail',
+        message: 'No account registered with this email address'
+      });
+    }
+
+    // Generate 6-digit OTP and 10-min expiry
+    const otp = user.generatePasswordResetOTP();
+    await user.save({ validateBeforeSave: false });
+
+    // Send OTP email via Brevo HTTPS API
+    await sendPasswordResetEmail({ user, otp });
+
+    res.status(200).json({
+      status: 'success',
+      message: `A 6-digit password reset verification code has been dispatched to ${user.email}. Please check your inbox.`
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * @desc    Verify Password Reset 6-Digit OTP
+ * @route   POST /api/auth/verify-otp
+ * @access  Public
+ */
+const verifyResetOTP = async (req, res, next) => {
+  try {
+    const { email, otp } = req.body;
+
+    if (!email || !otp) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Please provide both email and 6-digit OTP code'
+      });
+    }
+
+    const user = await User.findOne({
+      email: email.toLowerCase().trim(),
+      resetPasswordOTP: otp.trim(),
+      resetPasswordExpire: { $gt: Date.now() }
+    }).select('+resetPasswordOTP +resetPasswordExpire');
+
+    if (!user) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Invalid or expired OTP code. Please request a new code.'
+      });
+    }
+
+    res.status(200).json({
+      status: 'success',
+      message: 'OTP verified successfully. You can now set your new password.'
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * @desc    Reset Password with Verified OTP
+ * @route   POST /api/auth/reset-password
+ * @access  Public
+ */
+const resetPassword = async (req, res, next) => {
+  try {
+    const { email, otp, newPassword } = req.body;
+
+    if (!email || !otp || !newPassword) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Please provide email, 6-digit OTP, and new password'
+      });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'New password must be at least 6 characters long'
+      });
+    }
+
+    const user = await User.findOne({
+      email: email.toLowerCase().trim(),
+      resetPasswordOTP: otp.trim(),
+      resetPasswordExpire: { $gt: Date.now() }
+    }).select('+resetPasswordOTP +resetPasswordExpire +password');
+
+    if (!user) {
+      return res.status(400).json({
+        status: 'fail',
+        message: 'Invalid or expired OTP code. Please request a new code.'
+      });
+    }
+
+    // Set new password (pre-save hook will hash it with bcrypt)
+    user.password = newPassword;
+    user.resetPasswordOTP = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save();
+
+    // Send confirmation email
+    sendPasswordResetSuccessEmail({ user }).catch(err => console.error(err));
+
+    res.status(200).json({
+      status: 'success',
+      message: 'Your password has been reset successfully! You can now log in with your new password.'
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   registerPatient,
   registerDoctor,
   login,
-  getMe
+  getMe,
+  forgotPassword,
+  verifyResetOTP,
+  resetPassword
 };
