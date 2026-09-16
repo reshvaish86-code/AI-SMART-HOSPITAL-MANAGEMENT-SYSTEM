@@ -134,6 +134,50 @@ const PatientApp = {
     this.loadNotifications();
   },
 
+  triggerLiveAppointmentAlarm(appt) {
+    const doctorName = appt.doctorUser?.name || appt.doctor?.user?.name || 'Your Doctor';
+    const timeSlot = appt.timeSlot || 'Scheduled Time';
+    const hospital = appt.hospital || appt.doctor?.hospital || 'Hospital';
+
+    // 1. Play Audio Chime (Tri-tone harmonic bell)
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+      osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.15); // E5
+      osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.3); // G5
+      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.8);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.8);
+    } catch (err) {}
+
+    // 2. Voice Text-to-Speech Announcement
+    if ('speechSynthesis' in window) {
+      try {
+        const text = `Attention patient. Your consultation with Dr. ${doctorName} starts in approximately one hour at ${timeSlot}. Please be ready.`;
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.95;
+        window.speechSynthesis.speak(utterance);
+      } catch (err) {}
+    }
+
+    // 3. Native OS / Browser Push Notification
+    if ('Notification' in window && Notification.permission === 'granted') {
+      new Notification(`⏰ 1-Hour Pre-Appointment Reminder`, {
+        body: `Your consultation with Dr. ${doctorName} is scheduled for ${timeSlot} today at ${hospital}.`,
+        icon: 'https://cdn-icons-png.flaticon.com/512/3063/3063823.png'
+      });
+    }
+
+    // 4. Prominent Visual Toast
+    API.toast(`⏰ UPCOMING APPOINTMENT ALERT: Consultation with Dr. ${doctorName} at ${timeSlot} (${hospital})!`, 'info');
+  },
+
   populateDropdowns() {
     const specialtySelect = document.getElementById('filterSpecialty');
     const districtSelect = document.getElementById('filterDistrict');
@@ -402,6 +446,14 @@ const PatientApp = {
         API.toast(res.message || '1-Hour Pre-Appointment Reminder Email dispatched to your inbox!', 'success');
         await this.loadNotifications();
       }
+      // Trigger voice and chime alarm immediately
+      const apptCard = document.querySelector(`button[onclick*="${id}"]`)?.closest('.card');
+      const docName = apptCard?.querySelector('h6')?.textContent || 'Doctor';
+      this.triggerLiveAppointmentAlarm({
+        doctorUser: { name: docName.replace('Dr. ', '') },
+        timeSlot: 'Upcoming Slot',
+        hospital: 'Hospital'
+      });
     } catch (e) {
       // Handled
     }
