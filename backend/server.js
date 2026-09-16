@@ -67,15 +67,13 @@ app.get('/api/health', (req, res) => {
 });
 
 // Database Readiness Check Middleware
-app.use('/api', async (req, res, next) => {
+app.use('/api', (req, res, next) => {
   if (req.path === '/health') return next();
-  const readyState = require('mongoose').connection.readyState;
-  if (readyState !== 1) {
-    // Proactively kickstart connection in background
-    connectDB().catch(() => {});
+  const isDbConnected = require('mongoose').connection.readyState === 1;
+  if (!isDbConnected) {
     return res.status(503).json({
       status: 'fail',
-      message: 'Database connection is waking up from standby. Please retry in a few seconds.'
+      message: 'Database connection is waking up. Please retry in a few seconds (and ensure MongoDB Atlas Network Access allows 0.0.0.0/0).'
     });
   }
   next();
