@@ -19,6 +19,10 @@
       "destination": "/frontend/pages/$1"
     },
     {
+      "source": "/images/(.*)",
+      "destination": "/frontend/images/$1"
+    },
+    {
       "source": "/assets/(.*)",
       "destination": "/frontend/assets/$1"
     },
