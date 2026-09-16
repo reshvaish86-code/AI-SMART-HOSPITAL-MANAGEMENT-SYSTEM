@@ -54,24 +54,6 @@
           </button>
         </form>
 
-        <!-- 1-Click Demo Accounts -->
-        <div class="demo-credentials-box">
-          <div class="fw-bold text-dark mb-2 d-flex align-items-center gap-1">
-            <i class="fa-solid fa-bolt text-warning"></i> Instant Demo Logins (Click to Autofill):
-          </div>
-          <div class="d-flex flex-wrap gap-2">
-            <button type="button" class="demo-btn-pill" onclick="fillDemo('patient.manoj@gmail.com', 'Patient@123')">
-              <i class="fa-solid fa-user text-success me-1"></i> Patient (Chennai)
-            </button>
-            <button type="button" class="demo-btn-pill" onclick="fillDemo('doctor.rajesh@hospital.com', 'Doctor@123')">
-              <i class="fa-solid fa-user-doctor text-primary me-1"></i> Doctor (Cardiologist)
-            </button>
-            <button type="button" class="demo-btn-pill" onclick="fillDemo('admin@hospital.com', 'Admin@123')">
-              <i class="fa-solid fa-shield-halved text-danger me-1"></i> Admin
-            </button>
-          </div>
-        </div>
-
         <div class="text-center mt-4 pt-3 border-top small text-muted">
           Don't have an account yet? <a href="register.html" class="text-primary fw-semibold text-decoration-none">Register here</a>
         </div>
@@ -183,12 +165,6 @@
   <script src="../js/auth.js"></script>
   <script>
     let currentFpEmail = '';
-
-    function fillDemo(email, pass) {
-      document.getElementById('loginEmail').value = email;
-      document.getElementById('loginPassword').value = pass;
-      API.toast(`Demo credentials loaded for ${email}`, 'info');
-    }
 
     // Login Form Submit Handler
     document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
