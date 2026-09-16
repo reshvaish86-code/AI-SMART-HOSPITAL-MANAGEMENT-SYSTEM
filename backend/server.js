@@ -48,6 +48,10 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Base Health Check Endpoint
 app.get('/api/health', (req, res) => {
+  const readyState = require('mongoose').connection.readyState;
+  const rawUri = process.env.MONGODB_URI || '';
+  const maskedHost = rawUri.includes('@') ? rawUri.split('@')[1].split('/')[0] : (rawUri ? 'Custom URI' : 'Default Localhost');
+
   res.status(200).json({
     status: 'success',
     timestamp: new Date().toISOString(),
@@ -55,7 +59,9 @@ app.get('/api/health', (req, res) => {
     stage: 'Production Ready Full-Stack Ecosystem',
     environment: process.env.NODE_ENV || 'development',
     database: {
-      connected: require('mongoose').connection.readyState === 1 ? 'Connected' : 'Connecting / Standby'
+      status: readyState === 1 ? 'Connected' : (readyState === 2 ? 'Connecting' : 'Disconnected / Standby'),
+      readyState,
+      clusterHost: maskedHost
     }
   });
 });
