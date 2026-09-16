@@ -12,16 +12,19 @@ const connectDB = async () => {
 
   try {
     const conn = await mongoose.connect(uri, {
-      serverSelectionTimeoutMS: 8000,
-      connectTimeoutMS: 10000,
+      serverSelectionTimeoutMS: 15000,
+      connectTimeoutMS: 15000,
+      socketTimeoutMS: 45000,
+      maxPoolSize: 10,
+      autoIndex: true
     });
 
     console.log(`✅ [Database] MongoDB Connected: ${conn.connection.host}`);
     console.log(`📦 [Database] Active Database Name: ${conn.connection.name}`);
   } catch (error) {
     console.error(`❌ [Database Error] Connection failed: ${error.message}`);
-    console.warn(`⚠️ [Database Warning] Retrying MongoDB connection in 5 seconds...`);
-    setTimeout(connectDB, 5000);
+    console.warn(`⚠️ [Database Warning] Retrying MongoDB connection in 3 seconds...`);
+    setTimeout(connectDB, 3000);
   }
 };
 
