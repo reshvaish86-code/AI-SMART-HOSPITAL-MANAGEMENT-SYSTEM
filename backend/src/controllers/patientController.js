@@ -3,6 +3,7 @@ const User = require('../models/User');
 const Appointment = require('../models/Appointment');
 const Prescription = require('../models/Prescription');
 const Notification = require('../models/Notification');
+const { sendMedicineReminderNotification } = require('../services/notificationService');
 const { APPOINTMENT_STATUS } = require('../utils/constants');
 
 /**
@@ -29,32 +30,41 @@ const getPatientProfile = async (req, res, next) => {
 };
 
 /**
- * @desc    Update Patient Profile
+ * @desc    Update Patient Profile & Medical History
  * @route   PUT /api/patients/profile
  * @access  Private (Patient only)
  */
 const updatePatientProfile = async (req, res, next) => {
   try {
-    const patient = await Patient.findOne({ user: req.user._id });
+    const {
+      age,
+      gender,
+      bloodGroup,
+      address,
+      emergencyContact,
+      allergies,
+      chronicConditions
+    } = req.body;
+
+    let patient = await Patient.findOne({ user: req.user._id });
+
     if (!patient) {
       return res.status(404).json({ status: 'fail', message: 'Patient profile not found' });
     }
 
-    const { age, gender, address, district, bloodGroup, allergies, emergencyContact } = req.body;
-
     if (age !== undefined) patient.age = age;
     if (gender) patient.gender = gender;
-    if (address) patient.address = address;
-    if (district) patient.district = district;
     if (bloodGroup) patient.bloodGroup = bloodGroup;
-    if (allergies) patient.allergies = Array.isArray(allergies) ? allergies : allergies.split(',').map(s => s.trim());
+    if (address) patient.address = address;
     if (emergencyContact) patient.emergencyContact = emergencyContact;
+    if (allergies) patient.allergies = Array.isArray(allergies) ? allergies : allergies.split(',').map(a => a.trim());
+    if (chronicConditions) patient.chronicConditions = Array.isArray(chronicConditions) ? chronicConditions : chronicConditions.split(',').map(c => c.trim());
 
     await patient.save();
 
     res.status(200).json({
       status: 'success',
-      message: 'Patient profile updated successfully',
+      message: 'Profile updated successfully',
       data: patient
     });
   } catch (error) {
@@ -63,7 +73,7 @@ const updatePatientProfile = async (req, res, next) => {
 };
 
 /**
- * @desc    Get Patient Dashboard Stats
+ * @desc    Get Patient Dashboard KPI Stats
  * @route   GET /api/patients/dashboard/stats
  * @access  Private (Patient only)
  */
@@ -71,7 +81,7 @@ const getPatientDashboardStats = async (req, res, next) => {
   try {
     const patient = await Patient.findOne({ user: req.user._id });
     if (!patient) {
-      return res.status(404).json({ status: 'fail', message: 'Patient profile not found' });
+      return res.status(404).json({ status: 'fail', message: 'Patient not found' });
     }
 
     const todayStr = new Date().toISOString().split('T')[0];
@@ -119,7 +129,7 @@ const addMedicineReminder = async (req, res, next) => {
       return res.status(400).json({ status: 'fail', message: 'Medicine name and reminder time are required' });
     }
 
-    patient.medicineReminders.push({
+    const newReminder = {
       patientName: patientName || patient.user.name,
       mobileNumber: mobileNumber || patient.user.mobile,
       medicineName,
@@ -128,14 +138,52 @@ const addMedicineReminder = async (req, res, next) => {
       frequency: frequency || 'Daily',
       instructions: instructions || 'Take after meals with water',
       isActive: true
-    });
+    };
 
+    patient.medicineReminders.push(newReminder);
     await patient.save();
+
+    // Auto-dispatch confirmation reminder email
+    sendMedicineReminderNotification({
+      patientUser: patient.user,
+      medicine: newReminder
+    }).catch(err => console.error('Error sending medicine reminder email:', err));
 
     res.status(201).json({
       status: 'success',
-      message: `Medicine reminder registered for ${patientName || patient.user.name} at ${time}`,
+      message: `Medicine reminder registered for ${patientName || patient.user.name} at ${time}. Confirmation alert dispatched!`,
       data: patient.medicineReminders
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+/**
+ * @desc    Test Medicine Reminder (Dispatch real email & in-app alert immediately)
+ * @route   POST /api/patients/reminders/:id/test
+ * @access  Private (Patient only)
+ */
+const testMedicineReminder = async (req, res, next) => {
+  try {
+    const patient = await Patient.findOne({ user: req.user._id }).populate('user', 'name mobile email');
+    if (!patient) {
+      return res.status(404).json({ status: 'fail', message: 'Patient profile not found' });
+    }
+
+    const reminder = patient.medicineReminders.id(req.params.id);
+    if (!reminder) {
+      return res.status(404).json({ status: 'fail', message: 'Medicine reminder not found' });
+    }
+
+    await sendMedicineReminderNotification({
+      patientUser: patient.user,
+      medicine: reminder
+    });
+
+    res.status(200).json({
+      status: 'success',
+      message: `💊 Real Medicine Reminder Email successfully dispatched to ${patient.user.email}!`
     });
   } catch (error) {
     next(error);
@@ -175,5 +223,6 @@ module.exports = {
   updatePatientProfile,
   getPatientDashboardStats,
   addMedicineReminder,
+  testMedicineReminder,
   deleteMedicineReminder
 };

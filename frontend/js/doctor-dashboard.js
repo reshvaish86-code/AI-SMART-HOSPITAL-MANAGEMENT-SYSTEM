@@ -109,6 +109,7 @@ const DoctorApp = {
                     ${a.status === 'Confirmed' ? `
                       <li><a class="dropdown-item text-primary" href="#" onclick="DoctorApp.openConsultationModal('${a._id}')"><i class="fa-solid fa-file-prescription me-2"></i> Consult & Prescribe</a></li>
                     ` : ''}
+                    <li><a class="dropdown-item text-info" href="#" onclick="DoctorApp.sendReminder('${a._id}')"><i class="fa-solid fa-bell me-2"></i> Send 1-Hour Reminder</a></li>
                     <li><a class="dropdown-item text-secondary" href="#" onclick="DoctorApp.openRescheduleModal('${a._id}', '${a.appointmentDate}', '${a.timeSlot}')"><i class="fa-solid fa-calendar-days me-2"></i> Reschedule</a></li>
                   </ul>
                 </div>
@@ -119,6 +120,18 @@ const DoctorApp = {
       }
     } catch (e) {
       console.error('Error loading appointments:', e);
+    }
+  },
+
+  async sendReminder(id) {
+    try {
+      API.toast('⏰ Dispatching 1-Hour Pre-Appointment Reminder Email...', 'info');
+      const res = await API.post(`/appointments/${id}/send-reminder`);
+      if (res && res.status === 'success') {
+        API.toast(res.message || 'Pre-Appointment Reminder Email sent to patient!', 'success');
+      }
+    } catch (e) {
+      // Handled
     }
   },
 

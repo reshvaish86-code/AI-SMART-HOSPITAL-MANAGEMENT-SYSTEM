@@ -3,8 +3,10 @@ const Doctor = require('../models/Doctor');
 const Patient = require('../models/Patient');
 const { 
   sendAppointmentConfirmation, 
-  sendAppointmentStatusUpdate 
+  sendAppointmentStatusUpdate,
+  sendPreAppointmentReminder
 } = require('../services/notificationService');
+const { parseTimeSlot } = require('../services/cronService');
 const { APPOINTMENT_STATUS } = require('../utils/constants');
 
 /**
@@ -90,6 +92,25 @@ const bookAppointment = async (req, res, next) => {
       doctorProfile: doctor
     });
 
+    // Check if slot starts today within 90 minutes -> Send 1-Hour pre-appointment reminder email too!
+    const slotTime = parseTimeSlot(timeSlot);
+    if (slotTime && appointmentDate === today) {
+      const now = new Date();
+      const currentMinutes = now.getHours() * 60 + now.getMinutes();
+      const slotMinutes = slotTime.hours * 60 + slotTime.minutes;
+      const diff = slotMinutes - currentMinutes;
+      if (diff >= 0 && diff <= 90) {
+        sendPreAppointmentReminder({
+          appointment,
+          patientUser: req.user,
+          doctorUser: doctor.user,
+          doctorProfile: doctor
+        }).catch(err => console.error('Error auto-triggering pre-appointment reminder:', err));
+        appointment.reminderSent = true;
+        await appointment.save();
+      }
+    }
+
     res.status(201).json({
       status: 'success',
       message: 'Appointment booked successfully and awaiting doctor confirmation',
@@ -108,40 +129,22 @@ const bookAppointment = async (req, res, next) => {
 const getMyAppointments = async (req, res, next) => {
   try {
     let query = {};
-    const { status, date } = req.query;
-
     if (req.user.role === 'patient') {
-      const patient = await Patient.findOne({ user: req.user._id });
-      if (!patient) return res.status(200).json({ status: 'success', results: 0, data: [] });
-      query.patient = patient._id;
+      query.patientUser = req.user._id;
     } else if (req.user.role === 'doctor') {
-      const doctor = await Doctor.findOne({ user: req.user._id });
-      if (!doctor) return res.status(200).json({ status: 'success', results: 0, data: [] });
-      query.doctor = doctor._id;
-    }
-
-    if (status && status !== 'All') {
-      query.status = status;
-    }
-
-    if (date) {
-      query.appointmentDate = date;
+      query.doctorUser = req.user._id;
     }
 
     const appointments = await Appointment.find(query)
-      .populate({
-        path: 'patient',
-        populate: { path: 'user', select: 'name email mobile' }
-      })
-      .populate({
-        path: 'doctor',
-        populate: { path: 'user', select: 'name email mobile' }
-      })
-      .sort({ appointmentDate: -1, timeSlot: 1 });
+      .populate('doctor', 'hospital specialization consultationFee experience district rating')
+      .populate('doctorUser', 'name email mobile')
+      .populate('patientUser', 'name email mobile')
+      .populate('patient', 'age gender bloodGroup emergencyContact')
+      .sort({ appointmentDate: -1, createdAt: -1 });
 
     res.status(200).json({
       status: 'success',
-      results: appointments.length,
+      count: appointments.length,
       data: appointments
     });
   } catch (error) {
@@ -150,31 +153,31 @@ const getMyAppointments = async (req, res, next) => {
 };
 
 /**
- * @desc    Get Booked slots for a doctor on a specific date (Slot Collision visualizer)
+ * @desc    Get booked slots for a specific doctor on a specific date (for real-time frontend disable)
  * @route   GET /api/appointments/booked-slots
  * @access  Public
  */
 const getBookedSlots = async (req, res, next) => {
   try {
     const { doctorId, date } = req.query;
-
     if (!doctorId || !date) {
       return res.status(400).json({
         status: 'fail',
-        message: 'Please provide doctorId and date'
+        message: 'doctorId and date query parameters are required'
       });
     }
 
-    const activeBookings = await Appointment.find({
+    const appointments = await Appointment.find({
       doctor: doctorId,
       appointmentDate: date,
       status: { $in: [APPOINTMENT_STATUS.PENDING, APPOINTMENT_STATUS.CONFIRMED, APPOINTMENT_STATUS.RESCHEDULED] }
-    }).select('timeSlot status');
+    }).select('timeSlot status -_id');
 
-    const bookedSlots = activeBookings.map(b => b.timeSlot);
+    const bookedSlots = appointments.map(a => a.timeSlot);
 
     res.status(200).json({
       status: 'success',
+      doctorId,
       date,
       bookedSlots
     });
@@ -184,16 +187,19 @@ const getBookedSlots = async (req, res, next) => {
 };
 
 /**
- * @desc    Update Appointment Status (Accept, Reject, Reschedule, Complete, Cancel)
+ * @desc    Update Appointment Status (Confirm, Complete, Cancel, Reschedule)
  * @route   PATCH /api/appointments/:id/status
  * @access  Private (Doctor, Patient, Admin)
  */
 const updateAppointmentStatus = async (req, res, next) => {
   try {
+    const { id } = req.params;
     const { status, doctorNotes, cancellationReason, newDate, newTimeSlot } = req.body;
-    const appointment = await Appointment.findById(req.params.id)
+
+    const appointment = await Appointment.findById(id)
       .populate('patientUser', 'name email mobile')
-      .populate('doctorUser', 'name email mobile');
+      .populate('doctorUser', 'name email mobile')
+      .populate('doctor', 'hospital specialization');
 
     if (!appointment) {
       return res.status(404).json({
@@ -216,7 +222,7 @@ const updateAppointmentStatus = async (req, res, next) => {
       // Check collision on the new slot
       const collision = await Appointment.findOne({
         _id: { $ne: appointment._id },
-        doctor: appointment.doctor,
+        doctor: appointment.doctor._id || appointment.doctor,
         appointmentDate: newDate,
         timeSlot: newTimeSlot,
         status: { $in: [APPOINTMENT_STATUS.PENDING, APPOINTMENT_STATUS.CONFIRMED, APPOINTMENT_STATUS.RESCHEDULED] }
@@ -265,9 +271,51 @@ const updateAppointmentStatus = async (req, res, next) => {
   }
 };
 
+/**
+ * @desc    Manually dispatch 1-Hour Pre-Appointment Reminder Email & Alerts on demand
+ * @route   POST /api/appointments/:id/send-reminder
+ * @access  Private (Patient, Doctor, Admin)
+ */
+const sendManualAppointmentReminder = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const appointment = await Appointment.findById(id)
+      .populate('patientUser', 'name email mobile')
+      .populate('doctorUser', 'name email mobile')
+      .populate('doctor', 'hospital specialization');
+
+    if (!appointment) {
+      return res.status(404).json({ status: 'fail', message: 'Appointment not found' });
+    }
+
+    // Role-based access check
+    if (req.user.role === 'patient' && req.user._id.toString() !== appointment.patientUser._id.toString()) {
+      return res.status(403).json({ status: 'fail', message: 'Unauthorized to send reminder for this appointment' });
+    }
+
+    await sendPreAppointmentReminder({
+      appointment,
+      patientUser: appointment.patientUser,
+      doctorUser: appointment.doctorUser,
+      doctorProfile: appointment.doctor
+    });
+
+    appointment.reminderSent = true;
+    await appointment.save();
+
+    res.status(200).json({
+      status: 'success',
+      message: `⏰ 1-Hour Pre-Appointment Reminder successfully dispatched to ${appointment.patientUser?.email || 'patient'}!`
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   bookAppointment,
   getMyAppointments,
   getBookedSlots,
-  updateAppointmentStatus
+  updateAppointmentStatus,
+  sendManualAppointmentReminder
 };

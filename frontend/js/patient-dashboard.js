@@ -374,8 +374,11 @@ const PatientApp = {
                 <div class="text-muted small"><i class="fa-solid fa-clock me-1 text-warning"></i> ${a.timeSlot}</div>
               </div>
             </div>
-            <div class="col-md-2 text-md-end">
-              ${a.status === 'Pending' || a.status === 'Confirmed' ? `
+            <div class="col-md-3 text-md-end mt-2 mt-md-0 d-flex flex-wrap gap-2 justify-content-md-end">
+              ${a.status === 'Pending' || a.status === 'Confirmed' || a.status === 'Rescheduled' ? `
+                <button class="btn btn-outline-primary btn-sm rounded-pill px-3" title="Dispatch 1-Hour Pre-Appointment Reminder Email Now" onclick="PatientApp.sendAppointmentReminder('${a._id}')">
+                  <i class="fa-solid fa-bell me-1"></i> Send AI Reminder
+                </button>
                 <button class="btn btn-outline-danger btn-sm rounded-pill px-3" onclick="PatientApp.cancelAppointment('${a._id}')">
                   <i class="fa-solid fa-xmark me-1"></i> Cancel
                 </button>
@@ -388,6 +391,19 @@ const PatientApp = {
       `).join('');
     } catch (e) {
       container.innerHTML = '<div class="text-danger py-3">Error loading appointments</div>';
+    }
+  },
+
+  async sendAppointmentReminder(id) {
+    try {
+      API.toast('⏰ Dispatching 1-Hour Pre-Appointment Reminder Email...', 'info');
+      const res = await API.post(`/appointments/${id}/send-reminder`);
+      if (res && res.status === 'success') {
+        API.toast(res.message || '1-Hour Pre-Appointment Reminder Email dispatched to your inbox!', 'success');
+        await this.loadNotifications();
+      }
+    } catch (e) {
+      // Handled
     }
   },
 
@@ -457,38 +473,17 @@ const PatientApp = {
         <div class="card border-0 shadow-sm rounded-4 p-3 mb-3">
           <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
             <div>
-              <h6 class="fw-bold text-dark mb-0"><i class="fa-solid fa-file-prescription text-primary me-1"></i> Rx: ${p.diagnosis}</h6>
+              <h6 class="fw-bold text-dark mb-0"><i class="fa-solid fa-file-prescription text-primary me-1"></i> ${p.diagnosis}</h6>
               <span class="text-muted small">Prescribed by Dr. ${p.doctor?.user?.name || 'Doctor'} on ${new Date(p.createdAt).toLocaleDateString()}</span>
             </div>
             <button class="btn btn-outline-primary btn-sm rounded-pill" onclick="PatientApp.viewPrescriptionModal('${p._id}')">
-              <i class="fa-solid fa-print me-1"></i> View / Print
+              <i class="fa-solid fa-eye me-1"></i> View & Print
             </button>
           </div>
-          <div class="table-responsive small">
-            <table class="table table-sm table-bordered mb-2">
-              <thead class="table-light">
-                <tr>
-                  <th>Medicine</th>
-                  <th>Dosage</th>
-                  <th>Frequency</th>
-                  <th>Duration</th>
-                  <th>Instructions</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${p.medicines.map(m => `
-                  <tr>
-                    <td class="fw-semibold text-dark">${m.medicineName}</td>
-                    <td>${m.dosage}</td>
-                    <td>${m.frequency}</td>
-                    <td>${m.duration}</td>
-                    <td>${m.instructions}</td>
-                  </tr>
-                `).join('')}
-              </tbody>
-            </table>
+          <div class="small mb-2">
+            <strong>Medicines Prescribed:</strong> ${p.medicines.map(m => `<span class="badge bg-light text-dark border me-1">${m.medicineName} (${m.dosage})</span>`).join('')}
           </div>
-          <p class="small text-muted mb-0"><strong>Advice:</strong> ${p.generalAdvice}</p>
+          <p class="small text-muted mb-0"><strong>General Advice:</strong> ${p.generalAdvice}</p>
         </div>
       `).join('');
     } catch (e) {
@@ -597,9 +592,14 @@ const PatientApp = {
               <span class="badge bg-primary text-white me-1"><i class="fa-solid fa-user me-1"></i> ${r.patientName || currentPatientProfile?.user?.name || 'Patient'}</span>
               <span class="badge bg-secondary-subtle text-dark"><i class="fa-solid fa-phone me-1"></i> ${r.mobileNumber || currentPatientProfile?.user?.mobile || 'N/A'}</span>
             </div>
-            <button class="btn btn-outline-danger btn-sm rounded-circle p-1" title="Delete Reminder" onclick="PatientApp.deleteReminder('${r._id}')">
-              <i class="fa-solid fa-trash"></i>
-            </button>
+            <div class="d-flex align-items-center gap-1">
+              <button class="btn btn-outline-primary btn-sm rounded-pill px-2 py-1" title="Test Reminder Email & Alarm Now" onclick="PatientApp.testMedicineReminderAlert('${r._id}', '${r.medicineName}')">
+                <i class="fa-solid fa-paper-plane me-1"></i> Test Email
+              </button>
+              <button class="btn btn-outline-danger btn-sm rounded-circle p-1" title="Delete Reminder" onclick="PatientApp.deleteReminder('${r._id}')">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
           </div>
           <div class="d-flex justify-content-between align-items-center">
             <div>
@@ -624,6 +624,23 @@ const PatientApp = {
       }
     } catch (e) {
       container.innerHTML = '<div class="text-danger small">Error loading reminders</div>';
+    }
+  },
+
+  async testMedicineReminderAlert(id, medName) {
+    try {
+      API.toast(`💊 Dispatching real Medicine Reminder Email for ${medName}...`, 'info');
+      const res = await API.post(`/patients/reminders/${id}/test`);
+      if (res && res.status === 'success') {
+        API.toast(res.message || 'Medicine Reminder Email delivered to your inbox!', 'success');
+      }
+      // Also trigger live audio chime and TTS voice alarm immediately!
+      const reminderObj = currentPatientProfile?.medicineReminders?.find(r => r._id === id);
+      if (reminderObj) {
+        this.triggerLiveMedicineAlarm(reminderObj);
+      }
+    } catch (e) {
+      // Handled
     }
   },
 

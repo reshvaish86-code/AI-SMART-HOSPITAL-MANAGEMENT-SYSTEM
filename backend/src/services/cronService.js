@@ -4,30 +4,70 @@ const Patient = require('../models/Patient');
 const { sendPreAppointmentReminder, sendMedicineReminderNotification } = require('./notificationService');
 
 /**
+ * Helper to compute both UTC and IST (Asia/Kolkata, UTC+5:30) times
+ */
+function getDualTimezones() {
+  const nowUtc = new Date();
+  const istOffsetMs = (5 * 60 + 30) * 60 * 1000;
+  const nowIst = new Date(nowUtc.getTime() + istOffsetMs);
+
+  const formatYMD = (d) => {
+    const y = d.getUTCFullYear();
+    const m = String(d.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(d.getUTCDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  };
+
+  const to12H = (hours, minutes) => {
+    const period = hours >= 12 ? 'PM' : 'AM';
+    let h12 = hours % 12;
+    h12 = h12 ? h12 : 12;
+    return `${String(h12).padStart(2, '0')}:${String(minutes).padStart(2, '0')} ${period}`;
+  };
+
+  const to24H = (hours, minutes) => {
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+  };
+
+  return {
+    utc: {
+      dateStr: formatYMD(nowUtc),
+      hour: nowUtc.getUTCHours(),
+      minute: nowUtc.getUTCMinutes(),
+      totalMinutes: nowUtc.getUTCHours() * 60 + nowUtc.getUTCMinutes(),
+      formatted12: to12H(nowUtc.getUTCHours(), nowUtc.getUTCMinutes()),
+      formatted24: to24H(nowUtc.getUTCHours(), nowUtc.getUTCMinutes())
+    },
+    ist: {
+      dateStr: formatYMD(nowIst),
+      hour: nowIst.getUTCHours(),
+      minute: nowIst.getUTCMinutes(),
+      totalMinutes: nowIst.getUTCHours() * 60 + nowIst.getUTCMinutes(),
+      formatted12: to12H(nowIst.getUTCHours(), nowIst.getUTCMinutes()),
+      formatted24: to24H(nowIst.getUTCHours(), nowIst.getUTCMinutes())
+    }
+  };
+}
+
+/**
  * Initialize all automated background cron jobs
  */
 function initCronJobs() {
-  console.log('⏰ [Cron Service] Initializing background healthcare schedulers...');
+  console.log('⏰ [Cron Service] Initializing background healthcare schedulers (IST & UTC Timezone Aware)...');
 
   // =========================================================================
-  // CRON JOB 1: 1-Hour Pre-Appointment Reminder (Runs every 5 minutes)
+  // CRON JOB 1: 1-Hour Pre-Appointment Reminder (Runs every 2 minutes)
   // =========================================================================
-  cron.schedule('*/5 * * * *', async () => {
+  cron.schedule('*/2 * * * *', async () => {
     try {
-      const now = new Date();
-      const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const day = String(now.getDate()).padStart(2, '0');
-      const todayStr = `${year}-${month}-${day}`;
+      const times = getDualTimezones();
+      const validDates = Array.from(new Set([times.ist.dateStr, times.utc.dateStr]));
 
-      const currentHour = now.getHours();
-      const currentMinute = now.getMinutes();
-
-      // Find today's active appointments where reminder has not been sent yet
+      // Find active appointments for today where reminder has not been dispatched
       const upcomingAppointments = await Appointment.find({
-        appointmentDate: todayStr,
-        status: { $in: ['Pending', 'Confirmed'] },
-        reminderSent: false
+        appointmentDate: { $in: validDates },
+        status: { $in: ['Pending', 'Confirmed', 'Rescheduled'] },
+        reminderSent: { $ne: true }
       })
       .populate('patientUser', 'name email mobile')
       .populate('doctorUser', 'name email mobile')
@@ -38,11 +78,16 @@ function initCronJobs() {
         if (!slotTime) continue;
 
         const slotTotalMinutes = slotTime.hours * 60 + slotTime.minutes;
-        const nowTotalMinutes = currentHour * 60 + currentMinute;
-        const diffMinutes = slotTotalMinutes - nowTotalMinutes;
 
-        // Trigger if appointment is between 40 and 75 minutes from now (approx 1 hour)
-        if (diffMinutes >= 40 && diffMinutes <= 75) {
+        // Calculate diff in IST and UTC
+        const diffMinutesIST = slotTotalMinutes - times.ist.totalMinutes;
+        const diffMinutesUTC = slotTotalMinutes - times.utc.totalMinutes;
+
+        // Trigger if appointment is starting within 0 to 75 minutes (approx 1 hour pre-reminder)
+        const isDueInIST = (appt.appointmentDate === times.ist.dateStr && diffMinutesIST >= 0 && diffMinutesIST <= 75);
+        const isDueInUTC = (appt.appointmentDate === times.utc.dateStr && diffMinutesUTC >= 0 && diffMinutesUTC <= 75);
+
+        if (isDueInIST || isDueInUTC) {
           console.log(`⏰ [Cron Trigger] Dispatching 1-hour pre-appointment reminder for Appt #${appt._id} (${appt.timeSlot}) to ${appt.patientUser?.email}`);
           
           await sendPreAppointmentReminder({
@@ -66,9 +111,7 @@ function initCronJobs() {
   // =========================================================================
   cron.schedule('* * * * *', async () => {
     try {
-      const now = new Date();
-      const currentFormattedTime = formatTimeTo12Hour(now); // e.g. "09:00 PM"
-      const current24HTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`; // e.g. "21:00"
+      const times = getDualTimezones();
 
       const patients = await Patient.find({
         'medicineReminders.isActive': true
@@ -80,12 +123,17 @@ function initCronJobs() {
         for (const reminder of patient.medicineReminders) {
           if (!reminder.isActive || !reminder.time) continue;
 
-          // Normalize both 12H, 24H, and dotted time formats (e.g., "9.00PM", "09:00 PM", "21:00")
+          // Target normalized time (e.g., "09:00" or "21:00")
           const targetTime = normalizeTime(reminder.time);
-          const currentTime12 = normalizeTime(currentFormattedTime);
-          const currentTime24 = normalizeTime(current24HTime);
+          const currentIST12 = normalizeTime(times.ist.formatted12);
+          const currentIST24 = normalizeTime(times.ist.formatted24);
+          const currentUTC12 = normalizeTime(times.utc.formatted12);
+          const currentUTC24 = normalizeTime(times.utc.formatted24);
 
-          if (targetTime === currentTime12 || targetTime === currentTime24) {
+          const matchesIST = (targetTime === currentIST12 || targetTime === currentIST24);
+          const matchesUTC = (targetTime === currentUTC12 || targetTime === currentUTC24);
+
+          if (matchesIST || matchesUTC) {
             console.log(`💊 [Cron Trigger] Time reached for ${patient.user.name}: Take ${reminder.medicineName} at ${reminder.time}`);
             
             await sendMedicineReminderNotification({
@@ -100,7 +148,7 @@ function initCronJobs() {
     }
   });
 
-  console.log('✅ [Cron Service] Schedulers active: Pre-appointment check (5m) & Medicine alarms (1m)');
+  console.log('✅ [Cron Service] Schedulers active: Pre-appointment check (2m) & Medicine alarms (1m) with dual IST/UTC synchronization');
 }
 
 // Helper: Parse any time string (e.g. "10:00 AM", "9.00PM", "21:00", "09:30 pm")
@@ -133,20 +181,6 @@ function parseTimeSlot(slotStr) {
   return null;
 }
 
-// Helper: Format Date object to "hh:mm A"
-function formatTimeTo12Hour(date) {
-  let hours = date.getHours();
-  const minutes = date.getMinutes();
-  const period = hours >= 12 ? 'PM' : 'AM';
-
-  hours = hours % 12;
-  hours = hours ? hours : 12;
-  const paddedMinutes = String(minutes).padStart(2, '0');
-  const paddedHours = String(hours).padStart(2, '0');
-
-  return `${paddedHours}:${paddedMinutes} ${period}`;
-}
-
 // Helper: Normalize time strings into standard "HH:mm" for exact comparison
 function normalizeTime(tStr) {
   if (!tStr) return '';
@@ -158,5 +192,8 @@ function normalizeTime(tStr) {
 }
 
 module.exports = {
-  initCronJobs
+  initCronJobs,
+  getDualTimezones,
+  parseTimeSlot,
+  normalizeTime
 };

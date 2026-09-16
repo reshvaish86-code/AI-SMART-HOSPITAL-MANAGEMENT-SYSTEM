@@ -5,6 +5,7 @@ const {
   updatePatientProfile,
   getPatientDashboardStats,
   addMedicineReminder,
+  testMedicineReminder,
   deleteMedicineReminder
 } = require('../controllers/patientController');
 const { protect } = require('../middleware/authMiddleware');
@@ -17,6 +18,7 @@ router.get('/profile', getPatientProfile);
 router.put('/profile', updatePatientProfile);
 router.get('/dashboard/stats', getPatientDashboardStats);
 router.post('/reminders', addMedicineReminder);
+router.post('/reminders/:id/test', testMedicineReminder);
 router.delete('/reminders/:id', deleteMedicineReminder);
 
 module.exports = router;
