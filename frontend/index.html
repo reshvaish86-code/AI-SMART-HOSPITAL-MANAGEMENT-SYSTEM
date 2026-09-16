@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Smart Hospital Management System | Intelligent Clinical Platform</title>
-  <meta name="description" content="Next-generation AI Smart Hospital Management System featuring smart symptom triage, 1-hour multi-sensory voice & email appointment reminders, collision-free specialist booking across Tamil Nadu, and certified digital prescriptions.">
+  <title>AI Smart Hospital Management System | Next-Gen Clinical Platform</title>
+  <meta name="description" content="Next-generation AI Smart Hospital Management System featuring 3D pharmaceutical tracking, 1-hour multi-sensory voice & email appointment reminders, collision-free specialist booking across Tamil Nadu, and certified digital prescriptions.">
   
   <!-- Bootstrap 5.3 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,11 +18,17 @@
 </head>
 <body>
 
-  <!-- Emergency Top Ribbon -->
-  <div class="emergency-ribbon py-1 px-3 text-center d-flex justify-content-center align-items-center gap-3">
-    <span><i class="fa-solid fa-truck-medical me-1"></i> <strong>24/7 Emergency Dispatch:</strong> Dial 108 / 112 (Tamil Nadu Health Network)</span>
-    <span class="d-none d-md-inline opacity-75">|</span>
-    <span class="d-none d-md-inline"><i class="fa-solid fa-bell me-1"></i> 1-Hour Pre-Appointment & Medicine Voice Alarms Active</span>
+  <!-- Emergency & Live Network Top Banner -->
+  <div class="emergency-ribbon py-2 px-3 text-center d-flex justify-content-between align-items-center flex-wrap gap-2">
+    <div class="d-flex align-items-center gap-2 mx-auto mx-md-0">
+      <span class="badge bg-white text-danger fw-bold"><i class="fa-solid fa-truck-medical me-1"></i> EMERGENCY</span>
+      <span><strong>24/7 Command Helpline:</strong> Dial 108 / 112 | Tamil Nadu Health Network</span>
+    </div>
+    <div class="d-none d-md-flex align-items-center gap-3">
+      <span class="opacity-90"><i class="fa-solid fa-bell me-1"></i> 1-Hour Multi-Sensory Alarms Active</span>
+      <span class="opacity-75">|</span>
+      <span class="badge bg-dark bg-opacity-50 text-white border border-white border-opacity-25" id="liveClockDisplay">IST Live</span>
+    </div>
   </div>
 
   <!-- Glassmorphic Navbar -->
@@ -38,21 +44,24 @@
         <i class="fa-solid fa-bars"></i>
       </button>
       <div class="collapse navbar-collapse" id="navContent">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center gap-2">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center gap-1">
           <li class="nav-item">
             <a class="nav-link active" href="index.html"><i class="fa-solid fa-house me-1"></i> Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#clinical-showcase"><i class="fa-solid fa-capsules me-1 text-info"></i> Innovations</a>
+            <a class="nav-link" href="#clinical-showcase"><i class="fa-solid fa-capsules me-1 text-info"></i> 3D Pharmacy & Care</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#ai-assistant"><i class="fa-solid fa-robot me-1 text-info"></i> AI Triage</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#specialties"><i class="fa-solid fa-user-doctor me-1 text-warning"></i> Specialists</a>
+            <a class="nav-link" href="#alarms-demo"><i class="fa-solid fa-bell me-1 text-warning"></i> Multi-Sensory Alarms</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#features"><i class="fa-solid fa-shield-halved me-1 text-success"></i> Features</a>
+            <a class="nav-link" href="#specialties"><i class="fa-solid fa-user-doctor me-1 text-success"></i> 14 Specialists</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#districts"><i class="fa-solid fa-map-location-dot me-1 text-primary"></i> 38 Districts</a>
           </li>
           <li class="nav-item ms-lg-3">
             <a class="btn btn-outline-glow px-3 py-2 rounded-3" href="pages/login.html">
@@ -69,56 +78,65 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- High-Impact 3D Hero Section -->
   <header class="hero-section text-center text-lg-start">
     <div class="container">
       <div class="row align-items-center gy-5">
         
-        <!-- Hero Text Content -->
+        <!-- Hero Text Column -->
         <div class="col-lg-6">
           <div class="hero-badge mb-3">
             <span class="pulse-dot"></span>
             <span>Intelligent Clinical Operating System Across 38 TN Districts</span>
           </div>
           <h1 class="display-4 fw-extrabold text-white mb-3">
-            Next-Gen Hospital Care Powered by <span class="gradient-text-cyan">Smart AI</span> & <span class="gradient-text-primary">Precision Medicine</span>
+            Next-Gen Hospital Care Powered by <span class="gradient-text-cyan">Smart AI</span> & <span class="gradient-text-primary">3D Medicine</span>
           </h1>
           <p class="lead text-light opacity-75 mb-4">
-            A unified digital healthcare ecosystem empowering Patients, Doctors, and Administrators with smart AI triage, multi-sensory 1-hour voice alarms, digital e-prescriptions, and collision-free doctor booking across Tamil Nadu.
+            A unified digital healthcare ecosystem empowering Patients, Doctors, and Administrators with real-time AI triage, 1-hour multi-sensory voice alarms, digital e-prescriptions, and collision-free doctor bookings across all 38 districts of Tamil Nadu.
           </p>
           <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
             <a href="pages/register.html" class="btn btn-cyan-custom btn-lg px-4 shadow">
               <i class="fa-solid fa-calendar-check me-2"></i> Book Doctor Appointment
             </a>
             <a href="#ai-assistant" class="btn btn-outline-glow btn-lg px-4">
-              <i class="fa-solid fa-wand-magic-sparkles me-2 text-info"></i> Try AI Symptom Checker
+              <i class="fa-solid fa-wand-magic-sparkles me-2 text-info"></i> Launch AI Symptom Triage
             </a>
+            <button class="btn btn-outline-glow btn-lg px-3" onclick="triggerVoiceAlarmDemo()">
+              <i class="fa-solid fa-volume-high me-1 text-warning"></i> Test Voice Alarm 🔊
+            </button>
           </div>
           
           <!-- Quick Stat Pills -->
           <div class="row mt-5 pt-3 border-top border-white border-opacity-10 text-white g-3 text-center text-lg-start">
-            <div class="col-4">
+            <div class="col-6 col-sm-3">
               <div class="stat-pill">
                 <div class="fs-4 fw-bold text-info">14+</div>
-                <div class="small text-light opacity-75">Medical Specialties</div>
+                <div class="small text-light opacity-75">Specialties</div>
               </div>
             </div>
-            <div class="col-4">
+            <div class="col-6 col-sm-3">
               <div class="stat-pill">
                 <div class="fs-4 fw-bold text-info">38</div>
-                <div class="small text-light opacity-75">TN Districts Covered</div>
+                <div class="small text-light opacity-75">TN Districts</div>
               </div>
             </div>
-            <div class="col-4">
+            <div class="col-6 col-sm-3">
               <div class="stat-pill">
                 <div class="fs-4 fw-bold text-success">100%</div>
-                <div class="small text-light opacity-75">Collision-Free Slots</div>
+                <div class="small text-light opacity-75">Collision-Free</div>
+              </div>
+            </div>
+            <div class="col-6 col-sm-3">
+              <div class="stat-pill">
+                <div class="fs-4 fw-bold text-warning">1-Hr</div>
+                <div class="small text-light opacity-75">Voice Alarms</div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Hero Visual Showcase with Floating 3D Micro-Badges -->
+        <!-- 3D Hero Visual Stage with Floating Micro-Cards -->
         <div class="col-lg-6">
           <div class="hero-visual-container px-lg-4">
             
@@ -146,7 +164,7 @@
                   </div>
                   <div class="text-end">
                     <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1 rounded-2">
-                      <i class="fa-solid fa-shield-check me-1"></i> Certified
+                      <i class="fa-solid fa-shield-check me-1"></i> Certified Secure
                     </span>
                   </div>
                 </div>
@@ -171,22 +189,22 @@
     </div>
   </header>
 
-  <!-- 3D Clinical Innovations & Medical Imagery Showcase Section -->
+  <!-- Section 2: 3D Clinical Innovations & Visual Gallery -->
   <section id="clinical-showcase" class="clinical-showcase-section">
     <div class="container py-2">
       <div class="text-center max-w-700 mx-auto mb-5">
         <span class="badge bg-info-subtle text-info border border-info-subtle px-3 py-2 rounded-pill fw-semibold mb-2">
           <i class="fa-solid fa-dna me-1"></i> Advanced Hospital Architecture
         </span>
-        <h2 class="display-6 fw-bold">Modern Medical Technology & Precision Care</h2>
+        <h2 class="display-6 fw-bold">Precision Medicine & Advanced Clinical Technologies</h2>
         <p class="text-muted">
-          Designed with futuristic clinical intelligence — featuring precision pharmaceutical tracking, sterile diagnostic procedures, and real-time AI triage analysis.
+          Designed with futuristic clinical intelligence — featuring 3D pharmaceutical dispensing, sterile surgical telemetry, and AI clinical triage.
         </p>
       </div>
 
       <div class="row g-4">
         
-        <!-- Card 1: Tablets & Smart Medication -->
+        <!-- Card 1: 3D Tablets & Smart Medication -->
         <div class="col-md-4">
           <div class="clinical-card">
             <div class="clinical-card-img-wrap">
@@ -230,7 +248,7 @@
           </div>
         </div>
 
-        <!-- Card 3: AI Neural Triage -->
+        <!-- Card 3: AI Neural Triage & Hologram -->
         <div class="col-md-4">
           <div class="clinical-card">
             <div class="clinical-card-img-wrap">
@@ -256,7 +274,7 @@
     </div>
   </section>
 
-  <!-- Interactive AI Symptom Checker Section -->
+  <!-- Section 3: Interactive Live AI Neural Symptom Triage Studio -->
   <section id="ai-assistant" class="py-5 bg-light border-top border-bottom">
     <div class="container py-4">
       <div class="row align-items-center gy-4">
@@ -272,7 +290,7 @@
 
           <!-- Sample Clickable Chips -->
           <div class="mb-4">
-            <label class="small fw-bold text-secondary text-uppercase d-block mb-2">Try a sample symptom prompt:</label>
+            <label class="small fw-bold text-secondary text-uppercase d-block mb-2">Click a sample symptom prompt:</label>
             <div class="d-flex flex-wrap gap-2">
               <button type="button" class="symptom-chip" onclick="fillSymptom('Mild chest tightness and shortness of breath when walking upstairs')">
                 <i class="fa-solid fa-heart-pulse text-danger"></i> Chest tightness
@@ -285,6 +303,9 @@
               </button>
               <button type="button" class="symptom-chip" onclick="fillSymptom('High fever with persistent sore throat and dry cough')">
                 <i class="fa-solid fa-temperature-arrow-up text-danger"></i> High fever & cough
+              </button>
+              <button type="button" class="symptom-chip" onclick="fillSymptom('Sharp knee joint pain with swelling after morning run')">
+                <i class="fa-solid fa-bone text-secondary"></i> Joint pain
               </button>
             </div>
           </div>
@@ -320,48 +341,53 @@
     </div>
   </section>
 
-  <!-- Multi-Sensory Reminder Architecture Banner -->
-  <section class="py-5 bg-white">
+  <!-- Section 4: Live Multi-Sensory Reminder Interactive Demo -->
+  <section id="alarms-demo" class="py-5 bg-white">
     <div class="container">
       <div class="reminder-strip">
         <div class="row align-items-center gy-4">
-          <div class="col-lg-6">
+          <div class="col-lg-5">
             <span class="badge bg-info bg-opacity-25 text-info border border-info border-opacity-25 px-3 py-1 rounded-pill mb-2">
-              <i class="fa-solid fa-bell-ring me-1"></i> Multi-Channel Patient Care
+              <i class="fa-solid fa-bell-ring me-1"></i> Live Interactive Demo
             </span>
             <h3 class="fw-bold text-white mb-2">Never Miss an Appointment or Medication</h3>
-            <p class="text-light opacity-75 mb-0">
-              Our automated timezone-aware cron engine triggers 1-hour pre-appointment reminders and prescription schedules across 4 simultaneous sensory channels.
+            <p class="text-light opacity-75 mb-3">
+              Our automated timezone-aware cron engine triggers 1-hour pre-appointment reminders and prescription schedules across 4 simultaneous sensory channels. Click below to test each live in your browser!
             </p>
+            <div class="d-flex gap-2">
+              <span class="badge bg-primary-subtle text-primary border border-primary-subtle">IST (UTC+5:30) Synchronized</span>
+              <span class="badge bg-success-subtle text-success border border-success-subtle">Zero Missed Doses</span>
+            </div>
           </div>
-          <div class="col-lg-6">
-            <div class="row g-3 text-center">
-              <div class="col-6 col-sm-3">
-                <div class="p-3 bg-white bg-opacity-10 rounded-3 border border-white border-opacity-10 h-100">
-                  <i class="fa-solid fa-envelope-circle-check fs-3 text-info mb-2"></i>
-                  <div class="fw-bold small">Brevo Email</div>
-                  <div class="text-light opacity-50" style="font-size: 0.72rem;">Instant Digest</div>
-                </div>
-              </div>
-              <div class="col-6 col-sm-3">
-                <div class="p-3 bg-white bg-opacity-10 rounded-3 border border-white border-opacity-10 h-100">
-                  <i class="fa-solid fa-microphone-lines fs-3 text-warning mb-2"></i>
+
+          <div class="col-lg-7">
+            <div class="row g-3">
+              <div class="col-6 col-md-3">
+                <div class="reminder-interactive-btn" onclick="triggerVoiceAlarmDemo()">
+                  <i class="fa-solid fa-microphone-lines fs-2 text-warning mb-2 d-block"></i>
                   <div class="fw-bold small">Voice Alarm</div>
-                  <div class="text-light opacity-50" style="font-size: 0.72rem;">Speech Synth</div>
+                  <div class="text-light opacity-60" style="font-size: 0.72rem;">Click to Speak 🔊</div>
                 </div>
               </div>
-              <div class="col-6 col-sm-3">
-                <div class="p-3 bg-white bg-opacity-10 rounded-3 border border-white border-opacity-10 h-100">
-                  <i class="fa-solid fa-bell fs-3 text-success mb-2"></i>
+              <div class="col-6 col-md-3">
+                <div class="reminder-interactive-btn" onclick="triggerChimeDemo()">
+                  <i class="fa-solid fa-bell fs-2 text-success mb-2 d-block"></i>
                   <div class="fw-bold small">Web Audio</div>
-                  <div class="text-light opacity-50" style="font-size: 0.72rem;">Tri-Tone Chime</div>
+                  <div class="text-light opacity-60" style="font-size: 0.72rem;">Play Chime 🔔</div>
                 </div>
               </div>
-              <div class="col-6 col-sm-3">
-                <div class="p-3 bg-white bg-opacity-10 rounded-3 border border-white border-opacity-10 h-100">
-                  <i class="fa-solid fa-mobile-screen fs-3 text-primary mb-2"></i>
+              <div class="col-6 col-md-3">
+                <div class="reminder-interactive-btn" onclick="triggerEmailPreviewDemo()">
+                  <i class="fa-solid fa-envelope-circle-check fs-2 text-info mb-2 d-block"></i>
+                  <div class="fw-bold small">Brevo Email</div>
+                  <div class="text-light opacity-60" style="font-size: 0.72rem;">Preview Digest 📧</div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="reminder-interactive-btn" onclick="triggerPushDemo()">
+                  <i class="fa-solid fa-mobile-screen fs-2 text-primary mb-2 d-block"></i>
                   <div class="fw-bold small">Push Alert</div>
-                  <div class="text-light opacity-50" style="font-size: 0.72rem;">Browser Pop-up</div>
+                  <div class="text-light opacity-60" style="font-size: 0.72rem;">Trigger Pop-up 📱</div>
                 </div>
               </div>
             </div>
@@ -371,7 +397,7 @@
     </div>
   </section>
 
-  <!-- Medical Specialties Grid (14 Specialties) -->
+  <!-- Section 5: Medical Specialties Grid (14 Disciplines) -->
   <section id="specialties" class="py-5 bg-light border-top">
     <div class="container py-4 text-center">
       <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill fw-semibold mb-2">
@@ -384,88 +410,88 @@
       
       <div class="row g-3">
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <a href="pages/login.html" class="specialist-card">
             <i class="fa-solid fa-heart-pulse text-danger"></i>
             <h6 class="fw-bold mb-1">Cardiologist</h6>
             <span class="badge bg-light text-muted border">Heart & Vascular</span>
-          </div>
+          </a>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <a href="pages/login.html" class="specialist-card">
             <i class="fa-solid fa-hand-dots text-warning"></i>
             <h6 class="fw-bold mb-1">Dermatologist</h6>
             <span class="badge bg-light text-muted border">Skin, Hair & Nails</span>
-          </div>
+          </a>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <a href="pages/login.html" class="specialist-card">
             <i class="fa-solid fa-brain text-info"></i>
             <h6 class="fw-bold mb-1">Neurologist</h6>
             <span class="badge bg-light text-muted border">Brain & Nerves</span>
-          </div>
+          </a>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <a href="pages/login.html" class="specialist-card">
             <i class="fa-solid fa-baby text-primary"></i>
             <h6 class="fw-bold mb-1">Pediatrician</h6>
             <span class="badge bg-light text-muted border">Child Healthcare</span>
-          </div>
+          </a>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <a href="pages/login.html" class="specialist-card">
             <i class="fa-solid fa-bone text-secondary"></i>
             <h6 class="fw-bold mb-1">Orthopedic</h6>
             <span class="badge bg-light text-muted border">Bones & Joints</span>
-          </div>
+          </a>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <a href="pages/login.html" class="specialist-card">
             <i class="fa-solid fa-user-doctor text-success"></i>
             <h6 class="fw-bold mb-1">General Physician</h6>
             <span class="badge bg-light text-muted border">Primary Care</span>
-          </div>
+          </a>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <a href="pages/login.html" class="specialist-card">
             <i class="fa-solid fa-person-pregnant text-danger"></i>
             <h6 class="fw-bold mb-1">Gynecologist</h6>
             <span class="badge bg-light text-muted border">Women's Health</span>
-          </div>
+          </a>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <a href="pages/login.html" class="specialist-card">
             <i class="fa-solid fa-ear-listen text-warning"></i>
             <h6 class="fw-bold mb-1">ENT Specialist</h6>
             <span class="badge bg-light text-muted border">Ear, Nose & Throat</span>
-          </div>
+          </a>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <a href="pages/login.html" class="specialist-card">
             <i class="fa-solid fa-eye text-primary"></i>
             <h6 class="fw-bold mb-1">Ophthalmologist</h6>
             <span class="badge bg-light text-muted border">Eye & Vision Care</span>
-          </div>
+          </a>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <a href="pages/login.html" class="specialist-card">
             <i class="fa-solid fa-lungs text-info"></i>
             <h6 class="fw-bold mb-1">Pulmonologist</h6>
             <span class="badge bg-light text-muted border">Lungs & Respiratory</span>
-          </div>
+          </a>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <a href="pages/login.html" class="specialist-card">
             <i class="fa-solid fa-ribbon text-danger"></i>
             <h6 class="fw-bold mb-1">Oncologist</h6>
             <span class="badge bg-light text-muted border">Cancer Care</span>
-          </div>
+          </a>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <a href="pages/login.html" class="specialist-card">
             <i class="fa-solid fa-head-side-virus text-warning"></i>
             <h6 class="fw-bold mb-1">Psychiatrist</h6>
             <span class="badge bg-light text-muted border">Mental Health</span>
-          </div>
+          </a>
         </div>
       </div>
 
@@ -477,55 +503,107 @@
     </div>
   </section>
 
-  <!-- Role Portals Fast Access Section -->
-  <section class="py-5 bg-white border-top">
+  <!-- Section 6: Tamil Nadu 38 Districts Clinical Network -->
+  <section id="districts" class="py-5 bg-white border-top">
+    <div class="container py-2 text-center">
+      <span class="badge bg-info-subtle text-info border border-info-subtle px-3 py-2 rounded-pill fw-semibold mb-2">
+        <i class="fa-solid fa-location-dot me-1"></i> State-Wide Network
+      </span>
+      <h3 class="fw-bold mb-2">Coverage Across All 38 Tamil Nadu Districts</h3>
+      <p class="text-muted max-w-700 mx-auto mb-4">
+        Connect with verified specialist consultants, local diagnostic clinics, and emergency facilities in your district.
+      </p>
+      
+      <div class="d-flex flex-wrap justify-content-center gap-2 max-w-900 mx-auto mb-4">
+        <span class="district-pill active"><i class="fa-solid fa-location-crosshairs text-info"></i> Chennai</span>
+        <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Coimbatore</span>
+        <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Madurai</span>
+        <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Salem</span>
+        <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Tiruchirappalli</span>
+        <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Tirunelveli</span>
+        <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Erode</span>
+        <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Vellore</span>
+        <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Thanjavur</span>
+        <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Dindigul</span>
+        <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Kanchipuram</span>
+        <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Tiruvallur</span>
+        <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Cuddalore</span>
+        <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Villupuram</span>
+        <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Nagapattinam</span>
+        <span class="district-pill"><i class="fa-solid fa-hospital text-muted"></i> Kanniyakumari</span>
+      </div>
+      
+      <a href="pages/login.html" class="btn btn-outline-glow text-dark border-secondary px-4 rounded-pill">
+        Find Specialist in Your District <i class="fa-solid fa-chevron-right ms-1"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Section 7: Dedicated Hospital Role Portals -->
+  <section class="py-5 bg-light border-top">
     <div class="container py-3">
-      <div class="text-center max-w-700 mx-auto mb-4">
+      <div class="text-center max-w-700 mx-auto mb-5">
         <h3 class="fw-bold">Dedicated Role Portals</h3>
         <p class="text-muted small">Seamless workflow access tailored for patients, verified clinical practitioners, and hospital operations directors.</p>
       </div>
-      <div class="row g-3">
+      <div class="row g-4">
+        
+        <!-- Patient Portal -->
         <div class="col-md-4">
-          <a href="pages/login.html" class="card border-0 shadow-sm p-4 rounded-4 text-decoration-none text-dark h-100 hover-card bg-light">
-            <div class="d-flex align-items-center gap-3 mb-3">
-              <div class="bg-primary p-3 rounded-circle text-white fs-4"><i class="fa-solid fa-user-injured"></i></div>
-              <div>
-                <h5 class="fw-bold mb-0">Patient Portal</h5>
-                <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Care & Reminders</span>
-              </div>
+          <a href="pages/login.html" class="role-portal-card-large">
+            <div class="role-icon-circle bg-primary shadow">
+              <i class="fa-solid fa-user-injured"></i>
             </div>
-            <p class="text-muted small mb-0">Find top specialists across 38 TN districts, book slots, view prescriptions, and receive audio alarms.</p>
+            <h4 class="fw-bold mb-1">Patient Portal</h4>
+            <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill align-self-start mb-3">Care & Reminders</span>
+            <p class="text-muted small mb-4">
+              Find verified specialists across 38 TN districts, book slots with compound collision protection, view digital prescriptions, and receive 1-hour voice & email alarms.
+            </p>
+            <div class="mt-auto fw-bold text-primary small d-flex align-items-center gap-1">
+              Access Patient Services <i class="fa-solid fa-arrow-right ms-1"></i>
+            </div>
           </a>
         </div>
+
+        <!-- Doctor Portal -->
         <div class="col-md-4">
-          <a href="pages/login.html" class="card border-0 shadow-sm p-4 rounded-4 text-decoration-none text-dark h-100 hover-card bg-light">
-            <div class="d-flex align-items-center gap-3 mb-3">
-              <div class="bg-info p-3 rounded-circle text-white fs-4"><i class="fa-solid fa-user-doctor"></i></div>
-              <div>
-                <h5 class="fw-bold mb-0">Doctor Portal</h5>
-                <span class="badge bg-info-subtle text-info border border-info-subtle">Queue & Rx</span>
-              </div>
+          <a href="pages/login.html" class="role-portal-card-large">
+            <div class="role-icon-circle bg-info shadow">
+              <i class="fa-solid fa-user-doctor"></i>
             </div>
-            <p class="text-muted small mb-0">Manage patient queues, log clinical diagnoses, and issue certified digital prescriptions effortlessly.</p>
+            <h4 class="fw-bold mb-1">Doctor Portal</h4>
+            <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill align-self-start mb-3">Queue & Rx Issuance</span>
+            <p class="text-muted small mb-4">
+              Manage live consultation queues, log patient clinical diagnoses, and issue certified digital prescriptions with dosage and meal schedules seamlessly.
+            </p>
+            <div class="mt-auto fw-bold text-info small d-flex align-items-center gap-1">
+              Access Clinical Workspace <i class="fa-solid fa-arrow-right ms-1"></i>
+            </div>
           </a>
         </div>
+
+        <!-- Admin Portal -->
         <div class="col-md-4">
-          <a href="pages/login.html" class="card border-0 shadow-sm p-4 rounded-4 text-decoration-none text-dark h-100 hover-card bg-light">
-            <div class="d-flex align-items-center gap-3 mb-3">
-              <div class="bg-danger p-3 rounded-circle text-white fs-4"><i class="fa-solid fa-shield-halved"></i></div>
-              <div>
-                <h5 class="fw-bold mb-0">Admin Portal</h5>
-                <span class="badge bg-danger-subtle text-danger border border-danger-subtle">Hospital Command</span>
-              </div>
+          <a href="pages/login.html" class="role-portal-card-large">
+            <div class="role-icon-circle bg-danger shadow">
+              <i class="fa-solid fa-shield-halved"></i>
             </div>
-            <p class="text-muted small mb-0">Hospital telemetry, doctor verification, user management, and broadcast alerts.</p>
+            <h4 class="fw-bold mb-1">Admin Portal</h4>
+            <span class="badge bg-danger-subtle text-danger border border-danger-subtle rounded-pill align-self-start mb-3">Hospital Command</span>
+            <p class="text-muted small mb-4">
+              Monitor hospital-wide telemetry, verify registered doctors, manage user accounts, inspect slot integrity, and dispatch emergency broadcast alerts.
+            </p>
+            <div class="mt-auto fw-bold text-danger small d-flex align-items-center gap-1">
+              Access Hospital Command <i class="fa-solid fa-arrow-right ms-1"></i>
+            </div>
           </a>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- Modern Footer & Telemetry -->
   <footer class="bg-dark text-white py-5 mt-auto">
     <div class="container">
       <div class="row gy-4">
@@ -539,9 +617,10 @@
           <p class="text-secondary small max-w-700">
             Next-generation full-stack healthcare ecosystem engineered with Node.js, Express, MongoDB Atlas, Mongoose, Bootstrap 5.3, Web Speech & Audio APIs, Brevo email services, and Artificial Intelligence.
           </p>
-          <div class="d-flex gap-3 text-secondary">
+          <div class="d-flex flex-wrap gap-3 text-secondary small">
             <span><i class="fa-solid fa-shield-check text-success me-1"></i> Compound Key Slot Protection</span>
             <span><i class="fa-solid fa-lock text-info me-1"></i> BCrypt & JWT Security</span>
+            <span><i class="fa-solid fa-cloud text-warning me-1"></i> Cloud MongoDB Atlas</span>
           </div>
         </div>
         <div class="col-md-3">
@@ -550,7 +629,7 @@
             <li class="mb-2"><a href="pages/login.html" class="text-secondary text-decoration-none hover-link"><i class="fa-solid fa-chevron-right fs-xs me-1"></i> Sign In Portal</a></li>
             <li class="mb-2"><a href="pages/register.html" class="text-secondary text-decoration-none hover-link"><i class="fa-solid fa-chevron-right fs-xs me-1"></i> Create Patient Account</a></li>
             <li class="mb-2"><a href="pages/forgot-password.html" class="text-secondary text-decoration-none hover-link"><i class="fa-solid fa-chevron-right fs-xs me-1"></i> Reset Password (OTP)</a></li>
-            <li><a href="https://ai-smart-hospital-backend-w26k.onrender.com/api/health" class="text-secondary text-decoration-none hover-link" target="_blank"><i class="fa-solid fa-heart-pulse text-success me-1"></i> API Health Check</a></li>
+            <li><a href="https://ai-smart-hospital-backend-w26k.onrender.com/api/health" class="text-secondary text-decoration-none hover-link" target="_blank"><i class="fa-solid fa-heart-pulse text-success me-1"></i> API Health Status</a></li>
           </ul>
         </div>
         <div class="col-md-3">
@@ -566,12 +645,27 @@
     </div>
   </footer>
 
+  <!-- Toast Container -->
+  <div id="toastContainer"></div>
+
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/config.js"></script>
   <script src="js/api.js"></script>
   <script src="js/ai-assistant.js"></script>
   <script>
+    // Live Clock Display in IST
+    function updateClock() {
+      const el = document.getElementById('liveClockDisplay');
+      if (el) {
+        const now = new Date();
+        const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+        el.innerHTML = '<i class="fa-solid fa-clock text-info me-1"></i> IST ' + now.toLocaleTimeString('en-US', options);
+      }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
     function fillSymptom(text) {
       const input = document.getElementById('homeAITriageInput');
       if (input) {
@@ -580,6 +674,69 @@
       }
     }
 
+    // Interactive Multi-Sensory Demos
+    function showToast(msg, type = 'primary') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'custom-toast';
+      toast.innerHTML = `
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center gap-2">
+            <i class="fa-solid fa-circle-check text-${type} fs-5"></i>
+            <div>${msg}</div>
+          </div>
+          <button type="button" class="btn-close btn-close-sm" onclick="this.parentElement.parentElement.remove()"></button>
+        </div>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+
+    function triggerVoiceAlarmDemo() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance('Attention patient: You have an upcoming clinical consultation with Dr. Priya in 1 hour. Please prepare your medical records.');
+        utterance.rate = 1.0;
+        utterance.pitch = 1.05;
+        window.speechSynthesis.speak(utterance);
+        showToast('<strong>Voice Alarm Playing:</strong> "You have a consultation with Dr. Priya in 1 hour!"', 'info');
+      } else {
+        showToast('Speech synthesis not supported in this browser.', 'danger');
+      }
+    }
+
+    function triggerChimeDemo() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const now = ctx.currentTime;
+        const freqs = [523.25, 659.25, 783.99]; // C5, E5, G5
+        freqs.forEach((f, i) => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(f, now + i * 0.12);
+          gain.gain.setValueAtTime(0.3, now + i * 0.12);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.12 + 0.4);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + i * 0.12);
+          osc.stop(now + i * 0.12 + 0.4);
+        });
+        showToast('<strong>Audio Chime:</strong> Tri-tone hospital reminder chime played!', 'success');
+      } catch (e) {
+        showToast('Audio Context initialized.', 'info');
+      }
+    }
+
+    function triggerEmailPreviewDemo() {
+      showToast('<strong>Brevo Email Digest:</strong> Official HTML appointment confirmation with 1-hour pre-warning dispatched!', 'primary');
+    }
+
+    function triggerPushDemo() {
+      showToast('<strong>Browser Push:</strong> "🚨 1-Hour Reminder: Cardiologist appointment at 10:00 AM in Chennai Clinical Center"', 'warning');
+    }
+
+    // AI Triage Execution
     document.getElementById('btnHomeRunTriage')?.addEventListener('click', async () => {
       const input = document.getElementById('homeAITriageInput').value;
       const resBox = document.getElementById('homeAITriageResult');
@@ -609,4 +766,3 @@
   </script>
 </body>
 </html>
-

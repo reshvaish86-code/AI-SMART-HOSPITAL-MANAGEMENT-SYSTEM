@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AI Smart Hospital Management System - Core Style System
+   AI Smart Hospital Management System - Master Theme & Style Engine
    ========================================================================== */
 
 :root {
@@ -16,11 +16,13 @@
   --success-light: #d1fae5;
   --info: #06b6d4;
   --info-light: #cffafe;
-  --dark-bg: #0b1329;
-  --dark-card: #131f37;
+  --dark-bg: #070d1e;
+  --dark-card: #0f1a30;
+  --dark-card-hover: #162444;
   --light-bg: #f8fafc;
   --card-bg: #ffffff;
   --border-color: #e2e8f0;
+  --border-dark: rgba(255, 255, 255, 0.12);
   --text-main: #0f172a;
   --text-muted: #64748b;
   --font-heading: 'Outfit', sans-serif;
@@ -29,7 +31,8 @@
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
   --shadow-lg: 0 10px 25px -3px rgba(15, 23, 42, 0.12), 0 4px 6px -2px rgba(15, 23, 42, 0.05);
   --shadow-xl: 0 20px 35px -5px rgba(15, 23, 42, 0.18), 0 10px 10px -5px rgba(15, 23, 42, 0.06);
-  --shadow-glow: 0 0 30px rgba(6, 182, 212, 0.25);
+  --shadow-glow-cyan: 0 0 35px rgba(6, 182, 212, 0.35);
+  --shadow-glow-blue: 0 0 35px rgba(2, 132, 199, 0.35);
 }
 
 html {
@@ -47,6 +50,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6, .brand-font {
@@ -56,7 +60,7 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   letter-spacing: -0.02em;
 }
 
-/* Gradient Text */
+/* Gradient Text Utilities */
 .gradient-text-primary {
   background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
   -webkit-background-clip: text;
@@ -69,11 +73,29 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   -webkit-text-fill-color: transparent;
 }
 
+.gradient-text-gold {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Emergency Top Banner */
+.emergency-ribbon {
+  background: linear-gradient(90deg, #991b1b 0%, #dc2626 50%, #991b1b 100%);
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.3);
+  z-index: 1040;
+  position: relative;
+}
+
 /* Glassmorphic Navbar */
 .navbar-custom {
-  background: rgba(11, 19, 41, 0.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(7, 13, 30, 0.94);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   transition: all 0.3s ease;
   z-index: 1030;
@@ -82,9 +104,10 @@ h1, h2, h3, h4, h5, h6, .brand-font {
 .navbar-custom .nav-link {
   color: #94a3b8;
   font-weight: 500;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.9rem;
   border-radius: 8px;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  font-size: 0.92rem;
 }
 
 .navbar-custom .nav-link:hover,
@@ -93,22 +116,14 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   background: rgba(56, 189, 248, 0.08);
 }
 
-/* Emergency Top Ribbon */
-.emergency-ribbon {
-  background: linear-gradient(90deg, #b91c1c 0%, #dc2626 50%, #991b1b 100%);
-  color: #ffffff;
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-}
-
 /* Hero Section */
 .hero-section {
-  background: radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.18) 0%, transparent 50%),
-              radial-gradient(circle at 10% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
-              linear-gradient(145deg, #090e1a 0%, #0f172a 45%, #111e38 100%);
+  background: radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.22) 0%, transparent 45%),
+              radial-gradient(circle at 15% 85%, rgba(99, 102, 241, 0.18) 0%, transparent 40%),
+              radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 60%),
+              linear-gradient(145deg, #050a17 0%, #0a1329 45%, #0f1c3d 100%);
   color: #ffffff;
-  padding: 5rem 0 6rem;
+  padding: 5rem 0 6.5rem;
   position: relative;
   overflow: hidden;
 }
@@ -119,14 +134,14 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 70px;
   background: linear-gradient(to top, var(--light-bg), transparent);
   pointer-events: none;
 }
 
 .hero-badge {
   background: rgba(6, 182, 212, 0.12);
-  border: 1px solid rgba(56, 189, 248, 0.35);
+  border: 1px solid rgba(56, 189, 248, 0.4);
   color: #38bdf8;
   padding: 0.45rem 1.15rem;
   border-radius: 50px;
@@ -135,10 +150,10 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
 }
 
-/* Hero Visual Stage & Floating Badges */
+/* 3D Hero Visual Stage & Floating Badges */
 .hero-visual-container {
   position: relative;
   perspective: 1000px;
@@ -146,69 +161,69 @@ h1, h2, h3, h4, h5, h6, .brand-font {
 
 .hero-img-card {
   position: relative;
-  border-radius: 24px;
+  border-radius: 26px;
   overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 35px rgba(6, 182, 212, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(15, 23, 42, 0.6);
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.7), 0 0 45px rgba(6, 182, 212, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(15, 23, 42, 0.7);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .hero-img-card:hover {
-  transform: translateY(-4px) scale(1.01);
-  box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.7), 0 0 45px rgba(6, 182, 212, 0.4);
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 35px 70px -10px rgba(0, 0, 0, 0.8), 0 0 55px rgba(6, 182, 212, 0.45);
 }
 
 .hero-img-card img {
   width: 100%;
-  height: 380px;
+  height: 400px;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s ease;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-img-card:hover img {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 .hero-img-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.75) 100%);
+  background: linear-gradient(180deg, rgba(7, 13, 30, 0.05) 0%, rgba(7, 13, 30, 0.8) 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1.5rem;
+  padding: 1.6rem;
 }
 
 /* Floating Badges over Hero */
 .floating-badge {
   position: absolute;
-  background: rgba(15, 23, 42, 0.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 16px;
-  padding: 0.75rem 1.1rem;
+  background: rgba(11, 20, 42, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 18px;
+  padding: 0.85rem 1.25rem;
   color: #ffffff;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
   z-index: 5;
-  animation: floatBadge 4s ease-in-out infinite;
+  animation: floatBadge 4.5s ease-in-out infinite;
 }
 
 .floating-badge-1 {
-  top: -18px;
-  left: -20px;
+  top: -22px;
+  left: -24px;
   animation-delay: 0s;
 }
 
 .floating-badge-2 {
   bottom: 25px;
-  right: -20px;
-  animation-delay: 2s;
+  right: -24px;
+  animation-delay: 2.2s;
 }
 
 @keyframes floatBadge {
@@ -216,18 +231,18 @@ h1, h2, h3, h4, h5, h6, .brand-font {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-8px);
+    transform: translateY(-9px);
   }
 }
 
 .floating-badge-icon {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
 }
 
 .pulse-dot {
@@ -255,22 +270,29 @@ h1, h2, h3, h4, h5, h6, .brand-font {
 /* Stats Counter Row */
 .stat-pill {
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 14px;
-  padding: 0.9rem 1.2rem;
-  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
 }
 
-/* Clinical Showcase Section (Tablets, Syringes, AI Tech Cards) */
+.stat-pill:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+}
+
+/* 3D Clinical Innovations & Visual Gallery Section */
 .clinical-showcase-section {
-  padding: 5rem 0;
+  padding: 5.5rem 0;
   background: #ffffff;
   position: relative;
 }
 
 .clinical-card {
   background: #ffffff;
-  border-radius: 20px;
+  border-radius: 22px;
   border: 1px solid var(--border-color);
   overflow: hidden;
   box-shadow: var(--shadow-md);
@@ -282,13 +304,13 @@ h1, h2, h3, h4, h5, h6, .brand-font {
 
 .clinical-card:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 25px 40px -10px rgba(15, 23, 42, 0.18), 0 0 25px rgba(6, 182, 212, 0.2);
   border-color: #38bdf8;
 }
 
 .clinical-card-img-wrap {
   position: relative;
-  height: 220px;
+  height: 240px;
   overflow: hidden;
   background: #0f172a;
 }
@@ -297,7 +319,7 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease;
 }
 
 .clinical-card:hover .clinical-card-img-wrap img {
@@ -308,19 +330,20 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   position: absolute;
   top: 14px;
   left: 14px;
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(7, 13, 30, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   color: #ffffff;
   font-size: 0.75rem;
-  font-weight: 600;
-  padding: 0.35rem 0.75rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
   border-radius: 50px;
   z-index: 2;
+  letter-spacing: 0.03em;
 }
 
 .clinical-card-body {
-  padding: 1.6rem;
+  padding: 1.8rem;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -330,8 +353,8 @@ h1, h2, h3, h4, h5, h6, .brand-font {
 .feature-card {
   background: #ffffff;
   border: 1px solid var(--border-color);
-  border-radius: 18px;
-  padding: 2rem;
+  border-radius: 20px;
+  padding: 2.2rem;
   transition: all 0.3s ease;
   height: 100%;
 }
@@ -343,14 +366,14 @@ h1, h2, h3, h4, h5, h6, .brand-font {
 }
 
 .feature-icon-wrapper {
-  width: 60px;
-  height: 60px;
-  border-radius: 16px;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
+  margin-bottom: 1.6rem;
 }
 
 /* Specialist Cards */
@@ -367,6 +390,8 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-decoration: none;
+  color: inherit;
 }
 
 .specialist-card:hover {
@@ -374,10 +399,11 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
   background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+  color: inherit;
 }
 
 .specialist-card i {
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   margin-bottom: 0.85rem;
   transition: transform 0.3s ease;
 }
@@ -386,12 +412,37 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   transform: scale(1.15);
 }
 
+/* District Network Chips */
+.district-pill {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.district-pill:hover,
+.district-pill.active {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+}
+
 /* Clinical Disclaimer Card */
 .disclaimer-card {
   background: #fffbeb;
   border-left: 5px solid var(--accent);
-  border-radius: 12px;
-  padding: 1.25rem;
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
   font-size: 0.88rem;
   color: #92400e;
 }
@@ -401,40 +452,45 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   background: #f1f5f9;
   border: 1px solid #cbd5e1;
   color: #334155;
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   font-weight: 500;
-  padding: 0.35rem 0.85rem;
+  padding: 0.4rem 0.95rem;
   border-radius: 50px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
 }
 
 .symptom-chip:hover {
   background: #0284c7;
   color: #ffffff;
   border-color: #0284c7;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
 }
 
-/* Custom Buttons */
+/* Custom High-Tech Buttons */
 .btn-primary-custom {
   background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
   border: none;
   color: #ffffff;
   font-weight: 600;
-  padding: 0.7rem 1.5rem;
+  padding: 0.75rem 1.6rem;
   border-radius: 12px;
   transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .btn-primary-custom:hover {
   background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
   color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(2, 132, 199, 0.35);
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.4);
 }
 
 .btn-cyan-custom {
@@ -442,16 +498,20 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   border: none;
   color: #ffffff;
   font-weight: 600;
-  padding: 0.7rem 1.5rem;
+  padding: 0.75rem 1.6rem;
   border-radius: 12px;
   transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .btn-cyan-custom:hover {
   background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
   color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(6, 182, 212, 0.35);
+  box-shadow: 0 10px 25px rgba(6, 182, 212, 0.4);
 }
 
 .btn-outline-glow {
@@ -459,10 +519,14 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   border: 1px solid rgba(255, 255, 255, 0.25);
   color: #ffffff;
   font-weight: 600;
-  padding: 0.7rem 1.5rem;
+  padding: 0.75rem 1.6rem;
   border-radius: 12px;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
   transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .btn-outline-glow:hover {
@@ -470,78 +534,72 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   border-color: #38bdf8;
   color: #38bdf8;
   transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
 }
 
-/* Role Portals Hover Card */
-.role-portal-card {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 14px;
-  padding: 1rem 1.25rem;
-  transition: all 0.25s ease;
-}
-
-.role-portal-card:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(56, 189, 248, 0.5);
-  transform: translateX(4px);
-}
-
-/* Status Badges */
-.badge-status-pending {
-  background-color: var(--accent-light);
-  color: #b45309;
-  font-weight: 600;
-  border: 1px solid #fde68a;
-  padding: 0.4rem 0.75rem;
-  border-radius: 50px;
-}
-
-.badge-status-confirmed {
-  background-color: var(--primary-light);
-  color: var(--primary-dark);
-  font-weight: 600;
-  border: 1px solid #bae6fd;
-  padding: 0.4rem 0.75rem;
-  border-radius: 50px;
-}
-
-.badge-status-completed {
-  background-color: var(--success-light);
-  color: #065f46;
-  font-weight: 600;
-  border: 1px solid #a7f3d0;
-  padding: 0.4rem 0.75rem;
-  border-radius: 50px;
-}
-
-.badge-status-cancelled,
-.badge-status-rejected {
-  background-color: var(--danger-light);
-  color: #991b1b;
-  font-weight: 600;
-  border: 1px solid #fecaca;
-  padding: 0.4rem 0.75rem;
-  border-radius: 50px;
-}
-
-.badge-status-rescheduled {
-  background-color: #ede9fe;
-  color: #5b21b6;
-  font-weight: 600;
-  border: 1px solid #ddd6fe;
-  padding: 0.4rem 0.75rem;
-  border-radius: 50px;
-}
-
-/* Multi-Sensory Reminder Showcase Strip */
+/* Multi-Sensory Reminder Interactive Strip */
 .reminder-strip {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  border-radius: 20px;
+  background: radial-gradient(circle at 10% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 40%),
+              linear-gradient(135deg, #070d1e 0%, #0f1c3d 100%);
+  border-radius: 24px;
   color: #ffffff;
-  padding: 2.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3rem 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: var(--shadow-xl);
+  position: relative;
+  overflow: hidden;
+}
+
+.reminder-interactive-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  padding: 1.25rem 1rem;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  width: 100%;
+}
+
+.reminder-interactive-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: #38bdf8;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Dedicated Role Portal Cards */
+.role-portal-card-large {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 22px;
+  padding: 2.2rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.35s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.role-portal-card-large:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-xl);
+  border-color: #38bdf8;
+  color: inherit;
+}
+
+.role-icon-circle {
+  width: 65px;
+  height: 65px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
 }
 
 /* Toast Container */
@@ -559,10 +617,10 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   min-width: 320px;
   max-width: 420px;
   background: #ffffff;
-  border-radius: 12px;
+  border-radius: 14px;
   box-shadow: var(--shadow-xl);
   border-left: 5px solid var(--primary);
-  padding: 1rem;
+  padding: 1.1rem;
   animation: slideInRight 0.3s ease;
 }
 
@@ -576,4 +634,3 @@ h1, h2, h3, h4, h5, h6, .brand-font {
     opacity: 1;
   }
 }
-
