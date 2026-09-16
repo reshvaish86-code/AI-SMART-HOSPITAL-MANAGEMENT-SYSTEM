@@ -212,6 +212,13 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   gap: 0.85rem;
   z-index: 5;
   animation: floatBadge 4.5s ease-in-out infinite;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.floating-badge:hover {
+  transform: scale(1.05);
+  border-color: #38bdf8;
 }
 
 .floating-badge-1 {
@@ -283,7 +290,7 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   transform: translateY(-2px);
 }
 
-/* 3D Clinical Innovations & Visual Gallery Section */
+/* 3D Clinical Innovations Showcase */
 .clinical-showcase-section {
   padding: 5.5rem 0;
   background: #ffffff;
@@ -300,6 +307,7 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   height: 100%;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .clinical-card:hover {
@@ -349,31 +357,42 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   flex-grow: 1;
 }
 
-/* Feature Cards */
-.feature-card {
+/* Whole Project Blueprint & Modules Grid */
+.project-blueprint-section {
+  padding: 5.5rem 0;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.project-module-card {
   background: #ffffff;
   border: 1px solid var(--border-color);
   border-radius: 20px;
-  padding: 2.2rem;
+  padding: 1.8rem;
   transition: all 0.3s ease;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
 }
 
-.feature-card:hover {
+.project-module-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-xl);
   border-color: var(--primary);
 }
 
-.feature-icon-wrapper {
-  width: 64px;
-  height: 64px;
-  border-radius: 18px;
+.module-icon-box {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
-  margin-bottom: 1.6rem;
+  font-size: 1.5rem;
+  margin-bottom: 1.2rem;
 }
 
 /* Specialist Cards */
@@ -537,7 +556,7 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
 }
 
-/* Multi-Sensory Reminder Interactive Strip */
+/* Multi-Sensory Reminder Showcase Strip */
 .reminder-strip {
   background: radial-gradient(circle at 10% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 40%),
               linear-gradient(135deg, #070d1e 0%, #0f1c3d 100%);
@@ -550,11 +569,11 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   overflow: hidden;
 }
 
-.reminder-interactive-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+.reminder-action-card {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 16px;
-  padding: 1.25rem 1rem;
+  padding: 1.3rem 1rem;
   color: #ffffff;
   text-align: center;
   transition: all 0.25s ease;
@@ -562,11 +581,11 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   width: 100%;
 }
 
-.reminder-interactive-btn:hover {
-  background: rgba(255, 255, 255, 0.16);
+.reminder-action-card:hover {
+  background: rgba(255, 255, 255, 0.14);
   border-color: #38bdf8;
   transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
 }
 
 /* Dedicated Role Portal Cards */
@@ -602,35 +621,29 @@ h1, h2, h3, h4, h5, h6, .brand-font {
   color: #ffffff;
 }
 
-/* Toast Container */
-#toastContainer {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+/* Action Modal Styles */
+.modal-workflow-body {
+  padding: 1.5rem;
 }
 
-.custom-toast {
-  min-width: 320px;
-  max-width: 420px;
-  background: #ffffff;
+.workflow-detail-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
   border-radius: 14px;
-  box-shadow: var(--shadow-xl);
-  border-left: 5px solid var(--primary);
-  padding: 1.1rem;
-  animation: slideInRight 0.3s ease;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
 }
 
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+.workflow-step-pill {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #0284c7;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-right: 0.6rem;
 }
