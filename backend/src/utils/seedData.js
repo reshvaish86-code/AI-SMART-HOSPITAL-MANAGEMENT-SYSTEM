@@ -166,9 +166,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100006",
     "specialization": "General Physician",
     "qualification": "MBBS, MD (General Medicine)",
-    "hospital": "Shifa Hospital",
+    "hospital": "Krishna Hospital",
     "district": "Tirunelveli",
-    "address": "Shifa Hospital, Tirunelveli, Tamil Nadu",
+    "address": "Krishna Hospital, Tirunelveli, Tamil Nadu",
     "consultationFee": 450,
     "availableDays": [
       "Monday",
@@ -188,7 +188,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 14,
-    "bio": "Certified General Physician specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified General Physician specialist at Krishna Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
   },
   {
     "name": "Dr. Reyansh Mehta",
@@ -376,9 +376,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100013",
     "specialization": "Cardiologist",
     "qualification": "MBBS, MD, DM (Cardiology)",
-    "hospital": "Kovai Medical Center Erode",
+    "hospital": "Sri Amman Hospital",
     "district": "Erode",
-    "address": "Kovai Medical Center Erode, Erode, Tamil Nadu",
+    "address": "Sri Amman Hospital, Erode, Tamil Nadu",
     "consultationFee": 650,
     "availableDays": [
       "Monday",
@@ -398,7 +398,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 21,
-    "bio": "Certified Cardiologist specialist at Kovai Medical Center Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified Cardiologist specialist at Sri Amman Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
   },
   {
     "name": "Dr. Zayan Siddiqui",
@@ -556,9 +556,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100019",
     "specialization": "Cardiologist",
     "qualification": "MBBS, MD, DM (Cardiology)",
-    "hospital": "Amaravathi Hospital",
+    "hospital": "Sri Velavan Hospital",
     "district": "Karur",
-    "address": "Amaravathi Hospital, Karur, Tamil Nadu",
+    "address": "Sri Velavan Hospital, Karur, Tamil Nadu",
     "consultationFee": 800,
     "availableDays": [
       "Monday",
@@ -578,7 +578,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 12,
-    "bio": "Certified Cardiologist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Cardiologist specialist at Sri Velavan Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
   },
   {
     "name": "Dr. Reyansh Khurana",
@@ -586,9 +586,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100020",
     "specialization": "Cardiologist",
     "qualification": "MBBS, MD, DM (Cardiology)",
-    "hospital": "MC Hospital",
+    "hospital": "Naganathar Hospital",
     "district": "Nagapattinam",
-    "address": "MC Hospital, Nagapattinam, Tamil Nadu",
+    "address": "Naganathar Hospital, Nagapattinam, Tamil Nadu",
     "consultationFee": 700,
     "availableDays": [
       "Monday",
@@ -608,7 +608,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 13,
-    "bio": "Certified Cardiologist specialist at MC Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Cardiologist specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
   },
   {
     "name": "Dr. Rayaan Kapoor",
@@ -706,9 +706,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100024",
     "specialization": "Neurologist",
     "qualification": "MBBS, MD, DM (Neurology)",
-    "hospital": "Sri Velavan Hospital",
+    "hospital": "Amaravathi Hospital",
     "district": "Karur",
-    "address": "Sri Velavan Hospital, Karur, Tamil Nadu",
+    "address": "Amaravathi Hospital, Karur, Tamil Nadu",
     "consultationFee": 750,
     "availableDays": [
       "Monday",
@@ -728,7 +728,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 17,
-    "bio": "Certified Neurologist specialist at Sri Velavan Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Neurologist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
   },
   {
     "name": "Dr. Manish Gupta",
@@ -736,9 +736,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100025",
     "specialization": "Neurologist",
     "qualification": "MBBS, MD, DM (Neurology)",
-    "hospital": "Naganathar Hospital",
+    "hospital": "MC Hospital",
     "district": "Nagapattinam",
-    "address": "Naganathar Hospital, Nagapattinam, Tamil Nadu",
+    "address": "MC Hospital, Nagapattinam, Tamil Nadu",
     "consultationFee": 800,
     "availableDays": [
       "Monday",
@@ -758,7 +758,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 18,
-    "bio": "Certified Neurologist specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Neurologist specialist at MC Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
   },
   {
     "name": "Dr. Rohit Mehta",
@@ -886,9 +886,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100030",
     "specialization": "Neurologist",
     "qualification": "MBBS, MD, DM (Neurology)",
-    "hospital": "Lakshana Hospital",
+    "hospital": "Arun Medical Centre",
     "district": "Tiruvarur",
-    "address": "Lakshana Hospital, Tiruvarur, Tamil Nadu",
+    "address": "Arun Medical Centre, Tiruvarur, Tamil Nadu",
     "consultationFee": 700,
     "availableDays": [
       "Monday",
@@ -908,7 +908,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 8,
-    "bio": "Certified Neurologist specialist at Lakshana Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified Neurologist specialist at Arun Medical Centre providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
   },
   {
     "name": "Dr. Alia Mehta",
@@ -1036,9 +1036,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100035",
     "specialization": "Nephrologist",
     "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
-    "hospital": "Arun Medical Centre",
+    "hospital": "Lakshana Hospital",
     "district": "Tiruvarur",
-    "address": "Arun Medical Centre, Tiruvarur, Tamil Nadu",
+    "address": "Lakshana Hospital, Tiruvarur, Tamil Nadu",
     "consultationFee": 750,
     "availableDays": [
       "Monday",
@@ -1058,7 +1058,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 13,
-    "bio": "Certified Nephrologist specialist at Arun Medical Centre providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist at Lakshana Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
   },
   {
     "name": "Dr. Zoya Kapoor",
@@ -1426,9 +1426,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100048",
     "specialization": "Psychiatrist",
     "qualification": "MBBS, MD, DPM (Psychiatry)",
-    "hospital": "Aravind Eye Hospital",
+    "hospital": "Annai Velankanni Hospital",
     "district": "Tirunelveli",
-    "address": "Aravind Eye Hospital, Tirunelveli, Tamil Nadu",
+    "address": "Annai Velankanni Hospital, Tirunelveli, Tamil Nadu",
     "consultationFee": 700,
     "availableDays": [
       "Monday",
@@ -1448,7 +1448,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 11,
-    "bio": "Certified Psychiatrist specialist at Aravind Eye Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist at Annai Velankanni Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
   },
   {
     "name": "Dr. Rhea Chawla",
@@ -1486,9 +1486,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100050",
     "specialization": "Psychiatrist",
     "qualification": "MBBS, MD, DPM (Psychiatry)",
-    "hospital": "Sudha Hospital",
+    "hospital": "KMCH Speciality Hospital Erode",
     "district": "Erode",
-    "address": "Sudha Hospital, Erode, Tamil Nadu",
+    "address": "KMCH Speciality Hospital Erode, Erode, Tamil Nadu",
     "consultationFee": 650,
     "availableDays": [
       "Monday",
@@ -1508,7 +1508,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 13,
-    "bio": "Certified Psychiatrist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist at KMCH Speciality Hospital Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
   },
   {
     "name": "Dr. Kriti Kapoor",
@@ -1576,9 +1576,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100053",
     "specialization": "Dentist",
     "qualification": "BDS, MDS (Conservative Dentistry & Endodontics)",
-    "hospital": "Aravind Eye Hospital",
+    "hospital": "Galaxy Hospitals",
     "district": "Tirunelveli",
-    "address": "Aravind Eye Hospital, Tirunelveli, Tamil Nadu",
+    "address": "Galaxy Hospitals, Tirunelveli, Tamil Nadu",
     "consultationFee": 350,
     "availableDays": [
       "Monday",
@@ -1598,7 +1598,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 16,
-    "bio": "Certified Dentist specialist at Aravind Eye Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Dentist specialist at Galaxy Hospitals providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
   },
   {
     "name": "Dr. Vihaan Arora",
@@ -1966,9 +1966,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100066",
     "specialization": "Physiotherapist",
     "qualification": "BPT, MPT (Orthopedics & Neuro Rehab)",
-    "hospital": "Apollo Hospitals Karur",
+    "hospital": "Sri Velavan Hospital",
     "district": "Karur",
-    "address": "Apollo Hospitals Karur, Karur, Tamil Nadu",
+    "address": "Sri Velavan Hospital, Karur, Tamil Nadu",
     "consultationFee": 400,
     "availableDays": [
       "Monday",
@@ -1988,7 +1988,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 14,
-    "bio": "Certified Physiotherapist specialist at Apollo Hospitals Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Physiotherapist specialist at Sri Velavan Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
   },
   {
     "name": "Dr. Kiara Bansal",
@@ -1996,9 +1996,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100067",
     "specialization": "Physiotherapist",
     "qualification": "BPT, MPT (Orthopedics & Neuro Rehab)",
-    "hospital": "V.P.N. Eye Hospital",
+    "hospital": "Naganathar Hospital",
     "district": "Nagapattinam",
-    "address": "V.P.N. Eye Hospital, Nagapattinam, Tamil Nadu",
+    "address": "Naganathar Hospital, Nagapattinam, Tamil Nadu",
     "consultationFee": 450,
     "availableDays": [
       "Monday",
@@ -2018,7 +2018,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 15,
-    "bio": "Certified Physiotherapist specialist at V.P.N. Eye Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Physiotherapist specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
   },
   {
     "name": "Dr. Nivaan Malhotra",
@@ -2296,9 +2296,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100077",
     "specialization": "ENT Specialist",
     "qualification": "MBBS, MS (ENT), DLO",
-    "hospital": "Hanifa Nursing Home",
+    "hospital": "Arun Medical Centre",
     "district": "Tiruvarur",
-    "address": "Hanifa Nursing Home, Tiruvarur, Tamil Nadu",
+    "address": "Arun Medical Centre, Tiruvarur, Tamil Nadu",
     "consultationFee": 500,
     "availableDays": [
       "Monday",
@@ -2318,7 +2318,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 10,
-    "bio": "Certified ENT Specialist specialist at Hanifa Nursing Home providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified ENT Specialist specialist at Arun Medical Centre providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
   },
   {
     "name": "Dr. Advik Bhatia",
@@ -2686,9 +2686,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100090",
     "specialization": "Dermatologist",
     "qualification": "MBBS, MD (DVL)",
-    "hospital": "Annai Velankanni Hospital",
+    "hospital": "Krishna Hospital",
     "district": "Tirunelveli",
-    "address": "Annai Velankanni Hospital, Tirunelveli, Tamil Nadu",
+    "address": "Krishna Hospital, Tirunelveli, Tamil Nadu",
     "consultationFee": 550,
     "availableDays": [
       "Monday",
@@ -2708,7 +2708,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 8,
-    "bio": "Certified Dermatologist specialist at Annai Velankanni Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Dermatologist specialist at Krishna Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
   },
   {
     "name": "Dr. Kareena Kapoor",
@@ -2836,9 +2836,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100095",
     "specialization": "Pulmonologist",
     "qualification": "MBBS, MD (Pulmonary Medicine), DTCD",
-    "hospital": "Annai Velankanni Hospital",
+    "hospital": "Shifa Hospital",
     "district": "Tirunelveli",
-    "address": "Annai Velankanni Hospital, Tirunelveli, Tamil Nadu",
+    "address": "Shifa Hospital, Tirunelveli, Tamil Nadu",
     "consultationFee": 700,
     "availableDays": [
       "Monday",
@@ -2858,7 +2858,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 13,
-    "bio": "Certified Pulmonologist specialist at Annai Velankanni Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Pulmonologist specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
   },
   {
     "name": "Dr. Vihaan Kapoor",
@@ -3046,9 +3046,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100102",
     "specialization": "Gastroenterologist",
     "qualification": "MBBS, MD, DM (Gastroenterology)",
-    "hospital": "Sri Amman Hospital",
+    "hospital": "KMCH Speciality Hospital Erode",
     "district": "Erode",
-    "address": "Sri Amman Hospital, Erode, Tamil Nadu",
+    "address": "KMCH Speciality Hospital Erode, Erode, Tamil Nadu",
     "consultationFee": 800,
     "availableDays": [
       "Monday",
@@ -3068,7 +3068,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 20,
-    "bio": "Certified Gastroenterologist specialist at Sri Amman Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified Gastroenterologist specialist at KMCH Speciality Hospital Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
   },
   {
     "name": "Dr. Deepika Sethi",
@@ -3226,9 +3226,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100108",
     "specialization": "Gastroenterologist",
     "qualification": "MBBS, MD, DM (Gastroenterology)",
-    "hospital": "Sri Velavan Hospital",
+    "hospital": "Apollo Hospitals Karur",
     "district": "Karur",
-    "address": "Sri Velavan Hospital, Karur, Tamil Nadu",
+    "address": "Apollo Hospitals Karur, Karur, Tamil Nadu",
     "consultationFee": 800,
     "availableDays": [
       "Monday",
@@ -3248,7 +3248,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 11,
-    "bio": "Certified Gastroenterologist specialist at Sri Velavan Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Gastroenterologist specialist at Apollo Hospitals Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
   },
   {
     "name": "Dr. Malavika Arora",
@@ -3256,9 +3256,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100109",
     "specialization": "Gastroenterologist",
     "qualification": "MBBS, MD, DM (Gastroenterology)",
-    "hospital": "Naganathar Hospital",
+    "hospital": "Sri Ram Hospital",
     "district": "Nagapattinam",
-    "address": "Naganathar Hospital, Nagapattinam, Tamil Nadu",
+    "address": "Sri Ram Hospital, Nagapattinam, Tamil Nadu",
     "consultationFee": 750,
     "availableDays": [
       "Monday",
@@ -3278,7 +3278,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 12,
-    "bio": "Certified Gastroenterologist specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Gastroenterologist specialist at Sri Ram Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
   },
   {
     "name": "Dr. Nivaan Sethi",
@@ -3376,9 +3376,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100113",
     "specialization": "Pediatrician",
     "qualification": "MBBS, MD (Pediatrics), DCH",
-    "hospital": "Vasan Eye Care",
+    "hospital": "Sri Velavan Hospital",
     "district": "Karur",
-    "address": "Vasan Eye Care, Karur, Tamil Nadu",
+    "address": "Sri Velavan Hospital, Karur, Tamil Nadu",
     "consultationFee": 450,
     "availableDays": [
       "Monday",
@@ -3398,7 +3398,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 16,
-    "bio": "Certified Pediatrician specialist at Vasan Eye Care providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist at Sri Velavan Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
   },
   {
     "name": "Dr. Vihaan Sethi",
@@ -3406,9 +3406,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100114",
     "specialization": "Pediatrician",
     "qualification": "MBBS, MD (Pediatrics), DCH",
-    "hospital": "Sri Ram Hospital",
+    "hospital": "Naganathar Hospital",
     "district": "Nagapattinam",
-    "address": "Sri Ram Hospital, Nagapattinam, Tamil Nadu",
+    "address": "Naganathar Hospital, Nagapattinam, Tamil Nadu",
     "consultationFee": 500,
     "availableDays": [
       "Monday",
@@ -3428,7 +3428,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 17,
-    "bio": "Certified Pediatrician specialist at Sri Ram Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
   },
   {
     "name": "Dr. Shruthi Malhotra",
@@ -3556,9 +3556,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100119",
     "specialization": "Pediatrician",
     "qualification": "MBBS, MD (Pediatrics), DCH",
-    "hospital": "Arun Medical Centre",
+    "hospital": "Hanifa Nursing Home",
     "district": "Tiruvarur",
-    "address": "Arun Medical Centre, Tiruvarur, Tamil Nadu",
+    "address": "Hanifa Nursing Home, Tiruvarur, Tamil Nadu",
     "consultationFee": 500,
     "availableDays": [
       "Monday",
@@ -3578,7 +3578,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 22,
-    "bio": "Certified Pediatrician specialist at Arun Medical Centre providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist at Hanifa Nursing Home providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
   },
   {
     "name": "Dr. Advik Suri",
@@ -3706,9 +3706,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100124",
     "specialization": "Gynecologist",
     "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-    "hospital": "Lions Eye Hospital",
+    "hospital": "Arun Medical Centre",
     "district": "Tiruvarur",
-    "address": "Lions Eye Hospital, Tiruvarur, Tamil Nadu",
+    "address": "Arun Medical Centre, Tiruvarur, Tamil Nadu",
     "consultationFee": 650,
     "availableDays": [
       "Monday",
@@ -3728,7 +3728,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 12,
-    "bio": "Certified Gynecologist specialist at Lions Eye Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified Gynecologist specialist at Arun Medical Centre providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
   },
   {
     "name": "Dr. Kriti Kapoor",
@@ -4096,9 +4096,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100137",
     "specialization": "Ophthalmologist",
     "qualification": "MBBS, MS (Ophthalmology), DO",
-    "hospital": "Krishna Hospital",
+    "hospital": "Aravind Eye Hospital",
     "district": "Tirunelveli",
-    "address": "Krishna Hospital, Tirunelveli, Tamil Nadu",
+    "address": "Aravind Eye Hospital, Tirunelveli, Tamil Nadu",
     "consultationFee": 500,
     "availableDays": [
       "Monday",
@@ -4118,7 +4118,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 10,
-    "bio": "Certified Ophthalmologist specialist at Krishna Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Ophthalmologist specialist at Aravind Eye Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
   },
   {
     "name": "Dr. Reyansh Kapoor",
@@ -4156,9 +4156,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100139",
     "specialization": "Ophthalmologist",
     "qualification": "MBBS, MS (Ophthalmology), DO",
-    "hospital": "Abirami Kidney Care",
+    "hospital": "Sudha Hospital",
     "district": "Erode",
-    "address": "Abirami Kidney Care, Erode, Tamil Nadu",
+    "address": "Sudha Hospital, Erode, Tamil Nadu",
     "consultationFee": 500,
     "availableDays": [
       "Monday",
@@ -4178,7 +4178,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 12,
-    "bio": "Certified Ophthalmologist specialist at Abirami Kidney Care providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified Ophthalmologist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
   },
   {
     "name": "Dr. Nivaan Arora",
@@ -4486,9 +4486,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100150",
     "specialization": "Urologist",
     "qualification": "MBBS, MS, M.Ch (Urology)",
-    "hospital": "Apollo Hospitals Karur",
+    "hospital": "Amaravathi Hospital",
     "district": "Karur",
-    "address": "Apollo Hospitals Karur, Karur, Tamil Nadu",
+    "address": "Amaravathi Hospital, Karur, Tamil Nadu",
     "consultationFee": 650,
     "availableDays": [
       "Monday",
@@ -4508,7 +4508,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 8,
-    "bio": "Certified Urologist specialist at Apollo Hospitals Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Urologist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
   },
   {
     "name": "Dr. Alia Kapoor",
@@ -4636,9 +4636,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100155",
     "specialization": "Plastic Surgeon",
     "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
-    "hospital": "Amaravathi Hospital",
+    "hospital": "Apollo Hospitals Karur",
     "district": "Karur",
-    "address": "Amaravathi Hospital, Karur, Tamil Nadu",
+    "address": "Apollo Hospitals Karur, Karur, Tamil Nadu",
     "consultationFee": 850,
     "availableDays": [
       "Monday",
@@ -4658,7 +4658,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 13,
-    "bio": "Certified Plastic Surgeon specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Plastic Surgeon specialist at Apollo Hospitals Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
   },
   {
     "name": "Dr. Reyansh Bansal",
@@ -4666,9 +4666,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100156",
     "specialization": "Plastic Surgeon",
     "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
-    "hospital": "MC Hospital",
+    "hospital": "Sri Ram Hospital",
     "district": "Nagapattinam",
-    "address": "MC Hospital, Nagapattinam, Tamil Nadu",
+    "address": "Sri Ram Hospital, Nagapattinam, Tamil Nadu",
     "consultationFee": 750,
     "availableDays": [
       "Monday",
@@ -4688,7 +4688,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 14,
-    "bio": "Certified Plastic Surgeon specialist at MC Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Plastic Surgeon specialist at Sri Ram Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
   },
   {
     "name": "Dr. Myra Mehra",
@@ -4966,9 +4966,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100166",
     "specialization": "Radiologist",
     "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
-    "hospital": "Lakshana Hospital",
+    "hospital": "Hanifa Nursing Home",
     "district": "Tiruvarur",
-    "address": "Lakshana Hospital, Tiruvarur, Tamil Nadu",
+    "address": "Hanifa Nursing Home, Tiruvarur, Tamil Nadu",
     "consultationFee": 550,
     "availableDays": [
       "Monday",
@@ -4988,7 +4988,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 9,
-    "bio": "Certified Radiologist specialist at Lakshana Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified Radiologist specialist at Hanifa Nursing Home providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
   },
   {
     "name": "Dr. Catherine Kapoor",
@@ -5356,9 +5356,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100179",
     "specialization": "Neonatologist",
     "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
-    "hospital": "Galaxy Hospitals",
+    "hospital": "Shifa Hospital",
     "district": "Tirunelveli",
-    "address": "Galaxy Hospitals, Tirunelveli, Tamil Nadu",
+    "address": "Shifa Hospital, Tirunelveli, Tamil Nadu",
     "consultationFee": 700,
     "availableDays": [
       "Monday",
@@ -5378,7 +5378,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 22,
-    "bio": "Certified Neonatologist specialist at Galaxy Hospitals providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Neonatologist specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
   },
   {
     "name": "Dr. Arush Sethi",
@@ -5506,9 +5506,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100184",
     "specialization": "Geriatrician",
     "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
-    "hospital": "Galaxy Hospitals",
+    "hospital": "Annai Velankanni Hospital",
     "district": "Tirunelveli",
-    "address": "Galaxy Hospitals, Tirunelveli, Tamil Nadu",
+    "address": "Annai Velankanni Hospital, Tirunelveli, Tamil Nadu",
     "consultationFee": 550,
     "availableDays": [
       "Monday",
@@ -5528,7 +5528,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 12,
-    "bio": "Certified Geriatrician specialist at Galaxy Hospitals providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Geriatrician specialist at Annai Velankanni Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
   },
   {
     "name": "Dr. Kriti Kapoor",
@@ -5716,9 +5716,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100191",
     "specialization": "Hepatologist",
     "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
-    "hospital": "KMCH Speciality Hospital Erode",
+    "hospital": "Sudha Hospital",
     "district": "Erode",
-    "address": "KMCH Speciality Hospital Erode, Erode, Tamil Nadu",
+    "address": "Sudha Hospital, Erode, Tamil Nadu",
     "consultationFee": 750,
     "availableDays": [
       "Monday",
@@ -5738,7 +5738,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 19,
-    "bio": "Certified Hepatologist specialist at KMCH Speciality Hospital Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified Hepatologist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
   },
   {
     "name": "Dr. Arush Kapoor",
@@ -5896,9 +5896,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100197",
     "specialization": "Hepatologist",
     "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
-    "hospital": "Vasan Eye Care",
+    "hospital": "Amaravathi Hospital",
     "district": "Karur",
-    "address": "Vasan Eye Care, Karur, Tamil Nadu",
+    "address": "Amaravathi Hospital, Karur, Tamil Nadu",
     "consultationFee": 750,
     "availableDays": [
       "Monday",
@@ -5918,7 +5918,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 10,
-    "bio": "Certified Hepatologist specialist at Vasan Eye Care providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Hepatologist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
   },
   {
     "name": "Dr. Zayan Kapoor",
@@ -5926,9 +5926,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100198",
     "specialization": "Hepatologist",
     "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
-    "hospital": "Sri Ram Hospital",
+    "hospital": "MC Hospital",
     "district": "Nagapattinam",
-    "address": "Sri Ram Hospital, Nagapattinam, Tamil Nadu",
+    "address": "MC Hospital, Nagapattinam, Tamil Nadu",
     "consultationFee": 800,
     "availableDays": [
       "Monday",
@@ -5948,7 +5948,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 11,
-    "bio": "Certified Hepatologist specialist at Sri Ram Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Hepatologist specialist at MC Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
   },
   {
     "name": "Dr. Malavika Sethi",
@@ -6076,9 +6076,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100203",
     "specialization": "Hematologist",
     "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
-    "hospital": "V.P.N. Eye Hospital",
+    "hospital": "Sri Ram Hospital",
     "district": "Nagapattinam",
-    "address": "V.P.N. Eye Hospital, Nagapattinam, Tamil Nadu",
+    "address": "Sri Ram Hospital, Nagapattinam, Tamil Nadu",
     "consultationFee": 700,
     "availableDays": [
       "Monday",
@@ -6098,7 +6098,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 16,
-    "bio": "Certified Hematologist specialist at V.P.N. Eye Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Hematologist specialist at Sri Ram Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
   },
   {
     "name": "Dr. Deepika Mehra",
@@ -6226,9 +6226,9 @@ const SEED_DOCTORS = [
     "mobile": "+91 9840100208",
     "specialization": "Hematologist",
     "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
-    "hospital": "Lions Eye Hospital",
+    "hospital": "Lakshana Hospital",
     "district": "Tiruvarur",
-    "address": "Lions Eye Hospital, Tiruvarur, Tamil Nadu",
+    "address": "Lakshana Hospital, Tiruvarur, Tamil Nadu",
     "consultationFee": 800,
     "availableDays": [
       "Monday",
@@ -6248,7 +6248,7 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 21,
-    "bio": "Certified Hematologist specialist at Lions Eye Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified Hematologist specialist at Lakshana Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
   },
   {
     "name": "Dr. Myra Khanna",
@@ -6612,22 +6612,17 @@ const SEED_DOCTORS = [
   }
 ];
 
-const seedDatabase = async (forceClean = true) => {
+const seedDatabase = async (forceClean = false) => {
   try {
     if (mongoose.connection.readyState !== 1) {
-      const uri = process.env.MONGODB_URI || process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/ai_smart_hospital';
-      await mongoose.connect(uri, { serverSelectionTimeoutMS: 15000 });
+      if (process.env.MONGO_URI) {
+        await mongoose.connect(process.env.MONGO_URI);
+      }
     }
 
-    console.log('🌱 [Seeder] Synchronizing MongoDB with ONLY the 220 newly updated doctor records across 22 private hospital districts...');
+    console.log('🌱 [Seeder] Starting database sync for 22 specialties and 220 private hospital doctors...');
 
-    const newDoctorEmails = SEED_DOCTORS.map(d => d.email.toLowerCase());
-
-    // 1. Remove all legacy doctor profiles and deleted district doctor accounts
-    await Doctor.deleteMany({});
-    await User.deleteMany({ role: 'doctor', email: { $nin: newDoctorEmails } });
-
-    // 2. Ensure Admin User
+    // 1. Seed Admin
     let admin = await User.findOne({ email: 'admin@hospital.com' });
     if (!admin) {
       admin = await User.create({
@@ -6637,10 +6632,10 @@ const seedDatabase = async (forceClean = true) => {
         password: 'Password123!',
         role: 'admin'
       });
-      console.log('✅ Admin user verified');
+      console.log('✅ Admin user created');
     }
 
-    // 3. Ensure Patient User (Ramesh Chandran)
+    // 2. Seed Patient (Ramesh Chandran)
     let patientUser = await User.findOne({ email: 'ramesh.chandran@gmail.com' });
     if (!patientUser) {
       patientUser = await User.create({
@@ -6660,11 +6655,12 @@ const seedDatabase = async (forceClean = true) => {
         allergies: ['Penicillin'],
         chronicConditions: ['Hypertension']
       });
-      console.log('✅ Patient Ramesh Chandran verified');
+      console.log('✅ Patient Ramesh Chandran created');
     }
 
-    // 4. Store ONLY the 220 newly updated doctor profiles
+    // 3. Seed / Upsert all 220 Doctors with private hospital coverage
     let createdCount = 0;
+    let updatedCount = 0;
 
     for (const docData of SEED_DOCTORS) {
       let docUser = await User.findOne({ email: docData.email });
@@ -6677,6 +6673,7 @@ const seedDatabase = async (forceClean = true) => {
           role: 'doctor',
           isActive: true
         });
+        createdCount++;
       } else {
         docUser.name = docData.name;
         docUser.mobile = docData.mobile;
@@ -6685,28 +6682,44 @@ const seedDatabase = async (forceClean = true) => {
         await docUser.save();
       }
 
-      await Doctor.create({
-        user: docUser._id,
-        specialization: docData.specialization,
-        qualification: docData.qualification,
-        hospital: docData.hospital,
-        district: docData.district,
-        address: docData.address,
-        consultationFee: docData.consultationFee,
-        availableDays: docData.availableDays,
-        availableTimeSlots: docData.availableTimeSlots,
-        rating: docData.rating,
-        experience: docData.experience || 10,
-        bio: docData.bio,
-        isVerified: true
-      });
-      createdCount++;
+      let doctorDoc = await Doctor.findOne({ user: docUser._id });
+      if (!doctorDoc) {
+        await Doctor.create({
+          user: docUser._id,
+          specialization: docData.specialization,
+          qualification: docData.qualification,
+          hospital: docData.hospital,
+          district: docData.district,
+          address: docData.address,
+          consultationFee: docData.consultationFee,
+          availableDays: docData.availableDays,
+          availableTimeSlots: docData.availableTimeSlots,
+          rating: docData.rating,
+          experience: docData.experience || 10,
+          bio: docData.bio,
+          isVerified: true
+        });
+      } else {
+        doctorDoc.specialization = docData.specialization;
+        doctorDoc.qualification = docData.qualification;
+        doctorDoc.hospital = docData.hospital;
+        doctorDoc.district = docData.district;
+        doctorDoc.address = docData.address;
+        doctorDoc.consultationFee = docData.consultationFee;
+        doctorDoc.availableDays = docData.availableDays;
+        doctorDoc.availableTimeSlots = docData.availableTimeSlots;
+        doctorDoc.rating = docData.rating;
+        doctorDoc.bio = docData.bio;
+        doctorDoc.isVerified = true;
+        await doctorDoc.save();
+        updatedCount++;
+      }
     }
 
     const totalInDb = await Doctor.countDocuments();
-    console.log(`✅ [Seeder] Stored ONLY the updated ${totalInDb} doctor records in MongoDB successfully.`);
+    console.log(`✅ [Seeder] Finished: ${createdCount} created, ${updatedCount} updated. Total doctors in DB: ${totalInDb}`);
 
-    return { success: true, count: totalInDb, created: createdCount };
+    return { success: true, count: totalInDb, created: createdCount, updated: updatedCount };
   } catch (error) {
     console.error('❌ [Seeder Error]:', error);
     throw error;
@@ -6717,7 +6730,7 @@ if (require.main === module) {
   require('dotenv').config({ path: require('path').join(__dirname, '../../../.env') });
   const connectDB = require('../config/db');
   connectDB().then(async () => {
-    await seedDatabase(true);
+    await seedDatabase(false);
     console.log('Seeding script completed successfully.');
     process.exit(0);
   }).catch(err => {
