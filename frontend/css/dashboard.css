@@ -100,29 +100,43 @@ body {
 }
 
 /* ==========================================================================
-   Hero Doctor Booking Header
+   Patient Welcome Card (Clean & Bright Aesthetic)
    ========================================================================== */
-.booking-hero-header {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  color: #ffffff;
+.patient-welcome-card {
+  background: #ffffff;
+  border: 1px solid var(--portal-border);
   border-radius: var(--portal-radius);
-  padding: 2.5rem 2rem;
-  margin-bottom: 2rem;
+  padding: 2rem 2.25rem;
+  box-shadow: var(--portal-shadow-sm);
   position: relative;
   overflow: hidden;
-  box-shadow: var(--portal-shadow-md);
 }
 
-.booking-hero-header::before {
+.patient-welcome-card::after {
   content: '';
   position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(2, 132, 199, 0.35) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--portal-primary) 0%, var(--portal-accent) 100%);
+}
+
+.max-w-750 {
+  max-width: 750px;
+}
+
+.district-badge-chip {
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 /* ==========================================================================
