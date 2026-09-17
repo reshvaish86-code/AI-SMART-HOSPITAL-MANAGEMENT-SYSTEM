@@ -11,12 +11,14 @@ const { APPOINTMENT_STATUS } = require('./constants');
 
 dotenv.config();
 
-const seedDatabase = async () => {
+const seedDatabase = async (autoDisconnect = false) => {
   try {
     const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/ai_smart_hospital';
-    console.log(`⏳ Connecting to MongoDB at ${mongoUri}...`);
-    await mongoose.connect(mongoUri);
-    console.log('✅ Connected to database.');
+    if (mongoose.connection.readyState !== 1) {
+      console.log(`⏳ Connecting to MongoDB at ${mongoUri}...`);
+      await mongoose.connect(mongoUri);
+      console.log('✅ Connected to database.');
+    }
 
     console.log('🧹 Purging existing records...');
     await User.deleteMany({});
@@ -596,12 +598,21 @@ const seedDatabase = async () => {
     console.log('👤 Patient:    email: patient.kavya@gmail.com      | pass: Patient@123 (Coimbatore)');
     console.log('========================================================');
 
-    await mongoose.disconnect();
-    console.log('🔌 Database disconnected successfully.');
+    if (autoDisconnect) {
+      await mongoose.disconnect();
+      console.log('🔌 Database disconnected successfully.');
+    }
+    return { success: true, count: doctorsData.length };
   } catch (error) {
     console.error('❌ Seeding Error:', error);
-    process.exit(1);
+    if (autoDisconnect) process.exit(1);
+    throw error;
   }
 };
 
-seedDatabase();
+if (require.main === module) {
+  seedDatabase(true);
+}
+
+module.exports = { seedDatabase, doctorsData };
+

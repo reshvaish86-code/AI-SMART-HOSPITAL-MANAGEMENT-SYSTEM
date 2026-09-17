@@ -66,9 +66,43 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// On-Demand Database Seeding Endpoint
+const { seedDatabase } = require('./src/utils/seedData');
+const User = require('./src/models/User');
+
+const checkAndAutoSeed = async () => {
+  try {
+    const diyaDoc = await User.findOne({ email: 'doctor.diya@hospital.com' });
+    if (!diyaDoc) {
+      console.log('🌱 [Auto-Seeder] Syncing database with updated doctor dataset...');
+      await seedDatabase(false);
+      console.log('✅ [Auto-Seeder] Database synced with all 18 doctors.');
+    }
+  } catch (err) {
+    console.warn('⚠️ [Auto-Seeder] Notice:', err.message);
+  }
+};
+
+require('mongoose').connection.on('connected', () => {
+  checkAndAutoSeed();
+});
+
+app.all('/api/seed', async (req, res) => {
+  try {
+    const result = await seedDatabase(false);
+    res.status(200).json({
+      status: 'success',
+      message: 'Database successfully seeded with all requested doctor profiles and demo records.',
+      doctorsCount: result.count
+    });
+  } catch (error) {
+    res.status(500).json({ status: 'error', message: error.message });
+  }
+});
+
 // Database Readiness Check Middleware
 app.use('/api', (req, res, next) => {
-  if (req.path === '/health') return next();
+  if (req.path === '/health' || req.path === '/seed') return next();
   const isDbConnected = require('mongoose').connection.readyState === 1;
   if (!isDbConnected) {
     return res.status(503).json({

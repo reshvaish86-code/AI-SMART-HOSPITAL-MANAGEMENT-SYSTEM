@@ -58,7 +58,10 @@
             <a class="nav-link" href="#reminders"><i class="fa-solid fa-bell me-1 text-warning"></i> Reminders</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#specialties"><i class="fa-solid fa-user-doctor me-1 text-success"></i> 14 Specialties</a>
+            <a class="nav-link" href="#specialties"><i class="fa-solid fa-stethoscope me-1 text-success"></i> 14 Specialties</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#doctors"><i class="fa-solid fa-user-doctor me-1 text-info"></i> Doctors</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#districts"><i class="fa-solid fa-map-location-dot me-1 text-secondary"></i> 38 Districts</a>
@@ -385,103 +388,671 @@
         Search and book collision-free appointments with verified healthcare practitioners across all 38 districts in Tamil Nadu.
       </p>
       
-      <div class="row g-3">
+      <div class="row g-3 mb-4">
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <div class="specialist-card" onclick="filterHomeDoctors('Cardiologist')">
             <i class="fa-solid fa-heart-pulse text-danger"></i>
             <h6 class="fw-bold mb-1">Cardiologist</h6>
             <span class="badge bg-light text-muted border">Heart & Vascular</span>
           </div>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <div class="specialist-card" onclick="filterHomeDoctors('Dermatologist')">
             <i class="fa-solid fa-hand-dots text-warning"></i>
             <h6 class="fw-bold mb-1">Dermatologist</h6>
             <span class="badge bg-light text-muted border">Skin, Hair & Nails</span>
           </div>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <div class="specialist-card" onclick="filterHomeDoctors('Neurologist')">
             <i class="fa-solid fa-brain text-info"></i>
             <h6 class="fw-bold mb-1">Neurologist</h6>
             <span class="badge bg-light text-muted border">Brain & Nerves</span>
           </div>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <div class="specialist-card" onclick="filterHomeDoctors('Pediatrician')">
             <i class="fa-solid fa-baby text-primary"></i>
             <h6 class="fw-bold mb-1">Pediatrician</h6>
             <span class="badge bg-light text-muted border">Child Healthcare</span>
           </div>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <div class="specialist-card" onclick="filterHomeDoctors('Orthopedic')">
             <i class="fa-solid fa-bone text-secondary"></i>
             <h6 class="fw-bold mb-1">Orthopedic</h6>
             <span class="badge bg-light text-muted border">Bones & Joints</span>
           </div>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <div class="specialist-card" onclick="filterHomeDoctors('General Physician')">
             <i class="fa-solid fa-user-doctor text-success"></i>
             <h6 class="fw-bold mb-1">General Physician</h6>
             <span class="badge bg-light text-muted border">Primary Care</span>
           </div>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <div class="specialist-card" onclick="filterHomeDoctors('Gynecologist')">
             <i class="fa-solid fa-person-pregnant text-danger"></i>
             <h6 class="fw-bold mb-1">Gynecologist</h6>
             <span class="badge bg-light text-muted border">Women's Health</span>
           </div>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <div class="specialist-card" onclick="filterHomeDoctors('ENT Specialist')">
             <i class="fa-solid fa-ear-listen text-warning"></i>
             <h6 class="fw-bold mb-1">ENT Specialist</h6>
             <span class="badge bg-light text-muted border">Ear, Nose & Throat</span>
           </div>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <div class="specialist-card" onclick="filterHomeDoctors('Ophthalmologist')">
             <i class="fa-solid fa-eye text-primary"></i>
             <h6 class="fw-bold mb-1">Ophthalmologist</h6>
             <span class="badge bg-light text-muted border">Eye & Vision Care</span>
           </div>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <div class="specialist-card" onclick="filterHomeDoctors('Pulmonologist')">
             <i class="fa-solid fa-lungs text-info"></i>
             <h6 class="fw-bold mb-1">Pulmonologist</h6>
             <span class="badge bg-light text-muted border">Lungs & Respiratory</span>
           </div>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
-            <i class="fa-solid fa-ribbon text-danger"></i>
-            <h6 class="fw-bold mb-1">Oncologist</h6>
-            <span class="badge bg-light text-muted border">Cancer Care</span>
+          <div class="specialist-card" onclick="filterHomeDoctors('Gastroenterologist')">
+            <i class="fa-solid fa-stethoscope text-danger"></i>
+            <h6 class="fw-bold mb-1">Gastroenterologist</h6>
+            <span class="badge bg-light text-muted border">Digestive Health</span>
           </div>
         </div>
         <div class="col-6 col-md-4 col-lg-3">
-          <div class="specialist-card">
+          <div class="specialist-card" onclick="filterHomeDoctors('Psychiatrist')">
             <i class="fa-solid fa-head-side-virus text-warning"></i>
             <h6 class="fw-bold mb-1">Psychiatrist</h6>
             <span class="badge bg-light text-muted border">Mental Health</span>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="mt-4">
-        <button type="button" class="btn btn-primary-custom rounded-pill px-4 shadow-sm">
-          View All Doctors & Book Online <i class="fa-solid fa-arrow-right ms-1"></i>
-        </button>
+  <!-- Section 5.5: Verified Specialist Doctors Directory Showcase -->
+  <section id="doctors" class="py-5 bg-white border-top">
+    <div class="container py-3">
+      <div class="text-center max-w-700 mx-auto mb-4">
+        <span class="badge bg-info-subtle text-info border border-info-subtle px-3 py-2 rounded-pill fw-semibold mb-2">
+          <i class="fa-solid fa-user-doctor me-1"></i> Specialist Directory
+        </span>
+        <h2 class="display-6 fw-bold mb-2">Our Verified Medical Doctors</h2>
+        <p class="text-muted">
+          Browse verified senior consultants, interventional specialists, and surgeons across Tamil Nadu medical centres.
+        </p>
+      </div>
+
+      <!-- Quick Filter & Search Bar -->
+      <div class="card border-0 shadow-sm rounded-4 p-3 mb-4 bg-light">
+        <div class="row g-2 align-items-center">
+          <div class="col-md-5">
+            <div class="input-group">
+              <span class="input-group-text bg-white border-end-0 text-muted"><i class="fa-solid fa-magnifying-glass"></i></span>
+              <input type="text" id="homeDoctorSearchInput" class="form-control border-start-0" placeholder="Search doctor by name (e.g. Diya, Karthik, Katrina, Rayaan...)" oninput="filterHomeDoctorCards()">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <select id="homeDoctorSpecialtySelect" class="form-select" onchange="filterHomeDoctorCards()">
+              <option value="All">All Specialties (14 Disciplines)</option>
+              <option value="Cardiologist">Cardiologist</option>
+              <option value="Dermatologist">Dermatologist</option>
+              <option value="Neurologist">Neurologist</option>
+              <option value="Pediatrician">Pediatrician</option>
+              <option value="Orthopedic">Orthopedic</option>
+              <option value="Gynecologist">Gynecologist</option>
+              <option value="General Physician">General Physician</option>
+              <option value="ENT Specialist">ENT Specialist</option>
+              <option value="Pulmonologist">Pulmonologist</option>
+              <option value="Ophthalmologist">Ophthalmologist</option>
+              <option value="Psychiatrist">Psychiatrist</option>
+              <option value="Dentist">Dentist</option>
+              <option value="Gastroenterologist">Gastroenterologist</option>
+              <option value="Urologist">Urologist</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <select id="homeDoctorDistrictSelect" class="form-select" onchange="filterHomeDoctorCards()">
+              <option value="All">All Districts (Tamil Nadu)</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Coimbatore">Coimbatore</option>
+              <option value="Madurai">Madurai</option>
+              <option value="Salem">Salem</option>
+              <option value="Tiruchirappalli">Tiruchirappalli</option>
+              <option value="Vellore">Vellore</option>
+              <option value="Tirunelveli">Tirunelveli</option>
+              <option value="Erode">Erode</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Doctor Cards Grid -->
+      <div class="row g-4" id="homeDoctorsGridContainer">
+        
+        <!-- 1. Dr. Diya Sharma -->
+        <div class="col-md-6 col-lg-4 doc-item" data-name="Dr. Diya Sharma" data-spec="Cardiologist" data-dist="Chennai">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card bg-white">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1 text-dark">Dr. Diya Sharma</h5>
+                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Cardiologist</span>
+                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, MD (Cardiology), DM</p>
+              </div>
+            </div>
+            <div class="bg-light p-2 rounded-3 mb-3 small">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate max-w-150">Apollo Hospitals, Greams Road</span>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
+                <span class="fw-semibold text-dark">Chennai</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
+                <span class="fw-bold text-success">₹800</span>
+              </div>
+            </div>
+            <p class="text-muted small mb-3 flex-grow-1">Senior Consultant Interventional Cardiologist specializing in coronary angioplasty, heart failure, and preventive cardiac wellness.</p>
+            <button type="button" class="btn btn-primary-custom w-100 rounded-3">
+              <i class="fa-solid fa-calendar-check me-1"></i> Book Appointment
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. Dr. Katrina Fernandez -->
+        <div class="col-md-6 col-lg-4 doc-item" data-name="Dr. Katrina Fernandez" data-spec="Dermatologist" data-dist="Coimbatore">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card bg-white">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1 text-dark">Dr. Katrina Fernandez</h5>
+                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Dermatologist</span>
+                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, MD (DVL)</p>
+              </div>
+            </div>
+            <div class="bg-light p-2 rounded-3 mb-3 small">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate max-w-150">Ganga Medical Centre</span>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
+                <span class="fw-semibold text-dark">Coimbatore</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
+                <span class="fw-bold text-success">₹650</span>
+              </div>
+            </div>
+            <p class="text-muted small mb-3 flex-grow-1">Specialist in clinical dermatology, laser skin rejuvenation, pediatric dermatology, and chronic eczema management.</p>
+            <button type="button" class="btn btn-primary-custom w-100 rounded-3">
+              <i class="fa-solid fa-calendar-check me-1"></i> Book Appointment
+            </button>
+          </div>
+        </div>
+
+        <!-- 3. Dr. Rayaan Kapoor -->
+        <div class="col-md-6 col-lg-4 doc-item" data-name="Dr. Rayaan Kapoor" data-spec="Neurologist" data-dist="Madurai">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card bg-white">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1 text-dark">Dr. Rayaan Kapoor</h5>
+                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Neurologist</span>
+                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, MD, DM (Neurology)</p>
+              </div>
+            </div>
+            <div class="bg-light p-2 rounded-3 mb-3 small">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate max-w-150">Meenakshi Mission Hospital</span>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
+                <span class="fw-semibold text-dark">Madurai</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
+                <span class="fw-bold text-success">₹750</span>
+              </div>
+            </div>
+            <p class="text-muted small mb-3 flex-grow-1">Expert in acute stroke interventions, Parkinson's management, neuromuscular disorders, and comprehensive epilepsy care.</p>
+            <button type="button" class="btn btn-primary-custom w-100 rounded-3">
+              <i class="fa-solid fa-calendar-check me-1"></i> Book Appointment
+            </button>
+          </div>
+        </div>
+
+        <!-- 4. Dr. Riyana Sen -->
+        <div class="col-md-6 col-lg-4 doc-item" data-name="Dr. Riyana Sen" data-spec="Pediatrician" data-dist="Salem">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card bg-white">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1 text-dark">Dr. Riyana Sen</h5>
+                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Pediatrician</span>
+                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, DCH, DNB (Pediatrics)</p>
+              </div>
+            </div>
+            <div class="bg-light p-2 rounded-3 mb-3 small">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate max-w-150">Manipal Childrens Clinic</span>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
+                <span class="fw-semibold text-dark">Salem</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
+                <span class="fw-bold text-success">₹500</span>
+              </div>
+            </div>
+            <p class="text-muted small mb-3 flex-grow-1">Dedicated child healthcare specialist with extensive experience in neonatal intensive care, growth monitoring, and immunization.</p>
+            <button type="button" class="btn btn-primary-custom w-100 rounded-3">
+              <i class="fa-solid fa-calendar-check me-1"></i> Book Appointment
+            </button>
+          </div>
+        </div>
+
+        <!-- 5. Dr. Adhira Nair -->
+        <div class="col-md-6 col-lg-4 doc-item" data-name="Dr. Adhira Nair" data-spec="Orthopedic" data-dist="Tiruchirappalli">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card bg-white">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1 text-dark">Dr. Adhira Nair</h5>
+                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Orthopedic</span>
+                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, MS, M.Ch (Joint Replacement)</p>
+              </div>
+            </div>
+            <div class="bg-light p-2 rounded-3 mb-3 small">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate max-w-150">Kauvery Hospital</span>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
+                <span class="fw-semibold text-dark">Tiruchirappalli</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
+                <span class="fw-bold text-success">₹700</span>
+              </div>
+            </div>
+            <p class="text-muted small mb-3 flex-grow-1">Consultant Orthopedic Surgeon specializing in robotic knee arthroplasty, complex trauma, and sports medicine rehabilitation.</p>
+            <button type="button" class="btn btn-primary-custom w-100 rounded-3">
+              <i class="fa-solid fa-calendar-check me-1"></i> Book Appointment
+            </button>
+          </div>
+        </div>
+
+        <!-- 6. Dr. Ishita Patel -->
+        <div class="col-md-6 col-lg-4 doc-item" data-name="Dr. Ishita Patel" data-spec="Gynecologist" data-dist="Chennai">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card bg-white">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1 text-dark">Dr. Ishita Patel</h5>
+                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Gynecologist</span>
+                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, MS (OBG), FICOG</p>
+              </div>
+            </div>
+            <div class="bg-light p-2 rounded-3 mb-3 small">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate max-w-150">MIOT International</span>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
+                <span class="fw-semibold text-dark">Chennai</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
+                <span class="fw-bold text-success">₹750</span>
+              </div>
+            </div>
+            <p class="text-muted small mb-3 flex-grow-1">High-risk obstetrics specialist, laparoscopic gynecological surgeon, and fertility preservation counselor.</p>
+            <button type="button" class="btn btn-primary-custom w-100 rounded-3">
+              <i class="fa-solid fa-calendar-check me-1"></i> Book Appointment
+            </button>
+          </div>
+        </div>
+
+        <!-- 7. Dr. Nethra Sundaram -->
+        <div class="col-md-6 col-lg-4 doc-item" data-name="Dr. Nethra Sundaram" data-spec="General Physician" data-dist="Vellore">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card bg-white">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1 text-dark">Dr. Nethra Sundaram</h5>
+                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">General Physician</span>
+                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, MD (General Medicine)</p>
+              </div>
+            </div>
+            <div class="bg-light p-2 rounded-3 mb-3 small">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate max-w-150">CMC Hospital Care</span>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
+                <span class="fw-semibold text-dark">Vellore</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
+                <span class="fw-bold text-success">₹450</span>
+              </div>
+            </div>
+            <p class="text-muted small mb-3 flex-grow-1">Comprehensive internal medicine consultant specializing in chronic diabetes management, hypertension, and infectious diseases.</p>
+            <button type="button" class="btn btn-primary-custom w-100 rounded-3">
+              <i class="fa-solid fa-calendar-check me-1"></i> Book Appointment
+            </button>
+          </div>
+        </div>
+
+        <!-- 8. Dr. Shaan Mukherjee -->
+        <div class="col-md-6 col-lg-4 doc-item" data-name="Dr. Shaan Mukherjee" data-spec="ENT Specialist" data-dist="Tirunelveli">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card bg-white">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1 text-dark">Dr. Shaan Mukherjee</h5>
+                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">ENT Specialist</span>
+                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, MS (ENT), DLO</p>
+              </div>
+            </div>
+            <div class="bg-light p-2 rounded-3 mb-3 small">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate max-w-150">Shifa Health City</span>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
+                <span class="fw-semibold text-dark">Tirunelveli</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
+                <span class="fw-bold text-success">₹500</span>
+              </div>
+            </div>
+            <p class="text-muted small mb-3 flex-grow-1">Advanced micro-ear surgeon, endoscopic sinus surgery expert, and specialist in vertigo and pediatric ENT conditions.</p>
+            <button type="button" class="btn btn-primary-custom w-100 rounded-3">
+              <i class="fa-solid fa-calendar-check me-1"></i> Book Appointment
+            </button>
+          </div>
+        </div>
+
+        <!-- 9. Dr. Roshini Krishnan -->
+        <div class="col-md-6 col-lg-4 doc-item" data-name="Dr. Roshini Krishnan" data-spec="Pulmonologist" data-dist="Chennai">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card bg-white">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1 text-dark">Dr. Roshini Krishnan</h5>
+                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Pulmonologist</span>
+                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, MD (Pulmonary Med), FCCP</p>
+              </div>
+            </div>
+            <div class="bg-light p-2 rounded-3 mb-3 small">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate max-w-150">SIMS Hospital</span>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
+                <span class="fw-semibold text-dark">Chennai</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
+                <span class="fw-bold text-success">₹750</span>
+              </div>
+            </div>
+            <p class="text-muted small mb-3 flex-grow-1">Consultant Pulmonologist with special interest in bronchial asthma, COPD, interstitial lung disease, and sleep apnea.</p>
+            <button type="button" class="btn btn-primary-custom w-100 rounded-3">
+              <i class="fa-solid fa-calendar-check me-1"></i> Book Appointment
+            </button>
+          </div>
+        </div>
+
+        <!-- 10. Dr. Lavanya Swaminathan -->
+        <div class="col-md-6 col-lg-4 doc-item" data-name="Dr. Lavanya Swaminathan" data-spec="Ophthalmologist" data-dist="Erode">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card bg-white">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1 text-dark">Dr. Lavanya Swaminathan</h5>
+                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Ophthalmologist</span>
+                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, MS (Ophthalmology), FICO</p>
+              </div>
+            </div>
+            <div class="bg-light p-2 rounded-3 mb-3 small">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate max-w-150">Lotus Eye Care Hospital</span>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
+                <span class="fw-semibold text-dark">Erode</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
+                <span class="fw-bold text-success">₹550</span>
+              </div>
+            </div>
+            <p class="text-muted small mb-3 flex-grow-1">Phacoemulsification cataract surgeon, corneal specialist, laser vision correction clinician, and glaucoma care expert.</p>
+            <button type="button" class="btn btn-primary-custom w-100 rounded-3">
+              <i class="fa-solid fa-calendar-check me-1"></i> Book Appointment
+            </button>
+          </div>
+        </div>
+
+        <!-- 11. Dr. Ishaan Roy -->
+        <div class="col-md-6 col-lg-4 doc-item" data-name="Dr. Ishaan Roy" data-spec="Psychiatrist" data-dist="Chennai">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card bg-white">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1 text-dark">Dr. Ishaan Roy</h5>
+                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Psychiatrist</span>
+                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, MD (Psychiatry), DPM</p>
+              </div>
+            </div>
+            <div class="bg-light p-2 rounded-3 mb-3 small">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate max-w-150">VHS Hospital Health Campus</span>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
+                <span class="fw-semibold text-dark">Chennai</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
+                <span class="fw-bold text-success">₹800</span>
+              </div>
+            </div>
+            <p class="text-muted small mb-3 flex-grow-1">Compassionate mental health clinician specializing in mood stability, anxiety spectrum disorders, OCD, and psychotherapy.</p>
+            <button type="button" class="btn btn-primary-custom w-100 rounded-3">
+              <i class="fa-solid fa-calendar-check me-1"></i> Book Appointment
+            </button>
+          </div>
+        </div>
+
+        <!-- 12. Dr. Aarav Mehta -->
+        <div class="col-md-6 col-lg-4 doc-item" data-name="Dr. Aarav Mehta" data-spec="Dentist" data-dist="Coimbatore">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card bg-white">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1 text-dark">Dr. Aarav Mehta</h5>
+                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Dentist</span>
+                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> BDS, MDS (Oral Surgery)</p>
+              </div>
+            </div>
+            <div class="bg-light p-2 rounded-3 mb-3 small">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate max-w-150">Royal Dental Care</span>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
+                <span class="fw-semibold text-dark">Coimbatore</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
+                <span class="fw-bold text-success">₹450</span>
+              </div>
+            </div>
+            <p class="text-muted small mb-3 flex-grow-1">Specialist in painless single-sitting root canal treatment, aesthetic cosmetic smile design, and dental implantology.</p>
+            <button type="button" class="btn btn-primary-custom w-100 rounded-3">
+              <i class="fa-solid fa-calendar-check me-1"></i> Book Appointment
+            </button>
+          </div>
+        </div>
+
+        <!-- 13. Dr. Lishika Reddy -->
+        <div class="col-md-6 col-lg-4 doc-item" data-name="Dr. Lishika Reddy" data-spec="Gastroenterologist" data-dist="Madurai">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card bg-white">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1 text-dark">Dr. Lishika Reddy</h5>
+                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Gastroenterologist</span>
+                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, MD, DM (Gastroenterology)</p>
+              </div>
+            </div>
+            <div class="bg-light p-2 rounded-3 mb-3 small">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate max-w-150">Apollo Speciality Hospital</span>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
+                <span class="fw-semibold text-dark">Madurai</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
+                <span class="fw-bold text-success">₹750</span>
+              </div>
+            </div>
+            <p class="text-muted small mb-3 flex-grow-1">Therapeutic GI endoscopist, liver disease specialist, inflammatory bowel disease consultant, and digestive health expert.</p>
+            <button type="button" class="btn btn-primary-custom w-100 rounded-3">
+              <i class="fa-solid fa-calendar-check me-1"></i> Book Appointment
+            </button>
+          </div>
+        </div>
+
+        <!-- 14. Dr. Thanu Raghavan -->
+        <div class="col-md-6 col-lg-4 doc-item" data-name="Dr. Thanu Raghavan" data-spec="Urologist" data-dist="Salem">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card bg-white">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1 text-dark">Dr. Thanu Raghavan</h5>
+                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Urologist</span>
+                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, MS, M.Ch (Urology)</p>
+              </div>
+            </div>
+            <div class="bg-light p-2 rounded-3 mb-3 small">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate max-w-150">Sri Gokulam Hospital</span>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
+                <span class="fw-semibold text-dark">Salem</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
+                <span class="fw-bold text-success">₹650</span>
+              </div>
+            </div>
+            <p class="text-muted small mb-3 flex-grow-1">Endourology expert in laser kidney stone extraction (RIRS), holmium laser prostate surgery, and laparoscopic uro-oncology.</p>
+            <button type="button" class="btn btn-primary-custom w-100 rounded-3">
+              <i class="fa-solid fa-calendar-check me-1"></i> Book Appointment
+            </button>
+          </div>
+        </div>
+
+        <!-- 15. Dr. Karthik Raman -->
+        <div class="col-md-6 col-lg-4 doc-item" data-name="Dr. Karthik Raman" data-spec="Neurologist" data-dist="Madurai">
+          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card bg-white">
+            <div class="d-flex align-items-start gap-3 mb-3">
+              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
+                <i class="fa-solid fa-user-doctor"></i>
+              </div>
+              <div class="flex-grow-1">
+                <h5 class="fw-bold mb-1 text-dark">Dr. Karthik Raman</h5>
+                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Neurologist</span>
+                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> MBBS, M.Ch (Neurosurgery)</p>
+              </div>
+            </div>
+            <div class="bg-light p-2 rounded-3 mb-3 small">
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate max-w-150">Meenakshi Mission Hospital</span>
+              </div>
+              <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
+                <span class="fw-semibold text-dark">Madurai</span>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
+                <span class="fw-bold text-success">₹750</span>
+              </div>
+            </div>
+            <p class="text-muted small mb-3 flex-grow-1">Expert in cerebrovascular disorders, stroke rehabilitation, epilepsy management, and neuromuscular diseases.</p>
+            <button type="button" class="btn btn-primary-custom w-100 rounded-3">
+              <i class="fa-solid fa-calendar-check me-1"></i> Book Appointment
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- Section 6: Tamil Nadu 38 Districts Clinical Network -->
-  <section id="districts" class="py-5 bg-white border-top">
+  <section id="districts" class="py-5 bg-light border-top">
     <div class="container py-2 text-center">
       <span class="badge bg-info-subtle text-info border border-info-subtle px-3 py-2 rounded-pill fw-semibold mb-2">
         <i class="fa-solid fa-location-dot me-1"></i> State-Wide Network
@@ -675,6 +1246,39 @@
         `;
       }
     });
+
+    // Doctor Directory Filter Functions
+    function filterHomeDoctorCards() {
+      const searchVal = (document.getElementById('homeDoctorSearchInput')?.value || '').toLowerCase().trim();
+      const specVal = document.getElementById('homeDoctorSpecialtySelect')?.value || 'All';
+      const distVal = document.getElementById('homeDoctorDistrictSelect')?.value || 'All';
+
+      const items = document.querySelectorAll('.doc-item');
+      items.forEach(item => {
+        const name = (item.getAttribute('data-name') || '').toLowerCase();
+        const spec = item.getAttribute('data-spec') || '';
+        const dist = item.getAttribute('data-dist') || '';
+
+        const matchesSearch = !searchVal || name.includes(searchVal) || spec.toLowerCase().includes(searchVal) || dist.toLowerCase().includes(searchVal);
+        const matchesSpec = specVal === 'All' || spec === specVal;
+        const matchesDist = distVal === 'All' || dist === distVal;
+
+        if (matchesSearch && matchesSpec && matchesDist) {
+          item.style.display = '';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    function filterHomeDoctors(specialtyName) {
+      const specSelect = document.getElementById('homeDoctorSpecialtySelect');
+      if (specSelect) {
+        specSelect.value = specialtyName;
+        filterHomeDoctorCards();
+        document.getElementById('doctors')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   </script>
 </body>
 </html>
