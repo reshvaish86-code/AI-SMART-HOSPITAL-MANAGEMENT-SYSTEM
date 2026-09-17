@@ -367,17 +367,26 @@ const PatientApp = {
     container.innerHTML = '<div class="col-12 text-center py-5"><div class="spinner-border text-primary" role="status"></div><p class="text-muted mt-2">Loading verified medical specialists across Tamil Nadu...</p></div>';
 
     try {
+      // Robust normalized doctor identity key function to prevent duplicate cards
+      const getDocKey = (d) => {
+        if (!d) return '';
+        const name = (d.user?.name || d.name || '').toLowerCase().replace(/^(dr\.?|doctor)\s+/i, '').replace(/\s+/g, ' ').trim();
+        const spec = (d.specialization || '').toLowerCase().trim();
+        const dist = (d.district || '').toLowerCase().trim();
+        return `${name}__${spec}__${dist}`;
+      };
+
       const doctorsMap = new Map();
 
-      // 1. Pre-load default 140 comprehensive doctor profiles (10 per specialty across 10 distinct districts)
+      // 1. Pre-load default comprehensive doctor profiles
       if (CONFIG.DEFAULT_DOCTORS && CONFIG.DEFAULT_DOCTORS.length > 0) {
         CONFIG.DEFAULT_DOCTORS.forEach(doc => {
-          const key = doc._id || `${doc.specialization}_${doc.district}_${doc.user?.name}`;
-          doctorsMap.set(key, doc);
+          const key = getDocKey(doc) || doc._id;
+          if (key) doctorsMap.set(key, doc);
         });
       }
 
-      // 2. Query API and merge with live backend data
+      // 2. Query API and cleanly overwrite / merge with live backend data from MongoDB
       try {
         const res = await API.get('/doctors', {
           specialization: specialty,
@@ -386,8 +395,8 @@ const PatientApp = {
         });
         if (res && res.data && res.data.length > 0) {
           res.data.forEach(apiDoc => {
-            const key = apiDoc._id || `${apiDoc.specialization}_${apiDoc.district}_${apiDoc.user?.name}`;
-            doctorsMap.set(key, apiDoc);
+            const key = getDocKey(apiDoc) || apiDoc._id;
+            if (key) doctorsMap.set(key, apiDoc);
           });
         }
       } catch (apiErr) {
@@ -395,6 +404,7 @@ const PatientApp = {
       }
 
       const allDoctors = Array.from(doctorsMap.values());
+      this.allDoctors = allDoctors;
 
       // Filter by specialty, district, and search query
       const filteredDoctors = allDoctors.filter(doc => {
@@ -408,6 +418,8 @@ const PatientApp = {
         );
         return matchSpec && matchDist && matchSearch;
       });
+
+      this.currentDoctorsList = filteredDoctors;
 
       // Update count & active specialty banners
       const countEl = document.getElementById('doctorCountBadge');
@@ -503,7 +515,13 @@ const PatientApp = {
   async openBookingModal(doctorId) {
     try {
       let doctor = null;
-      if (CONFIG.DEFAULT_DOCTORS) {
+      if (this.currentDoctorsList && this.currentDoctorsList.length > 0) {
+        doctor = this.currentDoctorsList.find(d => d._id === doctorId || d.user?.name === doctorId || d.specialization === doctorId);
+      }
+      if (!doctor && this.allDoctors && this.allDoctors.length > 0) {
+        doctor = this.allDoctors.find(d => d._id === doctorId || d.user?.name === doctorId || d.specialization === doctorId);
+      }
+      if (!doctor && CONFIG.DEFAULT_DOCTORS) {
         doctor = CONFIG.DEFAULT_DOCTORS.find(d => d._id === doctorId || d.user?.name === doctorId || d.specialization === doctorId);
       }
 
