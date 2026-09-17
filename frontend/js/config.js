@@ -734,9 +734,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Meenakshi Medical College Hospital",
-        "district": "Kanchipuram",
-        "address": "Meenakshi Medical College Hospital, Kanchipuram, Tamil Nadu",
+        "hospital": "Frontline Hospital",
+        "district": "Tiruchirappalli",
+        "address": "Frontline Hospital, Tiruchirappalli, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -756,7 +756,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 14,
-        "bio": "Certified Neurologist specialist at Meenakshi Medical College Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Frontline Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__karthik_raman_22",
@@ -767,9 +767,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Sree Renga Hospital",
-        "district": "Chengalpattu",
-        "address": "Sree Renga Hospital, Chengalpattu, Tamil Nadu",
+        "hospital": "Krishna Hospital",
+        "district": "Tirunelveli",
+        "address": "Krishna Hospital, Tirunelveli, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -789,7 +789,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 15,
-        "bio": "Certified Neurologist specialist at Sree Renga Hospital providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Krishna Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__naveen_chandran_23",
@@ -800,9 +800,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Revathi Medical Center",
-        "district": "Tiruppur",
-        "address": "Revathi Medical Center, Tiruppur, Tamil Nadu",
+        "hospital": "Scudder Memorial Hospital",
+        "district": "Vellore",
+        "address": "Scudder Memorial Hospital, Vellore, Tamil Nadu",
         "consultationFee": 850,
         "availableDays": [
             "Monday",
@@ -822,7 +822,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 16,
-        "bio": "Certified Neurologist specialist at Revathi Medical Center providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Scudder Memorial Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__harish_balan_24",
@@ -833,9 +833,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Amaravathi Hospital",
-        "district": "Karur",
-        "address": "Amaravathi Hospital, Karur, Tamil Nadu",
+        "hospital": "Kovai Medical Center Erode",
+        "district": "Erode",
+        "address": "Kovai Medical Center Erode, Erode, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -855,7 +855,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 17,
-        "bio": "Certified Neurologist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Kovai Medical Center Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__manish_gupta_25",
@@ -866,9 +866,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "MC Hospital",
-        "district": "Nagapattinam",
-        "address": "MC Hospital, Nagapattinam, Tamil Nadu",
+        "hospital": "Vallalar Hospital",
+        "district": "Thanjavur",
+        "address": "Vallalar Hospital, Thanjavur, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -888,7 +888,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 18,
-        "bio": "Certified Neurologist specialist at MC Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Vallalar Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__rohit_mehta_26",
@@ -899,9 +899,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Sri Devi Hospital",
-        "district": "Ramanathapuram",
-        "address": "Sri Devi Hospital, Ramanathapuram, Tamil Nadu",
+        "hospital": "Sree Abirami Hospital",
+        "district": "Dindigul",
+        "address": "Sree Abirami Hospital, Dindigul, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -921,7 +921,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 19,
-        "bio": "Certified Neurologist specialist at Sri Devi Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__abhinav_singh_27",
@@ -932,9 +932,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Arul Hospital",
-        "district": "Thoothukudi",
-        "address": "Arul Hospital, Thoothukudi, Tamil Nadu",
+        "hospital": "Rela Hospital Kanchipuram",
+        "district": "Kanchipuram",
+        "address": "Rela Hospital Kanchipuram, Kanchipuram, Tamil Nadu",
         "consultationFee": 850,
         "availableDays": [
             "Monday",
@@ -954,7 +954,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 20,
-        "bio": "Certified Neurologist specialist at Arul Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Rela Hospital Kanchipuram providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__arvind_krishnan_28",
@@ -965,9 +965,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "ACS Medical College Hospital",
-        "district": "Tiruvallur",
-        "address": "ACS Medical College Hospital, Tiruvallur, Tamil Nadu",
+        "hospital": "Karpaga Vinayaga Institute of Medical Sciences",
+        "district": "Chengalpattu",
+        "address": "Karpaga Vinayaga Institute of Medical Sciences, Chengalpattu, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -987,7 +987,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 21,
-        "bio": "Certified Neurologist specialist at ACS Medical College Hospital providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Karpaga Vinayaga Institute of Medical Sciences providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__sidharth_nanda_29",
@@ -998,9 +998,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Arunai Hospital",
-        "district": "Tiruvannamalai",
-        "address": "Arunai Hospital, Tiruvannamalai, Tamil Nadu",
+        "hospital": "Sri Kumaran Hospital",
+        "district": "Tiruppur",
+        "address": "Sri Kumaran Hospital, Tiruppur, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -1020,7 +1020,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 22,
-        "bio": "Certified Neurologist specialist at Arunai Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Sri Kumaran Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__tanisha_kapoor_30",
@@ -1031,9 +1031,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Arun Medical Centre",
-        "district": "Tiruvarur",
-        "address": "Arun Medical Centre, Tiruvarur, Tamil Nadu",
+        "hospital": "Amaravathi Hospital",
+        "district": "Karur",
+        "address": "Amaravathi Hospital, Karur, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -1053,7 +1053,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 8,
-        "bio": "Certified Neurologist specialist at Arun Medical Centre providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__alia_mehta_31",
