@@ -299,6 +299,26 @@ const PatientApp = {
     }
   },
 
+  mapQueryToSpecialty(query) {
+    if (!query) return null;
+    const q = query.toLowerCase().trim();
+    if (q.includes('derma') || q.includes('skin') || q.includes('rash') || q.includes('acne')) return 'Dermatologist';
+    if (q.includes('cardio') || q.includes('heart') || q.includes('cardiac') || q.includes('ecg')) return 'Cardiologist';
+    if (q.includes('neuro') || q.includes('brain') || q.includes('nerve') || q.includes('stroke') || q.includes('headache')) return 'Neurologist';
+    if (q.includes('pedia') || q.includes('child') || q.includes('baby') || q.includes('infant') || q.includes('kids')) return 'Pediatrician';
+    if (q.includes('ortho') || q.includes('bone') || q.includes('joint') || q.includes('fracture') || q.includes('knee') || q.includes('spine')) return 'Orthopedic';
+    if (q.includes('physician') || q.includes('general') || q.includes('fever') || q.includes('cold') || q.includes('flu')) return 'General Physician';
+    if (q.includes('gyne') || q.includes('women') || q.includes('pregnan') || q.includes('matern') || q.includes('femal')) return 'Gynecologist';
+    if (q.includes('ent') || q.includes('ear') || q.includes('nose') || q.includes('throat') || q.includes('sinus')) return 'ENT Specialist';
+    if (q.includes('eye') || q.includes('vision') || q.includes('ophthal') || q.includes('sight') || q.includes('cataract')) return 'Ophthalmologist';
+    if (q.includes('pulmo') || q.includes('lung') || q.includes('breath') || q.includes('asthma') || q.includes('chest')) return 'Pulmonologist';
+    if (q.includes('gastro') || q.includes('stomach') || q.includes('liver') || q.includes('digest') || q.includes('endoscopy')) return 'Gastroenterologist';
+    if (q.includes('psych') || q.includes('mind') || q.includes('mental') || q.includes('stress') || q.includes('anxiety') || q.includes('depress')) return 'Psychiatrist';
+    if (q.includes('dent') || q.includes('tooth') || q.includes('teeth') || q.includes('root canal') || q.includes('smile') || q.includes('oral')) return 'Dentist';
+    if (q.includes('uro') || q.includes('kidney') || q.includes('urin') || q.includes('prostate') || q.includes('stone')) return 'Urologist';
+    return null;
+  },
+
   async loadDoctors() {
     const container = document.getElementById('doctorListContainer');
     if (!container) return;
@@ -307,13 +327,22 @@ const PatientApp = {
     const district = document.getElementById('filterDistrict')?.value || 'All';
     const search = (document.getElementById('searchDoctorQuery')?.value || '').trim();
 
-    // If user typed a search term matching a specialty, auto-adjust
+    // Check if user search query matches a known specialist type or condition
     if (search) {
-      const matchSpec = CONFIG.SPECIALIZATIONS.find(s => s.toLowerCase() === search.toLowerCase() || search.toLowerCase().includes(s.toLowerCase()));
-      if (matchSpec) {
-        specialty = matchSpec;
+      const mapped = this.mapQueryToSpecialty(search);
+      if (mapped) {
+        specialty = mapped;
         const sel = document.getElementById('filterSpecialty');
-        if (sel) sel.value = matchSpec;
+        if (sel) sel.value = mapped;
+
+        // Sync active chip
+        document.querySelectorAll('.specialty-chip-btn').forEach(btn => {
+          if (btn.textContent.toLowerCase().includes(mapped.toLowerCase())) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
       }
     }
 
@@ -322,11 +351,11 @@ const PatientApp = {
     try {
       const doctorsMap = new Map();
 
-      // 1. Pre-load default 140 comprehensive doctor profiles (10 per specialty across 10 districts)
+      // 1. Pre-load default 140 comprehensive doctor profiles (10 per specialty across 10 distinct districts)
       if (CONFIG.DEFAULT_DOCTORS && CONFIG.DEFAULT_DOCTORS.length > 0) {
         CONFIG.DEFAULT_DOCTORS.forEach(doc => {
-          const key = (doc.user?.name || '').trim().toLowerCase();
-          if (key) doctorsMap.set(key, doc);
+          const key = doc._id || `${doc.specialization}_${doc.district}_${doc.user?.name}`;
+          doctorsMap.set(key, doc);
         });
       }
 
@@ -339,12 +368,8 @@ const PatientApp = {
         });
         if (res && res.data && res.data.length > 0) {
           res.data.forEach(apiDoc => {
-            const key = (apiDoc.user?.name || '').trim().toLowerCase();
-            if (key) {
-              doctorsMap.set(key, apiDoc);
-            } else if (apiDoc._id) {
-              doctorsMap.set(apiDoc._id, apiDoc);
-            }
+            const key = apiDoc._id || `${apiDoc.specialization}_${apiDoc.district}_${apiDoc.user?.name}`;
+            doctorsMap.set(key, apiDoc);
           });
         }
       } catch (apiErr) {
@@ -357,7 +382,7 @@ const PatientApp = {
       const filteredDoctors = allDoctors.filter(doc => {
         const matchSpec = (specialty === 'All' || doc.specialization === specialty);
         const matchDist = (district === 'All' || doc.district === district);
-        const matchSearch = (!search || 
+        const matchSearch = (!search || this.mapQueryToSpecialty(search) ||
           (doc.user?.name && doc.user.name.toLowerCase().includes(search.toLowerCase())) ||
           (doc.hospital && doc.hospital.toLowerCase().includes(search.toLowerCase())) ||
           (doc.specialization && doc.specialization.toLowerCase().includes(search.toLowerCase())) ||
@@ -378,13 +403,35 @@ const PatientApp = {
           <div class="col-12 text-center py-5 bg-white rounded-4 border">
             <i class="fa-solid fa-user-doctor text-muted fs-1 mb-3"></i>
             <h5 class="text-dark">No specialists found matching criteria</h5>
-            <p class="text-muted small">Try selecting another specialty or Tamil Nadu district filter.</p>
+            <p class="text-muted small">Try searching another specialist (e.g. Dermatologist, Cardiologist, Neurologist) or clearing filters.</p>
           </div>
         `;
         return;
       }
 
-      container.innerHTML = filteredDoctors.map(doc => `
+      // Extract unique districts represented in the results
+      const districtsList = Array.from(new Set(filteredDoctors.map(d => d.district))).join(', ');
+
+      const bannerHtml = `
+        <div class="col-12 mb-3">
+          <div class="card border-0 bg-primary-subtle p-3 rounded-4 shadow-sm">
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+              <div class="d-flex align-items-center gap-2">
+                <i class="fa-solid fa-map-location-dot fs-3 text-primary"></i>
+                <div>
+                  <h6 class="fw-bold mb-0 text-dark">
+                    Found ${filteredDoctors.length} Verified ${specialty === 'All' ? '' : specialty} Specialists across ${Array.from(new Set(filteredDoctors.map(d => d.district))).length} Tamil Nadu Districts
+                  </h6>
+                  <small class="text-muted">Districts: <strong>${districtsList}</strong></small>
+                </div>
+              </div>
+              <span class="badge bg-primary px-3 py-2 rounded-pill">${filteredDoctors.length} Specialists Available</span>
+            </div>
+          </div>
+        </div>
+      `;
+
+      const cardsHtml = filteredDoctors.map((doc, idx) => `
         <div class="col-md-6 col-xl-4 mb-4">
           <div class="doctor-portal-card">
             <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
@@ -395,7 +442,7 @@ const PatientApp = {
                 </div>
                 <div>
                   <h5 class="fw-bold mb-0 text-dark" style="font-size: 1.05rem;">${doc.user?.name || 'Doctor'}</h5>
-                  <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill small mt-1">${doc.specialization}</span>
+                  <span class="badge bg-primary text-white rounded-pill small mt-1">${doc.specialization}</span>
                 </div>
               </div>
               <div class="doctor-fee-badge text-nowrap">
@@ -406,7 +453,7 @@ const PatientApp = {
             <div class="doctor-detail-box">
               <div class="d-flex justify-content-between align-items-center mb-1">
                 <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
-                <span class="district-badge-chip"><i class="fa-solid fa-map-pin"></i> ${doc.district}</span>
+                <span class="district-badge-chip"><i class="fa-solid fa-map-pin"></i> <strong>${doc.district}</strong></span>
               </div>
               <div class="d-flex justify-content-between mb-1">
                 <span class="text-muted"><i class="fa-solid fa-hospital me-1 text-info"></i> Hospital:</span>
@@ -423,11 +470,13 @@ const PatientApp = {
             </p>
 
             <button class="btn-book-doctor" onclick="PatientApp.openBookingModal('${doc._id || doc.user?.name}')">
-              <i class="fa-solid fa-calendar-plus"></i> Book Appointment
+              <i class="fa-solid fa-calendar-plus"></i> Book Consultation
             </button>
           </div>
         </div>
       `).join('');
+
+      container.innerHTML = bannerHtml + cardsHtml;
     } catch (e) {
       container.innerHTML = '<div class="col-12 text-center text-danger py-4">Failed to load doctor directory.</div>';
     }
