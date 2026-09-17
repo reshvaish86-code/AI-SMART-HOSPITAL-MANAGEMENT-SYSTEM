@@ -1,6 +1,6 @@
 /**
  * AI Smart Hospital Management System - Frontend Configuration
- * Includes Full 220 Doctor Roster across 22 Medical Specialties & All 38 Tamil Nadu Districts
+ * 22 Medical Specialties across 22 Selected Tamil Nadu Districts & Leading Private Hospitals (220 Doctors)
  */
 
 // Live Render Backend API URL
@@ -51,31 +51,15 @@ const CONFIG = {
     "Kanchipuram",
     "Chengalpattu",
     "Tiruppur",
-    "Cuddalore",
     "Karur",
     "Nagapattinam",
-    "Namakkal",
-    "Nilgiris",
-    "Pudukkottai",
     "Ramanathapuram",
-    "Sivaganga",
-    "Tenkasi",
-    "Theni",
     "Thoothukudi",
     "Tiruvallur",
     "Tiruvannamalai",
     "Tiruvarur",
-    "Ranipet",
-    "Tirupattur",
-    "Viluppuram",
-    "Virudhunagar",
-    "Krishnagiri",
-    "Dharmapuri",
-    "Ariyalur",
-    "Perambalur",
-    "Kallakurichi",
-    "Mayiladuthurai",
-    "Kanniyakumari"
+    "Villupuram",
+    "Perambalur"
 ],
 
   CLINICAL_DISCLAIMER: '⚠️ IMPORTANT MEDICAL DISCLAIMER: This AI Health Assistant provides preliminary triage, educational guidance, and specialist recommendations only. It is NOT a certified medical practitioner, diagnostic device, or substitute for professional clinical judgment. If you are experiencing an emergency, call 108/112 or visit the nearest emergency department immediately.',
@@ -90,9 +74,9 @@ const CONFIG = {
         },
         "specialization": "General Physician",
         "qualification": "MBBS, MD (General Medicine)",
-        "hospital": "Apollo Hospitals, Greams Road",
+        "hospital": "Apollo Hospitals Greams Lane",
         "district": "Chennai",
-        "address": "Apollo Hospitals, Greams Road, Chennai, Tamil Nadu",
+        "address": "Apollo Hospitals Greams Lane, Chennai, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -112,7 +96,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 9,
-        "bio": "Certified General Physician specialist at Apollo Hospitals, Greams Road providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+        "bio": "Certified General Physician specialist at Apollo Hospitals Greams Lane providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kiara_kapoor_2",
@@ -123,9 +107,9 @@ const CONFIG = {
         },
         "specialization": "General Physician",
         "qualification": "MBBS, MD (General Medicine)",
-        "hospital": "PSG Hospitals, Peelamedu",
+        "hospital": "Sri Ramakrishna Hospital",
         "district": "Coimbatore",
-        "address": "PSG Hospitals, Peelamedu, Coimbatore, Tamil Nadu",
+        "address": "Sri Ramakrishna Hospital, Coimbatore, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -145,7 +129,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 10,
-        "bio": "Certified General Physician specialist at PSG Hospitals, Peelamedu providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+        "bio": "Certified General Physician specialist at Sri Ramakrishna Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__vihaan_malhotra_3",
@@ -156,9 +140,9 @@ const CONFIG = {
         },
         "specialization": "General Physician",
         "qualification": "MBBS, MD (General Medicine)",
-        "hospital": "Government Rajaji Hospital & Medical College",
+        "hospital": "Guru Hospital",
         "district": "Madurai",
-        "address": "Government Rajaji Hospital & Medical College, Madurai, Tamil Nadu",
+        "address": "Guru Hospital, Madurai, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -178,7 +162,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 11,
-        "bio": "Certified General Physician specialist at Government Rajaji Hospital & Medical College providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+        "bio": "Certified General Physician specialist at Guru Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__pooja_bansal_4",
@@ -189,9 +173,9 @@ const CONFIG = {
         },
         "specialization": "General Physician",
         "qualification": "MBBS, MD (General Medicine)",
-        "hospital": "Manipal Hospitals, Dalmia Board",
+        "hospital": "Sri Gokulam Hospital",
         "district": "Salem",
-        "address": "Manipal Hospitals, Dalmia Board, Salem, Tamil Nadu",
+        "address": "Sri Gokulam Hospital, Salem, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -211,7 +195,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 12,
-        "bio": "Certified General Physician specialist at Manipal Hospitals, Dalmia Board providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+        "bio": "Certified General Physician specialist at Sri Gokulam Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__riaan_chawla_5",
@@ -222,9 +206,9 @@ const CONFIG = {
         },
         "specialization": "General Physician",
         "qualification": "MBBS, MD (General Medicine)",
-        "hospital": "Kauvery Hospital, Cantonment",
+        "hospital": "ABC Hospital",
         "district": "Tiruchirappalli",
-        "address": "Kauvery Hospital, Cantonment, Tiruchirappalli, Tamil Nadu",
+        "address": "ABC Hospital, Tiruchirappalli, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -244,7 +228,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 13,
-        "bio": "Certified General Physician specialist at Kauvery Hospital, Cantonment providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+        "bio": "Certified General Physician specialist at ABC Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__alia_advani_6",
@@ -255,9 +239,9 @@ const CONFIG = {
         },
         "specialization": "General Physician",
         "qualification": "MBBS, MD (General Medicine)",
-        "hospital": "Tirunelveli Medical College Hospital, High Ground",
+        "hospital": "Shifa Hospital",
         "district": "Tirunelveli",
-        "address": "Tirunelveli Medical College Hospital, High Ground, Tirunelveli, Tamil Nadu",
+        "address": "Shifa Hospital, Tirunelveli, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -277,7 +261,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 14,
-        "bio": "Certified General Physician specialist at Tirunelveli Medical College Hospital, High Ground providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+        "bio": "Certified General Physician specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__reyansh_mehta_7",
@@ -288,9 +272,9 @@ const CONFIG = {
         },
         "specialization": "General Physician",
         "qualification": "MBBS, MD (General Medicine)",
-        "hospital": "Christian Medical College (CMC) Hospital, Ida Scudder Road",
+        "hospital": "Sri Narayani Hospital & Research Centre",
         "district": "Vellore",
-        "address": "Christian Medical College (CMC) Hospital, Ida Scudder Road, Vellore, Tamil Nadu",
+        "address": "Sri Narayani Hospital & Research Centre, Vellore, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -310,7 +294,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 15,
-        "bio": "Certified General Physician specialist at Christian Medical College (CMC) Hospital, Ida Scudder Road providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+        "bio": "Certified General Physician specialist at Sri Narayani Hospital & Research Centre providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__shruthi_menon_8",
@@ -321,9 +305,9 @@ const CONFIG = {
         },
         "specialization": "General Physician",
         "qualification": "MBBS, MD (General Medicine)",
-        "hospital": "Government Erode Medical College Hospital, Perundurai",
+        "hospital": "Kovai Medical Center Erode",
         "district": "Erode",
-        "address": "Government Erode Medical College Hospital, Perundurai, Erode, Tamil Nadu",
+        "address": "Kovai Medical Center Erode, Erode, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -343,7 +327,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 16,
-        "bio": "Certified General Physician specialist at Government Erode Medical College Hospital, Perundurai providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+        "bio": "Certified General Physician specialist at Kovai Medical Center Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__advik_khanna_9",
@@ -354,9 +338,9 @@ const CONFIG = {
         },
         "specialization": "General Physician",
         "qualification": "MBBS, MD (General Medicine)",
-        "hospital": "Thanjavur Medical College Hospital, Medical College Road",
+        "hospital": "New Raja Hospital",
         "district": "Thanjavur",
-        "address": "Thanjavur Medical College Hospital, Medical College Road, Thanjavur, Tamil Nadu",
+        "address": "New Raja Hospital, Thanjavur, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -376,7 +360,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 17,
-        "bio": "Certified General Physician specialist at Thanjavur Medical College Hospital, Medical College Road providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+        "bio": "Certified General Physician specialist at New Raja Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__myra_sethi_10",
@@ -387,9 +371,9 @@ const CONFIG = {
         },
         "specialization": "General Physician",
         "qualification": "MBBS, MD (General Medicine)",
-        "hospital": "Government District Headquarters Hospital, Dindigul",
+        "hospital": "Sree Abirami Hospital",
         "district": "Dindigul",
-        "address": "Government District Headquarters Hospital, Dindigul, Dindigul, Tamil Nadu",
+        "address": "Sree Abirami Hospital, Dindigul, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -409,7 +393,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 18,
-        "bio": "Certified General Physician specialist at Government District Headquarters Hospital, Dindigul providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+        "bio": "Certified General Physician specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kareena_khanna_11",
@@ -420,9 +404,9 @@ const CONFIG = {
         },
         "specialization": "Cardiologist",
         "qualification": "MBBS, MD, DM (Cardiology)",
-        "hospital": "Government Erode Medical College Hospital, Perundurai",
-        "district": "Erode",
-        "address": "Government Erode Medical College Hospital, Perundurai, Erode, Tamil Nadu",
+        "hospital": "Shifa Hospital",
+        "district": "Tirunelveli",
+        "address": "Shifa Hospital, Tirunelveli, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -442,7 +426,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 19,
-        "bio": "Certified Cardiologist specialist at Government Erode Medical College Hospital, Perundurai providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+        "bio": "Certified Cardiologist specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__arush_kapoor_12",
@@ -453,9 +437,9 @@ const CONFIG = {
         },
         "specialization": "Cardiologist",
         "qualification": "MBBS, MD, DM (Cardiology)",
-        "hospital": "Thanjavur Medical College Hospital, Medical College Road",
-        "district": "Thanjavur",
-        "address": "Thanjavur Medical College Hospital, Medical College Road, Thanjavur, Tamil Nadu",
+        "hospital": "Sri Narayani Hospital & Research Centre",
+        "district": "Vellore",
+        "address": "Sri Narayani Hospital & Research Centre, Vellore, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -475,7 +459,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 20,
-        "bio": "Certified Cardiologist specialist at Thanjavur Medical College Hospital, Medical College Road providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+        "bio": "Certified Cardiologist specialist at Sri Narayani Hospital & Research Centre providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__deepika_malhotra_13",
@@ -486,9 +470,9 @@ const CONFIG = {
         },
         "specialization": "Cardiologist",
         "qualification": "MBBS, MD, DM (Cardiology)",
-        "hospital": "Government District Headquarters Hospital, Dindigul",
-        "district": "Dindigul",
-        "address": "Government District Headquarters Hospital, Dindigul, Dindigul, Tamil Nadu",
+        "hospital": "Kovai Medical Center Erode",
+        "district": "Erode",
+        "address": "Kovai Medical Center Erode, Erode, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -508,7 +492,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 21,
-        "bio": "Certified Cardiologist specialist at Government District Headquarters Hospital, Dindigul providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+        "bio": "Certified Cardiologist specialist at Kovai Medical Center Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__zayan_siddiqui_14",
@@ -519,9 +503,9 @@ const CONFIG = {
         },
         "specialization": "Cardiologist",
         "qualification": "MBBS, MD, DM (Cardiology)",
-        "hospital": "Arignar Anna Memorial Cancer Hospital & Research Institute",
-        "district": "Kanchipuram",
-        "address": "Arignar Anna Memorial Cancer Hospital & Research Institute, Kanchipuram, Tamil Nadu",
+        "hospital": "New Raja Hospital",
+        "district": "Thanjavur",
+        "address": "New Raja Hospital, Thanjavur, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -541,7 +525,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 22,
-        "bio": "Certified Cardiologist specialist at Arignar Anna Memorial Cancer Hospital & Research Institute providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+        "bio": "Certified Cardiologist specialist at New Raja Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kriti_mehra_15",
@@ -552,9 +536,9 @@ const CONFIG = {
         },
         "specialization": "Cardiologist",
         "qualification": "MBBS, MD, DM (Cardiology)",
-        "hospital": "Chengalpattu Government Medical College Hospital, GST Road",
-        "district": "Chengalpattu",
-        "address": "Chengalpattu Government Medical College Hospital, GST Road, Chengalpattu, Tamil Nadu",
+        "hospital": "Muthu Meenakshi Hospitals",
+        "district": "Dindigul",
+        "address": "Muthu Meenakshi Hospitals, Dindigul, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -574,7 +558,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 8,
-        "bio": "Certified Cardiologist specialist at Chengalpattu Government Medical College Hospital, GST Road providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+        "bio": "Certified Cardiologist specialist at Muthu Meenakshi Hospitals providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ahan_oberoi_16",
@@ -585,9 +569,9 @@ const CONFIG = {
         },
         "specialization": "Cardiologist",
         "qualification": "MBBS, MD, DM (Cardiology)",
-        "hospital": "Government Medical College Hospital, Tiruppur",
-        "district": "Tiruppur",
-        "address": "Government Medical College Hospital, Tiruppur, Tiruppur, Tamil Nadu",
+        "hospital": "Sri Sankara Hospital",
+        "district": "Kanchipuram",
+        "address": "Sri Sankara Hospital, Kanchipuram, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -607,7 +591,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 9,
-        "bio": "Certified Cardiologist specialist at Government Medical College Hospital, Tiruppur providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+        "bio": "Certified Cardiologist specialist at Sri Sankara Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__catherine_fernandes_17",
@@ -618,9 +602,9 @@ const CONFIG = {
         },
         "specialization": "Cardiologist",
         "qualification": "MBBS, MD, DM (Cardiology)",
-        "hospital": "Government Headquarters Hospital, Cuddalore",
-        "district": "Cuddalore",
-        "address": "Government Headquarters Hospital, Cuddalore, Cuddalore, Tamil Nadu",
+        "hospital": "Rela Institute & Medical Centre",
+        "district": "Chengalpattu",
+        "address": "Rela Institute & Medical Centre, Chengalpattu, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -640,7 +624,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 10,
-        "bio": "Certified Cardiologist specialist at Government Headquarters Hospital, Cuddalore providing comprehensive clinical healthcare for patients in Cuddalore and across Tamil Nadu."
+        "bio": "Certified Cardiologist specialist at Rela Institute & Medical Centre providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__nivaan_arora_18",
@@ -651,9 +635,9 @@ const CONFIG = {
         },
         "specialization": "Cardiologist",
         "qualification": "MBBS, MD, DM (Cardiology)",
-        "hospital": "Government Medical College Hospital, Gandhigramam, Karur",
-        "district": "Karur",
-        "address": "Government Medical College Hospital, Gandhigramam, Karur, Karur, Tamil Nadu",
+        "hospital": "Sree Abirami Hospital",
+        "district": "Tiruppur",
+        "address": "Sree Abirami Hospital, Tiruppur, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -673,7 +657,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 11,
-        "bio": "Certified Cardiologist specialist at Government Medical College Hospital, Gandhigramam, Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+        "bio": "Certified Cardiologist specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__tara_kapoor_19",
@@ -684,9 +668,9 @@ const CONFIG = {
         },
         "specialization": "Cardiologist",
         "qualification": "MBBS, MD, DM (Cardiology)",
-        "hospital": "Government District Headquarters Hospital, Nagapattinam",
-        "district": "Nagapattinam",
-        "address": "Government District Headquarters Hospital, Nagapattinam, Nagapattinam, Tamil Nadu",
+        "hospital": "Amaravathi Hospital",
+        "district": "Karur",
+        "address": "Amaravathi Hospital, Karur, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -706,7 +690,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 12,
-        "bio": "Certified Cardiologist specialist at Government District Headquarters Hospital, Nagapattinam providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+        "bio": "Certified Cardiologist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__reyansh_khurana_20",
@@ -717,9 +701,9 @@ const CONFIG = {
         },
         "specialization": "Cardiologist",
         "qualification": "MBBS, MD, DM (Cardiology)",
-        "hospital": "Government Medical College Hospital, Namakkal",
-        "district": "Namakkal",
-        "address": "Government Medical College Hospital, Namakkal, Namakkal, Tamil Nadu",
+        "hospital": "MC Hospital",
+        "district": "Nagapattinam",
+        "address": "MC Hospital, Nagapattinam, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -739,7 +723,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 13,
-        "bio": "Certified Cardiologist specialist at Government Medical College Hospital, Namakkal providing comprehensive clinical healthcare for patients in Namakkal and across Tamil Nadu."
+        "bio": "Certified Cardiologist specialist at MC Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__rayaan_kapoor_21",
@@ -750,9 +734,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Government Medical College Hospital, Gandhigramam, Karur",
-        "district": "Karur",
-        "address": "Government Medical College Hospital, Gandhigramam, Karur, Karur, Tamil Nadu",
+        "hospital": "Meenakshi Medical College Hospital",
+        "district": "Kanchipuram",
+        "address": "Meenakshi Medical College Hospital, Kanchipuram, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -772,7 +756,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 14,
-        "bio": "Certified Neurologist specialist at Government Medical College Hospital, Gandhigramam, Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Meenakshi Medical College Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__karthik_raman_22",
@@ -783,9 +767,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Government District Headquarters Hospital, Nagapattinam",
-        "district": "Nagapattinam",
-        "address": "Government District Headquarters Hospital, Nagapattinam, Nagapattinam, Tamil Nadu",
+        "hospital": "Sree Renga Hospital",
+        "district": "Chengalpattu",
+        "address": "Sree Renga Hospital, Chengalpattu, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -805,7 +789,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 15,
-        "bio": "Certified Neurologist specialist at Government District Headquarters Hospital, Nagapattinam providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Sree Renga Hospital providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__naveen_chandran_23",
@@ -816,9 +800,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Government Medical College Hospital, Namakkal",
-        "district": "Namakkal",
-        "address": "Government Medical College Hospital, Namakkal, Namakkal, Tamil Nadu",
+        "hospital": "Revathi Medical Center",
+        "district": "Tiruppur",
+        "address": "Revathi Medical Center, Tiruppur, Tamil Nadu",
         "consultationFee": 850,
         "availableDays": [
             "Monday",
@@ -838,7 +822,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 16,
-        "bio": "Certified Neurologist specialist at Government Medical College Hospital, Namakkal providing comprehensive clinical healthcare for patients in Namakkal and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Revathi Medical Center providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__harish_balan_24",
@@ -849,9 +833,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Government Medical College & District Hospital, Ooty",
-        "district": "Nilgiris",
-        "address": "Government Medical College & District Hospital, Ooty, Nilgiris, Tamil Nadu",
+        "hospital": "Sri Velavan Hospital",
+        "district": "Karur",
+        "address": "Sri Velavan Hospital, Karur, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -871,7 +855,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 17,
-        "bio": "Certified Neurologist specialist at Government Medical College & District Hospital, Ooty providing comprehensive clinical healthcare for patients in Nilgiris and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Sri Velavan Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__manish_gupta_25",
@@ -882,9 +866,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Government Medical College Hospital, Pudukkottai",
-        "district": "Pudukkottai",
-        "address": "Government Medical College Hospital, Pudukkottai, Pudukkottai, Tamil Nadu",
+        "hospital": "Naganathar Hospital",
+        "district": "Nagapattinam",
+        "address": "Naganathar Hospital, Nagapattinam, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -904,7 +888,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 18,
-        "bio": "Certified Neurologist specialist at Government Medical College Hospital, Pudukkottai providing comprehensive clinical healthcare for patients in Pudukkottai and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__rohit_mehta_26",
@@ -915,9 +899,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Government Medical College Hospital, Ramanathapuram",
+        "hospital": "Sri Devi Hospital",
         "district": "Ramanathapuram",
-        "address": "Government Medical College Hospital, Ramanathapuram, Ramanathapuram, Tamil Nadu",
+        "address": "Sri Devi Hospital, Ramanathapuram, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -937,7 +921,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 19,
-        "bio": "Certified Neurologist specialist at Government Medical College Hospital, Ramanathapuram providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Sri Devi Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__abhinav_singh_27",
@@ -948,9 +932,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Government Medical College Hospital, Sivaganga",
-        "district": "Sivaganga",
-        "address": "Government Medical College Hospital, Sivaganga, Sivaganga, Tamil Nadu",
+        "hospital": "Arul Hospital",
+        "district": "Thoothukudi",
+        "address": "Arul Hospital, Thoothukudi, Tamil Nadu",
         "consultationFee": 850,
         "availableDays": [
             "Monday",
@@ -970,7 +954,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 20,
-        "bio": "Certified Neurologist specialist at Government Medical College Hospital, Sivaganga providing comprehensive clinical healthcare for patients in Sivaganga and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Arul Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__arvind_krishnan_28",
@@ -981,9 +965,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Government District Headquarters Hospital, Tenkasi",
-        "district": "Tenkasi",
-        "address": "Government District Headquarters Hospital, Tenkasi, Tenkasi, Tamil Nadu",
+        "hospital": "ACS Medical College Hospital",
+        "district": "Tiruvallur",
+        "address": "ACS Medical College Hospital, Tiruvallur, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -1003,7 +987,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 21,
-        "bio": "Certified Neurologist specialist at Government District Headquarters Hospital, Tenkasi providing comprehensive clinical healthcare for patients in Tenkasi and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at ACS Medical College Hospital providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__sidharth_nanda_29",
@@ -1014,9 +998,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Government Theni Medical College & Hospital, Kanavilku",
-        "district": "Theni",
-        "address": "Government Theni Medical College & Hospital, Kanavilku, Theni, Tamil Nadu",
+        "hospital": "Arunai Hospital",
+        "district": "Tiruvannamalai",
+        "address": "Arunai Hospital, Tiruvannamalai, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -1036,7 +1020,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 22,
-        "bio": "Certified Neurologist specialist at Government Theni Medical College & Hospital, Kanavilku providing comprehensive clinical healthcare for patients in Theni and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Arunai Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__tanisha_kapoor_30",
@@ -1047,9 +1031,9 @@ const CONFIG = {
         },
         "specialization": "Neurologist",
         "qualification": "MBBS, MD, DM (Neurology)",
-        "hospital": "Government Medical College Hospital, Thoothukudi",
-        "district": "Thoothukudi",
-        "address": "Government Medical College Hospital, Thoothukudi, Thoothukudi, Tamil Nadu",
+        "hospital": "Lakshana Hospital",
+        "district": "Tiruvarur",
+        "address": "Lakshana Hospital, Tiruvarur, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -1069,7 +1053,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 8,
-        "bio": "Certified Neurologist specialist at Government Medical College Hospital, Thoothukudi providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+        "bio": "Certified Neurologist specialist at Lakshana Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__alia_mehta_31",
@@ -1080,9 +1064,9 @@ const CONFIG = {
         },
         "specialization": "Nephrologist",
         "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
-        "hospital": "Government District Headquarters Hospital, Tenkasi",
-        "district": "Tenkasi",
-        "address": "Government District Headquarters Hospital, Tenkasi, Tenkasi, Tamil Nadu",
+        "hospital": "Ramnad Hospital",
+        "district": "Ramanathapuram",
+        "address": "Ramnad Hospital, Ramanathapuram, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -1102,7 +1086,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 9,
-        "bio": "Certified Nephrologist specialist at Government District Headquarters Hospital, Tenkasi providing comprehensive clinical healthcare for patients in Tenkasi and across Tamil Nadu."
+        "bio": "Certified Nephrologist specialist at Ramnad Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__vihaan_khurana_32",
@@ -1113,9 +1097,9 @@ const CONFIG = {
         },
         "specialization": "Nephrologist",
         "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
-        "hospital": "Government Theni Medical College & Hospital, Kanavilku",
-        "district": "Theni",
-        "address": "Government Theni Medical College & Hospital, Kanavilku, Theni, Tamil Nadu",
+        "hospital": "Arul Hospital",
+        "district": "Thoothukudi",
+        "address": "Arul Hospital, Thoothukudi, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -1135,7 +1119,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 10,
-        "bio": "Certified Nephrologist specialist at Government Theni Medical College & Hospital, Kanavilku providing comprehensive clinical healthcare for patients in Theni and across Tamil Nadu."
+        "bio": "Certified Nephrologist specialist at Arul Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__malavika_sethi_33",
@@ -1146,9 +1130,9 @@ const CONFIG = {
         },
         "specialization": "Nephrologist",
         "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
-        "hospital": "Government Medical College Hospital, Thoothukudi",
-        "district": "Thoothukudi",
-        "address": "Government Medical College Hospital, Thoothukudi, Thoothukudi, Tamil Nadu",
+        "hospital": "Ramachandra Hospital network facilities",
+        "district": "Tiruvallur",
+        "address": "Ramachandra Hospital network facilities, Tiruvallur, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -1168,7 +1152,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 11,
-        "bio": "Certified Nephrologist specialist at Government Medical College Hospital, Thoothukudi providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+        "bio": "Certified Nephrologist specialist at Ramachandra Hospital network facilities providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__aarav_bansal_34",
@@ -1179,9 +1163,9 @@ const CONFIG = {
         },
         "specialization": "Nephrologist",
         "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
-        "hospital": "Government Medical College Hospital, Tiruvallur",
-        "district": "Tiruvallur",
-        "address": "Government Medical College Hospital, Tiruvallur, Tiruvallur, Tamil Nadu",
+        "hospital": "Sri Ramana Hospital",
+        "district": "Tiruvannamalai",
+        "address": "Sri Ramana Hospital, Tiruvannamalai, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -1201,7 +1185,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 12,
-        "bio": "Certified Nephrologist specialist at Government Medical College Hospital, Tiruvallur providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
+        "bio": "Certified Nephrologist specialist at Sri Ramana Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kiara_mehra_35",
@@ -1212,9 +1196,9 @@ const CONFIG = {
         },
         "specialization": "Nephrologist",
         "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
-        "hospital": "Government Medical College Hospital, Tiruvannamalai",
-        "district": "Tiruvannamalai",
-        "address": "Government Medical College Hospital, Tiruvannamalai, Tiruvannamalai, Tamil Nadu",
+        "hospital": "Arun Medical Centre",
+        "district": "Tiruvarur",
+        "address": "Arun Medical Centre, Tiruvarur, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -1234,7 +1218,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 13,
-        "bio": "Certified Nephrologist specialist at Government Medical College Hospital, Tiruvannamalai providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
+        "bio": "Certified Nephrologist specialist at Arun Medical Centre providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__zoya_kapoor_36",
@@ -1245,9 +1229,9 @@ const CONFIG = {
         },
         "specialization": "Nephrologist",
         "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
-        "hospital": "Government Tiruvarur Medical College Hospital, Vilamal",
-        "district": "Tiruvarur",
-        "address": "Government Tiruvarur Medical College Hospital, Vilamal, Tiruvarur, Tamil Nadu",
+        "hospital": "Muthu Hospital",
+        "district": "Villupuram",
+        "address": "Muthu Hospital, Villupuram, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -1267,7 +1251,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 14,
-        "bio": "Certified Nephrologist specialist at Government Tiruvarur Medical College Hospital, Vilamal providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+        "bio": "Certified Nephrologist specialist at Muthu Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__riaan_malhotra_37",
@@ -1278,9 +1262,9 @@ const CONFIG = {
         },
         "specialization": "Nephrologist",
         "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
-        "hospital": "Government Headquarters Hospital, Ranipet",
-        "district": "Ranipet",
-        "address": "Government Headquarters Hospital, Ranipet, Ranipet, Tamil Nadu",
+        "hospital": "Dhanalakshmi Srinivasan Medical College Hospital",
+        "district": "Perambalur",
+        "address": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -1300,7 +1284,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 15,
-        "bio": "Certified Nephrologist specialist at Government Headquarters Hospital, Ranipet providing comprehensive clinical healthcare for patients in Ranipet and across Tamil Nadu."
+        "bio": "Certified Nephrologist specialist at Dhanalakshmi Srinivasan Medical College Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__shobana_krishnan_38",
@@ -1311,9 +1295,9 @@ const CONFIG = {
         },
         "specialization": "Nephrologist",
         "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
-        "hospital": "Government Headquarters Hospital, Tirupattur",
-        "district": "Tirupattur",
-        "address": "Government Headquarters Hospital, Tirupattur, Tirupattur, Tamil Nadu",
+        "hospital": "Dr. Mehta's Hospitals",
+        "district": "Chennai",
+        "address": "Dr. Mehta's Hospitals, Chennai, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -1333,7 +1317,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 16,
-        "bio": "Certified Nephrologist specialist at Government Headquarters Hospital, Tirupattur providing comprehensive clinical healthcare for patients in Tirupattur and across Tamil Nadu."
+        "bio": "Certified Nephrologist specialist at Dr. Mehta's Hospitals providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__advik_suri_39",
@@ -1344,9 +1328,9 @@ const CONFIG = {
         },
         "specialization": "Nephrologist",
         "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
-        "hospital": "Government Medical College Hospital, Mundiyampakkam, Viluppuram",
-        "district": "Viluppuram",
-        "address": "Government Medical College Hospital, Mundiyampakkam, Viluppuram, Viluppuram, Tamil Nadu",
+        "hospital": "Ganga Hospital",
+        "district": "Coimbatore",
+        "address": "Ganga Hospital, Coimbatore, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -1366,7 +1350,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 17,
-        "bio": "Certified Nephrologist specialist at Government Medical College Hospital, Mundiyampakkam, Viluppuram providing comprehensive clinical healthcare for patients in Viluppuram and across Tamil Nadu."
+        "bio": "Certified Nephrologist specialist at Ganga Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__anaya_chawla_40",
@@ -1377,9 +1361,9 @@ const CONFIG = {
         },
         "specialization": "Nephrologist",
         "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
-        "hospital": "Government Medical College Hospital, Virudhunagar",
-        "district": "Virudhunagar",
-        "address": "Government Medical College Hospital, Virudhunagar, Virudhunagar, Tamil Nadu",
+        "hospital": "Vadamalayan Hospital",
+        "district": "Madurai",
+        "address": "Vadamalayan Hospital, Madurai, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -1399,7 +1383,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 18,
-        "bio": "Certified Nephrologist specialist at Government Medical College Hospital, Virudhunagar providing comprehensive clinical healthcare for patients in Virudhunagar and across Tamil Nadu."
+        "bio": "Certified Nephrologist specialist at Vadamalayan Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__zendaya_thomas_41",
@@ -1410,9 +1394,9 @@ const CONFIG = {
         },
         "specialization": "Psychiatrist",
         "qualification": "MBBS, MD, DPM (Psychiatry)",
-        "hospital": "Government Headquarters Hospital, Tirupattur",
-        "district": "Tirupattur",
-        "address": "Government Headquarters Hospital, Tirupattur, Tirupattur, Tamil Nadu",
+        "hospital": "VIMS Hospital",
+        "district": "Villupuram",
+        "address": "VIMS Hospital, Villupuram, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -1432,7 +1416,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 19,
-        "bio": "Certified Psychiatrist specialist at Government Headquarters Hospital, Tirupattur providing comprehensive clinical healthcare for patients in Tirupattur and across Tamil Nadu."
+        "bio": "Certified Psychiatrist specialist at VIMS Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kabir_khanna_42",
@@ -1443,9 +1427,9 @@ const CONFIG = {
         },
         "specialization": "Psychiatrist",
         "qualification": "MBBS, MD, DPM (Psychiatry)",
-        "hospital": "Government Medical College Hospital, Mundiyampakkam, Viluppuram",
-        "district": "Viluppuram",
-        "address": "Government Medical College Hospital, Mundiyampakkam, Viluppuram, Viluppuram, Tamil Nadu",
+        "hospital": "Sri Lakshmi Hospital",
+        "district": "Perambalur",
+        "address": "Sri Lakshmi Hospital, Perambalur, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -1465,7 +1449,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 20,
-        "bio": "Certified Psychiatrist specialist at Government Medical College Hospital, Mundiyampakkam, Viluppuram providing comprehensive clinical healthcare for patients in Viluppuram and across Tamil Nadu."
+        "bio": "Certified Psychiatrist specialist at Sri Lakshmi Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__deepika_anand_43",
@@ -1476,9 +1460,9 @@ const CONFIG = {
         },
         "specialization": "Psychiatrist",
         "qualification": "MBBS, MD, DPM (Psychiatry)",
-        "hospital": "Government Medical College Hospital, Virudhunagar",
-        "district": "Virudhunagar",
-        "address": "Government Medical College Hospital, Virudhunagar, Virudhunagar, Tamil Nadu",
+        "hospital": "Dr. Mehta's Hospitals",
+        "district": "Chennai",
+        "address": "Dr. Mehta's Hospitals, Chennai, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -1498,7 +1482,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 21,
-        "bio": "Certified Psychiatrist specialist at Government Medical College Hospital, Virudhunagar providing comprehensive clinical healthcare for patients in Virudhunagar and across Tamil Nadu."
+        "bio": "Certified Psychiatrist specialist at Dr. Mehta's Hospitals providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__pooja_kapoor_44",
@@ -1509,9 +1493,9 @@ const CONFIG = {
         },
         "specialization": "Psychiatrist",
         "qualification": "MBBS, MD, DPM (Psychiatry)",
-        "hospital": "Government Medical College Hospital, Krishnagiri",
-        "district": "Krishnagiri",
-        "address": "Government Medical College Hospital, Krishnagiri, Krishnagiri, Tamil Nadu",
+        "hospital": "Ganga Hospital",
+        "district": "Coimbatore",
+        "address": "Ganga Hospital, Coimbatore, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -1531,7 +1515,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 22,
-        "bio": "Certified Psychiatrist specialist at Government Medical College Hospital, Krishnagiri providing comprehensive clinical healthcare for patients in Krishnagiri and across Tamil Nadu."
+        "bio": "Certified Psychiatrist specialist at Ganga Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__vihaan_sethi_45",
@@ -1542,9 +1526,9 @@ const CONFIG = {
         },
         "specialization": "Psychiatrist",
         "qualification": "MBBS, MD, DPM (Psychiatry)",
-        "hospital": "Government Medical College Hospital, Dharmapuri",
-        "district": "Dharmapuri",
-        "address": "Government Medical College Hospital, Dharmapuri, Dharmapuri, Tamil Nadu",
+        "hospital": "Vadamalayan Hospital",
+        "district": "Madurai",
+        "address": "Vadamalayan Hospital, Madurai, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -1564,7 +1548,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 8,
-        "bio": "Certified Psychiatrist specialist at Government Medical College Hospital, Dharmapuri providing comprehensive clinical healthcare for patients in Dharmapuri and across Tamil Nadu."
+        "bio": "Certified Psychiatrist specialist at Vadamalayan Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__diana_prince_46",
@@ -1575,9 +1559,9 @@ const CONFIG = {
         },
         "specialization": "Psychiatrist",
         "qualification": "MBBS, MD, DPM (Psychiatry)",
-        "hospital": "Government Medical College Hospital, Ariyalur",
-        "district": "Ariyalur",
-        "address": "Government Medical College Hospital, Ariyalur, Ariyalur, Tamil Nadu",
+        "hospital": "Kauvery Hospital",
+        "district": "Salem",
+        "address": "Kauvery Hospital, Salem, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -1597,7 +1581,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 9,
-        "bio": "Certified Psychiatrist specialist at Government Medical College Hospital, Ariyalur providing comprehensive clinical healthcare for patients in Ariyalur and across Tamil Nadu."
+        "bio": "Certified Psychiatrist specialist at Kauvery Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__myra_malhotra_47",
@@ -1608,9 +1592,9 @@ const CONFIG = {
         },
         "specialization": "Psychiatrist",
         "qualification": "MBBS, MD, DPM (Psychiatry)",
-        "hospital": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur",
-        "district": "Perambalur",
-        "address": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur, Perambalur, Tamil Nadu",
+        "hospital": "Kauvery Hospital",
+        "district": "Tiruchirappalli",
+        "address": "Kauvery Hospital, Tiruchirappalli, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -1630,7 +1614,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 10,
-        "bio": "Certified Psychiatrist specialist at Dhanalakshmi Srinivasan Medical College Hospital, Perambalur providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+        "bio": "Certified Psychiatrist specialist at Kauvery Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ayaan_mehra_48",
@@ -1641,9 +1625,9 @@ const CONFIG = {
         },
         "specialization": "Psychiatrist",
         "qualification": "MBBS, MD, DPM (Psychiatry)",
-        "hospital": "Government Medical College Hospital, Kallakurichi",
-        "district": "Kallakurichi",
-        "address": "Government Medical College Hospital, Kallakurichi, Kallakurichi, Tamil Nadu",
+        "hospital": "Aravind Eye Hospital",
+        "district": "Tirunelveli",
+        "address": "Aravind Eye Hospital, Tirunelveli, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -1663,7 +1647,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 11,
-        "bio": "Certified Psychiatrist specialist at Government Medical College Hospital, Kallakurichi providing comprehensive clinical healthcare for patients in Kallakurichi and across Tamil Nadu."
+        "bio": "Certified Psychiatrist specialist at Aravind Eye Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__rhea_chawla_49",
@@ -1674,9 +1658,9 @@ const CONFIG = {
         },
         "specialization": "Psychiatrist",
         "qualification": "MBBS, MD, DPM (Psychiatry)",
-        "hospital": "Government District Headquarters Hospital, Mayiladuthurai",
-        "district": "Mayiladuthurai",
-        "address": "Government District Headquarters Hospital, Mayiladuthurai, Mayiladuthurai, Tamil Nadu",
+        "hospital": "Kalyani Hospital",
+        "district": "Vellore",
+        "address": "Kalyani Hospital, Vellore, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -1696,7 +1680,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 12,
-        "bio": "Certified Psychiatrist specialist at Government District Headquarters Hospital, Mayiladuthurai providing comprehensive clinical healthcare for patients in Mayiladuthurai and across Tamil Nadu."
+        "bio": "Certified Psychiatrist specialist at Kalyani Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__arush_bhatia_50",
@@ -1707,9 +1691,9 @@ const CONFIG = {
         },
         "specialization": "Psychiatrist",
         "qualification": "MBBS, MD, DPM (Psychiatry)",
-        "hospital": "Kanyakumari Government Medical College Hospital, Asaripallam",
-        "district": "Kanniyakumari",
-        "address": "Kanyakumari Government Medical College Hospital, Asaripallam, Kanniyakumari, Tamil Nadu",
+        "hospital": "Sudha Hospital",
+        "district": "Erode",
+        "address": "Sudha Hospital, Erode, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -1729,7 +1713,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 13,
-        "bio": "Certified Psychiatrist specialist at Kanyakumari Government Medical College Hospital, Asaripallam providing comprehensive clinical healthcare for patients in Kanniyakumari and across Tamil Nadu."
+        "bio": "Certified Psychiatrist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kriti_kapoor_51",
@@ -1740,9 +1724,9 @@ const CONFIG = {
         },
         "specialization": "Dentist",
         "qualification": "BDS, MDS (Conservative Dentistry & Endodontics)",
-        "hospital": "Government Medical College Hospital, Kallakurichi",
-        "district": "Kallakurichi",
-        "address": "Government Medical College Hospital, Kallakurichi, Kallakurichi, Tamil Nadu",
+        "hospital": "Kauvery Hospital",
+        "district": "Salem",
+        "address": "Kauvery Hospital, Salem, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -1762,7 +1746,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 14,
-        "bio": "Certified Dentist specialist at Government Medical College Hospital, Kallakurichi providing comprehensive clinical healthcare for patients in Kallakurichi and across Tamil Nadu."
+        "bio": "Certified Dentist specialist at Kauvery Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ahan_mehta_52",
@@ -1773,9 +1757,9 @@ const CONFIG = {
         },
         "specialization": "Dentist",
         "qualification": "BDS, MDS (Conservative Dentistry & Endodontics)",
-        "hospital": "Government District Headquarters Hospital, Mayiladuthurai",
-        "district": "Mayiladuthurai",
-        "address": "Government District Headquarters Hospital, Mayiladuthurai, Mayiladuthurai, Tamil Nadu",
+        "hospital": "Apollo Speciality Hospital",
+        "district": "Tiruchirappalli",
+        "address": "Apollo Speciality Hospital, Tiruchirappalli, Tamil Nadu",
         "consultationFee": 400,
         "availableDays": [
             "Monday",
@@ -1795,7 +1779,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 15,
-        "bio": "Certified Dentist specialist at Government District Headquarters Hospital, Mayiladuthurai providing comprehensive clinical healthcare for patients in Mayiladuthurai and across Tamil Nadu."
+        "bio": "Certified Dentist specialist at Apollo Speciality Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kareena_sethi_53",
@@ -1806,9 +1790,9 @@ const CONFIG = {
         },
         "specialization": "Dentist",
         "qualification": "BDS, MDS (Conservative Dentistry & Endodontics)",
-        "hospital": "Kanyakumari Government Medical College Hospital, Asaripallam",
-        "district": "Kanniyakumari",
-        "address": "Kanyakumari Government Medical College Hospital, Asaripallam, Kanniyakumari, Tamil Nadu",
+        "hospital": "Aravind Eye Hospital",
+        "district": "Tirunelveli",
+        "address": "Aravind Eye Hospital, Tirunelveli, Tamil Nadu",
         "consultationFee": 350,
         "availableDays": [
             "Monday",
@@ -1828,7 +1812,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 16,
-        "bio": "Certified Dentist specialist at Kanyakumari Government Medical College Hospital, Asaripallam providing comprehensive clinical healthcare for patients in Kanniyakumari and across Tamil Nadu."
+        "bio": "Certified Dentist specialist at Aravind Eye Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__vihaan_arora_54",
@@ -1839,9 +1823,9 @@ const CONFIG = {
         },
         "specialization": "Dentist",
         "qualification": "BDS, MDS (Conservative Dentistry & Endodontics)",
-        "hospital": "Apollo Hospitals, Greams Road",
-        "district": "Chennai",
-        "address": "Apollo Hospitals, Greams Road, Chennai, Tamil Nadu",
+        "hospital": "Kalyani Hospital",
+        "district": "Vellore",
+        "address": "Kalyani Hospital, Vellore, Tamil Nadu",
         "consultationFee": 400,
         "availableDays": [
             "Monday",
@@ -1861,7 +1845,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 17,
-        "bio": "Certified Dentist specialist at Apollo Hospitals, Greams Road providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+        "bio": "Certified Dentist specialist at Kalyani Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__shruthi_bansal_55",
@@ -1872,9 +1856,9 @@ const CONFIG = {
         },
         "specialization": "Dentist",
         "qualification": "BDS, MDS (Conservative Dentistry & Endodontics)",
-        "hospital": "PSG Hospitals, Peelamedu",
-        "district": "Coimbatore",
-        "address": "PSG Hospitals, Peelamedu, Coimbatore, Tamil Nadu",
+        "hospital": "Sudha Hospital",
+        "district": "Erode",
+        "address": "Sudha Hospital, Erode, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -1894,7 +1878,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 18,
-        "bio": "Certified Dentist specialist at PSG Hospitals, Peelamedu providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+        "bio": "Certified Dentist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__riaan_malhotra_56",
@@ -1905,9 +1889,9 @@ const CONFIG = {
         },
         "specialization": "Dentist",
         "qualification": "BDS, MDS (Conservative Dentistry & Endodontics)",
-        "hospital": "Government Rajaji Hospital & Medical College",
-        "district": "Madurai",
-        "address": "Government Rajaji Hospital & Medical College, Madurai, Tamil Nadu",
+        "hospital": "Meenakshi Hospital",
+        "district": "Thanjavur",
+        "address": "Meenakshi Hospital, Thanjavur, Tamil Nadu",
         "consultationFee": 350,
         "availableDays": [
             "Monday",
@@ -1927,7 +1911,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 19,
-        "bio": "Certified Dentist specialist at Government Rajaji Hospital & Medical College providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+        "bio": "Certified Dentist specialist at Meenakshi Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__catherine_d_souza_57",
@@ -1938,9 +1922,9 @@ const CONFIG = {
         },
         "specialization": "Dentist",
         "qualification": "BDS, MDS (Conservative Dentistry & Endodontics)",
-        "hospital": "Manipal Hospitals, Dalmia Board",
-        "district": "Salem",
-        "address": "Manipal Hospitals, Dalmia Board, Salem, Tamil Nadu",
+        "hospital": "City Hospital",
+        "district": "Dindigul",
+        "address": "City Hospital, Dindigul, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -1960,7 +1944,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 20,
-        "bio": "Certified Dentist specialist at Manipal Hospitals, Dalmia Board providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+        "bio": "Certified Dentist specialist at City Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__advik_khurana_58",
@@ -1971,9 +1955,9 @@ const CONFIG = {
         },
         "specialization": "Dentist",
         "qualification": "BDS, MDS (Conservative Dentistry & Endodontics)",
-        "hospital": "Kauvery Hospital, Cantonment",
-        "district": "Tiruchirappalli",
-        "address": "Kauvery Hospital, Cantonment, Tiruchirappalli, Tamil Nadu",
+        "hospital": "Kanchi Kamakoti Childs Trust Hospital",
+        "district": "Kanchipuram",
+        "address": "Kanchi Kamakoti Childs Trust Hospital, Kanchipuram, Tamil Nadu",
         "consultationFee": 400,
         "availableDays": [
             "Monday",
@@ -1993,7 +1977,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 21,
-        "bio": "Certified Dentist specialist at Kauvery Hospital, Cantonment providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+        "bio": "Certified Dentist specialist at Kanchi Kamakoti Childs Trust Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__pooja_mehra_59",
@@ -2004,9 +1988,9 @@ const CONFIG = {
         },
         "specialization": "Dentist",
         "qualification": "BDS, MDS (Conservative Dentistry & Endodontics)",
-        "hospital": "Tirunelveli Medical College Hospital, High Ground",
-        "district": "Tirunelveli",
-        "address": "Tirunelveli Medical College Hospital, High Ground, Tirunelveli, Tamil Nadu",
+        "hospital": "Chettinad Hospital & Research Institute",
+        "district": "Chengalpattu",
+        "address": "Chettinad Hospital & Research Institute, Chengalpattu, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -2026,7 +2010,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 22,
-        "bio": "Certified Dentist specialist at Tirunelveli Medical College Hospital, High Ground providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+        "bio": "Certified Dentist specialist at Chettinad Hospital & Research Institute providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__zayan_kapoor_60",
@@ -2037,9 +2021,9 @@ const CONFIG = {
         },
         "specialization": "Dentist",
         "qualification": "BDS, MDS (Conservative Dentistry & Endodontics)",
-        "hospital": "Christian Medical College (CMC) Hospital, Ida Scudder Road",
-        "district": "Vellore",
-        "address": "Christian Medical College (CMC) Hospital, Ida Scudder Road, Vellore, Tamil Nadu",
+        "hospital": "Kovai Medical Center & Hospital – Tiruppur",
+        "district": "Tiruppur",
+        "address": "Kovai Medical Center & Hospital – Tiruppur, Tiruppur, Tamil Nadu",
         "consultationFee": 350,
         "availableDays": [
             "Monday",
@@ -2059,7 +2043,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 8,
-        "bio": "Certified Dentist specialist at Christian Medical College (CMC) Hospital, Ida Scudder Road providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+        "bio": "Certified Dentist specialist at Kovai Medical Center & Hospital – Tiruppur providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__anaya_kapoor_61",
@@ -2070,9 +2054,9 @@ const CONFIG = {
         },
         "specialization": "Physiotherapist",
         "qualification": "BPT, MPT (Orthopedics & Neuro Rehab)",
-        "hospital": "Kauvery Hospital, Cantonment",
-        "district": "Tiruchirappalli",
-        "address": "Kauvery Hospital, Cantonment, Tiruchirappalli, Tamil Nadu",
+        "hospital": "Meenakshi Hospital",
+        "district": "Thanjavur",
+        "address": "Meenakshi Hospital, Thanjavur, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -2092,7 +2076,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 9,
-        "bio": "Certified Physiotherapist specialist at Kauvery Hospital, Cantonment providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+        "bio": "Certified Physiotherapist specialist at Meenakshi Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__reyansh_bhatia_62",
@@ -2103,9 +2087,9 @@ const CONFIG = {
         },
         "specialization": "Physiotherapist",
         "qualification": "BPT, MPT (Orthopedics & Neuro Rehab)",
-        "hospital": "Tirunelveli Medical College Hospital, High Ground",
-        "district": "Tirunelveli",
-        "address": "Tirunelveli Medical College Hospital, High Ground, Tirunelveli, Tamil Nadu",
+        "hospital": "Sree Abirami Hospital",
+        "district": "Dindigul",
+        "address": "Sree Abirami Hospital, Dindigul, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -2125,7 +2109,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 10,
-        "bio": "Certified Physiotherapist specialist at Tirunelveli Medical College Hospital, High Ground providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+        "bio": "Certified Physiotherapist specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__deepika_suri_63",
@@ -2136,9 +2120,9 @@ const CONFIG = {
         },
         "specialization": "Physiotherapist",
         "qualification": "BPT, MPT (Orthopedics & Neuro Rehab)",
-        "hospital": "Christian Medical College (CMC) Hospital, Ida Scudder Road",
-        "district": "Vellore",
-        "address": "Christian Medical College (CMC) Hospital, Ida Scudder Road, Vellore, Tamil Nadu",
+        "hospital": "Rela Hospital Kanchipuram",
+        "district": "Kanchipuram",
+        "address": "Rela Hospital Kanchipuram, Kanchipuram, Tamil Nadu",
         "consultationFee": 400,
         "availableDays": [
             "Monday",
@@ -2158,7 +2142,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 11,
-        "bio": "Certified Physiotherapist specialist at Christian Medical College (CMC) Hospital, Ida Scudder Road providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+        "bio": "Certified Physiotherapist specialist at Rela Hospital Kanchipuram providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ayaan_mehta_64",
@@ -2169,9 +2153,9 @@ const CONFIG = {
         },
         "specialization": "Physiotherapist",
         "qualification": "BPT, MPT (Orthopedics & Neuro Rehab)",
-        "hospital": "Government Erode Medical College Hospital, Perundurai",
-        "district": "Erode",
-        "address": "Government Erode Medical College Hospital, Perundurai, Erode, Tamil Nadu",
+        "hospital": "Karpaga Vinayaga Institute of Medical Sciences",
+        "district": "Chengalpattu",
+        "address": "Karpaga Vinayaga Institute of Medical Sciences, Chengalpattu, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -2191,7 +2175,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 12,
-        "bio": "Certified Physiotherapist specialist at Government Erode Medical College Hospital, Perundurai providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+        "bio": "Certified Physiotherapist specialist at Karpaga Vinayaga Institute of Medical Sciences providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__malavika_kapoor_65",
@@ -2202,9 +2186,9 @@ const CONFIG = {
         },
         "specialization": "Physiotherapist",
         "qualification": "BPT, MPT (Orthopedics & Neuro Rehab)",
-        "hospital": "Thanjavur Medical College Hospital, Medical College Road",
-        "district": "Thanjavur",
-        "address": "Thanjavur Medical College Hospital, Medical College Road, Thanjavur, Tamil Nadu",
+        "hospital": "Sri Kumaran Hospital",
+        "district": "Tiruppur",
+        "address": "Sri Kumaran Hospital, Tiruppur, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -2224,7 +2208,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 13,
-        "bio": "Certified Physiotherapist specialist at Thanjavur Medical College Hospital, Medical College Road providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+        "bio": "Certified Physiotherapist specialist at Sri Kumaran Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kabir_anand_66",
@@ -2235,9 +2219,9 @@ const CONFIG = {
         },
         "specialization": "Physiotherapist",
         "qualification": "BPT, MPT (Orthopedics & Neuro Rehab)",
-        "hospital": "Government District Headquarters Hospital, Dindigul",
-        "district": "Dindigul",
-        "address": "Government District Headquarters Hospital, Dindigul, Dindigul, Tamil Nadu",
+        "hospital": "Apollo Hospitals Karur",
+        "district": "Karur",
+        "address": "Apollo Hospitals Karur, Karur, Tamil Nadu",
         "consultationFee": 400,
         "availableDays": [
             "Monday",
@@ -2257,7 +2241,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 14,
-        "bio": "Certified Physiotherapist specialist at Government District Headquarters Hospital, Dindigul providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+        "bio": "Certified Physiotherapist specialist at Apollo Hospitals Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kiara_bansal_67",
@@ -2268,9 +2252,9 @@ const CONFIG = {
         },
         "specialization": "Physiotherapist",
         "qualification": "BPT, MPT (Orthopedics & Neuro Rehab)",
-        "hospital": "Arignar Anna Memorial Cancer Hospital & Research Institute",
-        "district": "Kanchipuram",
-        "address": "Arignar Anna Memorial Cancer Hospital & Research Institute, Kanchipuram, Tamil Nadu",
+        "hospital": "V.P.N. Eye Hospital",
+        "district": "Nagapattinam",
+        "address": "V.P.N. Eye Hospital, Nagapattinam, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -2290,7 +2274,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 15,
-        "bio": "Certified Physiotherapist specialist at Arignar Anna Memorial Cancer Hospital & Research Institute providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+        "bio": "Certified Physiotherapist specialist at V.P.N. Eye Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__nivaan_malhotra_68",
@@ -2301,9 +2285,9 @@ const CONFIG = {
         },
         "specialization": "Physiotherapist",
         "qualification": "BPT, MPT (Orthopedics & Neuro Rehab)",
-        "hospital": "Chengalpattu Government Medical College Hospital, GST Road",
-        "district": "Chengalpattu",
-        "address": "Chengalpattu Government Medical College Hospital, GST Road, Chengalpattu, Tamil Nadu",
+        "hospital": "K.S. Hospital",
+        "district": "Ramanathapuram",
+        "address": "K.S. Hospital, Ramanathapuram, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -2323,7 +2307,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 16,
-        "bio": "Certified Physiotherapist specialist at Chengalpattu Government Medical College Hospital, GST Road providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+        "bio": "Certified Physiotherapist specialist at K.S. Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__shobana_sethi_69",
@@ -2334,9 +2318,9 @@ const CONFIG = {
         },
         "specialization": "Physiotherapist",
         "qualification": "BPT, MPT (Orthopedics & Neuro Rehab)",
-        "hospital": "Government Medical College Hospital, Tiruppur",
-        "district": "Tiruppur",
-        "address": "Government Medical College Hospital, Tiruppur, Tiruppur, Tamil Nadu",
+        "hospital": "K.V. Hospital",
+        "district": "Thoothukudi",
+        "address": "K.V. Hospital, Thoothukudi, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -2356,7 +2340,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 17,
-        "bio": "Certified Physiotherapist specialist at Government Medical College Hospital, Tiruppur providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+        "bio": "Certified Physiotherapist specialist at K.V. Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__arush_khanna_70",
@@ -2367,9 +2351,9 @@ const CONFIG = {
         },
         "specialization": "Physiotherapist",
         "qualification": "BPT, MPT (Orthopedics & Neuro Rehab)",
-        "hospital": "Government Headquarters Hospital, Cuddalore",
-        "district": "Cuddalore",
-        "address": "Government Headquarters Hospital, Cuddalore, Cuddalore, Tamil Nadu",
+        "hospital": "Be Well Hospitals",
+        "district": "Tiruvallur",
+        "address": "Be Well Hospitals, Tiruvallur, Tamil Nadu",
         "consultationFee": 400,
         "availableDays": [
             "Monday",
@@ -2389,7 +2373,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 18,
-        "bio": "Certified Physiotherapist specialist at Government Headquarters Hospital, Cuddalore providing comprehensive clinical healthcare for patients in Cuddalore and across Tamil Nadu."
+        "bio": "Certified Physiotherapist specialist at Be Well Hospitals providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__alia_kapoor_71",
@@ -2400,9 +2384,9 @@ const CONFIG = {
         },
         "specialization": "ENT Specialist",
         "qualification": "MBBS, MS (ENT), DLO",
-        "hospital": "Chengalpattu Government Medical College Hospital, GST Road",
-        "district": "Chengalpattu",
-        "address": "Chengalpattu Government Medical College Hospital, GST Road, Chengalpattu, Tamil Nadu",
+        "hospital": "Amaravathi Hospital",
+        "district": "Karur",
+        "address": "Amaravathi Hospital, Karur, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -2422,7 +2406,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 19,
-        "bio": "Certified ENT Specialist specialist at Chengalpattu Government Medical College Hospital, GST Road providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+        "bio": "Certified ENT Specialist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__vihaan_suri_72",
@@ -2433,9 +2417,9 @@ const CONFIG = {
         },
         "specialization": "ENT Specialist",
         "qualification": "MBBS, MS (ENT), DLO",
-        "hospital": "Government Medical College Hospital, Tiruppur",
-        "district": "Tiruppur",
-        "address": "Government Medical College Hospital, Tiruppur, Tiruppur, Tamil Nadu",
+        "hospital": "MC Hospital",
+        "district": "Nagapattinam",
+        "address": "MC Hospital, Nagapattinam, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -2455,7 +2439,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 20,
-        "bio": "Certified ENT Specialist specialist at Government Medical College Hospital, Tiruppur providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+        "bio": "Certified ENT Specialist specialist at MC Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kareena_malhotra_73",
@@ -2466,9 +2450,9 @@ const CONFIG = {
         },
         "specialization": "ENT Specialist",
         "qualification": "MBBS, MS (ENT), DLO",
-        "hospital": "Government Headquarters Hospital, Cuddalore",
-        "district": "Cuddalore",
-        "address": "Government Headquarters Hospital, Cuddalore, Cuddalore, Tamil Nadu",
+        "hospital": "Annai Hospital",
+        "district": "Ramanathapuram",
+        "address": "Annai Hospital, Ramanathapuram, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -2488,7 +2472,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 21,
-        "bio": "Certified ENT Specialist specialist at Government Headquarters Hospital, Cuddalore providing comprehensive clinical healthcare for patients in Cuddalore and across Tamil Nadu."
+        "bio": "Certified ENT Specialist specialist at Annai Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__riaan_mehta_74",
@@ -2499,9 +2483,9 @@ const CONFIG = {
         },
         "specialization": "ENT Specialist",
         "qualification": "MBBS, MS (ENT), DLO",
-        "hospital": "Government Medical College Hospital, Gandhigramam, Karur",
-        "district": "Karur",
-        "address": "Government Medical College Hospital, Gandhigramam, Karur, Karur, Tamil Nadu",
+        "hospital": "K.V. Hospital",
+        "district": "Thoothukudi",
+        "address": "K.V. Hospital, Thoothukudi, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -2521,7 +2505,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 22,
-        "bio": "Certified ENT Specialist specialist at Government Medical College Hospital, Gandhigramam, Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+        "bio": "Certified ENT Specialist specialist at K.V. Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__shruthi_kapoor_75",
@@ -2532,9 +2516,9 @@ const CONFIG = {
         },
         "specialization": "ENT Specialist",
         "qualification": "MBBS, MS (ENT), DLO",
-        "hospital": "Government District Headquarters Hospital, Nagapattinam",
-        "district": "Nagapattinam",
-        "address": "Government District Headquarters Hospital, Nagapattinam, Nagapattinam, Tamil Nadu",
+        "hospital": "Saveetha Medical College & Hospital",
+        "district": "Tiruvallur",
+        "address": "Saveetha Medical College & Hospital, Tiruvallur, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -2554,7 +2538,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 8,
-        "bio": "Certified ENT Specialist specialist at Government District Headquarters Hospital, Nagapattinam providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+        "bio": "Certified ENT Specialist specialist at Saveetha Medical College & Hospital providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__zayan_arora_76",
@@ -2565,9 +2549,9 @@ const CONFIG = {
         },
         "specialization": "ENT Specialist",
         "qualification": "MBBS, MS (ENT), DLO",
-        "hospital": "Government Medical College Hospital, Namakkal",
-        "district": "Namakkal",
-        "address": "Government Medical College Hospital, Namakkal, Namakkal, Tamil Nadu",
+        "hospital": "Ramana Maharshi Rangammal Hospital",
+        "district": "Tiruvannamalai",
+        "address": "Ramana Maharshi Rangammal Hospital, Tiruvannamalai, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -2587,7 +2571,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 9,
-        "bio": "Certified ENT Specialist specialist at Government Medical College Hospital, Namakkal providing comprehensive clinical healthcare for patients in Namakkal and across Tamil Nadu."
+        "bio": "Certified ENT Specialist specialist at Ramana Maharshi Rangammal Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__pooja_sethi_77",
@@ -2598,9 +2582,9 @@ const CONFIG = {
         },
         "specialization": "ENT Specialist",
         "qualification": "MBBS, MS (ENT), DLO",
-        "hospital": "Government Medical College & District Hospital, Ooty",
-        "district": "Nilgiris",
-        "address": "Government Medical College & District Hospital, Ooty, Nilgiris, Tamil Nadu",
+        "hospital": "Hanifa Nursing Home",
+        "district": "Tiruvarur",
+        "address": "Hanifa Nursing Home, Tiruvarur, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -2620,7 +2604,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 10,
-        "bio": "Certified ENT Specialist specialist at Government Medical College & District Hospital, Ooty providing comprehensive clinical healthcare for patients in Nilgiris and across Tamil Nadu."
+        "bio": "Certified ENT Specialist specialist at Hanifa Nursing Home providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__advik_bhatia_78",
@@ -2631,9 +2615,9 @@ const CONFIG = {
         },
         "specialization": "ENT Specialist",
         "qualification": "MBBS, MS (ENT), DLO",
-        "hospital": "Government Medical College Hospital, Pudukkottai",
-        "district": "Pudukkottai",
-        "address": "Government Medical College Hospital, Pudukkottai, Pudukkottai, Tamil Nadu",
+        "hospital": "Sri Vinayaka Hospital",
+        "district": "Villupuram",
+        "address": "Sri Vinayaka Hospital, Villupuram, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -2653,7 +2637,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 11,
-        "bio": "Certified ENT Specialist specialist at Government Medical College Hospital, Pudukkottai providing comprehensive clinical healthcare for patients in Pudukkottai and across Tamil Nadu."
+        "bio": "Certified ENT Specialist specialist at Sri Vinayaka Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__myra_khanna_79",
@@ -2664,9 +2648,9 @@ const CONFIG = {
         },
         "specialization": "ENT Specialist",
         "qualification": "MBBS, MS (ENT), DLO",
-        "hospital": "Government Medical College Hospital, Ramanathapuram",
-        "district": "Ramanathapuram",
-        "address": "Government Medical College Hospital, Ramanathapuram, Ramanathapuram, Tamil Nadu",
+        "hospital": "Dhanalakshmi Srinivasan Medical College Hospital",
+        "district": "Perambalur",
+        "address": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -2686,7 +2670,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 12,
-        "bio": "Certified ENT Specialist specialist at Government Medical College Hospital, Ramanathapuram providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+        "bio": "Certified ENT Specialist specialist at Dhanalakshmi Srinivasan Medical College Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ahan_kapoor_80",
@@ -2697,9 +2681,9 @@ const CONFIG = {
         },
         "specialization": "ENT Specialist",
         "qualification": "MBBS, MS (ENT), DLO",
-        "hospital": "Government Medical College Hospital, Sivaganga",
-        "district": "Sivaganga",
-        "address": "Government Medical College Hospital, Sivaganga, Sivaganga, Tamil Nadu",
+        "hospital": "MGM Healthcare",
+        "district": "Chennai",
+        "address": "MGM Healthcare, Chennai, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -2719,7 +2703,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 13,
-        "bio": "Certified ENT Specialist specialist at Government Medical College Hospital, Sivaganga providing comprehensive clinical healthcare for patients in Sivaganga and across Tamil Nadu."
+        "bio": "Certified ENT Specialist specialist at MGM Healthcare providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kiara_malhotra_81",
@@ -2730,9 +2714,9 @@ const CONFIG = {
         },
         "specialization": "Dermatologist",
         "qualification": "MBBS, MD (DVL)",
-        "hospital": "Government Medical College Hospital, Pudukkottai",
-        "district": "Pudukkottai",
-        "address": "Government Medical College Hospital, Pudukkottai, Pudukkottai, Tamil Nadu",
+        "hospital": "Arunai Hospital",
+        "district": "Tiruvannamalai",
+        "address": "Arunai Hospital, Tiruvannamalai, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -2752,7 +2736,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 14,
-        "bio": "Certified Dermatologist specialist at Government Medical College Hospital, Pudukkottai providing comprehensive clinical healthcare for patients in Pudukkottai and across Tamil Nadu."
+        "bio": "Certified Dermatologist specialist at Arunai Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ayaan_sethi_82",
@@ -2763,9 +2747,9 @@ const CONFIG = {
         },
         "specialization": "Dermatologist",
         "qualification": "MBBS, MD (DVL)",
-        "hospital": "Government Medical College Hospital, Ramanathapuram",
-        "district": "Ramanathapuram",
-        "address": "Government Medical College Hospital, Ramanathapuram, Ramanathapuram, Tamil Nadu",
+        "hospital": "Lakshana Hospital",
+        "district": "Tiruvarur",
+        "address": "Lakshana Hospital, Tiruvarur, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -2785,7 +2769,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 15,
-        "bio": "Certified Dermatologist specialist at Government Medical College Hospital, Ramanathapuram providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+        "bio": "Certified Dermatologist specialist at Lakshana Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__deepika_kapoor_83",
@@ -2796,9 +2780,9 @@ const CONFIG = {
         },
         "specialization": "Dermatologist",
         "qualification": "MBBS, MD (DVL)",
-        "hospital": "Government Medical College Hospital, Sivaganga",
-        "district": "Sivaganga",
-        "address": "Government Medical College Hospital, Sivaganga, Sivaganga, Tamil Nadu",
+        "hospital": "Muthu Hospital",
+        "district": "Villupuram",
+        "address": "Muthu Hospital, Villupuram, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -2818,7 +2802,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 16,
-        "bio": "Certified Dermatologist specialist at Government Medical College Hospital, Sivaganga providing comprehensive clinical healthcare for patients in Sivaganga and across Tamil Nadu."
+        "bio": "Certified Dermatologist specialist at Muthu Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__reyansh_bansal_84",
@@ -2829,9 +2813,9 @@ const CONFIG = {
         },
         "specialization": "Dermatologist",
         "qualification": "MBBS, MD (DVL)",
-        "hospital": "Government District Headquarters Hospital, Tenkasi",
-        "district": "Tenkasi",
-        "address": "Government District Headquarters Hospital, Tenkasi, Tenkasi, Tamil Nadu",
+        "hospital": "Sri Lakshmi Hospital",
+        "district": "Perambalur",
+        "address": "Sri Lakshmi Hospital, Perambalur, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -2851,7 +2835,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 17,
-        "bio": "Certified Dermatologist specialist at Government District Headquarters Hospital, Tenkasi providing comprehensive clinical healthcare for patients in Tenkasi and across Tamil Nadu."
+        "bio": "Certified Dermatologist specialist at Sri Lakshmi Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kriti_arora_85",
@@ -2862,9 +2846,9 @@ const CONFIG = {
         },
         "specialization": "Dermatologist",
         "qualification": "MBBS, MD (DVL)",
-        "hospital": "Government Theni Medical College & Hospital, Kanavilku",
-        "district": "Theni",
-        "address": "Government Theni Medical College & Hospital, Kanavilku, Theni, Tamil Nadu",
+        "hospital": "MGM Healthcare",
+        "district": "Chennai",
+        "address": "MGM Healthcare, Chennai, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -2884,7 +2868,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 18,
-        "bio": "Certified Dermatologist specialist at Government Theni Medical College & Hospital, Kanavilku providing comprehensive clinical healthcare for patients in Theni and across Tamil Nadu."
+        "bio": "Certified Dermatologist specialist at MGM Healthcare providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__vihaan_khanna_86",
@@ -2895,9 +2879,9 @@ const CONFIG = {
         },
         "specialization": "Dermatologist",
         "qualification": "MBBS, MD (DVL)",
-        "hospital": "Government Medical College Hospital, Thoothukudi",
-        "district": "Thoothukudi",
-        "address": "Government Medical College Hospital, Thoothukudi, Thoothukudi, Tamil Nadu",
+        "hospital": "PSG Hospitals",
+        "district": "Coimbatore",
+        "address": "PSG Hospitals, Coimbatore, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -2917,7 +2901,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 19,
-        "bio": "Certified Dermatologist specialist at Government Medical College Hospital, Thoothukudi providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+        "bio": "Certified Dermatologist specialist at PSG Hospitals providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__malavika_mehra_87",
@@ -2928,9 +2912,9 @@ const CONFIG = {
         },
         "specialization": "Dermatologist",
         "qualification": "MBBS, MD (DVL)",
-        "hospital": "Government Medical College Hospital, Tiruvallur",
-        "district": "Tiruvallur",
-        "address": "Government Medical College Hospital, Tiruvallur, Tiruvallur, Tamil Nadu",
+        "hospital": "Apollo Speciality Hospitals",
+        "district": "Madurai",
+        "address": "Apollo Speciality Hospitals, Madurai, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -2950,7 +2934,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 20,
-        "bio": "Certified Dermatologist specialist at Government Medical College Hospital, Tiruvallur providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
+        "bio": "Certified Dermatologist specialist at Apollo Speciality Hospitals providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kabir_malhotra_88",
@@ -2961,9 +2945,9 @@ const CONFIG = {
         },
         "specialization": "Dermatologist",
         "qualification": "MBBS, MD (DVL)",
-        "hospital": "Government Medical College Hospital, Tiruvannamalai",
-        "district": "Tiruvannamalai",
-        "address": "Government Medical College Hospital, Tiruvannamalai, Tiruvannamalai, Tamil Nadu",
+        "hospital": "SKS Hospital",
+        "district": "Salem",
+        "address": "SKS Hospital, Salem, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -2983,7 +2967,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 21,
-        "bio": "Certified Dermatologist specialist at Government Medical College Hospital, Tiruvannamalai providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
+        "bio": "Certified Dermatologist specialist at SKS Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__rhea_kapoor_89",
@@ -2994,9 +2978,9 @@ const CONFIG = {
         },
         "specialization": "Dermatologist",
         "qualification": "MBBS, MD (DVL)",
-        "hospital": "Government Tiruvarur Medical College Hospital, Vilamal",
-        "district": "Tiruvarur",
-        "address": "Government Tiruvarur Medical College Hospital, Vilamal, Tiruvarur, Tamil Nadu",
+        "hospital": "KMC Speciality Hospital",
+        "district": "Tiruchirappalli",
+        "address": "KMC Speciality Hospital, Tiruchirappalli, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -3016,7 +3000,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 22,
-        "bio": "Certified Dermatologist specialist at Government Tiruvarur Medical College Hospital, Vilamal providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+        "bio": "Certified Dermatologist specialist at KMC Speciality Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__zoya_bhatia_90",
@@ -3027,9 +3011,9 @@ const CONFIG = {
         },
         "specialization": "Dermatologist",
         "qualification": "MBBS, MD (DVL)",
-        "hospital": "Government Headquarters Hospital, Ranipet",
-        "district": "Ranipet",
-        "address": "Government Headquarters Hospital, Ranipet, Ranipet, Tamil Nadu",
+        "hospital": "Annai Velankanni Hospital",
+        "district": "Tirunelveli",
+        "address": "Annai Velankanni Hospital, Tirunelveli, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -3049,7 +3033,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 8,
-        "bio": "Certified Dermatologist specialist at Government Headquarters Hospital, Ranipet providing comprehensive clinical healthcare for patients in Ranipet and across Tamil Nadu."
+        "bio": "Certified Dermatologist specialist at Annai Velankanni Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kareena_kapoor_91",
@@ -3060,9 +3044,9 @@ const CONFIG = {
         },
         "specialization": "Pulmonologist",
         "qualification": "MBBS, MD (Pulmonary Medicine), DTCD",
-        "hospital": "Government Medical College Hospital, Tiruvannamalai",
-        "district": "Tiruvannamalai",
-        "address": "Government Medical College Hospital, Tiruvannamalai, Tiruvannamalai, Tamil Nadu",
+        "hospital": "PSG Hospitals",
+        "district": "Coimbatore",
+        "address": "PSG Hospitals, Coimbatore, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -3082,7 +3066,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 9,
-        "bio": "Certified Pulmonologist specialist at Government Medical College Hospital, Tiruvannamalai providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
+        "bio": "Certified Pulmonologist specialist at PSG Hospitals providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__arush_mehta_92",
@@ -3093,9 +3077,9 @@ const CONFIG = {
         },
         "specialization": "Pulmonologist",
         "qualification": "MBBS, MD (Pulmonary Medicine), DTCD",
-        "hospital": "Government Tiruvarur Medical College Hospital, Vilamal",
-        "district": "Tiruvarur",
-        "address": "Government Tiruvarur Medical College Hospital, Vilamal, Tiruvarur, Tamil Nadu",
+        "hospital": "Apollo Speciality Hospitals",
+        "district": "Madurai",
+        "address": "Apollo Speciality Hospitals, Madurai, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -3115,7 +3099,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 10,
-        "bio": "Certified Pulmonologist specialist at Government Tiruvarur Medical College Hospital, Vilamal providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+        "bio": "Certified Pulmonologist specialist at Apollo Speciality Hospitals providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__shobana_malhotra_93",
@@ -3126,9 +3110,9 @@ const CONFIG = {
         },
         "specialization": "Pulmonologist",
         "qualification": "MBBS, MD (Pulmonary Medicine), DTCD",
-        "hospital": "Government Headquarters Hospital, Ranipet",
-        "district": "Ranipet",
-        "address": "Government Headquarters Hospital, Ranipet, Ranipet, Tamil Nadu",
+        "hospital": "SKS Hospital",
+        "district": "Salem",
+        "address": "SKS Hospital, Salem, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -3148,7 +3132,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 11,
-        "bio": "Certified Pulmonologist specialist at Government Headquarters Hospital, Ranipet providing comprehensive clinical healthcare for patients in Ranipet and across Tamil Nadu."
+        "bio": "Certified Pulmonologist specialist at SKS Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ayaan_bhatia_94",
@@ -3159,9 +3143,9 @@ const CONFIG = {
         },
         "specialization": "Pulmonologist",
         "qualification": "MBBS, MD (Pulmonary Medicine), DTCD",
-        "hospital": "Government Headquarters Hospital, Tirupattur",
-        "district": "Tirupattur",
-        "address": "Government Headquarters Hospital, Tirupattur, Tirupattur, Tamil Nadu",
+        "hospital": "Maruti Hospital",
+        "district": "Tiruchirappalli",
+        "address": "Maruti Hospital, Tiruchirappalli, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -3181,7 +3165,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 12,
-        "bio": "Certified Pulmonologist specialist at Government Headquarters Hospital, Tirupattur providing comprehensive clinical healthcare for patients in Tirupattur and across Tamil Nadu."
+        "bio": "Certified Pulmonologist specialist at Maruti Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kiara_sethi_95",
@@ -3192,9 +3176,9 @@ const CONFIG = {
         },
         "specialization": "Pulmonologist",
         "qualification": "MBBS, MD (Pulmonary Medicine), DTCD",
-        "hospital": "Government Medical College Hospital, Mundiyampakkam, Viluppuram",
-        "district": "Viluppuram",
-        "address": "Government Medical College Hospital, Mundiyampakkam, Viluppuram, Viluppuram, Tamil Nadu",
+        "hospital": "Annai Velankanni Hospital",
+        "district": "Tirunelveli",
+        "address": "Annai Velankanni Hospital, Tirunelveli, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -3214,7 +3198,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 13,
-        "bio": "Certified Pulmonologist specialist at Government Medical College Hospital, Mundiyampakkam, Viluppuram providing comprehensive clinical healthcare for patients in Viluppuram and across Tamil Nadu."
+        "bio": "Certified Pulmonologist specialist at Annai Velankanni Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__vihaan_kapoor_96",
@@ -3225,9 +3209,9 @@ const CONFIG = {
         },
         "specialization": "Pulmonologist",
         "qualification": "MBBS, MD (Pulmonary Medicine), DTCD",
-        "hospital": "Government Medical College Hospital, Virudhunagar",
-        "district": "Virudhunagar",
-        "address": "Government Medical College Hospital, Virudhunagar, Virudhunagar, Tamil Nadu",
+        "hospital": "Christian Medical College & Hospital (CMC)",
+        "district": "Vellore",
+        "address": "Christian Medical College & Hospital (CMC), Vellore, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -3247,7 +3231,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 14,
-        "bio": "Certified Pulmonologist specialist at Government Medical College Hospital, Virudhunagar providing comprehensive clinical healthcare for patients in Virudhunagar and across Tamil Nadu."
+        "bio": "Certified Pulmonologist specialist at Christian Medical College & Hospital (CMC) providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__catherine_mehra_97",
@@ -3258,9 +3242,9 @@ const CONFIG = {
         },
         "specialization": "Pulmonologist",
         "qualification": "MBBS, MD (Pulmonary Medicine), DTCD",
-        "hospital": "Government Medical College Hospital, Krishnagiri",
-        "district": "Krishnagiri",
-        "address": "Government Medical College Hospital, Krishnagiri, Krishnagiri, Tamil Nadu",
+        "hospital": "Sri Amman Hospital",
+        "district": "Erode",
+        "address": "Sri Amman Hospital, Erode, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -3280,7 +3264,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 15,
-        "bio": "Certified Pulmonologist specialist at Government Medical College Hospital, Krishnagiri providing comprehensive clinical healthcare for patients in Krishnagiri and across Tamil Nadu."
+        "bio": "Certified Pulmonologist specialist at Sri Amman Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__riaan_khanna_98",
@@ -3291,9 +3275,9 @@ const CONFIG = {
         },
         "specialization": "Pulmonologist",
         "qualification": "MBBS, MD (Pulmonary Medicine), DTCD",
-        "hospital": "Government Medical College Hospital, Dharmapuri",
-        "district": "Dharmapuri",
-        "address": "Government Medical College Hospital, Dharmapuri, Dharmapuri, Tamil Nadu",
+        "hospital": "Sudha Hospital",
+        "district": "Thanjavur",
+        "address": "Sudha Hospital, Thanjavur, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -3313,7 +3297,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 16,
-        "bio": "Certified Pulmonologist specialist at Government Medical College Hospital, Dharmapuri providing comprehensive clinical healthcare for patients in Dharmapuri and across Tamil Nadu."
+        "bio": "Certified Pulmonologist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__pooja_arora_99",
@@ -3324,9 +3308,9 @@ const CONFIG = {
         },
         "specialization": "Pulmonologist",
         "qualification": "MBBS, MD (Pulmonary Medicine), DTCD",
-        "hospital": "Government Medical College Hospital, Ariyalur",
-        "district": "Ariyalur",
-        "address": "Government Medical College Hospital, Ariyalur, Ariyalur, Tamil Nadu",
+        "hospital": "Muthu Meenakshi Hospitals",
+        "district": "Dindigul",
+        "address": "Muthu Meenakshi Hospitals, Dindigul, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -3346,7 +3330,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 17,
-        "bio": "Certified Pulmonologist specialist at Government Medical College Hospital, Ariyalur providing comprehensive clinical healthcare for patients in Ariyalur and across Tamil Nadu."
+        "bio": "Certified Pulmonologist specialist at Muthu Meenakshi Hospitals providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__advik_kapoor_100",
@@ -3357,9 +3341,9 @@ const CONFIG = {
         },
         "specialization": "Pulmonologist",
         "qualification": "MBBS, MD (Pulmonary Medicine), DTCD",
-        "hospital": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur",
-        "district": "Perambalur",
-        "address": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur, Perambalur, Tamil Nadu",
+        "hospital": "Sri Sankara Hospital",
+        "district": "Kanchipuram",
+        "address": "Sri Sankara Hospital, Kanchipuram, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -3379,7 +3363,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 18,
-        "bio": "Certified Pulmonologist specialist at Dhanalakshmi Srinivasan Medical College Hospital, Perambalur providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+        "bio": "Certified Pulmonologist specialist at Sri Sankara Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__alia_malhotra_101",
@@ -3390,9 +3374,9 @@ const CONFIG = {
         },
         "specialization": "Gastroenterologist",
         "qualification": "MBBS, MD, DM (Gastroenterology)",
-        "hospital": "Government Medical College Hospital, Dharmapuri",
-        "district": "Dharmapuri",
-        "address": "Government Medical College Hospital, Dharmapuri, Dharmapuri, Tamil Nadu",
+        "hospital": "Christian Medical College & Hospital (CMC)",
+        "district": "Vellore",
+        "address": "Christian Medical College & Hospital (CMC), Vellore, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -3412,7 +3396,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 19,
-        "bio": "Certified Gastroenterologist specialist at Government Medical College Hospital, Dharmapuri providing comprehensive clinical healthcare for patients in Dharmapuri and across Tamil Nadu."
+        "bio": "Certified Gastroenterologist specialist at Christian Medical College & Hospital (CMC) providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kabir_mehta_102",
@@ -3423,9 +3407,9 @@ const CONFIG = {
         },
         "specialization": "Gastroenterologist",
         "qualification": "MBBS, MD, DM (Gastroenterology)",
-        "hospital": "Government Medical College Hospital, Ariyalur",
-        "district": "Ariyalur",
-        "address": "Government Medical College Hospital, Ariyalur, Ariyalur, Tamil Nadu",
+        "hospital": "Sri Amman Hospital",
+        "district": "Erode",
+        "address": "Sri Amman Hospital, Erode, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -3445,7 +3429,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 20,
-        "bio": "Certified Gastroenterologist specialist at Government Medical College Hospital, Ariyalur providing comprehensive clinical healthcare for patients in Ariyalur and across Tamil Nadu."
+        "bio": "Certified Gastroenterologist specialist at Sri Amman Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__deepika_sethi_103",
@@ -3456,9 +3440,9 @@ const CONFIG = {
         },
         "specialization": "Gastroenterologist",
         "qualification": "MBBS, MD, DM (Gastroenterology)",
-        "hospital": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur",
-        "district": "Perambalur",
-        "address": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur, Perambalur, Tamil Nadu",
+        "hospital": "Sudha Hospital",
+        "district": "Thanjavur",
+        "address": "Sudha Hospital, Thanjavur, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -3478,7 +3462,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 21,
-        "bio": "Certified Gastroenterologist specialist at Dhanalakshmi Srinivasan Medical College Hospital, Perambalur providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+        "bio": "Certified Gastroenterologist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__reyansh_kapoor_104",
@@ -3489,9 +3473,9 @@ const CONFIG = {
         },
         "specialization": "Gastroenterologist",
         "qualification": "MBBS, MD, DM (Gastroenterology)",
-        "hospital": "Government Medical College Hospital, Kallakurichi",
-        "district": "Kallakurichi",
-        "address": "Government Medical College Hospital, Kallakurichi, Kallakurichi, Tamil Nadu",
+        "hospital": "Aravind Hospital",
+        "district": "Dindigul",
+        "address": "Aravind Hospital, Dindigul, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -3511,7 +3495,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 22,
-        "bio": "Certified Gastroenterologist specialist at Government Medical College Hospital, Kallakurichi providing comprehensive clinical healthcare for patients in Kallakurichi and across Tamil Nadu."
+        "bio": "Certified Gastroenterologist specialist at Aravind Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kriti_bansal_105",
@@ -3522,9 +3506,9 @@ const CONFIG = {
         },
         "specialization": "Gastroenterologist",
         "qualification": "MBBS, MD, DM (Gastroenterology)",
-        "hospital": "Government District Headquarters Hospital, Mayiladuthurai",
-        "district": "Mayiladuthurai",
-        "address": "Government District Headquarters Hospital, Mayiladuthurai, Mayiladuthurai, Tamil Nadu",
+        "hospital": "Meenakshi Medical College Hospital",
+        "district": "Kanchipuram",
+        "address": "Meenakshi Medical College Hospital, Kanchipuram, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -3544,7 +3528,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 8,
-        "bio": "Certified Gastroenterologist specialist at Government District Headquarters Hospital, Mayiladuthurai providing comprehensive clinical healthcare for patients in Mayiladuthurai and across Tamil Nadu."
+        "bio": "Certified Gastroenterologist specialist at Meenakshi Medical College Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ahan_khanna_106",
@@ -3555,9 +3539,9 @@ const CONFIG = {
         },
         "specialization": "Gastroenterologist",
         "qualification": "MBBS, MD, DM (Gastroenterology)",
-        "hospital": "Kanyakumari Government Medical College Hospital, Asaripallam",
-        "district": "Kanniyakumari",
-        "address": "Kanyakumari Government Medical College Hospital, Asaripallam, Kanniyakumari, Tamil Nadu",
+        "hospital": "Sree Renga Hospital",
+        "district": "Chengalpattu",
+        "address": "Sree Renga Hospital, Chengalpattu, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -3577,7 +3561,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 9,
-        "bio": "Certified Gastroenterologist specialist at Kanyakumari Government Medical College Hospital, Asaripallam providing comprehensive clinical healthcare for patients in Kanniyakumari and across Tamil Nadu."
+        "bio": "Certified Gastroenterologist specialist at Sree Renga Hospital providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__myra_mehra_107",
@@ -3588,9 +3572,9 @@ const CONFIG = {
         },
         "specialization": "Gastroenterologist",
         "qualification": "MBBS, MD, DM (Gastroenterology)",
-        "hospital": "Apollo Hospitals, Greams Road",
-        "district": "Chennai",
-        "address": "Apollo Hospitals, Greams Road, Chennai, Tamil Nadu",
+        "hospital": "Revathi Medical Center",
+        "district": "Tiruppur",
+        "address": "Revathi Medical Center, Tiruppur, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -3610,7 +3594,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 10,
-        "bio": "Certified Gastroenterologist specialist at Apollo Hospitals, Greams Road providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+        "bio": "Certified Gastroenterologist specialist at Revathi Medical Center providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__zayan_kapoor_108",
@@ -3621,9 +3605,9 @@ const CONFIG = {
         },
         "specialization": "Gastroenterologist",
         "qualification": "MBBS, MD, DM (Gastroenterology)",
-        "hospital": "PSG Hospitals, Peelamedu",
-        "district": "Coimbatore",
-        "address": "PSG Hospitals, Peelamedu, Coimbatore, Tamil Nadu",
+        "hospital": "Sri Velavan Hospital",
+        "district": "Karur",
+        "address": "Sri Velavan Hospital, Karur, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -3643,7 +3627,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 11,
-        "bio": "Certified Gastroenterologist specialist at PSG Hospitals, Peelamedu providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+        "bio": "Certified Gastroenterologist specialist at Sri Velavan Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__malavika_arora_109",
@@ -3654,9 +3638,9 @@ const CONFIG = {
         },
         "specialization": "Gastroenterologist",
         "qualification": "MBBS, MD, DM (Gastroenterology)",
-        "hospital": "Government Rajaji Hospital & Medical College",
-        "district": "Madurai",
-        "address": "Government Rajaji Hospital & Medical College, Madurai, Tamil Nadu",
+        "hospital": "Naganathar Hospital",
+        "district": "Nagapattinam",
+        "address": "Naganathar Hospital, Nagapattinam, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -3676,7 +3660,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 12,
-        "bio": "Certified Gastroenterologist specialist at Government Rajaji Hospital & Medical College providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+        "bio": "Certified Gastroenterologist specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__nivaan_sethi_110",
@@ -3687,9 +3671,9 @@ const CONFIG = {
         },
         "specialization": "Gastroenterologist",
         "qualification": "MBBS, MD, DM (Gastroenterology)",
-        "hospital": "Manipal Hospitals, Dalmia Board",
-        "district": "Salem",
-        "address": "Manipal Hospitals, Dalmia Board, Salem, Tamil Nadu",
+        "hospital": "Sri Devi Hospital",
+        "district": "Ramanathapuram",
+        "address": "Sri Devi Hospital, Ramanathapuram, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -3709,7 +3693,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 13,
-        "bio": "Certified Gastroenterologist specialist at Manipal Hospitals, Dalmia Board providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+        "bio": "Certified Gastroenterologist specialist at Sri Devi Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kiara_bhatia_111",
@@ -3720,9 +3704,9 @@ const CONFIG = {
         },
         "specialization": "Pediatrician",
         "qualification": "MBBS, MD (Pediatrics), DCH",
-        "hospital": "PSG Hospitals, Peelamedu",
-        "district": "Coimbatore",
-        "address": "PSG Hospitals, Peelamedu, Coimbatore, Tamil Nadu",
+        "hospital": "Chettinad Hospital & Research Institute",
+        "district": "Chengalpattu",
+        "address": "Chettinad Hospital & Research Institute, Chengalpattu, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -3742,7 +3726,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 14,
-        "bio": "Certified Pediatrician specialist at PSG Hospitals, Peelamedu providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+        "bio": "Certified Pediatrician specialist at Chettinad Hospital & Research Institute providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ayaan_kapoor_112",
@@ -3753,9 +3737,9 @@ const CONFIG = {
         },
         "specialization": "Pediatrician",
         "qualification": "MBBS, MD (Pediatrics), DCH",
-        "hospital": "Government Rajaji Hospital & Medical College",
-        "district": "Madurai",
-        "address": "Government Rajaji Hospital & Medical College, Madurai, Tamil Nadu",
+        "hospital": "Kovai Medical Center & Hospital – Tiruppur",
+        "district": "Tiruppur",
+        "address": "Kovai Medical Center & Hospital – Tiruppur, Tiruppur, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -3775,7 +3759,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 15,
-        "bio": "Certified Pediatrician specialist at Government Rajaji Hospital & Medical College providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+        "bio": "Certified Pediatrician specialist at Kovai Medical Center & Hospital – Tiruppur providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__pooja_mehra_113",
@@ -3786,9 +3770,9 @@ const CONFIG = {
         },
         "specialization": "Pediatrician",
         "qualification": "MBBS, MD (Pediatrics), DCH",
-        "hospital": "Manipal Hospitals, Dalmia Board",
-        "district": "Salem",
-        "address": "Manipal Hospitals, Dalmia Board, Salem, Tamil Nadu",
+        "hospital": "Vasan Eye Care",
+        "district": "Karur",
+        "address": "Vasan Eye Care, Karur, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -3808,7 +3792,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 16,
-        "bio": "Certified Pediatrician specialist at Manipal Hospitals, Dalmia Board providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+        "bio": "Certified Pediatrician specialist at Vasan Eye Care providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__vihaan_sethi_114",
@@ -3819,9 +3803,9 @@ const CONFIG = {
         },
         "specialization": "Pediatrician",
         "qualification": "MBBS, MD (Pediatrics), DCH",
-        "hospital": "Kauvery Hospital, Cantonment",
-        "district": "Tiruchirappalli",
-        "address": "Kauvery Hospital, Cantonment, Tiruchirappalli, Tamil Nadu",
+        "hospital": "Sri Ram Hospital",
+        "district": "Nagapattinam",
+        "address": "Sri Ram Hospital, Nagapattinam, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -3841,7 +3825,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 17,
-        "bio": "Certified Pediatrician specialist at Kauvery Hospital, Cantonment providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+        "bio": "Certified Pediatrician specialist at Sri Ram Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__shruthi_malhotra_115",
@@ -3852,9 +3836,9 @@ const CONFIG = {
         },
         "specialization": "Pediatrician",
         "qualification": "MBBS, MD (Pediatrics), DCH",
-        "hospital": "Tirunelveli Medical College Hospital, High Ground",
-        "district": "Tirunelveli",
-        "address": "Tirunelveli Medical College Hospital, High Ground, Tirunelveli, Tamil Nadu",
+        "hospital": "Ramnad Hospital",
+        "district": "Ramanathapuram",
+        "address": "Ramnad Hospital, Ramanathapuram, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -3874,7 +3858,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 18,
-        "bio": "Certified Pediatrician specialist at Tirunelveli Medical College Hospital, High Ground providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+        "bio": "Certified Pediatrician specialist at Ramnad Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__arush_kapoor_116",
@@ -3885,9 +3869,9 @@ const CONFIG = {
         },
         "specialization": "Pediatrician",
         "qualification": "MBBS, MD (Pediatrics), DCH",
-        "hospital": "Christian Medical College (CMC) Hospital, Ida Scudder Road",
-        "district": "Vellore",
-        "address": "Christian Medical College (CMC) Hospital, Ida Scudder Road, Vellore, Tamil Nadu",
+        "hospital": "AVM Hospital",
+        "district": "Thoothukudi",
+        "address": "AVM Hospital, Thoothukudi, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -3907,7 +3891,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 19,
-        "bio": "Certified Pediatrician specialist at Christian Medical College (CMC) Hospital, Ida Scudder Road providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+        "bio": "Certified Pediatrician specialist at AVM Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__anaya_khanna_117",
@@ -3918,9 +3902,9 @@ const CONFIG = {
         },
         "specialization": "Pediatrician",
         "qualification": "MBBS, MD (Pediatrics), DCH",
-        "hospital": "Government Erode Medical College Hospital, Perundurai",
-        "district": "Erode",
-        "address": "Government Erode Medical College Hospital, Perundurai, Erode, Tamil Nadu",
+        "hospital": "Ramachandra Hospital network facilities",
+        "district": "Tiruvallur",
+        "address": "Ramachandra Hospital network facilities, Tiruvallur, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -3940,7 +3924,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 20,
-        "bio": "Certified Pediatrician specialist at Government Erode Medical College Hospital, Perundurai providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+        "bio": "Certified Pediatrician specialist at Ramachandra Hospital network facilities providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__riaan_mehra_118",
@@ -3951,9 +3935,9 @@ const CONFIG = {
         },
         "specialization": "Pediatrician",
         "qualification": "MBBS, MD (Pediatrics), DCH",
-        "hospital": "Thanjavur Medical College Hospital, Medical College Road",
-        "district": "Thanjavur",
-        "address": "Thanjavur Medical College Hospital, Medical College Road, Thanjavur, Tamil Nadu",
+        "hospital": "Sri Ramana Hospital",
+        "district": "Tiruvannamalai",
+        "address": "Sri Ramana Hospital, Tiruvannamalai, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -3973,7 +3957,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 21,
-        "bio": "Certified Pediatrician specialist at Thanjavur Medical College Hospital, Medical College Road providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+        "bio": "Certified Pediatrician specialist at Sri Ramana Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__catherine_bansal_119",
@@ -3984,9 +3968,9 @@ const CONFIG = {
         },
         "specialization": "Pediatrician",
         "qualification": "MBBS, MD (Pediatrics), DCH",
-        "hospital": "Government District Headquarters Hospital, Dindigul",
-        "district": "Dindigul",
-        "address": "Government District Headquarters Hospital, Dindigul, Dindigul, Tamil Nadu",
+        "hospital": "Arun Medical Centre",
+        "district": "Tiruvarur",
+        "address": "Arun Medical Centre, Tiruvarur, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -4006,7 +3990,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 22,
-        "bio": "Certified Pediatrician specialist at Government District Headquarters Hospital, Dindigul providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+        "bio": "Certified Pediatrician specialist at Arun Medical Centre providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__advik_suri_120",
@@ -4017,9 +4001,9 @@ const CONFIG = {
         },
         "specialization": "Pediatrician",
         "qualification": "MBBS, MD (Pediatrics), DCH",
-        "hospital": "Arignar Anna Memorial Cancer Hospital & Research Institute",
-        "district": "Kanchipuram",
-        "address": "Arignar Anna Memorial Cancer Hospital & Research Institute, Kanchipuram, Tamil Nadu",
+        "hospital": "VIMS Hospital",
+        "district": "Villupuram",
+        "address": "VIMS Hospital, Villupuram, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -4039,7 +4023,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 8,
-        "bio": "Certified Pediatrician specialist at Arignar Anna Memorial Cancer Hospital & Research Institute providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+        "bio": "Certified Pediatrician specialist at VIMS Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__deepika_kapoor_121",
@@ -4050,9 +4034,9 @@ const CONFIG = {
         },
         "specialization": "Gynecologist",
         "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-        "hospital": "Thanjavur Medical College Hospital, Medical College Road",
-        "district": "Thanjavur",
-        "address": "Thanjavur Medical College Hospital, Medical College Road, Thanjavur, Tamil Nadu",
+        "hospital": "AVM Hospital",
+        "district": "Thoothukudi",
+        "address": "AVM Hospital, Thoothukudi, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -4072,7 +4056,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 9,
-        "bio": "Certified Gynecologist specialist at Thanjavur Medical College Hospital, Medical College Road providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+        "bio": "Certified Gynecologist specialist at AVM Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kareena_malhotra_122",
@@ -4083,9 +4067,9 @@ const CONFIG = {
         },
         "specialization": "Gynecologist",
         "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-        "hospital": "Government District Headquarters Hospital, Dindigul",
-        "district": "Dindigul",
-        "address": "Government District Headquarters Hospital, Dindigul, Dindigul, Tamil Nadu",
+        "hospital": "Be Well Hospitals",
+        "district": "Tiruvallur",
+        "address": "Be Well Hospitals, Tiruvallur, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -4105,7 +4089,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 10,
-        "bio": "Certified Gynecologist specialist at Government District Headquarters Hospital, Dindigul providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+        "bio": "Certified Gynecologist specialist at Be Well Hospitals providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__alia_sethi_123",
@@ -4116,9 +4100,9 @@ const CONFIG = {
         },
         "specialization": "Gynecologist",
         "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-        "hospital": "Arignar Anna Memorial Cancer Hospital & Research Institute",
-        "district": "Kanchipuram",
-        "address": "Arignar Anna Memorial Cancer Hospital & Research Institute, Kanchipuram, Tamil Nadu",
+        "hospital": "Abirami Hospital",
+        "district": "Tiruvannamalai",
+        "address": "Abirami Hospital, Tiruvannamalai, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -4138,7 +4122,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 11,
-        "bio": "Certified Gynecologist specialist at Arignar Anna Memorial Cancer Hospital & Research Institute providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+        "bio": "Certified Gynecologist specialist at Abirami Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__vihaan_bhatia_124",
@@ -4149,9 +4133,9 @@ const CONFIG = {
         },
         "specialization": "Gynecologist",
         "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-        "hospital": "Chengalpattu Government Medical College Hospital, GST Road",
-        "district": "Chengalpattu",
-        "address": "Chengalpattu Government Medical College Hospital, GST Road, Chengalpattu, Tamil Nadu",
+        "hospital": "Lions Eye Hospital",
+        "district": "Tiruvarur",
+        "address": "Lions Eye Hospital, Tiruvarur, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -4171,7 +4155,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 12,
-        "bio": "Certified Gynecologist specialist at Chengalpattu Government Medical College Hospital, GST Road providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+        "bio": "Certified Gynecologist specialist at Lions Eye Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kriti_kapoor_125",
@@ -4182,9 +4166,9 @@ const CONFIG = {
         },
         "specialization": "Gynecologist",
         "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-        "hospital": "Government Medical College Hospital, Tiruppur",
-        "district": "Tiruppur",
-        "address": "Government Medical College Hospital, Tiruppur, Tiruppur, Tamil Nadu",
+        "hospital": "Sri Vinayaka Hospital",
+        "district": "Villupuram",
+        "address": "Sri Vinayaka Hospital, Villupuram, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -4204,7 +4188,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 13,
-        "bio": "Certified Gynecologist specialist at Government Medical College Hospital, Tiruppur providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+        "bio": "Certified Gynecologist specialist at Sri Vinayaka Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__malavika_mehra_126",
@@ -4215,9 +4199,9 @@ const CONFIG = {
         },
         "specialization": "Gynecologist",
         "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-        "hospital": "Government Headquarters Hospital, Cuddalore",
-        "district": "Cuddalore",
-        "address": "Government Headquarters Hospital, Cuddalore, Cuddalore, Tamil Nadu",
+        "hospital": "Sri Lakshmi Hospital",
+        "district": "Perambalur",
+        "address": "Sri Lakshmi Hospital, Perambalur, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -4237,7 +4221,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 14,
-        "bio": "Certified Gynecologist specialist at Government Headquarters Hospital, Cuddalore providing comprehensive clinical healthcare for patients in Cuddalore and across Tamil Nadu."
+        "bio": "Certified Gynecologist specialist at Sri Lakshmi Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__myra_khanna_127",
@@ -4248,9 +4232,9 @@ const CONFIG = {
         },
         "specialization": "Gynecologist",
         "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-        "hospital": "Government Medical College Hospital, Gandhigramam, Karur",
-        "district": "Karur",
-        "address": "Government Medical College Hospital, Gandhigramam, Karur, Karur, Tamil Nadu",
+        "hospital": "Kauvery Hospital Chennai",
+        "district": "Chennai",
+        "address": "Kauvery Hospital Chennai, Chennai, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -4270,7 +4254,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 15,
-        "bio": "Certified Gynecologist specialist at Government Medical College Hospital, Gandhigramam, Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+        "bio": "Certified Gynecologist specialist at Kauvery Hospital Chennai providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__pooja_malhotra_128",
@@ -4281,9 +4265,9 @@ const CONFIG = {
         },
         "specialization": "Gynecologist",
         "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-        "hospital": "Government District Headquarters Hospital, Nagapattinam",
-        "district": "Nagapattinam",
-        "address": "Government District Headquarters Hospital, Nagapattinam, Nagapattinam, Tamil Nadu",
+        "hospital": "Kovai Medical Center and Hospital (KMCH)",
+        "district": "Coimbatore",
+        "address": "Kovai Medical Center and Hospital (KMCH), Coimbatore, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -4303,7 +4287,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 16,
-        "bio": "Certified Gynecologist specialist at Government District Headquarters Hospital, Nagapattinam providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+        "bio": "Certified Gynecologist specialist at Kovai Medical Center and Hospital (KMCH) providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__rhea_sethi_129",
@@ -4314,9 +4298,9 @@ const CONFIG = {
         },
         "specialization": "Gynecologist",
         "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-        "hospital": "Government Medical College Hospital, Namakkal",
-        "district": "Namakkal",
-        "address": "Government Medical College Hospital, Namakkal, Namakkal, Tamil Nadu",
+        "hospital": "Velammal Medical College Hospital",
+        "district": "Madurai",
+        "address": "Velammal Medical College Hospital, Madurai, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -4336,7 +4320,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 17,
-        "bio": "Certified Gynecologist specialist at Government Medical College Hospital, Namakkal providing comprehensive clinical healthcare for patients in Namakkal and across Tamil Nadu."
+        "bio": "Certified Gynecologist specialist at Velammal Medical College Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__shobana_kapoor_130",
@@ -4347,9 +4331,9 @@ const CONFIG = {
         },
         "specialization": "Gynecologist",
         "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-        "hospital": "Government Medical College & District Hospital, Ooty",
-        "district": "Nilgiris",
-        "address": "Government Medical College & District Hospital, Ooty, Nilgiris, Tamil Nadu",
+        "hospital": "Vinayaka Mission Super Speciality Hospital",
+        "district": "Salem",
+        "address": "Vinayaka Mission Super Speciality Hospital, Salem, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -4369,7 +4353,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 18,
-        "bio": "Certified Gynecologist specialist at Government Medical College & District Hospital, Ooty providing comprehensive clinical healthcare for patients in Nilgiris and across Tamil Nadu."
+        "bio": "Certified Gynecologist specialist at Vinayaka Mission Super Speciality Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kiara_mehra_131",
@@ -4380,9 +4364,9 @@ const CONFIG = {
         },
         "specialization": "Ophthalmologist",
         "qualification": "MBBS, MS (Ophthalmology), DO",
-        "hospital": "Government District Headquarters Hospital, Nagapattinam",
-        "district": "Nagapattinam",
-        "address": "Government District Headquarters Hospital, Nagapattinam, Nagapattinam, Tamil Nadu",
+        "hospital": "Dhanalakshmi Srinivasan Medical College Hospital",
+        "district": "Perambalur",
+        "address": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -4402,7 +4386,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 19,
-        "bio": "Certified Ophthalmologist specialist at Government District Headquarters Hospital, Nagapattinam providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+        "bio": "Certified Ophthalmologist specialist at Dhanalakshmi Srinivasan Medical College Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ayaan_kapoor_132",
@@ -4413,9 +4397,9 @@ const CONFIG = {
         },
         "specialization": "Ophthalmologist",
         "qualification": "MBBS, MS (Ophthalmology), DO",
-        "hospital": "Government Medical College Hospital, Namakkal",
-        "district": "Namakkal",
-        "address": "Government Medical College Hospital, Namakkal, Namakkal, Tamil Nadu",
+        "hospital": "Kauvery Hospital Chennai",
+        "district": "Chennai",
+        "address": "Kauvery Hospital Chennai, Chennai, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -4435,7 +4419,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 20,
-        "bio": "Certified Ophthalmologist specialist at Government Medical College Hospital, Namakkal providing comprehensive clinical healthcare for patients in Namakkal and across Tamil Nadu."
+        "bio": "Certified Ophthalmologist specialist at Kauvery Hospital Chennai providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__zendaya_thomas_133",
@@ -4446,9 +4430,9 @@ const CONFIG = {
         },
         "specialization": "Ophthalmologist",
         "qualification": "MBBS, MS (Ophthalmology), DO",
-        "hospital": "Government Medical College & District Hospital, Ooty",
-        "district": "Nilgiris",
-        "address": "Government Medical College & District Hospital, Ooty, Nilgiris, Tamil Nadu",
+        "hospital": "Kovai Medical Center and Hospital (KMCH)",
+        "district": "Coimbatore",
+        "address": "Kovai Medical Center and Hospital (KMCH), Coimbatore, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -4468,7 +4452,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 21,
-        "bio": "Certified Ophthalmologist specialist at Government Medical College & District Hospital, Ooty providing comprehensive clinical healthcare for patients in Nilgiris and across Tamil Nadu."
+        "bio": "Certified Ophthalmologist specialist at Kovai Medical Center and Hospital (KMCH) providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__arush_malhotra_134",
@@ -4479,9 +4463,9 @@ const CONFIG = {
         },
         "specialization": "Ophthalmologist",
         "qualification": "MBBS, MS (Ophthalmology), DO",
-        "hospital": "Government Medical College Hospital, Pudukkottai",
-        "district": "Pudukkottai",
-        "address": "Government Medical College Hospital, Pudukkottai, Pudukkottai, Tamil Nadu",
+        "hospital": "Velammal Medical College Hospital",
+        "district": "Madurai",
+        "address": "Velammal Medical College Hospital, Madurai, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -4501,7 +4485,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 22,
-        "bio": "Certified Ophthalmologist specialist at Government Medical College Hospital, Pudukkottai providing comprehensive clinical healthcare for patients in Pudukkottai and across Tamil Nadu."
+        "bio": "Certified Ophthalmologist specialist at Velammal Medical College Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__shruthi_sethi_135",
@@ -4512,9 +4496,9 @@ const CONFIG = {
         },
         "specialization": "Ophthalmologist",
         "qualification": "MBBS, MS (Ophthalmology), DO",
-        "hospital": "Government Medical College Hospital, Ramanathapuram",
-        "district": "Ramanathapuram",
-        "address": "Government Medical College Hospital, Ramanathapuram, Ramanathapuram, Tamil Nadu",
+        "hospital": "Vinayaka Mission Super Speciality Hospital",
+        "district": "Salem",
+        "address": "Vinayaka Mission Super Speciality Hospital, Salem, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -4534,7 +4518,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 8,
-        "bio": "Certified Ophthalmologist specialist at Government Medical College Hospital, Ramanathapuram providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+        "bio": "Certified Ophthalmologist specialist at Vinayaka Mission Super Speciality Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kabir_bansal_136",
@@ -4545,9 +4529,9 @@ const CONFIG = {
         },
         "specialization": "Ophthalmologist",
         "qualification": "MBBS, MS (Ophthalmology), DO",
-        "hospital": "Government Medical College Hospital, Sivaganga",
-        "district": "Sivaganga",
-        "address": "Government Medical College Hospital, Sivaganga, Sivaganga, Tamil Nadu",
+        "hospital": "Frontline Hospital",
+        "district": "Tiruchirappalli",
+        "address": "Frontline Hospital, Tiruchirappalli, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -4567,7 +4551,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 9,
-        "bio": "Certified Ophthalmologist specialist at Government Medical College Hospital, Sivaganga providing comprehensive clinical healthcare for patients in Sivaganga and across Tamil Nadu."
+        "bio": "Certified Ophthalmologist specialist at Frontline Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__deepika_khanna_137",
@@ -4578,9 +4562,9 @@ const CONFIG = {
         },
         "specialization": "Ophthalmologist",
         "qualification": "MBBS, MS (Ophthalmology), DO",
-        "hospital": "Government District Headquarters Hospital, Tenkasi",
-        "district": "Tenkasi",
-        "address": "Government District Headquarters Hospital, Tenkasi, Tenkasi, Tamil Nadu",
+        "hospital": "Krishna Hospital",
+        "district": "Tirunelveli",
+        "address": "Krishna Hospital, Tirunelveli, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -4600,7 +4584,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 10,
-        "bio": "Certified Ophthalmologist specialist at Government District Headquarters Hospital, Tenkasi providing comprehensive clinical healthcare for patients in Tenkasi and across Tamil Nadu."
+        "bio": "Certified Ophthalmologist specialist at Krishna Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__reyansh_kapoor_138",
@@ -4611,9 +4595,9 @@ const CONFIG = {
         },
         "specialization": "Ophthalmologist",
         "qualification": "MBBS, MS (Ophthalmology), DO",
-        "hospital": "Government Theni Medical College & Hospital, Kanavilku",
-        "district": "Theni",
-        "address": "Government Theni Medical College & Hospital, Kanavilku, Theni, Tamil Nadu",
+        "hospital": "Scudder Memorial Hospital",
+        "district": "Vellore",
+        "address": "Scudder Memorial Hospital, Vellore, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -4633,7 +4617,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 11,
-        "bio": "Certified Ophthalmologist specialist at Government Theni Medical College & Hospital, Kanavilku providing comprehensive clinical healthcare for patients in Theni and across Tamil Nadu."
+        "bio": "Certified Ophthalmologist specialist at Scudder Memorial Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__catherine_mehra_139",
@@ -4644,9 +4628,9 @@ const CONFIG = {
         },
         "specialization": "Ophthalmologist",
         "qualification": "MBBS, MS (Ophthalmology), DO",
-        "hospital": "Government Medical College Hospital, Thoothukudi",
-        "district": "Thoothukudi",
-        "address": "Government Medical College Hospital, Thoothukudi, Thoothukudi, Tamil Nadu",
+        "hospital": "Abirami Kidney Care",
+        "district": "Erode",
+        "address": "Abirami Kidney Care, Erode, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -4666,7 +4650,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 12,
-        "bio": "Certified Ophthalmologist specialist at Government Medical College Hospital, Thoothukudi providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+        "bio": "Certified Ophthalmologist specialist at Abirami Kidney Care providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__nivaan_arora_140",
@@ -4677,9 +4661,9 @@ const CONFIG = {
         },
         "specialization": "Ophthalmologist",
         "qualification": "MBBS, MS (Ophthalmology), DO",
-        "hospital": "Government Medical College Hospital, Tiruvallur",
-        "district": "Tiruvallur",
-        "address": "Government Medical College Hospital, Tiruvallur, Tiruvallur, Tamil Nadu",
+        "hospital": "Vallalar Hospital",
+        "district": "Thanjavur",
+        "address": "Vallalar Hospital, Thanjavur, Tamil Nadu",
         "consultationFee": 450,
         "availableDays": [
             "Monday",
@@ -4699,7 +4683,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 13,
-        "bio": "Certified Ophthalmologist specialist at Government Medical College Hospital, Tiruvallur providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
+        "bio": "Certified Ophthalmologist specialist at Vallalar Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__vihaan_kapoor_141",
@@ -4710,9 +4694,9 @@ const CONFIG = {
         },
         "specialization": "Urologist",
         "qualification": "MBBS, MS, M.Ch (Urology)",
-        "hospital": "Government Theni Medical College & Hospital, Kanavilku",
-        "district": "Theni",
-        "address": "Government Theni Medical College & Hospital, Kanavilku, Theni, Tamil Nadu",
+        "hospital": "Kauvery Hospital",
+        "district": "Tiruchirappalli",
+        "address": "Kauvery Hospital, Tiruchirappalli, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -4732,7 +4716,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 14,
-        "bio": "Certified Urologist specialist at Government Theni Medical College & Hospital, Kanavilku providing comprehensive clinical healthcare for patients in Theni and across Tamil Nadu."
+        "bio": "Certified Urologist specialist at Kauvery Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ahan_malhotra_142",
@@ -4743,9 +4727,9 @@ const CONFIG = {
         },
         "specialization": "Urologist",
         "qualification": "MBBS, MS, M.Ch (Urology)",
-        "hospital": "Government Medical College Hospital, Thoothukudi",
-        "district": "Thoothukudi",
-        "address": "Government Medical College Hospital, Thoothukudi, Thoothukudi, Tamil Nadu",
+        "hospital": "Krishna Hospital",
+        "district": "Tirunelveli",
+        "address": "Krishna Hospital, Tirunelveli, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -4765,7 +4749,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 15,
-        "bio": "Certified Urologist specialist at Government Medical College Hospital, Thoothukudi providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+        "bio": "Certified Urologist specialist at Krishna Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kareena_sethi_143",
@@ -4776,9 +4760,9 @@ const CONFIG = {
         },
         "specialization": "Urologist",
         "qualification": "MBBS, MS, M.Ch (Urology)",
-        "hospital": "Government Medical College Hospital, Tiruvallur",
-        "district": "Tiruvallur",
-        "address": "Government Medical College Hospital, Tiruvallur, Tiruvallur, Tamil Nadu",
+        "hospital": "Scudder Memorial Hospital",
+        "district": "Vellore",
+        "address": "Scudder Memorial Hospital, Vellore, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -4798,7 +4782,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 16,
-        "bio": "Certified Urologist specialist at Government Medical College Hospital, Tiruvallur providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
+        "bio": "Certified Urologist specialist at Scudder Memorial Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__zayan_bhatia_144",
@@ -4809,9 +4793,9 @@ const CONFIG = {
         },
         "specialization": "Urologist",
         "qualification": "MBBS, MS, M.Ch (Urology)",
-        "hospital": "Government Medical College Hospital, Tiruvannamalai",
-        "district": "Tiruvannamalai",
-        "address": "Government Medical College Hospital, Tiruvannamalai, Tiruvannamalai, Tamil Nadu",
+        "hospital": "Abirami Kidney Care",
+        "district": "Erode",
+        "address": "Abirami Kidney Care, Erode, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -4831,7 +4815,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 17,
-        "bio": "Certified Urologist specialist at Government Medical College Hospital, Tiruvannamalai providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
+        "bio": "Certified Urologist specialist at Abirami Kidney Care providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kiara_khanna_145",
@@ -4842,9 +4826,9 @@ const CONFIG = {
         },
         "specialization": "Urologist",
         "qualification": "MBBS, MS, M.Ch (Urology)",
-        "hospital": "Government Tiruvarur Medical College Hospital, Vilamal",
-        "district": "Tiruvarur",
-        "address": "Government Tiruvarur Medical College Hospital, Vilamal, Tiruvarur, Tamil Nadu",
+        "hospital": "Vallalar Hospital",
+        "district": "Thanjavur",
+        "address": "Vallalar Hospital, Thanjavur, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -4864,7 +4848,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 18,
-        "bio": "Certified Urologist specialist at Government Tiruvarur Medical College Hospital, Vilamal providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+        "bio": "Certified Urologist specialist at Vallalar Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__arush_mehra_146",
@@ -4875,9 +4859,9 @@ const CONFIG = {
         },
         "specialization": "Urologist",
         "qualification": "MBBS, MS, M.Ch (Urology)",
-        "hospital": "Government Headquarters Hospital, Ranipet",
-        "district": "Ranipet",
-        "address": "Government Headquarters Hospital, Ranipet, Ranipet, Tamil Nadu",
+        "hospital": "Sree Abirami Hospital",
+        "district": "Dindigul",
+        "address": "Sree Abirami Hospital, Dindigul, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -4897,7 +4881,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 19,
-        "bio": "Certified Urologist specialist at Government Headquarters Hospital, Ranipet providing comprehensive clinical healthcare for patients in Ranipet and across Tamil Nadu."
+        "bio": "Certified Urologist specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__malavika_kapoor_147",
@@ -4908,9 +4892,9 @@ const CONFIG = {
         },
         "specialization": "Urologist",
         "qualification": "MBBS, MS, M.Ch (Urology)",
-        "hospital": "Government Headquarters Hospital, Tirupattur",
-        "district": "Tirupattur",
-        "address": "Government Headquarters Hospital, Tirupattur, Tirupattur, Tamil Nadu",
+        "hospital": "Rela Hospital Kanchipuram",
+        "district": "Kanchipuram",
+        "address": "Rela Hospital Kanchipuram, Kanchipuram, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -4930,7 +4914,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 20,
-        "bio": "Certified Urologist specialist at Government Headquarters Hospital, Tirupattur providing comprehensive clinical healthcare for patients in Tirupattur and across Tamil Nadu."
+        "bio": "Certified Urologist specialist at Rela Hospital Kanchipuram providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__riaan_sethi_148",
@@ -4941,9 +4925,9 @@ const CONFIG = {
         },
         "specialization": "Urologist",
         "qualification": "MBBS, MS, M.Ch (Urology)",
-        "hospital": "Government Medical College Hospital, Mundiyampakkam, Viluppuram",
-        "district": "Viluppuram",
-        "address": "Government Medical College Hospital, Mundiyampakkam, Viluppuram, Viluppuram, Tamil Nadu",
+        "hospital": "Karpaga Vinayaga Institute of Medical Sciences",
+        "district": "Chengalpattu",
+        "address": "Karpaga Vinayaga Institute of Medical Sciences, Chengalpattu, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -4963,7 +4947,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 21,
-        "bio": "Certified Urologist specialist at Government Medical College Hospital, Mundiyampakkam, Viluppuram providing comprehensive clinical healthcare for patients in Viluppuram and across Tamil Nadu."
+        "bio": "Certified Urologist specialist at Karpaga Vinayaga Institute of Medical Sciences providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__pooja_khanna_149",
@@ -4974,9 +4958,9 @@ const CONFIG = {
         },
         "specialization": "Urologist",
         "qualification": "MBBS, MS, M.Ch (Urology)",
-        "hospital": "Government Medical College Hospital, Virudhunagar",
-        "district": "Virudhunagar",
-        "address": "Government Medical College Hospital, Virudhunagar, Virudhunagar, Tamil Nadu",
+        "hospital": "Sri Kumaran Hospital",
+        "district": "Tiruppur",
+        "address": "Sri Kumaran Hospital, Tiruppur, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -4996,7 +4980,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 22,
-        "bio": "Certified Urologist specialist at Government Medical College Hospital, Virudhunagar providing comprehensive clinical healthcare for patients in Virudhunagar and across Tamil Nadu."
+        "bio": "Certified Urologist specialist at Sri Kumaran Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__advik_mehta_150",
@@ -5007,9 +4991,9 @@ const CONFIG = {
         },
         "specialization": "Urologist",
         "qualification": "MBBS, MS, M.Ch (Urology)",
-        "hospital": "Government Medical College Hospital, Krishnagiri",
-        "district": "Krishnagiri",
-        "address": "Government Medical College Hospital, Krishnagiri, Krishnagiri, Tamil Nadu",
+        "hospital": "Apollo Hospitals Karur",
+        "district": "Karur",
+        "address": "Apollo Hospitals Karur, Karur, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -5029,7 +5013,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 8,
-        "bio": "Certified Urologist specialist at Government Medical College Hospital, Krishnagiri providing comprehensive clinical healthcare for patients in Krishnagiri and across Tamil Nadu."
+        "bio": "Certified Urologist specialist at Apollo Hospitals Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__alia_kapoor_151",
@@ -5040,9 +5024,9 @@ const CONFIG = {
         },
         "specialization": "Plastic Surgeon",
         "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
-        "hospital": "Government Medical College Hospital, Mundiyampakkam, Viluppuram",
-        "district": "Viluppuram",
-        "address": "Government Medical College Hospital, Mundiyampakkam, Viluppuram, Viluppuram, Tamil Nadu",
+        "hospital": "Muthu Meenakshi Hospitals",
+        "district": "Dindigul",
+        "address": "Muthu Meenakshi Hospitals, Dindigul, Tamil Nadu",
         "consultationFee": 850,
         "availableDays": [
             "Monday",
@@ -5062,7 +5046,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 9,
-        "bio": "Certified Plastic Surgeon specialist at Government Medical College Hospital, Mundiyampakkam, Viluppuram providing comprehensive clinical healthcare for patients in Viluppuram and across Tamil Nadu."
+        "bio": "Certified Plastic Surgeon specialist at Muthu Meenakshi Hospitals providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kabir_malhotra_152",
@@ -5073,9 +5057,9 @@ const CONFIG = {
         },
         "specialization": "Plastic Surgeon",
         "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
-        "hospital": "Government Medical College Hospital, Virudhunagar",
-        "district": "Virudhunagar",
-        "address": "Government Medical College Hospital, Virudhunagar, Virudhunagar, Tamil Nadu",
+        "hospital": "Sri Sankara Hospital",
+        "district": "Kanchipuram",
+        "address": "Sri Sankara Hospital, Kanchipuram, Tamil Nadu",
         "consultationFee": 900,
         "availableDays": [
             "Monday",
@@ -5095,7 +5079,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 10,
-        "bio": "Certified Plastic Surgeon specialist at Government Medical College Hospital, Virudhunagar providing comprehensive clinical healthcare for patients in Virudhunagar and across Tamil Nadu."
+        "bio": "Certified Plastic Surgeon specialist at Sri Sankara Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__deepika_sethi_153",
@@ -5106,9 +5090,9 @@ const CONFIG = {
         },
         "specialization": "Plastic Surgeon",
         "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
-        "hospital": "Government Medical College Hospital, Krishnagiri",
-        "district": "Krishnagiri",
-        "address": "Government Medical College Hospital, Krishnagiri, Krishnagiri, Tamil Nadu",
+        "hospital": "Rela Institute & Medical Centre",
+        "district": "Chengalpattu",
+        "address": "Rela Institute & Medical Centre, Chengalpattu, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -5128,7 +5112,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 11,
-        "bio": "Certified Plastic Surgeon specialist at Government Medical College Hospital, Krishnagiri providing comprehensive clinical healthcare for patients in Krishnagiri and across Tamil Nadu."
+        "bio": "Certified Plastic Surgeon specialist at Rela Institute & Medical Centre providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ayaan_khanna_154",
@@ -5139,9 +5123,9 @@ const CONFIG = {
         },
         "specialization": "Plastic Surgeon",
         "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
-        "hospital": "Government Medical College Hospital, Dharmapuri",
-        "district": "Dharmapuri",
-        "address": "Government Medical College Hospital, Dharmapuri, Dharmapuri, Tamil Nadu",
+        "hospital": "Sree Abirami Hospital",
+        "district": "Tiruppur",
+        "address": "Sree Abirami Hospital, Tiruppur, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -5161,7 +5145,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 12,
-        "bio": "Certified Plastic Surgeon specialist at Government Medical College Hospital, Dharmapuri providing comprehensive clinical healthcare for patients in Dharmapuri and across Tamil Nadu."
+        "bio": "Certified Plastic Surgeon specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kriti_kapoor_155",
@@ -5172,9 +5156,9 @@ const CONFIG = {
         },
         "specialization": "Plastic Surgeon",
         "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
-        "hospital": "Government Medical College Hospital, Ariyalur",
-        "district": "Ariyalur",
-        "address": "Government Medical College Hospital, Ariyalur, Ariyalur, Tamil Nadu",
+        "hospital": "Amaravathi Hospital",
+        "district": "Karur",
+        "address": "Amaravathi Hospital, Karur, Tamil Nadu",
         "consultationFee": 850,
         "availableDays": [
             "Monday",
@@ -5194,7 +5178,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 13,
-        "bio": "Certified Plastic Surgeon specialist at Government Medical College Hospital, Ariyalur providing comprehensive clinical healthcare for patients in Ariyalur and across Tamil Nadu."
+        "bio": "Certified Plastic Surgeon specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__reyansh_bansal_156",
@@ -5205,9 +5189,9 @@ const CONFIG = {
         },
         "specialization": "Plastic Surgeon",
         "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
-        "hospital": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur",
-        "district": "Perambalur",
-        "address": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur, Perambalur, Tamil Nadu",
+        "hospital": "MC Hospital",
+        "district": "Nagapattinam",
+        "address": "MC Hospital, Nagapattinam, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -5227,7 +5211,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 14,
-        "bio": "Certified Plastic Surgeon specialist at Dhanalakshmi Srinivasan Medical College Hospital, Perambalur providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+        "bio": "Certified Plastic Surgeon specialist at MC Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__myra_mehra_157",
@@ -5238,9 +5222,9 @@ const CONFIG = {
         },
         "specialization": "Plastic Surgeon",
         "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
-        "hospital": "Government Medical College Hospital, Kallakurichi",
-        "district": "Kallakurichi",
-        "address": "Government Medical College Hospital, Kallakurichi, Kallakurichi, Tamil Nadu",
+        "hospital": "Annai Hospital",
+        "district": "Ramanathapuram",
+        "address": "Annai Hospital, Ramanathapuram, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -5260,7 +5244,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 15,
-        "bio": "Certified Plastic Surgeon specialist at Government Medical College Hospital, Kallakurichi providing comprehensive clinical healthcare for patients in Kallakurichi and across Tamil Nadu."
+        "bio": "Certified Plastic Surgeon specialist at Annai Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__zayan_kapoor_158",
@@ -5271,9 +5255,9 @@ const CONFIG = {
         },
         "specialization": "Plastic Surgeon",
         "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
-        "hospital": "Government District Headquarters Hospital, Mayiladuthurai",
-        "district": "Mayiladuthurai",
-        "address": "Government District Headquarters Hospital, Mayiladuthurai, Mayiladuthurai, Tamil Nadu",
+        "hospital": "Shifa Hospital",
+        "district": "Thoothukudi",
+        "address": "Shifa Hospital, Thoothukudi, Tamil Nadu",
         "consultationFee": 850,
         "availableDays": [
             "Monday",
@@ -5293,7 +5277,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 16,
-        "bio": "Certified Plastic Surgeon specialist at Government District Headquarters Hospital, Mayiladuthurai providing comprehensive clinical healthcare for patients in Mayiladuthurai and across Tamil Nadu."
+        "bio": "Certified Plastic Surgeon specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__shobana_malhotra_159",
@@ -5304,9 +5288,9 @@ const CONFIG = {
         },
         "specialization": "Plastic Surgeon",
         "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
-        "hospital": "Kanyakumari Government Medical College Hospital, Asaripallam",
-        "district": "Kanniyakumari",
-        "address": "Kanyakumari Government Medical College Hospital, Asaripallam, Kanniyakumari, Tamil Nadu",
+        "hospital": "Saveetha Medical College & Hospital",
+        "district": "Tiruvallur",
+        "address": "Saveetha Medical College & Hospital, Tiruvallur, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -5326,7 +5310,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 17,
-        "bio": "Certified Plastic Surgeon specialist at Kanyakumari Government Medical College Hospital, Asaripallam providing comprehensive clinical healthcare for patients in Kanniyakumari and across Tamil Nadu."
+        "bio": "Certified Plastic Surgeon specialist at Saveetha Medical College & Hospital providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__nivaan_sethi_160",
@@ -5337,9 +5321,9 @@ const CONFIG = {
         },
         "specialization": "Plastic Surgeon",
         "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
-        "hospital": "Apollo Hospitals, Greams Road",
-        "district": "Chennai",
-        "address": "Apollo Hospitals, Greams Road, Chennai, Tamil Nadu",
+        "hospital": "Ramana Maharshi Rangammal Hospital",
+        "district": "Tiruvannamalai",
+        "address": "Ramana Maharshi Rangammal Hospital, Tiruvannamalai, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -5359,7 +5343,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 18,
-        "bio": "Certified Plastic Surgeon specialist at Apollo Hospitals, Greams Road providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+        "bio": "Certified Plastic Surgeon specialist at Ramana Maharshi Rangammal Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kiara_bansal_161",
@@ -5370,9 +5354,9 @@ const CONFIG = {
         },
         "specialization": "Radiologist",
         "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
-        "hospital": "Government District Headquarters Hospital, Mayiladuthurai",
-        "district": "Mayiladuthurai",
-        "address": "Government District Headquarters Hospital, Mayiladuthurai, Mayiladuthurai, Tamil Nadu",
+        "hospital": "Naganathar Hospital",
+        "district": "Nagapattinam",
+        "address": "Naganathar Hospital, Nagapattinam, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -5392,7 +5376,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 19,
-        "bio": "Certified Radiologist specialist at Government District Headquarters Hospital, Mayiladuthurai providing comprehensive clinical healthcare for patients in Mayiladuthurai and across Tamil Nadu."
+        "bio": "Certified Radiologist specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__vihaan_kapoor_162",
@@ -5403,9 +5387,9 @@ const CONFIG = {
         },
         "specialization": "Radiologist",
         "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
-        "hospital": "Kanyakumari Government Medical College Hospital, Asaripallam",
-        "district": "Kanniyakumari",
-        "address": "Kanyakumari Government Medical College Hospital, Asaripallam, Kanniyakumari, Tamil Nadu",
+        "hospital": "Sri Devi Hospital",
+        "district": "Ramanathapuram",
+        "address": "Sri Devi Hospital, Ramanathapuram, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -5425,7 +5409,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 20,
-        "bio": "Certified Radiologist specialist at Kanyakumari Government Medical College Hospital, Asaripallam providing comprehensive clinical healthcare for patients in Kanniyakumari and across Tamil Nadu."
+        "bio": "Certified Radiologist specialist at Sri Devi Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__pooja_mehra_163",
@@ -5436,9 +5420,9 @@ const CONFIG = {
         },
         "specialization": "Radiologist",
         "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
-        "hospital": "Apollo Hospitals, Greams Road",
-        "district": "Chennai",
-        "address": "Apollo Hospitals, Greams Road, Chennai, Tamil Nadu",
+        "hospital": "Shifa Hospital",
+        "district": "Thoothukudi",
+        "address": "Shifa Hospital, Thoothukudi, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -5458,7 +5442,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 21,
-        "bio": "Certified Radiologist specialist at Apollo Hospitals, Greams Road providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+        "bio": "Certified Radiologist specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__arush_sethi_164",
@@ -5469,9 +5453,9 @@ const CONFIG = {
         },
         "specialization": "Radiologist",
         "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
-        "hospital": "PSG Hospitals, Peelamedu",
-        "district": "Coimbatore",
-        "address": "PSG Hospitals, Peelamedu, Coimbatore, Tamil Nadu",
+        "hospital": "ACS Medical College Hospital",
+        "district": "Tiruvallur",
+        "address": "ACS Medical College Hospital, Tiruvallur, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -5491,7 +5475,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 22,
-        "bio": "Certified Radiologist specialist at PSG Hospitals, Peelamedu providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+        "bio": "Certified Radiologist specialist at ACS Medical College Hospital providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__malavika_khanna_165",
@@ -5502,9 +5486,9 @@ const CONFIG = {
         },
         "specialization": "Radiologist",
         "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
-        "hospital": "Government Rajaji Hospital & Medical College",
-        "district": "Madurai",
-        "address": "Government Rajaji Hospital & Medical College, Madurai, Tamil Nadu",
+        "hospital": "Arunai Hospital",
+        "district": "Tiruvannamalai",
+        "address": "Arunai Hospital, Tiruvannamalai, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -5524,7 +5508,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 8,
-        "bio": "Certified Radiologist specialist at Government Rajaji Hospital & Medical College providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+        "bio": "Certified Radiologist specialist at Arunai Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ahan_bhatia_166",
@@ -5535,9 +5519,9 @@ const CONFIG = {
         },
         "specialization": "Radiologist",
         "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
-        "hospital": "Manipal Hospitals, Dalmia Board",
-        "district": "Salem",
-        "address": "Manipal Hospitals, Dalmia Board, Salem, Tamil Nadu",
+        "hospital": "Lakshana Hospital",
+        "district": "Tiruvarur",
+        "address": "Lakshana Hospital, Tiruvarur, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -5557,7 +5541,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 9,
-        "bio": "Certified Radiologist specialist at Manipal Hospitals, Dalmia Board providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+        "bio": "Certified Radiologist specialist at Lakshana Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__catherine_kapoor_167",
@@ -5568,9 +5552,9 @@ const CONFIG = {
         },
         "specialization": "Radiologist",
         "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
-        "hospital": "Kauvery Hospital, Cantonment",
-        "district": "Tiruchirappalli",
-        "address": "Kauvery Hospital, Cantonment, Tiruchirappalli, Tamil Nadu",
+        "hospital": "VIMS Hospital",
+        "district": "Villupuram",
+        "address": "VIMS Hospital, Villupuram, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -5590,7 +5574,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 10,
-        "bio": "Certified Radiologist specialist at Kauvery Hospital, Cantonment providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+        "bio": "Certified Radiologist specialist at VIMS Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__riaan_malhotra_168",
@@ -5601,9 +5585,9 @@ const CONFIG = {
         },
         "specialization": "Radiologist",
         "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
-        "hospital": "Tirunelveli Medical College Hospital, High Ground",
-        "district": "Tirunelveli",
-        "address": "Tirunelveli Medical College Hospital, High Ground, Tirunelveli, Tamil Nadu",
+        "hospital": "Sri Lakshmi Hospital",
+        "district": "Perambalur",
+        "address": "Sri Lakshmi Hospital, Perambalur, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -5623,7 +5607,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 11,
-        "bio": "Certified Radiologist specialist at Tirunelveli Medical College Hospital, High Ground providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+        "bio": "Certified Radiologist specialist at Sri Lakshmi Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__deepika_arora_169",
@@ -5634,9 +5618,9 @@ const CONFIG = {
         },
         "specialization": "Radiologist",
         "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
-        "hospital": "Christian Medical College (CMC) Hospital, Ida Scudder Road",
-        "district": "Vellore",
-        "address": "Christian Medical College (CMC) Hospital, Ida Scudder Road, Vellore, Tamil Nadu",
+        "hospital": "SIMS Hospitals - Multi Speciality Hospital",
+        "district": "Chennai",
+        "address": "SIMS Hospitals - Multi Speciality Hospital, Chennai, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -5656,7 +5640,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 12,
-        "bio": "Certified Radiologist specialist at Christian Medical College (CMC) Hospital, Ida Scudder Road providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+        "bio": "Certified Radiologist specialist at SIMS Hospitals - Multi Speciality Hospital providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__advik_mehta_170",
@@ -5667,9 +5651,9 @@ const CONFIG = {
         },
         "specialization": "Radiologist",
         "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
-        "hospital": "Government Erode Medical College Hospital, Perundurai",
-        "district": "Erode",
-        "address": "Government Erode Medical College Hospital, Perundurai, Erode, Tamil Nadu",
+        "hospital": "KG Hospital",
+        "district": "Coimbatore",
+        "address": "KG Hospital, Coimbatore, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -5689,7 +5673,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 13,
-        "bio": "Certified Radiologist specialist at Government Erode Medical College Hospital, Perundurai providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+        "bio": "Certified Radiologist specialist at KG Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kareena_kapoor_171",
@@ -5700,9 +5684,9 @@ const CONFIG = {
         },
         "specialization": "Neonatologist",
         "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
-        "hospital": "Tirunelveli Medical College Hospital, High Ground",
-        "district": "Tirunelveli",
-        "address": "Tirunelveli Medical College Hospital, High Ground, Tirunelveli, Tamil Nadu",
+        "hospital": "Arun Medical Centre",
+        "district": "Tiruvarur",
+        "address": "Arun Medical Centre, Tiruvarur, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -5722,7 +5706,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 14,
-        "bio": "Certified Neonatologist specialist at Tirunelveli Medical College Hospital, High Ground providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+        "bio": "Certified Neonatologist specialist at Arun Medical Centre providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ayaan_malhotra_172",
@@ -5733,9 +5717,9 @@ const CONFIG = {
         },
         "specialization": "Neonatologist",
         "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
-        "hospital": "Christian Medical College (CMC) Hospital, Ida Scudder Road",
-        "district": "Vellore",
-        "address": "Christian Medical College (CMC) Hospital, Ida Scudder Road, Vellore, Tamil Nadu",
+        "hospital": "Sri Vinayaka Hospital",
+        "district": "Villupuram",
+        "address": "Sri Vinayaka Hospital, Villupuram, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -5755,7 +5739,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 15,
-        "bio": "Certified Neonatologist specialist at Christian Medical College (CMC) Hospital, Ida Scudder Road providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+        "bio": "Certified Neonatologist specialist at Sri Vinayaka Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__shobana_mehra_173",
@@ -5766,9 +5750,9 @@ const CONFIG = {
         },
         "specialization": "Neonatologist",
         "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
-        "hospital": "Government Erode Medical College Hospital, Perundurai",
-        "district": "Erode",
-        "address": "Government Erode Medical College Hospital, Perundurai, Erode, Tamil Nadu",
+        "hospital": "Dhanalakshmi Srinivasan Medical College Hospital",
+        "district": "Perambalur",
+        "address": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -5788,7 +5772,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 16,
-        "bio": "Certified Neonatologist specialist at Government Erode Medical College Hospital, Perundurai providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+        "bio": "Certified Neonatologist specialist at Dhanalakshmi Srinivasan Medical College Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__vihaan_bansal_174",
@@ -5799,9 +5783,9 @@ const CONFIG = {
         },
         "specialization": "Neonatologist",
         "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
-        "hospital": "Thanjavur Medical College Hospital, Medical College Road",
-        "district": "Thanjavur",
-        "address": "Thanjavur Medical College Hospital, Medical College Road, Thanjavur, Tamil Nadu",
+        "hospital": "SIMS Hospitals - Multi Speciality Hospital",
+        "district": "Chennai",
+        "address": "SIMS Hospitals - Multi Speciality Hospital, Chennai, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -5821,7 +5805,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 17,
-        "bio": "Certified Neonatologist specialist at Thanjavur Medical College Hospital, Medical College Road providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+        "bio": "Certified Neonatologist specialist at SIMS Hospitals - Multi Speciality Hospital providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kiara_sethi_175",
@@ -5832,9 +5816,9 @@ const CONFIG = {
         },
         "specialization": "Neonatologist",
         "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
-        "hospital": "Government District Headquarters Hospital, Dindigul",
-        "district": "Dindigul",
-        "address": "Government District Headquarters Hospital, Dindigul, Dindigul, Tamil Nadu",
+        "hospital": "KG Hospital",
+        "district": "Coimbatore",
+        "address": "KG Hospital, Coimbatore, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -5854,7 +5838,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 18,
-        "bio": "Certified Neonatologist specialist at Government District Headquarters Hospital, Dindigul providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+        "bio": "Certified Neonatologist specialist at KG Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__reyansh_kapoor_176",
@@ -5865,9 +5849,9 @@ const CONFIG = {
         },
         "specialization": "Neonatologist",
         "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
-        "hospital": "Arignar Anna Memorial Cancer Hospital & Research Institute",
-        "district": "Kanchipuram",
-        "address": "Arignar Anna Memorial Cancer Hospital & Research Institute, Kanchipuram, Tamil Nadu",
+        "hospital": "Meenakshi Mission Hospital",
+        "district": "Madurai",
+        "address": "Meenakshi Mission Hospital, Madurai, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -5887,7 +5871,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 19,
-        "bio": "Certified Neonatologist specialist at Arignar Anna Memorial Cancer Hospital & Research Institute providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+        "bio": "Certified Neonatologist specialist at Meenakshi Mission Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__pooja_khanna_177",
@@ -5898,9 +5882,9 @@ const CONFIG = {
         },
         "specialization": "Neonatologist",
         "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
-        "hospital": "Chengalpattu Government Medical College Hospital, GST Road",
-        "district": "Chengalpattu",
-        "address": "Chengalpattu Government Medical College Hospital, GST Road, Chengalpattu, Tamil Nadu",
+        "hospital": "Manipal Hospital Salem",
+        "district": "Salem",
+        "address": "Manipal Hospital Salem, Salem, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -5920,7 +5904,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 20,
-        "bio": "Certified Neonatologist specialist at Chengalpattu Government Medical College Hospital, GST Road providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+        "bio": "Certified Neonatologist specialist at Manipal Hospital Salem providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__zayan_mehra_178",
@@ -5931,9 +5915,9 @@ const CONFIG = {
         },
         "specialization": "Neonatologist",
         "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
-        "hospital": "Government Medical College Hospital, Tiruppur",
-        "district": "Tiruppur",
-        "address": "Government Medical College Hospital, Tiruppur, Tiruppur, Tamil Nadu",
+        "hospital": "Apollo Speciality Hospital",
+        "district": "Tiruchirappalli",
+        "address": "Apollo Speciality Hospital, Tiruchirappalli, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -5953,7 +5937,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 21,
-        "bio": "Certified Neonatologist specialist at Government Medical College Hospital, Tiruppur providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+        "bio": "Certified Neonatologist specialist at Apollo Speciality Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__myra_kapoor_179",
@@ -5964,9 +5948,9 @@ const CONFIG = {
         },
         "specialization": "Neonatologist",
         "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
-        "hospital": "Government Headquarters Hospital, Cuddalore",
-        "district": "Cuddalore",
-        "address": "Government Headquarters Hospital, Cuddalore, Cuddalore, Tamil Nadu",
+        "hospital": "Galaxy Hospitals",
+        "district": "Tirunelveli",
+        "address": "Galaxy Hospitals, Tirunelveli, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -5986,7 +5970,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 22,
-        "bio": "Certified Neonatologist specialist at Government Headquarters Hospital, Cuddalore providing comprehensive clinical healthcare for patients in Cuddalore and across Tamil Nadu."
+        "bio": "Certified Neonatologist specialist at Galaxy Hospitals providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__arush_sethi_180",
@@ -5997,9 +5981,9 @@ const CONFIG = {
         },
         "specialization": "Neonatologist",
         "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
-        "hospital": "Government Medical College Hospital, Gandhigramam, Karur",
-        "district": "Karur",
-        "address": "Government Medical College Hospital, Gandhigramam, Karur, Karur, Tamil Nadu",
+        "hospital": "Apollo KH Hospital",
+        "district": "Vellore",
+        "address": "Apollo KH Hospital, Vellore, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -6019,7 +6003,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 8,
-        "bio": "Certified Neonatologist specialist at Government Medical College Hospital, Gandhigramam, Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+        "bio": "Certified Neonatologist specialist at Apollo KH Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__alia_kapoor_181",
@@ -6030,9 +6014,9 @@ const CONFIG = {
         },
         "specialization": "Geriatrician",
         "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
-        "hospital": "Government Medical College Hospital, Tiruppur",
-        "district": "Tiruppur",
-        "address": "Government Medical College Hospital, Tiruppur, Tiruppur, Tamil Nadu",
+        "hospital": "Meenakshi Mission Hospital",
+        "district": "Madurai",
+        "address": "Meenakshi Mission Hospital, Madurai, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -6052,7 +6036,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 9,
-        "bio": "Certified Geriatrician specialist at Government Medical College Hospital, Tiruppur providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+        "bio": "Certified Geriatrician specialist at Meenakshi Mission Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kabir_mehra_182",
@@ -6063,9 +6047,9 @@ const CONFIG = {
         },
         "specialization": "Geriatrician",
         "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
-        "hospital": "Government Headquarters Hospital, Cuddalore",
-        "district": "Cuddalore",
-        "address": "Government Headquarters Hospital, Cuddalore, Cuddalore, Tamil Nadu",
+        "hospital": "Manipal Hospital Salem",
+        "district": "Salem",
+        "address": "Manipal Hospital Salem, Salem, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -6085,7 +6069,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 10,
-        "bio": "Certified Geriatrician specialist at Government Headquarters Hospital, Cuddalore providing comprehensive clinical healthcare for patients in Cuddalore and across Tamil Nadu."
+        "bio": "Certified Geriatrician specialist at Manipal Hospital Salem providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__deepika_bansal_183",
@@ -6096,9 +6080,9 @@ const CONFIG = {
         },
         "specialization": "Geriatrician",
         "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
-        "hospital": "Government Medical College Hospital, Gandhigramam, Karur",
-        "district": "Karur",
-        "address": "Government Medical College Hospital, Gandhigramam, Karur, Karur, Tamil Nadu",
+        "hospital": "KMC Speciality Hospital",
+        "district": "Tiruchirappalli",
+        "address": "KMC Speciality Hospital, Tiruchirappalli, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -6118,7 +6102,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 11,
-        "bio": "Certified Geriatrician specialist at Government Medical College Hospital, Gandhigramam, Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+        "bio": "Certified Geriatrician specialist at KMC Speciality Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ayaan_sethi_184",
@@ -6129,9 +6113,9 @@ const CONFIG = {
         },
         "specialization": "Geriatrician",
         "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
-        "hospital": "Government District Headquarters Hospital, Nagapattinam",
-        "district": "Nagapattinam",
-        "address": "Government District Headquarters Hospital, Nagapattinam, Nagapattinam, Tamil Nadu",
+        "hospital": "Galaxy Hospitals",
+        "district": "Tirunelveli",
+        "address": "Galaxy Hospitals, Tirunelveli, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -6151,7 +6135,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 12,
-        "bio": "Certified Geriatrician specialist at Government District Headquarters Hospital, Nagapattinam providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+        "bio": "Certified Geriatrician specialist at Galaxy Hospitals providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kriti_kapoor_185",
@@ -6162,9 +6146,9 @@ const CONFIG = {
         },
         "specialization": "Geriatrician",
         "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
-        "hospital": "Government Medical College Hospital, Namakkal",
-        "district": "Namakkal",
-        "address": "Government Medical College Hospital, Namakkal, Namakkal, Tamil Nadu",
+        "hospital": "Apollo KH Hospital",
+        "district": "Vellore",
+        "address": "Apollo KH Hospital, Vellore, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -6184,7 +6168,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 13,
-        "bio": "Certified Geriatrician specialist at Government Medical College Hospital, Namakkal providing comprehensive clinical healthcare for patients in Namakkal and across Tamil Nadu."
+        "bio": "Certified Geriatrician specialist at Apollo KH Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__vihaan_khanna_186",
@@ -6195,9 +6179,9 @@ const CONFIG = {
         },
         "specialization": "Geriatrician",
         "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
-        "hospital": "Government Medical College & District Hospital, Ooty",
-        "district": "Nilgiris",
-        "address": "Government Medical College & District Hospital, Ooty, Nilgiris, Tamil Nadu",
+        "hospital": "KMCH Speciality Hospital Erode",
+        "district": "Erode",
+        "address": "KMCH Speciality Hospital Erode, Erode, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -6217,7 +6201,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 14,
-        "bio": "Certified Geriatrician specialist at Government Medical College & District Hospital, Ooty providing comprehensive clinical healthcare for patients in Nilgiris and across Tamil Nadu."
+        "bio": "Certified Geriatrician specialist at KMCH Speciality Hospital Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__malavika_mehra_187",
@@ -6228,9 +6212,9 @@ const CONFIG = {
         },
         "specialization": "Geriatrician",
         "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
-        "hospital": "Government Medical College Hospital, Pudukkottai",
-        "district": "Pudukkottai",
-        "address": "Government Medical College Hospital, Pudukkottai, Pudukkottai, Tamil Nadu",
+        "hospital": "KG Hospital",
+        "district": "Thanjavur",
+        "address": "KG Hospital, Thanjavur, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -6250,7 +6234,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 15,
-        "bio": "Certified Geriatrician specialist at Government Medical College Hospital, Pudukkottai providing comprehensive clinical healthcare for patients in Pudukkottai and across Tamil Nadu."
+        "bio": "Certified Geriatrician specialist at KG Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__riaan_kapoor_188",
@@ -6261,9 +6245,9 @@ const CONFIG = {
         },
         "specialization": "Geriatrician",
         "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
-        "hospital": "Government Medical College Hospital, Ramanathapuram",
-        "district": "Ramanathapuram",
-        "address": "Government Medical College Hospital, Ramanathapuram, Ramanathapuram, Tamil Nadu",
+        "hospital": "Aravind Hospital",
+        "district": "Dindigul",
+        "address": "Aravind Hospital, Dindigul, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -6283,7 +6267,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 16,
-        "bio": "Certified Geriatrician specialist at Government Medical College Hospital, Ramanathapuram providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+        "bio": "Certified Geriatrician specialist at Aravind Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__pooja_sethi_189",
@@ -6294,9 +6278,9 @@ const CONFIG = {
         },
         "specialization": "Geriatrician",
         "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
-        "hospital": "Government Medical College Hospital, Sivaganga",
-        "district": "Sivaganga",
-        "address": "Government Medical College Hospital, Sivaganga, Sivaganga, Tamil Nadu",
+        "hospital": "Meenakshi Medical College Hospital",
+        "district": "Kanchipuram",
+        "address": "Meenakshi Medical College Hospital, Kanchipuram, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -6316,7 +6300,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 17,
-        "bio": "Certified Geriatrician specialist at Government Medical College Hospital, Sivaganga providing comprehensive clinical healthcare for patients in Sivaganga and across Tamil Nadu."
+        "bio": "Certified Geriatrician specialist at Meenakshi Medical College Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__nivaan_bhatia_190",
@@ -6327,9 +6311,9 @@ const CONFIG = {
         },
         "specialization": "Geriatrician",
         "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
-        "hospital": "Government District Headquarters Hospital, Tenkasi",
-        "district": "Tenkasi",
-        "address": "Government District Headquarters Hospital, Tenkasi, Tenkasi, Tamil Nadu",
+        "hospital": "Sree Renga Hospital",
+        "district": "Chengalpattu",
+        "address": "Sree Renga Hospital, Chengalpattu, Tamil Nadu",
         "consultationFee": 500,
         "availableDays": [
             "Monday",
@@ -6349,7 +6333,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 18,
-        "bio": "Certified Geriatrician specialist at Government District Headquarters Hospital, Tenkasi providing comprehensive clinical healthcare for patients in Tenkasi and across Tamil Nadu."
+        "bio": "Certified Geriatrician specialist at Sree Renga Hospital providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kiara_mehra_191",
@@ -6360,9 +6344,9 @@ const CONFIG = {
         },
         "specialization": "Hepatologist",
         "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
-        "hospital": "Government Medical College Hospital, Ramanathapuram",
-        "district": "Ramanathapuram",
-        "address": "Government Medical College Hospital, Ramanathapuram, Ramanathapuram, Tamil Nadu",
+        "hospital": "KMCH Speciality Hospital Erode",
+        "district": "Erode",
+        "address": "KMCH Speciality Hospital Erode, Erode, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -6382,7 +6366,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 19,
-        "bio": "Certified Hepatologist specialist at Government Medical College Hospital, Ramanathapuram providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+        "bio": "Certified Hepatologist specialist at KMCH Speciality Hospital Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__arush_kapoor_192",
@@ -6393,9 +6377,9 @@ const CONFIG = {
         },
         "specialization": "Hepatologist",
         "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
-        "hospital": "Government Medical College Hospital, Sivaganga",
-        "district": "Sivaganga",
-        "address": "Government Medical College Hospital, Sivaganga, Sivaganga, Tamil Nadu",
+        "hospital": "KG Hospital",
+        "district": "Thanjavur",
+        "address": "KG Hospital, Thanjavur, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -6415,7 +6399,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 20,
-        "bio": "Certified Hepatologist specialist at Government Medical College Hospital, Sivaganga providing comprehensive clinical healthcare for patients in Sivaganga and across Tamil Nadu."
+        "bio": "Certified Hepatologist specialist at KG Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kareena_malhotra_193",
@@ -6426,9 +6410,9 @@ const CONFIG = {
         },
         "specialization": "Hepatologist",
         "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
-        "hospital": "Government District Headquarters Hospital, Tenkasi",
-        "district": "Tenkasi",
-        "address": "Government District Headquarters Hospital, Tenkasi, Tenkasi, Tamil Nadu",
+        "hospital": "City Hospital",
+        "district": "Dindigul",
+        "address": "City Hospital, Dindigul, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -6448,7 +6432,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 21,
-        "bio": "Certified Hepatologist specialist at Government District Headquarters Hospital, Tenkasi providing comprehensive clinical healthcare for patients in Tenkasi and across Tamil Nadu."
+        "bio": "Certified Hepatologist specialist at City Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__vihaan_sethi_194",
@@ -6459,9 +6443,9 @@ const CONFIG = {
         },
         "specialization": "Hepatologist",
         "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
-        "hospital": "Government Theni Medical College & Hospital, Kanavilku",
-        "district": "Theni",
-        "address": "Government Theni Medical College & Hospital, Kanavilku, Theni, Tamil Nadu",
+        "hospital": "Kanchi Kamakoti Childs Trust Hospital",
+        "district": "Kanchipuram",
+        "address": "Kanchi Kamakoti Childs Trust Hospital, Kanchipuram, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -6481,7 +6465,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 22,
-        "bio": "Certified Hepatologist specialist at Government Theni Medical College & Hospital, Kanavilku providing comprehensive clinical healthcare for patients in Theni and across Tamil Nadu."
+        "bio": "Certified Hepatologist specialist at Kanchi Kamakoti Childs Trust Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__shruthi_kapoor_195",
@@ -6492,9 +6476,9 @@ const CONFIG = {
         },
         "specialization": "Hepatologist",
         "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
-        "hospital": "Government Medical College Hospital, Thoothukudi",
-        "district": "Thoothukudi",
-        "address": "Government Medical College Hospital, Thoothukudi, Thoothukudi, Tamil Nadu",
+        "hospital": "Chettinad Hospital & Research Institute",
+        "district": "Chengalpattu",
+        "address": "Chettinad Hospital & Research Institute, Chengalpattu, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -6514,7 +6498,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 8,
-        "bio": "Certified Hepatologist specialist at Government Medical College Hospital, Thoothukudi providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+        "bio": "Certified Hepatologist specialist at Chettinad Hospital & Research Institute providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ayaan_bansal_196",
@@ -6525,9 +6509,9 @@ const CONFIG = {
         },
         "specialization": "Hepatologist",
         "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
-        "hospital": "Government Medical College Hospital, Tiruvallur",
-        "district": "Tiruvallur",
-        "address": "Government Medical College Hospital, Tiruvallur, Tiruvallur, Tamil Nadu",
+        "hospital": "Kovai Medical Center & Hospital – Tiruppur",
+        "district": "Tiruppur",
+        "address": "Kovai Medical Center & Hospital – Tiruppur, Tiruppur, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -6547,7 +6531,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 9,
-        "bio": "Certified Hepatologist specialist at Government Medical College Hospital, Tiruvallur providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
+        "bio": "Certified Hepatologist specialist at Kovai Medical Center & Hospital – Tiruppur providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__catherine_mehra_197",
@@ -6558,9 +6542,9 @@ const CONFIG = {
         },
         "specialization": "Hepatologist",
         "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
-        "hospital": "Government Medical College Hospital, Tiruvannamalai",
-        "district": "Tiruvannamalai",
-        "address": "Government Medical College Hospital, Tiruvannamalai, Tiruvannamalai, Tamil Nadu",
+        "hospital": "Vasan Eye Care",
+        "district": "Karur",
+        "address": "Vasan Eye Care, Karur, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -6580,7 +6564,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 10,
-        "bio": "Certified Hepatologist specialist at Government Medical College Hospital, Tiruvannamalai providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
+        "bio": "Certified Hepatologist specialist at Vasan Eye Care providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__zayan_kapoor_198",
@@ -6591,9 +6575,9 @@ const CONFIG = {
         },
         "specialization": "Hepatologist",
         "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
-        "hospital": "Government Tiruvarur Medical College Hospital, Vilamal",
-        "district": "Tiruvarur",
-        "address": "Government Tiruvarur Medical College Hospital, Vilamal, Tiruvarur, Tamil Nadu",
+        "hospital": "Sri Ram Hospital",
+        "district": "Nagapattinam",
+        "address": "Sri Ram Hospital, Nagapattinam, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -6613,7 +6597,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 11,
-        "bio": "Certified Hepatologist specialist at Government Tiruvarur Medical College Hospital, Vilamal providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+        "bio": "Certified Hepatologist specialist at Sri Ram Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__malavika_sethi_199",
@@ -6624,9 +6608,9 @@ const CONFIG = {
         },
         "specialization": "Hepatologist",
         "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
-        "hospital": "Government Headquarters Hospital, Ranipet",
-        "district": "Ranipet",
-        "address": "Government Headquarters Hospital, Ranipet, Ranipet, Tamil Nadu",
+        "hospital": "Ramnad Hospital",
+        "district": "Ramanathapuram",
+        "address": "Ramnad Hospital, Ramanathapuram, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -6646,7 +6630,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 12,
-        "bio": "Certified Hepatologist specialist at Government Headquarters Hospital, Ranipet providing comprehensive clinical healthcare for patients in Ranipet and across Tamil Nadu."
+        "bio": "Certified Hepatologist specialist at Ramnad Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__advik_khanna_200",
@@ -6657,9 +6641,9 @@ const CONFIG = {
         },
         "specialization": "Hepatologist",
         "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
-        "hospital": "Government Headquarters Hospital, Tirupattur",
-        "district": "Tirupattur",
-        "address": "Government Headquarters Hospital, Tirupattur, Tirupattur, Tamil Nadu",
+        "hospital": "Holy Cross Hospital",
+        "district": "Thoothukudi",
+        "address": "Holy Cross Hospital, Thoothukudi, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -6679,7 +6663,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 13,
-        "bio": "Certified Hepatologist specialist at Government Headquarters Hospital, Tirupattur providing comprehensive clinical healthcare for patients in Tirupattur and across Tamil Nadu."
+        "bio": "Certified Hepatologist specialist at Holy Cross Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__rithvik_malhotra_201",
@@ -6690,9 +6674,9 @@ const CONFIG = {
         },
         "specialization": "Hematologist",
         "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
-        "hospital": "Government Tiruvarur Medical College Hospital, Vilamal",
-        "district": "Tiruvarur",
-        "address": "Government Tiruvarur Medical College Hospital, Vilamal, Tiruvarur, Tamil Nadu",
+        "hospital": "Sri Kumaran Hospital",
+        "district": "Tiruppur",
+        "address": "Sri Kumaran Hospital, Tiruppur, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -6712,7 +6696,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 14,
-        "bio": "Certified Hematologist specialist at Government Tiruvarur Medical College Hospital, Vilamal providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+        "bio": "Certified Hematologist specialist at Sri Kumaran Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kiara_kapoor_202",
@@ -6723,9 +6707,9 @@ const CONFIG = {
         },
         "specialization": "Hematologist",
         "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
-        "hospital": "Government Headquarters Hospital, Ranipet",
-        "district": "Ranipet",
-        "address": "Government Headquarters Hospital, Ranipet, Ranipet, Tamil Nadu",
+        "hospital": "Apollo Hospitals Karur",
+        "district": "Karur",
+        "address": "Apollo Hospitals Karur, Karur, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -6745,7 +6729,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 15,
-        "bio": "Certified Hematologist specialist at Government Headquarters Hospital, Ranipet providing comprehensive clinical healthcare for patients in Ranipet and across Tamil Nadu."
+        "bio": "Certified Hematologist specialist at Apollo Hospitals Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__aarush_khanna_203",
@@ -6756,9 +6740,9 @@ const CONFIG = {
         },
         "specialization": "Hematologist",
         "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
-        "hospital": "Government Headquarters Hospital, Tirupattur",
-        "district": "Tirupattur",
-        "address": "Government Headquarters Hospital, Tirupattur, Tirupattur, Tamil Nadu",
+        "hospital": "V.P.N. Eye Hospital",
+        "district": "Nagapattinam",
+        "address": "V.P.N. Eye Hospital, Nagapattinam, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -6778,7 +6762,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 16,
-        "bio": "Certified Hematologist specialist at Government Headquarters Hospital, Tirupattur providing comprehensive clinical healthcare for patients in Tirupattur and across Tamil Nadu."
+        "bio": "Certified Hematologist specialist at V.P.N. Eye Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__deepika_mehra_204",
@@ -6789,9 +6773,9 @@ const CONFIG = {
         },
         "specialization": "Hematologist",
         "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
-        "hospital": "Government Medical College Hospital, Mundiyampakkam, Viluppuram",
-        "district": "Viluppuram",
-        "address": "Government Medical College Hospital, Mundiyampakkam, Viluppuram, Viluppuram, Tamil Nadu",
+        "hospital": "K.S. Hospital",
+        "district": "Ramanathapuram",
+        "address": "K.S. Hospital, Ramanathapuram, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -6811,7 +6795,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 17,
-        "bio": "Certified Hematologist specialist at Government Medical College Hospital, Mundiyampakkam, Viluppuram providing comprehensive clinical healthcare for patients in Viluppuram and across Tamil Nadu."
+        "bio": "Certified Hematologist specialist at K.S. Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__vihaan_bhatia_205",
@@ -6822,9 +6806,9 @@ const CONFIG = {
         },
         "specialization": "Hematologist",
         "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
-        "hospital": "Government Medical College Hospital, Virudhunagar",
-        "district": "Virudhunagar",
-        "address": "Government Medical College Hospital, Virudhunagar, Virudhunagar, Tamil Nadu",
+        "hospital": "Holy Cross Hospital",
+        "district": "Thoothukudi",
+        "address": "Holy Cross Hospital, Thoothukudi, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -6844,7 +6828,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 18,
-        "bio": "Certified Hematologist specialist at Government Medical College Hospital, Virudhunagar providing comprehensive clinical healthcare for patients in Virudhunagar and across Tamil Nadu."
+        "bio": "Certified Hematologist specialist at Holy Cross Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__alia_sethi_206",
@@ -6855,9 +6839,9 @@ const CONFIG = {
         },
         "specialization": "Hematologist",
         "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
-        "hospital": "Government Medical College Hospital, Krishnagiri",
-        "district": "Krishnagiri",
-        "address": "Government Medical College Hospital, Krishnagiri, Krishnagiri, Tamil Nadu",
+        "hospital": "Be Well Hospitals",
+        "district": "Tiruvallur",
+        "address": "Be Well Hospitals, Tiruvallur, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -6877,7 +6861,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 19,
-        "bio": "Certified Hematologist specialist at Government Medical College Hospital, Krishnagiri providing comprehensive clinical healthcare for patients in Krishnagiri and across Tamil Nadu."
+        "bio": "Certified Hematologist specialist at Be Well Hospitals providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__zayan_kapoor_207",
@@ -6888,9 +6872,9 @@ const CONFIG = {
         },
         "specialization": "Hematologist",
         "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
-        "hospital": "Government Medical College Hospital, Dharmapuri",
-        "district": "Dharmapuri",
-        "address": "Government Medical College Hospital, Dharmapuri, Dharmapuri, Tamil Nadu",
+        "hospital": "Abirami Hospital",
+        "district": "Tiruvannamalai",
+        "address": "Abirami Hospital, Tiruvannamalai, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -6910,7 +6894,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 20,
-        "bio": "Certified Hematologist specialist at Government Medical College Hospital, Dharmapuri providing comprehensive clinical healthcare for patients in Dharmapuri and across Tamil Nadu."
+        "bio": "Certified Hematologist specialist at Abirami Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__pooja_malhotra_208",
@@ -6921,9 +6905,9 @@ const CONFIG = {
         },
         "specialization": "Hematologist",
         "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
-        "hospital": "Government Medical College Hospital, Ariyalur",
-        "district": "Ariyalur",
-        "address": "Government Medical College Hospital, Ariyalur, Ariyalur, Tamil Nadu",
+        "hospital": "Lions Eye Hospital",
+        "district": "Tiruvarur",
+        "address": "Lions Eye Hospital, Tiruvarur, Tamil Nadu",
         "consultationFee": 800,
         "availableDays": [
             "Monday",
@@ -6943,7 +6927,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 21,
-        "bio": "Certified Hematologist specialist at Government Medical College Hospital, Ariyalur providing comprehensive clinical healthcare for patients in Ariyalur and across Tamil Nadu."
+        "bio": "Certified Hematologist specialist at Lions Eye Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__myra_khanna_209",
@@ -6954,9 +6938,9 @@ const CONFIG = {
         },
         "specialization": "Hematologist",
         "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
-        "hospital": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur",
-        "district": "Perambalur",
-        "address": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur, Perambalur, Tamil Nadu",
+        "hospital": "Muthu Hospital",
+        "district": "Villupuram",
+        "address": "Muthu Hospital, Villupuram, Tamil Nadu",
         "consultationFee": 750,
         "availableDays": [
             "Monday",
@@ -6976,7 +6960,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 22,
-        "bio": "Certified Hematologist specialist at Dhanalakshmi Srinivasan Medical College Hospital, Perambalur providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+        "bio": "Certified Hematologist specialist at Muthu Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__reyansh_mehra_210",
@@ -6987,9 +6971,9 @@ const CONFIG = {
         },
         "specialization": "Hematologist",
         "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
-        "hospital": "Government Medical College Hospital, Kallakurichi",
-        "district": "Kallakurichi",
-        "address": "Government Medical College Hospital, Kallakurichi, Kallakurichi, Tamil Nadu",
+        "hospital": "Sri Lakshmi Hospital",
+        "district": "Perambalur",
+        "address": "Sri Lakshmi Hospital, Perambalur, Tamil Nadu",
         "consultationFee": 700,
         "availableDays": [
             "Monday",
@@ -7009,7 +6993,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 8,
-        "bio": "Certified Hematologist specialist at Government Medical College Hospital, Kallakurichi providing comprehensive clinical healthcare for patients in Kallakurichi and across Tamil Nadu."
+        "bio": "Certified Hematologist specialist at Sri Lakshmi Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__yuvika_menon_211",
@@ -7020,9 +7004,9 @@ const CONFIG = {
         },
         "specialization": "Allergist & Immunologist",
         "qualification": "MBBS, MD, DAA (Allergy & Clinical Immunology)",
-        "hospital": "Government Medical College Hospital, Ariyalur",
-        "district": "Ariyalur",
-        "address": "Government Medical College Hospital, Ariyalur, Ariyalur, Tamil Nadu",
+        "hospital": "Saveetha Medical College & Hospital",
+        "district": "Tiruvallur",
+        "address": "Saveetha Medical College & Hospital, Tiruvallur, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -7042,7 +7026,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 9,
-        "bio": "Certified Allergist & Immunologist specialist at Government Medical College Hospital, Ariyalur providing comprehensive clinical healthcare for patients in Ariyalur and across Tamil Nadu."
+        "bio": "Certified Allergist & Immunologist specialist at Saveetha Medical College & Hospital providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__ayaan_kapoor_212",
@@ -7053,9 +7037,9 @@ const CONFIG = {
         },
         "specialization": "Allergist & Immunologist",
         "qualification": "MBBS, MD, DAA (Allergy & Clinical Immunology)",
-        "hospital": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur",
-        "district": "Perambalur",
-        "address": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur, Perambalur, Tamil Nadu",
+        "hospital": "Ramana Maharshi Rangammal Hospital",
+        "district": "Tiruvannamalai",
+        "address": "Ramana Maharshi Rangammal Hospital, Tiruvannamalai, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -7075,7 +7059,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 10,
-        "bio": "Certified Allergist & Immunologist specialist at Dhanalakshmi Srinivasan Medical College Hospital, Perambalur providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+        "bio": "Certified Allergist & Immunologist specialist at Ramana Maharshi Rangammal Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kriti_malhotra_213",
@@ -7086,9 +7070,9 @@ const CONFIG = {
         },
         "specialization": "Allergist & Immunologist",
         "qualification": "MBBS, MD, DAA (Allergy & Clinical Immunology)",
-        "hospital": "Government Medical College Hospital, Kallakurichi",
-        "district": "Kallakurichi",
-        "address": "Government Medical College Hospital, Kallakurichi, Kallakurichi, Tamil Nadu",
+        "hospital": "Hanifa Nursing Home",
+        "district": "Tiruvarur",
+        "address": "Hanifa Nursing Home, Tiruvarur, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -7108,7 +7092,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 11,
-        "bio": "Certified Allergist & Immunologist specialist at Government Medical College Hospital, Kallakurichi providing comprehensive clinical healthcare for patients in Kallakurichi and across Tamil Nadu."
+        "bio": "Certified Allergist & Immunologist specialist at Hanifa Nursing Home providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__zendaya_thomas_214",
@@ -7119,9 +7103,9 @@ const CONFIG = {
         },
         "specialization": "Allergist & Immunologist",
         "qualification": "MBBS, MD, DAA (Allergy & Clinical Immunology)",
-        "hospital": "Government District Headquarters Hospital, Mayiladuthurai",
-        "district": "Mayiladuthurai",
-        "address": "Government District Headquarters Hospital, Mayiladuthurai, Mayiladuthurai, Tamil Nadu",
+        "hospital": "VIMS Hospital",
+        "district": "Villupuram",
+        "address": "VIMS Hospital, Villupuram, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -7141,7 +7125,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 12,
-        "bio": "Certified Allergist & Immunologist specialist at Government District Headquarters Hospital, Mayiladuthurai providing comprehensive clinical healthcare for patients in Mayiladuthurai and across Tamil Nadu."
+        "bio": "Certified Allergist & Immunologist specialist at VIMS Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__kiara_sethi_215",
@@ -7152,9 +7136,9 @@ const CONFIG = {
         },
         "specialization": "Allergist & Immunologist",
         "qualification": "MBBS, MD, DAA (Allergy & Clinical Immunology)",
-        "hospital": "Kanyakumari Government Medical College Hospital, Asaripallam",
-        "district": "Kanniyakumari",
-        "address": "Kanyakumari Government Medical College Hospital, Asaripallam, Kanniyakumari, Tamil Nadu",
+        "hospital": "Dhanalakshmi Srinivasan Medical College Hospital",
+        "district": "Perambalur",
+        "address": "Dhanalakshmi Srinivasan Medical College Hospital, Perambalur, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -7174,7 +7158,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 13,
-        "bio": "Certified Allergist & Immunologist specialist at Kanyakumari Government Medical College Hospital, Asaripallam providing comprehensive clinical healthcare for patients in Kanniyakumari and across Tamil Nadu."
+        "bio": "Certified Allergist & Immunologist specialist at Dhanalakshmi Srinivasan Medical College Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__arush_mehra_216",
@@ -7185,9 +7169,9 @@ const CONFIG = {
         },
         "specialization": "Allergist & Immunologist",
         "qualification": "MBBS, MD, DAA (Allergy & Clinical Immunology)",
-        "hospital": "Apollo Hospitals, Greams Road",
+        "hospital": "Apollo Hospitals Greams Lane",
         "district": "Chennai",
-        "address": "Apollo Hospitals, Greams Road, Chennai, Tamil Nadu",
+        "address": "Apollo Hospitals Greams Lane, Chennai, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -7207,7 +7191,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 14,
-        "bio": "Certified Allergist & Immunologist specialist at Apollo Hospitals, Greams Road providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+        "bio": "Certified Allergist & Immunologist specialist at Apollo Hospitals Greams Lane providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__shobana_kapoor_217",
@@ -7218,9 +7202,9 @@ const CONFIG = {
         },
         "specialization": "Allergist & Immunologist",
         "qualification": "MBBS, MD, DAA (Allergy & Clinical Immunology)",
-        "hospital": "PSG Hospitals, Peelamedu",
+        "hospital": "Sri Ramakrishna Hospital",
         "district": "Coimbatore",
-        "address": "PSG Hospitals, Peelamedu, Coimbatore, Tamil Nadu",
+        "address": "Sri Ramakrishna Hospital, Coimbatore, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -7240,7 +7224,7 @@ const CONFIG = {
         ],
         "rating": 4.8,
         "experience": 15,
-        "bio": "Certified Allergist & Immunologist specialist at PSG Hospitals, Peelamedu providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+        "bio": "Certified Allergist & Immunologist specialist at Sri Ramakrishna Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__riaan_bhatia_218",
@@ -7251,9 +7235,9 @@ const CONFIG = {
         },
         "specialization": "Allergist & Immunologist",
         "qualification": "MBBS, MD, DAA (Allergy & Clinical Immunology)",
-        "hospital": "Government Rajaji Hospital & Medical College",
+        "hospital": "Guru Hospital",
         "district": "Madurai",
-        "address": "Government Rajaji Hospital & Medical College, Madurai, Tamil Nadu",
+        "address": "Guru Hospital, Madurai, Tamil Nadu",
         "consultationFee": 650,
         "availableDays": [
             "Monday",
@@ -7273,7 +7257,7 @@ const CONFIG = {
         ],
         "rating": 4.9,
         "experience": 16,
-        "bio": "Certified Allergist & Immunologist specialist at Government Rajaji Hospital & Medical College providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+        "bio": "Certified Allergist & Immunologist specialist at Guru Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__catherine_fernandes_219",
@@ -7284,9 +7268,9 @@ const CONFIG = {
         },
         "specialization": "Allergist & Immunologist",
         "qualification": "MBBS, MD, DAA (Allergy & Clinical Immunology)",
-        "hospital": "Manipal Hospitals, Dalmia Board",
+        "hospital": "Sri Gokulam Hospital",
         "district": "Salem",
-        "address": "Manipal Hospitals, Dalmia Board, Salem, Tamil Nadu",
+        "address": "Sri Gokulam Hospital, Salem, Tamil Nadu",
         "consultationFee": 600,
         "availableDays": [
             "Monday",
@@ -7306,7 +7290,7 @@ const CONFIG = {
         ],
         "rating": 5,
         "experience": 17,
-        "bio": "Certified Allergist & Immunologist specialist at Manipal Hospitals, Dalmia Board providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+        "bio": "Certified Allergist & Immunologist specialist at Sri Gokulam Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
     },
     {
         "_id": "doc_dr__anaya_khanna_220",
@@ -7317,9 +7301,9 @@ const CONFIG = {
         },
         "specialization": "Allergist & Immunologist",
         "qualification": "MBBS, MD, DAA (Allergy & Clinical Immunology)",
-        "hospital": "Kauvery Hospital, Cantonment",
+        "hospital": "Maruti Hospital",
         "district": "Tiruchirappalli",
-        "address": "Kauvery Hospital, Cantonment, Tiruchirappalli, Tamil Nadu",
+        "address": "Maruti Hospital, Tiruchirappalli, Tamil Nadu",
         "consultationFee": 550,
         "availableDays": [
             "Monday",
@@ -7339,7 +7323,7 @@ const CONFIG = {
         ],
         "rating": 4.7,
         "experience": 18,
-        "bio": "Certified Allergist & Immunologist specialist at Kauvery Hospital, Cantonment providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+        "bio": "Certified Allergist & Immunologist specialist at Maruti Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
     }
 ]
 };

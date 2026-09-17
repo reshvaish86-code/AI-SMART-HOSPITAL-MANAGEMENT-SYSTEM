@@ -42,31 +42,15 @@ const TAMIL_NADU_DISTRICTS = [
   'Kanchipuram',
   'Chengalpattu',
   'Tiruppur',
-  'Cuddalore',
   'Karur',
   'Nagapattinam',
-  'Namakkal',
-  'Nilgiris',
-  'Pudukkottai',
   'Ramanathapuram',
-  'Sivaganga',
-  'Tenkasi',
-  'Theni',
   'Thoothukudi',
   'Tiruvallur',
   'Tiruvannamalai',
   'Tiruvarur',
-  'Ranipet',
-  'Tirupattur',
-  'Viluppuram',
-  'Virudhunagar',
-  'Krishnagiri',
-  'Dharmapuri',
-  'Ariyalur',
-  'Perambalur',
-  'Kallakurichi',
-  'Mayiladuthurai',
-  'Kanniyakumari'
+  'Villupuram',
+  'Perambalur'
 ];
 
 const USER_ROLES = {
