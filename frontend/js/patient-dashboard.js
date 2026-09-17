@@ -228,8 +228,17 @@ const PatientApp = {
     container.innerHTML = '<div class="text-center py-5"><div class="spinner-border text-primary" role="status"></div><p class="text-muted mt-2">Loading medical specialists...</p></div>';
 
     try {
-      let doctors = [];
+      const doctorsMap = new Map();
 
+      // 1. Pre-load all 28 comprehensive doctor profiles (New + Previous)
+      if (CONFIG.DEFAULT_DOCTORS && CONFIG.DEFAULT_DOCTORS.length > 0) {
+        CONFIG.DEFAULT_DOCTORS.forEach(doc => {
+          const key = (doc.user?.name || '').trim().toLowerCase();
+          if (key) doctorsMap.set(key, doc);
+        });
+      }
+
+      // 2. Query API and merge with live backend data
       try {
         const res = await API.get('/doctors', {
           specialization: specialty,
@@ -237,43 +246,35 @@ const PatientApp = {
           search: search
         });
         if (res && res.data && res.data.length > 0) {
-          // Check if response has the updated doctor roster
-          const hasNewNames = res.data.some(d => 
-            d.user?.name && (
-              d.user.name.includes('Diya') || 
-              d.user.name.includes('Katrina') || 
-              d.user.name.includes('Rayaan') || 
-              d.user.name.includes('Riyana') ||
-              d.user.name.includes('Adhira') ||
-              d.user.name.includes('Ishita') ||
-              d.user.name.includes('Nethra') ||
-              d.user.name.includes('Shaan')
-            )
-          );
-          if (hasNewNames) {
-            doctors = res.data;
-          }
+          res.data.forEach(apiDoc => {
+            const key = (apiDoc.user?.name || '').trim().toLowerCase();
+            if (key) {
+              doctorsMap.set(key, apiDoc);
+            } else if (apiDoc._id) {
+              doctorsMap.set(apiDoc._id, apiDoc);
+            }
+          });
         }
       } catch (apiErr) {
-        console.warn('API doctor fetch notice, loading comprehensive directory:', apiErr);
+        console.warn('API doctor fetch notice, displaying integrated directory:', apiErr);
       }
 
-      // If backend returned legacy data or empty, use the complete 18 requested doctors dataset
-      if (doctors.length === 0 && CONFIG.DEFAULT_DOCTORS && CONFIG.DEFAULT_DOCTORS.length > 0) {
-        doctors = CONFIG.DEFAULT_DOCTORS.filter(doc => {
-          const matchSpec = (specialty === 'All' || doc.specialization === specialty);
-          const matchDist = (district === 'All' || doc.district === district);
-          const matchSearch = (!search || 
-            (doc.user?.name && doc.user.name.toLowerCase().includes(search.toLowerCase())) ||
-            (doc.hospital && doc.hospital.toLowerCase().includes(search.toLowerCase())) ||
-            (doc.specialization && doc.specialization.toLowerCase().includes(search.toLowerCase())) ||
-            (doc.district && doc.district.toLowerCase().includes(search.toLowerCase()))
-          );
-          return matchSpec && matchDist && matchSearch;
-        });
-      }
+      const allDoctors = Array.from(doctorsMap.values());
 
-      if (doctors.length === 0) {
+      // Filter by specialty, district, and search query
+      const filteredDoctors = allDoctors.filter(doc => {
+        const matchSpec = (specialty === 'All' || doc.specialization === specialty);
+        const matchDist = (district === 'All' || doc.district === district);
+        const matchSearch = (!search || 
+          (doc.user?.name && doc.user.name.toLowerCase().includes(search.toLowerCase())) ||
+          (doc.hospital && doc.hospital.toLowerCase().includes(search.toLowerCase())) ||
+          (doc.specialization && doc.specialization.toLowerCase().includes(search.toLowerCase())) ||
+          (doc.district && doc.district.toLowerCase().includes(search.toLowerCase()))
+        );
+        return matchSpec && matchDist && matchSearch;
+      });
+
+      if (filteredDoctors.length === 0) {
         container.innerHTML = `
           <div class="col-12 text-center py-5">
             <i class="fa-solid fa-user-doctor text-muted fs-1 mb-3"></i>
@@ -284,7 +285,7 @@ const PatientApp = {
         return;
       }
 
-      container.innerHTML = doctors.map(doc => `
+      container.innerHTML = filteredDoctors.map(doc => `
         <div class="col-md-6 col-lg-4 mb-4">
           <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card">
             <div class="d-flex align-items-start gap-3 mb-3">
