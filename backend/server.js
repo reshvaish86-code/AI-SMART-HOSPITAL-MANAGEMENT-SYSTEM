@@ -69,14 +69,15 @@ app.get('/api/health', (req, res) => {
 // On-Demand Database Seeding Endpoint
 const { seedDatabase } = require('./src/utils/seedData');
 const User = require('./src/models/User');
+const Doctor = require('./src/models/Doctor');
 
 const checkAndAutoSeed = async () => {
   try {
-    const diyaDoc = await User.findOne({ email: 'doctor.diya@hospital.com' });
-    if (!diyaDoc) {
-      console.log('🌱 [Auto-Seeder] Syncing database with updated doctor dataset...');
+    const docCount = await Doctor.countDocuments();
+    if (docCount < 220) {
+      console.log('🌱 [Auto-Seeder] Syncing database with updated 220-doctor dataset...');
       await seedDatabase(false);
-      console.log('✅ [Auto-Seeder] Database synced with all 18 doctors.');
+      console.log('✅ [Auto-Seeder] Database synced with all 220 doctors across 22 specialties.');
     }
   } catch (err) {
     console.warn('⚠️ [Auto-Seeder] Notice:', err.message);

@@ -5,18 +5,27 @@
 const SPECIALIZATIONS = [
   'General Physician',
   'Cardiologist',
-  'Dermatologist',
   'Neurologist',
-  'Pediatrician',
-  'Orthopedic',
-  'Gynecologist',
-  'ENT Specialist',
-  'Ophthalmologist',
+  'Nephrologist',
   'Psychiatrist',
   'Dentist',
+  'Physiotherapist',
+  'ENT Specialist',
+  'Dermatologist',
   'Pulmonologist',
   'Gastroenterologist',
-  'Urologist'
+  'Pediatrician',
+  'Gynecologist',
+  'Ophthalmologist',
+  'Urologist',
+  'Plastic Surgeon',
+  'Radiologist',
+  'Neonatologist',
+  'Geriatrician',
+  'Hepatologist',
+  'Hematologist',
+  'Allergist & Immunologist',
+  'Orthopedic'
 ];
 
 const TAMIL_NADU_DISTRICTS = [

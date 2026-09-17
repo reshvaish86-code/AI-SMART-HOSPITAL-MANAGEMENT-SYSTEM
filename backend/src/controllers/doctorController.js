@@ -13,10 +13,10 @@ const getAllDoctors = async (req, res, next) => {
   try {
     const { specialization, district, search, minFee, maxFee } = req.query;
 
-    // Check if new 18-doctor dataset is seeded; if not, automatically seed it
-    const diyaDoc = await User.findOne({ email: 'doctor.diya@hospital.com' });
-    if (!diyaDoc) {
-      console.log('🌱 [getAllDoctors] Auto-syncing 18 requested doctors to database...');
+    // Check if new 220-doctor dataset is seeded; if not, automatically seed it
+    const docCount = await Doctor.countDocuments();
+    if (docCount < 220) {
+      console.log('🌱 [getAllDoctors] Auto-syncing 220 requested doctors to database...');
       try {
         await seedDatabase(false);
       } catch (seedErr) {

@@ -233,7 +233,7 @@ const PatientApp = {
     if (specialtySelect) {
       specialtySelect.innerHTML = '<option value="All">All Specialties</option>';
       CONFIG.SPECIALIZATIONS.forEach(spec => {
-        specialtySelect.innerHTML += `<option value="${spec}" ${spec === 'Dermatologist' ? 'selected' : ''}>${spec}</option>`;
+        specialtySelect.innerHTML += `<option value="${spec}" ${spec === 'General Physician' ? 'selected' : ''}>${spec}</option>`;
       });
     }
 
@@ -341,7 +341,7 @@ const PatientApp = {
     const container = document.getElementById('doctorListContainer');
     if (!container) return;
 
-    let specialty = document.getElementById('filterSpecialty')?.value || 'Dermatologist';
+    let specialty = document.getElementById('filterSpecialty')?.value || 'General Physician';
     const district = document.getElementById('filterDistrict')?.value || 'All';
     const search = (document.getElementById('searchDoctorQuery')?.value || '').trim();
 
