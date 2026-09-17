@@ -2,6 +2,7 @@ const Doctor = require('../models/Doctor');
 const User = require('../models/User');
 const Appointment = require('../models/Appointment');
 const { APPOINTMENT_STATUS } = require('../utils/constants');
+const { seedDatabase } = require('../utils/seedData');
 
 /**
  * @desc    Get all doctors with filtering by specialty, Tamil Nadu district, and search query
@@ -11,6 +12,18 @@ const { APPOINTMENT_STATUS } = require('../utils/constants');
 const getAllDoctors = async (req, res, next) => {
   try {
     const { specialization, district, search, minFee, maxFee } = req.query;
+
+    // Check if new 18-doctor dataset is seeded; if not, automatically seed it
+    const diyaDoc = await User.findOne({ email: 'doctor.diya@hospital.com' });
+    if (!diyaDoc) {
+      console.log('🌱 [getAllDoctors] Auto-syncing 18 requested doctors to database...');
+      try {
+        await seedDatabase(false);
+      } catch (seedErr) {
+        console.warn('⚠️ [getAllDoctors] Seed notice:', seedErr.message);
+      }
+    }
+
     let query = { isVerified: true };
 
     if (specialization && specialization !== 'All') {
