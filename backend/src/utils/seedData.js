@@ -6612,17 +6612,22 @@ const SEED_DOCTORS = [
   }
 ];
 
-const seedDatabase = async (forceClean = false) => {
+const seedDatabase = async (forceClean = true) => {
   try {
     if (mongoose.connection.readyState !== 1) {
-      if (process.env.MONGO_URI) {
-        await mongoose.connect(process.env.MONGO_URI);
-      }
+      const uri = process.env.MONGODB_URI || process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/ai_smart_hospital';
+      await mongoose.connect(uri, { serverSelectionTimeoutMS: 15000 });
     }
 
-    console.log('🌱 [Seeder] Starting database sync for 22 specialties and 220 private hospital doctors...');
+    console.log('🌱 [Seeder] Synchronizing MongoDB with ONLY the 220 newly updated doctor records across 22 private hospital districts...');
 
-    // 1. Seed Admin
+    const newDoctorEmails = SEED_DOCTORS.map(d => d.email.toLowerCase());
+
+    // 1. Remove all legacy doctor profiles and deleted district doctor accounts
+    await Doctor.deleteMany({});
+    await User.deleteMany({ role: 'doctor', email: { $nin: newDoctorEmails } });
+
+    // 2. Ensure Admin User
     let admin = await User.findOne({ email: 'admin@hospital.com' });
     if (!admin) {
       admin = await User.create({
@@ -6632,10 +6637,10 @@ const seedDatabase = async (forceClean = false) => {
         password: 'Password123!',
         role: 'admin'
       });
-      console.log('✅ Admin user created');
+      console.log('✅ Admin user verified');
     }
 
-    // 2. Seed Patient (Ramesh Chandran)
+    // 3. Ensure Patient User (Ramesh Chandran)
     let patientUser = await User.findOne({ email: 'ramesh.chandran@gmail.com' });
     if (!patientUser) {
       patientUser = await User.create({
@@ -6655,12 +6660,11 @@ const seedDatabase = async (forceClean = false) => {
         allergies: ['Penicillin'],
         chronicConditions: ['Hypertension']
       });
-      console.log('✅ Patient Ramesh Chandran created');
+      console.log('✅ Patient Ramesh Chandran verified');
     }
 
-    // 3. Seed / Upsert all 220 Doctors with private hospital coverage
+    // 4. Store ONLY the 220 newly updated doctor profiles
     let createdCount = 0;
-    let updatedCount = 0;
 
     for (const docData of SEED_DOCTORS) {
       let docUser = await User.findOne({ email: docData.email });
@@ -6673,7 +6677,6 @@ const seedDatabase = async (forceClean = false) => {
           role: 'doctor',
           isActive: true
         });
-        createdCount++;
       } else {
         docUser.name = docData.name;
         docUser.mobile = docData.mobile;
@@ -6682,44 +6685,28 @@ const seedDatabase = async (forceClean = false) => {
         await docUser.save();
       }
 
-      let doctorDoc = await Doctor.findOne({ user: docUser._id });
-      if (!doctorDoc) {
-        await Doctor.create({
-          user: docUser._id,
-          specialization: docData.specialization,
-          qualification: docData.qualification,
-          hospital: docData.hospital,
-          district: docData.district,
-          address: docData.address,
-          consultationFee: docData.consultationFee,
-          availableDays: docData.availableDays,
-          availableTimeSlots: docData.availableTimeSlots,
-          rating: docData.rating,
-          experience: docData.experience || 10,
-          bio: docData.bio,
-          isVerified: true
-        });
-      } else {
-        doctorDoc.specialization = docData.specialization;
-        doctorDoc.qualification = docData.qualification;
-        doctorDoc.hospital = docData.hospital;
-        doctorDoc.district = docData.district;
-        doctorDoc.address = docData.address;
-        doctorDoc.consultationFee = docData.consultationFee;
-        doctorDoc.availableDays = docData.availableDays;
-        doctorDoc.availableTimeSlots = docData.availableTimeSlots;
-        doctorDoc.rating = docData.rating;
-        doctorDoc.bio = docData.bio;
-        doctorDoc.isVerified = true;
-        await doctorDoc.save();
-        updatedCount++;
-      }
+      await Doctor.create({
+        user: docUser._id,
+        specialization: docData.specialization,
+        qualification: docData.qualification,
+        hospital: docData.hospital,
+        district: docData.district,
+        address: docData.address,
+        consultationFee: docData.consultationFee,
+        availableDays: docData.availableDays,
+        availableTimeSlots: docData.availableTimeSlots,
+        rating: docData.rating,
+        experience: docData.experience || 10,
+        bio: docData.bio,
+        isVerified: true
+      });
+      createdCount++;
     }
 
     const totalInDb = await Doctor.countDocuments();
-    console.log(`✅ [Seeder] Finished: ${createdCount} created, ${updatedCount} updated. Total doctors in DB: ${totalInDb}`);
+    console.log(`✅ [Seeder] Stored ONLY the updated ${totalInDb} doctor records in MongoDB successfully.`);
 
-    return { success: true, count: totalInDb, created: createdCount, updated: updatedCount };
+    return { success: true, count: totalInDb, created: createdCount };
   } catch (error) {
     console.error('❌ [Seeder Error]:', error);
     throw error;
@@ -6730,7 +6717,7 @@ if (require.main === module) {
   require('dotenv').config({ path: require('path').join(__dirname, '../../../.env') });
   const connectDB = require('../config/db');
   connectDB().then(async () => {
-    await seedDatabase(false);
+    await seedDatabase(true);
     console.log('Seeding script completed successfully.');
     process.exit(0);
   }).catch(err => {

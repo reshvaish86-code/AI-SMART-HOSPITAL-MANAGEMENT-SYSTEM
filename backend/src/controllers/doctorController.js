@@ -13,12 +13,16 @@ const getAllDoctors = async (req, res, next) => {
   try {
     const { specialization, district, search, minFee, maxFee } = req.query;
 
-    // Check if new 220-doctor dataset is seeded; if not, automatically seed it
+    // Check if only the 220 updated doctors in the 22 districts are seeded; if not, automatically clean-seed
+    const { TAMIL_NADU_DISTRICTS } = require('../utils/constants');
+    const invalidDistrictsCount = await Doctor.countDocuments({
+      district: { $nin: TAMIL_NADU_DISTRICTS }
+    });
     const docCount = await Doctor.countDocuments();
-    if (docCount < 220) {
-      console.log('🌱 [getAllDoctors] Auto-syncing 220 requested doctors to database...');
+    if (docCount !== 220 || invalidDistrictsCount > 0) {
+      console.log('🌱 [getAllDoctors] Auto-syncing ONLY 220 newly updated doctors to database...');
       try {
-        await seedDatabase(false);
+        await seedDatabase(true);
       } catch (seedErr) {
         console.warn('⚠️ [getAllDoctors] Seed notice:', seedErr.message);
       }

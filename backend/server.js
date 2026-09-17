@@ -71,13 +71,18 @@ const { seedDatabase } = require('./src/utils/seedData');
 const User = require('./src/models/User');
 const Doctor = require('./src/models/Doctor');
 
+const { TAMIL_NADU_DISTRICTS } = require('./src/utils/constants');
+
 const checkAndAutoSeed = async () => {
   try {
+    const invalidDistrictsCount = await Doctor.countDocuments({
+      district: { $nin: TAMIL_NADU_DISTRICTS }
+    });
     const docCount = await Doctor.countDocuments();
-    if (docCount < 220) {
-      console.log('🌱 [Auto-Seeder] Syncing database with updated 220-doctor dataset...');
-      await seedDatabase(false);
-      console.log('✅ [Auto-Seeder] Database synced with all 220 doctors across 22 specialties.');
+    if (docCount !== 220 || invalidDistrictsCount > 0) {
+      console.log('🌱 [Auto-Seeder] Cleaning and storing ONLY the newly updated 220 doctor records in MongoDB...');
+      await seedDatabase(true);
+      console.log('✅ [Auto-Seeder] MongoDB updated with ONLY the current 220 doctors across 22 private hospital districts.');
     }
   } catch (err) {
     console.warn('⚠️ [Auto-Seeder] Notice:', err.message);
@@ -90,10 +95,10 @@ require('mongoose').connection.on('connected', () => {
 
 app.all('/api/seed', async (req, res) => {
   try {
-    const result = await seedDatabase(false);
+    const result = await seedDatabase(true);
     res.status(200).json({
       status: 'success',
-      message: 'Database successfully seeded with all requested doctor profiles and demo records.',
+      message: 'Database successfully stored with ONLY the 220 newly updated doctor profiles across 22 districts.',
       doctorsCount: result.count
     });
   } catch (error) {
