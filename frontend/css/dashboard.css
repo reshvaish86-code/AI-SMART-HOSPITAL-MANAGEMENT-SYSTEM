@@ -1,131 +1,285 @@
 /* ==========================================================================
-   AI Smart Hospital - Dashboard Layout & Component Styles
+   AI Smart Hospital - Ultra-Modern Patient Portal & Booking Hub CSS
    ========================================================================== */
 
-.dashboard-wrapper {
-  display: flex;
-  min-height: 100vh;
-  background-color: #f1f5f9;
+:root {
+  --portal-bg: #f8fafc;
+  --portal-card-bg: #ffffff;
+  --portal-primary: #0284c7;
+  --portal-primary-hover: #0369a1;
+  --portal-primary-glow: rgba(2, 132, 199, 0.25);
+  --portal-accent: #06b6d4;
+  --portal-dark: #0f172a;
+  --portal-border: #e2e8f0;
+  --portal-text-main: #1e293b;
+  --portal-text-muted: #64748b;
+  --portal-shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --portal-shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --portal-shadow-lg: 0 16px 36px rgba(15, 23, 42, 0.12);
+  --portal-radius: 18px;
+  --portal-radius-sm: 12px;
 }
 
-/* Sidebar */
-.sidebar {
-  width: 260px;
-  background: #0f172a;
-  color: #94a3b8;
-  display: flex;
-  flex-direction: column;
-  flex-shrink: 0;
-  transition: all 0.3s ease;
-  z-index: 1000;
-}
-
-.sidebar-header {
-  padding: 1.5rem 1.25rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.sidebar-menu {
-  list-style: none;
-  padding: 1rem 0.75rem;
+body {
+  background-color: var(--portal-bg);
+  color: var(--portal-text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   margin: 0;
-  flex-grow: 1;
+  padding: 0;
 }
 
-.sidebar-link {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  color: #94a3b8;
-  text-decoration: none;
-  border-radius: 10px;
-  font-weight: 500;
-  margin-bottom: 0.25rem;
-  transition: all 0.2s ease;
-}
-
-.sidebar-link:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.sidebar-link.active {
-  color: #ffffff;
-  background: var(--primary);
-  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
-}
-
-.sidebar-footer {
-  padding: 1rem 1.25rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* Main Content Area */
-.main-content {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  overflow-x: hidden;
-}
-
-/* Top Navbar */
-.top-nav {
+/* ==========================================================================
+   Top Header Navigation Bar
+   ========================================================================== */
+.portal-navbar {
   background: #ffffff;
-  padding: 0.85rem 1.75rem;
-  border-bottom: 1px solid #e2e8f0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  border-bottom: 1px solid var(--portal-border);
+  padding: 0.85rem 1.5rem;
   position: sticky;
   top: 0;
-  z-index: 900;
+  z-index: 1000;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
 }
 
-.content-body {
-  padding: 2rem 1.75rem;
-  flex-grow: 1;
-}
-
-/* Metric / KPI Cards */
-.kpi-card {
-  background: #ffffff;
-  border-radius: 16px;
-  border: 1px solid #e2e8f0;
-  padding: 1.5rem;
+.portal-brand {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  transition: all 0.25s ease;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--portal-dark);
 }
 
-.kpi-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-md);
-}
-
-.kpi-icon {
-  width: 52px;
-  height: 52px;
+.portal-brand-icon {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+  color: #ffffff;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 12px var(--portal-primary-glow);
 }
 
-.kpi-value {
-  font-size: 1.85rem;
+.portal-nav-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #f1f5f9;
+  padding: 0.35rem;
+  border-radius: 50px;
+  list-style: none;
+  margin: 0;
+}
+
+.portal-tab-btn {
+  border: none;
+  background: transparent;
+  color: var(--portal-text-muted);
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 50px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.portal-tab-btn:hover {
+  color: var(--portal-primary);
+}
+
+.portal-tab-btn.active {
+  background: #ffffff;
+  color: var(--portal-primary);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   Hero Doctor Booking Header
+   ========================================================================== */
+.booking-hero-header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #ffffff;
+  border-radius: var(--portal-radius);
+  padding: 2.5rem 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--portal-shadow-md);
+}
+
+.booking-hero-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(2, 132, 199, 0.35) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Specialty Category Chips Carousel
+   ========================================================================== */
+.specialty-chips-wrap {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 0.5rem 0 1rem 0;
+  scrollbar-width: thin;
+}
+
+.specialty-chips-wrap::-webkit-scrollbar {
+  height: 6px;
+}
+.specialty-chips-wrap::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.specialty-chip-btn {
+  background: #ffffff;
+  border: 1px solid var(--portal-border);
+  padding: 0.65rem 1.25rem;
+  border-radius: 50px;
+  color: var(--portal-text-main);
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  box-shadow: var(--portal-shadow-sm);
+}
+
+.specialty-chip-btn:hover {
+  border-color: var(--portal-primary);
+  color: var(--portal-primary);
+  transform: translateY(-2px);
+}
+
+.specialty-chip-btn.active {
+  background: var(--portal-primary);
+  border-color: var(--portal-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 14px var(--portal-primary-glow);
+}
+
+/* ==========================================================================
+   Filter & Search Bar
+   ========================================================================== */
+.filter-search-card {
+  background: #ffffff;
+  border: 1px solid var(--portal-border);
+  border-radius: var(--portal-radius);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--portal-shadow-sm);
+  margin-bottom: 2rem;
+}
+
+/* ==========================================================================
+   Doctor Cards Grid
+   ========================================================================== */
+.doctor-portal-card {
+  background: #ffffff;
+  border: 1px solid var(--portal-border);
+  border-radius: var(--portal-radius);
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--portal-shadow-sm);
+  position: relative;
+}
+
+.doctor-portal-card:hover {
+  transform: translateY(-4px);
+  border-color: #bae6fd;
+  box-shadow: var(--portal-shadow-md);
+}
+
+.doctor-avatar-circle {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  color: var(--portal-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.doctor-online-dot {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 14px;
+  height: 14px;
+  background: #22c55e;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+}
+
+.doctor-fee-badge {
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
   font-weight: 700;
-  font-family: var(--font-heading);
-  line-height: 1.2;
+  font-size: 0.92rem;
 }
 
-/* Time Slot Selection Chips */
+.doctor-detail-box {
+  background: #f8fafc;
+  border: 1px solid #edf2f7;
+  border-radius: var(--portal-radius-sm);
+  padding: 0.85rem 1rem;
+  margin: 1rem 0;
+  font-size: 0.84rem;
+}
+
+.btn-book-doctor {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--portal-radius-sm);
+  font-weight: 600;
+  font-size: 0.92rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  margin-top: auto;
+  box-shadow: 0 4px 12px var(--portal-primary-glow);
+}
+
+.btn-book-doctor:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(2, 132, 199, 0.4);
+}
+
+/* ==========================================================================
+   Slot Selection Chips (Inside Modal)
+   ========================================================================== */
 .slot-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
@@ -134,12 +288,12 @@
 }
 
 .slot-chip {
-  padding: 8px 12px;
-  border-radius: 8px;
+  padding: 10px 12px;
+  border-radius: 10px;
   border: 1px solid #cbd5e1;
   background: #ffffff;
   color: #334155;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   font-weight: 600;
   text-align: center;
   cursor: pointer;
@@ -148,16 +302,16 @@
 }
 
 .slot-chip:hover:not(.booked) {
-  border-color: var(--primary);
-  color: var(--primary);
-  background: var(--primary-light);
+  border-color: var(--portal-primary);
+  color: var(--portal-primary);
+  background: #f0f9ff;
 }
 
 .slot-chip.selected {
-  background: var(--primary);
-  border-color: var(--primary);
+  background: var(--portal-primary);
+  border-color: var(--portal-primary);
   color: #ffffff;
-  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.35);
+  box-shadow: 0 4px 12px var(--portal-primary-glow);
 }
 
 .slot-chip.booked {
@@ -168,41 +322,95 @@
   text-decoration: line-through;
 }
 
-/* Printable Prescription Card */
+/* ==========================================================================
+   Appointment & Reminder Cards
+   ========================================================================== */
+.appointment-ticket-card {
+  background: #ffffff;
+  border: 1px solid var(--portal-border);
+  border-radius: var(--portal-radius);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--portal-shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.appointment-ticket-card:hover {
+  border-color: #bae6fd;
+  box-shadow: var(--portal-shadow-md);
+}
+
+.medicine-alarm-card {
+  background: #ffffff;
+  border: 1px solid var(--portal-border);
+  border-left: 5px solid #f59e0b;
+  border-radius: var(--portal-radius-sm);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--portal-shadow-sm);
+}
+
+/* ==========================================================================
+   Printable Prescription Card
+   ========================================================================== */
 .prescription-doc {
   background: #ffffff;
   border: 2px solid #0284c7;
   border-radius: 12px;
   padding: 2rem;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--portal-shadow-lg);
 }
 
 .rx-symbol {
   font-family: serif;
   font-size: 2.5rem;
   font-weight: bold;
-  color: var(--primary);
+  color: var(--portal-primary);
   line-height: 1;
 }
 
-/* Notification Drawer Dropdown */
-.notification-badge {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  font-size: 0.65rem;
-  padding: 0.25em 0.5em;
+/* Status Badges */
+.badge-status-confirmed {
+  background: #dcfce7;
+  color: #15803d;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+}
+
+.badge-status-pending {
+  background: #fef3c7;
+  color: #b45309;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+}
+
+.badge-status-completed {
+  background: #e0e7ff;
+  color: #4338ca;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+}
+
+.badge-status-cancelled {
+  background: #fee2e2;
+  color: #b91c1c;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
 }
 
 /* Responsive adjustments */
 @media (max-width: 991.98px) {
-  .sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: -260px;
-  }
-  .sidebar.show {
-    left: 0;
+  .portal-nav-tabs {
+    overflow-x: auto;
+    width: 100%;
+    justify-content: flex-start;
   }
 }

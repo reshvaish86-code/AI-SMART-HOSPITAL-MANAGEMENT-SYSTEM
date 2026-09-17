@@ -1,5 +1,6 @@
 /**
  * Patient Dashboard Application Logic
+ * Modernized for Appointment Booking & Specialist Hub
  * Enhanced with Live Client Alarm Engine, Voice Alerts, Browser Notifications, and Patient Name Routing
  */
 
@@ -14,13 +15,30 @@ const PatientApp = {
     await this.loadStats();
     await this.loadDoctors();
     await this.loadAppointments();
-    await this.loadMedicalRecords();
     await this.loadPrescriptions();
     await this.loadReminders();
-    await this.loadNotifications();
     this.setupEventListeners();
     this.initBrowserNotificationPermission();
     this.startClientReminderMonitor();
+  },
+
+  getSpecialtyIcon(specialty) {
+    const s = (specialty || '').toLowerCase();
+    if (s.includes('cardio')) return '<i class="fa-solid fa-heart-pulse text-danger"></i>';
+    if (s.includes('derma')) return '<i class="fa-solid fa-hand-dots text-warning"></i>';
+    if (s.includes('neuro')) return '<i class="fa-solid fa-brain text-info"></i>';
+    if (s.includes('pedia')) return '<i class="fa-solid fa-baby text-primary"></i>';
+    if (s.includes('ortho')) return '<i class="fa-solid fa-bone text-secondary"></i>';
+    if (s.includes('physician') || s.includes('general')) return '<i class="fa-solid fa-user-doctor text-success"></i>';
+    if (s.includes('gyne') || s.includes('gynae')) return '<i class="fa-solid fa-person-pregnant text-danger"></i>';
+    if (s.includes('ent')) return '<i class="fa-solid fa-ear-listen text-warning"></i>';
+    if (s.includes('eye') || s.includes('ophthal')) return '<i class="fa-solid fa-eye text-primary"></i>';
+    if (s.includes('pulmo')) return '<i class="fa-solid fa-lungs text-info"></i>';
+    if (s.includes('psych')) return '<i class="fa-solid fa-head-side-virus text-warning"></i>';
+    if (s.includes('dent')) return '<i class="fa-solid fa-tooth text-info"></i>';
+    if (s.includes('gastro')) return '<i class="fa-solid fa-cubes-stacked text-danger"></i>';
+    if (s.includes('uro')) return '<i class="fa-solid fa-shield-virus text-primary"></i>';
+    return '<i class="fa-solid fa-user-doctor text-primary"></i>';
   },
 
   initBrowserNotificationPermission() {
@@ -131,7 +149,6 @@ const PatientApp = {
 
     // Reload counters
     this.loadStats();
-    this.loadNotifications();
   },
 
   triggerLiveAppointmentAlarm(appt) {
@@ -197,20 +214,64 @@ const PatientApp = {
     }
   },
 
+  filterBySpecialtyChip(specialty, element) {
+    // Update chip active classes
+    document.querySelectorAll('.specialty-chip-btn').forEach(btn => btn.classList.remove('active'));
+    if (element) {
+      element.classList.add('active');
+    }
+
+    // Update dropdown if available
+    const sel = document.getElementById('filterSpecialty');
+    if (sel) {
+      sel.value = specialty;
+    }
+
+    this.loadDoctors();
+  },
+
+  filterBySuggestedSpecialist(specialty) {
+    const sel = document.getElementById('filterSpecialty');
+    if (sel) {
+      sel.value = specialty;
+    }
+
+    // Sync specialty chips
+    const chips = document.querySelectorAll('.specialty-chip-btn');
+    chips.forEach(btn => {
+      if (btn.textContent.trim().toLowerCase().includes(specialty.toLowerCase())) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    // Switch to Find & Book Doctor tab
+    const tabBtn = document.getElementById('tab-doctors-btn');
+    if (tabBtn) tabBtn.click();
+
+    this.loadDoctors();
+    API.toast(`Filtered specialists for ${specialty}`, 'info');
+  },
+
   async loadStats() {
     try {
-      const res = await API.get('/patients/dashboard/stats');
-      if (res && res.data) {
-        document.getElementById('statTotalAppts').textContent = res.data.totalAppointments || 0;
-        document.getElementById('statUpcomingAppts').textContent = res.data.upcomingAppointments || 0;
-        document.getElementById('statPrescriptions').textContent = res.data.totalPrescriptions || 0;
-        document.getElementById('statReminders').textContent = res.data.medicineRemindersCount || 0;
-
-        const badge = document.getElementById('notifCountBadge');
-        if (badge) {
-          badge.textContent = res.data.unreadNotifications || 0;
-          badge.style.display = res.data.unreadNotifications > 0 ? 'inline-block' : 'none';
+      let upcomingCount = 0;
+      try {
+        const res = await API.get('/patients/dashboard/stats');
+        if (res && res.data) {
+          upcomingCount = res.data.upcomingAppointments || res.data.totalAppointments || 0;
         }
+      } catch (e) {
+        // Offline / fallback
+      }
+
+      const localAppts = JSON.parse(localStorage.getItem('LOCAL_APPOINTMENTS') || '[]');
+      const totalCount = Math.max(upcomingCount, localAppts.length);
+
+      const badge = document.getElementById('statUpcomingBadge');
+      if (badge) {
+        badge.textContent = totalCount;
       }
     } catch (e) {
       console.error('Error loading patient stats:', e);
@@ -225,12 +286,12 @@ const PatientApp = {
     const district = document.getElementById('filterDistrict')?.value || 'All';
     const search = document.getElementById('searchDoctorQuery')?.value || '';
 
-    container.innerHTML = '<div class="text-center py-5"><div class="spinner-border text-primary" role="status"></div><p class="text-muted mt-2">Loading medical specialists...</p></div>';
+    container.innerHTML = '<div class="col-12 text-center py-5"><div class="spinner-border text-primary" role="status"></div><p class="text-muted mt-2">Loading medical specialists across Tamil Nadu...</p></div>';
 
     try {
       const doctorsMap = new Map();
 
-      // 1. Pre-load all 28 comprehensive doctor profiles (New + Previous)
+      // 1. Pre-load all 28 comprehensive doctor profiles (New + Previous with Dr. Ramesh Chandran)
       if (CONFIG.DEFAULT_DOCTORS && CONFIG.DEFAULT_DOCTORS.length > 0) {
         CONFIG.DEFAULT_DOCTORS.forEach(doc => {
           const key = (doc.user?.name || '').trim().toLowerCase();
@@ -286,35 +347,45 @@ const PatientApp = {
       }
 
       container.innerHTML = filteredDoctors.map(doc => `
-        <div class="col-md-6 col-lg-4 mb-4">
-          <div class="card h-100 border-0 shadow-sm rounded-4 p-3 hover-card">
-            <div class="d-flex align-items-start gap-3 mb-3">
-              <div class="bg-primary-subtle text-primary p-3 rounded-4 fs-3">
-                <i class="fa-solid fa-user-doctor"></i>
+        <div class="col-md-6 col-xl-4 mb-4">
+          <div class="doctor-portal-card">
+            <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
+              <div class="d-flex align-items-center gap-3">
+                <div class="doctor-avatar-circle">
+                  ${this.getSpecialtyIcon(doc.specialization)}
+                  <span class="doctor-online-dot" title="Available for Booking"></span>
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-0 text-dark" style="font-size: 1.05rem;">${doc.user?.name || 'Doctor'}</h5>
+                  <span class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill small mt-1">${doc.specialization}</span>
+                </div>
               </div>
-              <div class="flex-grow-1">
-                <h5 class="fw-bold mb-1 text-dark">${doc.user?.name || 'Doctor'}</h5>
-                <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">${doc.specialization}</span>
-                <p class="text-muted small mb-0 mt-1"><i class="fa-solid fa-graduation-cap me-1"></i> ${doc.qualification}</p>
+              <div class="doctor-fee-badge text-nowrap">
+                ₹${doc.consultationFee}
               </div>
             </div>
-            <div class="bg-light p-2 rounded-3 mb-3 small">
+
+            <div class="doctor-detail-box">
               <div class="d-flex justify-content-between mb-1">
-                <span class="text-muted"><i class="fa-solid fa-hospital me-1"></i> Hospital:</span>
-                <span class="fw-semibold text-dark text-truncate max-w-150" title="${doc.hospital}">${doc.hospital}</span>
+                <span class="text-muted"><i class="fa-solid fa-graduation-cap me-1 text-primary"></i> Qual:</span>
+                <span class="fw-semibold text-dark text-truncate">${doc.qualification || 'MBBS, MD'}</span>
               </div>
               <div class="d-flex justify-content-between mb-1">
+                <span class="text-muted"><i class="fa-solid fa-hospital me-1 text-info"></i> Hospital:</span>
+                <span class="fw-semibold text-dark text-truncate" title="${doc.hospital}">${doc.hospital}</span>
+              </div>
+              <div class="d-flex justify-content-between">
                 <span class="text-muted"><i class="fa-solid fa-location-dot me-1 text-danger"></i> District:</span>
                 <span class="fw-semibold text-dark">${doc.district}</span>
               </div>
-              <div class="d-flex justify-content-between">
-                <span class="text-muted"><i class="fa-solid fa-indian-rupee-sign me-1 text-success"></i> Consultation Fee:</span>
-                <span class="fw-bold text-success">₹${doc.consultationFee}</span>
-              </div>
             </div>
-            <p class="text-muted small mb-3 flex-grow-1">${doc.bio || 'Experienced clinical specialist.'}</p>
-            <button class="btn btn-primary-custom w-100 rounded-3" onclick="PatientApp.openBookingModal('${doc._id}')">
-              <i class="fa-solid fa-calendar-plus me-1"></i> Book Appointment
+
+            <p class="text-muted small mb-3 flex-grow-1" style="font-size: 0.82rem; line-height: 1.4;">
+              ${doc.bio || 'Verified medical specialist providing clinical consultation across Tamil Nadu.'}
+            </p>
+
+            <button class="btn-book-doctor" onclick="PatientApp.openBookingModal('${doc._id || doc.user?.name}')">
+              <i class="fa-solid fa-calendar-plus"></i> Book Consultation
             </button>
           </div>
         </div>
@@ -501,34 +572,34 @@ const PatientApp = {
           <div class="text-center py-5 bg-white rounded-4 border">
             <i class="fa-solid fa-calendar-xmark text-muted fs-1 mb-2"></i>
             <h6 class="text-dark">No appointments found</h6>
-            <p class="text-muted small">Book your first consultation with top Tamil Nadu specialists above.</p>
+            <p class="text-muted small">Book your first consultation with top Tamil Nadu specialists.</p>
           </div>
         `;
         return;
       }
 
       container.innerHTML = uniqueAppts.map(a => `
-        <div class="card border-0 shadow-sm rounded-4 mb-3 p-3">
-          <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-2 pb-2 border-bottom">
-            <div>
+        <div class="appointment-ticket-card">
+          <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom">
+            <div class="d-flex align-items-center gap-2">
               <span class="badge-status-${(a.status || 'Confirmed').toLowerCase()}">${a.status || 'Confirmed'}</span>
-              <span class="text-muted small ms-2"><i class="fa-regular fa-clock me-1"></i> Booked on ${new Date(a.createdAt || Date.now()).toLocaleDateString()}</span>
+              <span class="text-muted small"><i class="fa-regular fa-clock me-1"></i> Booked on ${new Date(a.createdAt || Date.now()).toLocaleDateString()}</span>
             </div>
-            <div class="fw-bold text-primary">₹${a.consultationFee || 500}</div>
+            <div class="fw-bold text-success fs-6">₹${a.consultationFee || 500}</div>
           </div>
-          <div class="row align-items-center">
+          <div class="row align-items-center g-3">
             <div class="col-md-6">
-              <h6 class="fw-bold text-dark mb-1">${a.doctorUser?.name ? a.doctorUser.name : (a.doctor?.user?.name || 'Doctor')}</h6>
+              <h5 class="fw-bold text-dark mb-1">${a.doctorUser?.name ? a.doctorUser.name : (a.doctor?.user?.name || 'Doctor')}</h5>
               <p class="text-muted small mb-1"><i class="fa-solid fa-stethoscope me-1 text-primary"></i> ${a.specialist || a.doctor?.specialization || 'Specialist'} | ${a.hospital || a.doctor?.hospital || 'Hospital'}</p>
               <p class="text-secondary small mb-0"><i class="fa-solid fa-note-sticky me-1"></i> <strong>Reason:</strong> ${a.reasonForVisit}</p>
             </div>
-            <div class="col-md-4 my-2 my-md-0">
-              <div class="bg-light p-2 rounded-3 text-center">
-                <div class="fw-bold text-dark"><i class="fa-solid fa-calendar-day me-1 text-primary"></i> ${a.appointmentDate}</div>
-                <div class="text-muted small"><i class="fa-solid fa-clock me-1 text-warning"></i> ${a.timeSlot}</div>
+            <div class="col-md-3">
+              <div class="bg-light p-2 rounded-3 text-center border">
+                <div class="fw-bold text-dark small"><i class="fa-solid fa-calendar-day me-1 text-primary"></i> ${a.appointmentDate}</div>
+                <div class="text-primary fw-semibold small"><i class="fa-solid fa-clock me-1 text-warning"></i> ${a.timeSlot}</div>
               </div>
             </div>
-            <div class="col-md-2 text-md-end mt-2 mt-md-0 d-flex flex-wrap gap-2 justify-content-md-end">
+            <div class="col-md-3 text-md-end d-flex flex-wrap gap-2 justify-content-md-end">
               <button class="btn btn-outline-primary btn-sm rounded-pill px-3" title="Dispatch 1-Hour Pre-Appointment Reminder Email Now" onclick="PatientApp.sendAppointmentReminder('${a._id}')">
                 <i class="fa-solid fa-bell me-1"></i> Send AI Reminder
               </button>
@@ -547,11 +618,10 @@ const PatientApp = {
       const res = await API.post(`/appointments/${id}/send-reminder`);
       if (res && res.status === 'success') {
         API.toast(res.message || '1-Hour Pre-Appointment Reminder Email dispatched to your inbox!', 'success');
-        await this.loadNotifications();
       }
       // Trigger voice and chime alarm immediately
-      const apptCard = document.querySelector(`button[onclick*="${id}"]`)?.closest('.card');
-      const docName = apptCard?.querySelector('h6')?.textContent || 'Doctor';
+      const apptCard = document.querySelector(`button[onclick*="${id}"]`)?.closest('.appointment-ticket-card');
+      const docName = apptCard?.querySelector('h5')?.textContent || 'Doctor';
       this.triggerLiveAppointmentAlarm({
         doctorUser: { name: docName.replace('Dr. ', '') },
         timeSlot: 'Upcoming Slot',
@@ -559,55 +629,6 @@ const PatientApp = {
       });
     } catch (e) {
       // Handled
-    }
-  },
-
-  async cancelAppointment(id) {
-    if (!confirm('Are you sure you want to cancel this appointment?')) return;
-    try {
-      await API.patch(`/appointments/${id}/status`, { status: 'Cancelled' });
-      API.toast('Appointment cancelled', 'info');
-      await this.loadStats();
-      await this.loadAppointments();
-    } catch (e) {
-      // Handled
-    }
-  },
-
-  async loadMedicalRecords() {
-    const container = document.getElementById('medicalRecordsContainer');
-    if (!container) return;
-
-    try {
-      const res = await API.get('/medical-records');
-      const records = res.data || [];
-
-      if (records.length === 0) {
-        container.innerHTML = '<div class="text-center py-4 text-muted">No clinical records on file yet.</div>';
-        return;
-      }
-
-      container.innerHTML = records.map(r => `
-        <div class="card border-0 shadow-sm rounded-4 p-3 mb-3">
-          <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
-            <div>
-              <h6 class="fw-bold text-dark mb-0">${r.diagnosis}</h6>
-              <span class="text-muted small">Consultant: Dr. ${r.doctor?.user?.name || 'Physician'} (${new Date(r.recordDate).toLocaleDateString()})</span>
-            </div>
-            <span class="badge bg-primary-subtle text-primary rounded-pill">Clinical Consultation</span>
-          </div>
-          <div class="row g-2 mb-2 bg-light p-2 rounded-3 small">
-            <div class="col-6 col-md-3"><strong>BP:</strong> ${r.vitals?.bloodPressure || 'N/A'}</div>
-            <div class="col-6 col-md-3"><strong>Pulse:</strong> ${r.vitals?.heartRate || 'N/A'}</div>
-            <div class="col-6 col-md-3"><strong>Temp:</strong> ${r.vitals?.temperature || 'N/A'}</div>
-            <div class="col-6 col-md-3"><strong>SpO2:</strong> ${r.vitals?.oxygenSaturation || 'N/A'}</div>
-          </div>
-          <p class="small text-secondary mb-1"><strong>Doctor Notes:</strong> ${r.doctorNotes || 'No specific clinical remarks.'}</p>
-          ${r.followUpDate ? `<p class="small text-primary mb-0"><i class="fa-solid fa-calendar-check me-1"></i> Recommended Follow-up: ${r.followUpDate}</p>` : ''}
-        </div>
-      `).join('');
-    } catch (e) {
-      container.innerHTML = '<div class="text-danger py-3">Error loading records</div>';
     }
   },
 
@@ -620,12 +641,12 @@ const PatientApp = {
       const prescriptions = res.data || [];
 
       if (prescriptions.length === 0) {
-        container.innerHTML = '<div class="text-center py-4 text-muted">No digital prescriptions issued yet.</div>';
+        container.innerHTML = '<div class="text-center py-4 text-muted bg-white rounded-4 border">No digital prescriptions issued yet.</div>';
         return;
       }
 
       container.innerHTML = prescriptions.map(p => `
-        <div class="card border-0 shadow-sm rounded-4 p-3 mb-3">
+        <div class="card border-0 shadow-sm rounded-4 p-3 mb-3 bg-white">
           <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
             <div>
               <h6 class="fw-bold text-dark mb-0"><i class="fa-solid fa-file-prescription text-primary me-1"></i> ${p.diagnosis}</h6>
@@ -719,7 +740,6 @@ const PatientApp = {
 
   async loadReminders() {
     const container = document.getElementById('medicineRemindersContainer');
-    const overviewContainer = document.getElementById('medicineRemindersOverview');
     if (!container) return;
 
     try {
@@ -735,28 +755,27 @@ const PatientApp = {
       const reminders = res.data?.medicineReminders || [];
 
       if (reminders.length === 0) {
-        container.innerHTML = '<div class="text-muted small py-3 text-center">No medicine reminders set. Add one on the left.</div>';
-        if (overviewContainer) overviewContainer.innerHTML = '<p class="text-muted small mb-0">No active medicine alarms.</p>';
+        container.innerHTML = '<div class="text-muted small py-4 text-center">No medicine reminders set. Fill out the form on the left to set an alarm.</div>';
         return;
       }
 
       container.innerHTML = reminders.map(r => `
-        <div class="card border-0 bg-light p-3 rounded-4 mb-3 shadow-sm">
+        <div class="medicine-alarm-card">
           <div class="d-flex justify-content-between align-items-start mb-2">
             <div>
               <span class="badge bg-primary text-white me-1"><i class="fa-solid fa-user me-1"></i> ${r.patientName || currentPatientProfile?.user?.name || 'Patient'}</span>
-              <span class="badge bg-secondary-subtle text-dark"><i class="fa-solid fa-phone me-1"></i> ${r.mobileNumber || currentPatientProfile?.user?.mobile || 'N/A'}</span>
+              <span class="badge bg-light text-dark border"><i class="fa-solid fa-phone me-1 text-success"></i> ${r.mobileNumber || currentPatientProfile?.user?.mobile || 'N/A'}</span>
             </div>
             <div class="d-flex align-items-center gap-1">
               <button class="btn btn-outline-primary btn-sm rounded-pill px-2 py-1" title="Test Reminder Email & Alarm Now" onclick="PatientApp.testMedicineReminderAlert('${r._id}', '${r.medicineName}')">
-                <i class="fa-solid fa-paper-plane me-1"></i> Test Email
+                <i class="fa-solid fa-paper-plane me-1"></i> Test Alarm
               </button>
               <button class="btn btn-outline-danger btn-sm rounded-circle p-1" title="Delete Reminder" onclick="PatientApp.deleteReminder('${r._id}')">
                 <i class="fa-solid fa-trash"></i>
               </button>
             </div>
           </div>
-          <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-between align-items-center mt-2">
             <div>
               <h6 class="fw-bold text-dark mb-0"><i class="fa-solid fa-pills text-warning me-1"></i> ${r.medicineName}</h6>
               <div class="text-muted small">${r.dosage || '1 dose'} • ${r.frequency || 'Daily'} • <em>${r.instructions || 'Take as advised'}</em></div>
@@ -765,18 +784,6 @@ const PatientApp = {
           </div>
         </div>
       `).join('');
-
-      if (overviewContainer) {
-        overviewContainer.innerHTML = reminders.slice(0, 3).map(r => `
-          <div class="d-flex justify-content-between align-items-center border-bottom py-2 small">
-            <div>
-              <strong class="text-dark">${r.medicineName}</strong>
-              <div class="text-muted" style="font-size: 0.75rem;">${r.patientName || 'Patient'} • ${r.dosage}</div>
-            </div>
-            <span class="badge bg-warning text-dark"><i class="fa-regular fa-clock me-1"></i> ${r.time}</span>
-          </div>
-        `).join('');
-      }
     } catch (e) {
       container.innerHTML = '<div class="text-danger small">Error loading reminders</div>';
     }
@@ -789,7 +796,7 @@ const PatientApp = {
       if (res && res.status === 'success') {
         API.toast(res.message || 'Medicine Reminder Email delivered to your inbox!', 'success');
       }
-      // Also trigger live audio chime and TTS voice alarm immediately!
+      // Trigger live audio chime and TTS voice alarm immediately
       const reminderObj = currentPatientProfile?.medicineReminders?.find(r => r._id === id);
       if (reminderObj) {
         this.triggerLiveMedicineAlarm(reminderObj);
@@ -844,93 +851,19 @@ const PatientApp = {
     }
   },
 
-  async loadNotifications() {
-    const list = document.getElementById('notificationsDropdownList');
-    if (!list) return;
-
-    try {
-      const res = await API.get('/notifications');
-      const notifs = res.data || [];
-
-      if (notifs.length === 0) {
-        list.innerHTML = '<li class="dropdown-item text-muted small text-center py-2">No notifications</li>';
-        return;
-      }
-
-      list.innerHTML = notifs.slice(0, 8).map(n => `
-        <li class="dropdown-item py-2 border-bottom ${!n.isRead ? 'bg-light fw-semibold' : ''}">
-          <div class="d-flex justify-content-between align-items-center">
-            <strong class="small text-dark">${n.title}</strong>
-            <span class="text-muted" style="font-size: 0.7rem;">${new Date(n.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
-          </div>
-          <p class="mb-0 text-muted small" style="white-space: normal;">${n.message}</p>
-        </li>
-      `).join('') + `
-        <li class="p-2 text-center">
-          <button class="btn btn-link btn-sm p-0 text-decoration-none" onclick="PatientApp.markAllNotifsRead()">Mark all as read</button>
-        </li>
-      `;
-    } catch (e) {
-      console.error('Notif error:', e);
-    }
-  },
-
-  async markAllNotifsRead() {
-    try {
-      await API.patch('/notifications/read-all');
-      await this.loadStats();
-      await this.loadNotifications();
-    } catch (e) {
-      // Handled
-    }
-  },
-
   setupEventListeners() {
+    // Search & Filter controls
     document.getElementById('btnFilterDoctors')?.addEventListener('click', () => this.loadDoctors());
+    document.getElementById('searchDoctorQuery')?.addEventListener('input', () => this.loadDoctors());
+    document.getElementById('filterSpecialty')?.addEventListener('change', () => this.loadDoctors());
+    document.getElementById('filterDistrict')?.addEventListener('change', () => this.loadDoctors());
+
+    // Booking modal
     document.getElementById('btnConfirmBooking')?.addEventListener('click', () => this.confirmBooking());
     document.getElementById('bookingDateInput')?.addEventListener('change', (e) => this.loadDoctorSlots(e.target.value));
+    
+    // Reminders
     document.getElementById('btnAddReminder')?.addEventListener('click', () => this.addReminder());
-
-    document.getElementById('btnRunAITriage')?.addEventListener('click', async () => {
-      const symptoms = document.getElementById('aiTriageInput').value;
-      const resultBox = document.getElementById('aiTriageResultBox');
-      if (!symptoms.trim()) {
-        API.toast('Please describe symptoms first', 'warning');
-        return;
-      }
-      resultBox.innerHTML = '<div class="text-primary small py-3"><i class="fa-solid fa-spinner fa-spin me-1"></i> Analyzing clinical symptoms & finding appropriate specialist...</div>';
-      resultBox.classList.remove('d-none');
-      const data = await AIAssistant.triageSymptoms(symptoms);
-      if (data) {
-        resultBox.innerHTML = `
-          <div class="alert alert-info rounded-3 p-3 mb-2">
-            <h6 class="fw-bold mb-1"><i class="fa-solid fa-user-doctor me-1"></i> Recommended Specialist: <span class="text-primary">${data.recommendedSpecialist}</span></h6>
-            <div class="badge bg-${data.urgencyLevel === 'Emergency' ? 'danger' : (data.urgencyLevel === 'High' ? 'warning' : 'success')} mb-2">Urgency: ${data.urgencyLevel}</div>
-            <p class="small mb-2">${data.clinicalSummary}</p>
-            <strong class="small d-block mb-1">Recommended Home Guidance:</strong>
-            <ul class="small mb-2 ps-3">
-              ${data.homeCareAdvice.map(a => `<li>${a}</li>`).join('')}
-            </ul>
-            <div class="disclaimer-card p-2 small mt-2">
-              <i class="fa-solid fa-triangle-exclamation me-1"></i> ${data.disclaimer}
-            </div>
-          </div>
-          <button class="btn btn-primary-custom btn-sm rounded-pill" onclick="PatientApp.filterBySuggestedSpecialist('${data.recommendedSpecialist}')">
-            <i class="fa-solid fa-magnifying-glass me-1"></i> Find ${data.recommendedSpecialist} Doctors in Tamil Nadu
-          </button>
-        `;
-      }
-    });
-  },
-
-  filterBySuggestedSpecialist(specialty) {
-    const sel = document.getElementById('filterSpecialty');
-    if (sel) {
-      sel.value = specialty;
-      this.loadDoctors();
-      document.getElementById('specialists-tab')?.click();
-      API.toast(`Filtered doctors for ${specialty}`, 'info');
-    }
   }
 };
 
