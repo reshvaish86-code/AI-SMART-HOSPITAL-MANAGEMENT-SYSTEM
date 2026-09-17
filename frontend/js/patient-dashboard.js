@@ -47,20 +47,29 @@ const PatientApp = {
 
   getSpecialtyIcon(specialty) {
     const s = (specialty || '').toLowerCase();
-    if (s.includes('cardio')) return '<i class="fa-solid fa-heart-pulse text-danger"></i>';
-    if (s.includes('derma')) return '<i class="fa-solid fa-hand-dots text-warning"></i>';
-    if (s.includes('neuro')) return '<i class="fa-solid fa-brain text-info"></i>';
-    if (s.includes('pedia')) return '<i class="fa-solid fa-baby text-primary"></i>';
-    if (s.includes('ortho')) return '<i class="fa-solid fa-bone text-secondary"></i>';
+    if (s.includes('cardio') || s.includes('heart')) return '<i class="fa-solid fa-heart-pulse text-danger"></i>';
+    if (s.includes('derma') || s.includes('skin')) return '<i class="fa-solid fa-hand-dots text-warning"></i>';
+    if (s.includes('neuro') || s.includes('brain')) return '<i class="fa-solid fa-brain text-info"></i>';
+    if (s.includes('nephro') || s.includes('renal')) return '<i class="fa-solid fa-capsules text-primary"></i>';
+    if (s.includes('pedia') || s.includes('child')) return '<i class="fa-solid fa-baby text-primary"></i>';
+    if (s.includes('ortho') || s.includes('bone')) return '<i class="fa-solid fa-bone text-secondary"></i>';
     if (s.includes('physician') || s.includes('general')) return '<i class="fa-solid fa-user-doctor text-success"></i>';
-    if (s.includes('gyne') || s.includes('gynae')) return '<i class="fa-solid fa-person-pregnant text-danger"></i>';
-    if (s.includes('ent')) return '<i class="fa-solid fa-ear-listen text-warning"></i>';
+    if (s.includes('gyne') || s.includes('women')) return '<i class="fa-solid fa-person-pregnant text-danger"></i>';
+    if (s.includes('ent') || s.includes('ear') || s.includes('nose') || s.includes('throat')) return '<i class="fa-solid fa-ear-listen text-warning"></i>';
     if (s.includes('eye') || s.includes('ophthal')) return '<i class="fa-solid fa-eye text-primary"></i>';
-    if (s.includes('pulmo')) return '<i class="fa-solid fa-lungs text-info"></i>';
-    if (s.includes('psych')) return '<i class="fa-solid fa-head-side-virus text-warning"></i>';
-    if (s.includes('dent')) return '<i class="fa-solid fa-tooth text-info"></i>';
-    if (s.includes('gastro')) return '<i class="fa-solid fa-cubes-stacked text-danger"></i>';
-    if (s.includes('uro')) return '<i class="fa-solid fa-shield-virus text-primary"></i>';
+    if (s.includes('pulmo') || s.includes('lung')) return '<i class="fa-solid fa-lungs text-info"></i>';
+    if (s.includes('psych') || s.includes('mind')) return '<i class="fa-solid fa-head-side-virus text-warning"></i>';
+    if (s.includes('dent') || s.includes('tooth')) return '<i class="fa-solid fa-tooth text-info"></i>';
+    if (s.includes('physio') || s.includes('rehab')) return '<i class="fa-solid fa-person-walking text-success"></i>';
+    if (s.includes('gastro') || s.includes('stomach')) return '<i class="fa-solid fa-cubes-stacked text-danger"></i>';
+    if (s.includes('uro') || s.includes('kidney')) return '<i class="fa-solid fa-shield-virus text-primary"></i>';
+    if (s.includes('plastic') || s.includes('cosmetic')) return '<i class="fa-solid fa-wand-magic-sparkles text-danger"></i>';
+    if (s.includes('radio') || s.includes('scan') || s.includes('x-ray')) return '<i class="fa-solid fa-x-ray text-info"></i>';
+    if (s.includes('neonato') || s.includes('infant')) return '<i class="fa-solid fa-baby-carriage text-warning"></i>';
+    if (s.includes('geriat') || s.includes('elder')) return '<i class="fa-solid fa-person-cane text-secondary"></i>';
+    if (s.includes('hepato') || s.includes('liver')) return '<i class="fa-solid fa-disease text-danger"></i>';
+    if (s.includes('hemato') || s.includes('blood')) return '<i class="fa-solid fa-droplet text-danger"></i>';
+    if (s.includes('allerg') || s.includes('immuno')) return '<i class="fa-solid fa-shield-halved text-success"></i>';
     return '<i class="fa-solid fa-user-doctor text-primary"></i>';
   },
 
@@ -302,20 +311,29 @@ const PatientApp = {
   mapQueryToSpecialty(query) {
     if (!query) return null;
     const q = query.toLowerCase().trim();
-    if (q.includes('derma') || q.includes('skin') || q.includes('rash') || q.includes('acne')) return 'Dermatologist';
+    if (q.includes('physician') || q.includes('general') || q.includes('fever') || q.includes('cold') || q.includes('flu')) return 'General Physician';
     if (q.includes('cardio') || q.includes('heart') || q.includes('cardiac') || q.includes('ecg')) return 'Cardiologist';
     if (q.includes('neuro') || q.includes('brain') || q.includes('nerve') || q.includes('stroke') || q.includes('headache')) return 'Neurologist';
-    if (q.includes('pedia') || q.includes('child') || q.includes('baby') || q.includes('infant') || q.includes('kids')) return 'Pediatrician';
-    if (q.includes('ortho') || q.includes('bone') || q.includes('joint') || q.includes('fracture') || q.includes('knee') || q.includes('spine')) return 'Orthopedic';
-    if (q.includes('physician') || q.includes('general') || q.includes('fever') || q.includes('cold') || q.includes('flu')) return 'General Physician';
-    if (q.includes('gyne') || q.includes('women') || q.includes('pregnan') || q.includes('matern') || q.includes('femal')) return 'Gynecologist';
-    if (q.includes('ent') || q.includes('ear') || q.includes('nose') || q.includes('throat') || q.includes('sinus')) return 'ENT Specialist';
-    if (q.includes('eye') || q.includes('vision') || q.includes('ophthal') || q.includes('sight') || q.includes('cataract')) return 'Ophthalmologist';
-    if (q.includes('pulmo') || q.includes('lung') || q.includes('breath') || q.includes('asthma') || q.includes('chest')) return 'Pulmonologist';
-    if (q.includes('gastro') || q.includes('stomach') || q.includes('liver') || q.includes('digest') || q.includes('endoscopy')) return 'Gastroenterologist';
+    if (q.includes('nephro') || q.includes('dialysis') || q.includes('renal')) return 'Nephrologist';
     if (q.includes('psych') || q.includes('mind') || q.includes('mental') || q.includes('stress') || q.includes('anxiety') || q.includes('depress')) return 'Psychiatrist';
     if (q.includes('dent') || q.includes('tooth') || q.includes('teeth') || q.includes('root canal') || q.includes('smile') || q.includes('oral')) return 'Dentist';
-    if (q.includes('uro') || q.includes('kidney') || q.includes('urin') || q.includes('prostate') || q.includes('stone')) return 'Urologist';
+    if (q.includes('physio') || q.includes('rehab') || q.includes('exercise') || q.includes('paralysis') || q.includes('mobility')) return 'Physiotherapist';
+    if (q.includes('ent') || q.includes('ear') || q.includes('nose') || q.includes('throat') || q.includes('sinus')) return 'ENT Specialist';
+    if (q.includes('derma') || q.includes('skin') || q.includes('rash') || q.includes('acne')) return 'Dermatologist';
+    if (q.includes('pulmo') || q.includes('lung') || q.includes('breath') || q.includes('asthma') || q.includes('chest')) return 'Pulmonologist';
+    if (q.includes('gastro') || q.includes('stomach') || q.includes('digest') || q.includes('endoscopy') || q.includes('gastric')) return 'Gastroenterologist';
+    if (q.includes('pedia') || q.includes('child') || q.includes('baby') || q.includes('kids') || q.includes('pediatric')) return 'Pediatrician';
+    if (q.includes('gyne') || q.includes('women') || q.includes('pregnan') || q.includes('matern') || q.includes('femal')) return 'Gynecologist';
+    if (q.includes('eye') || q.includes('vision') || q.includes('ophthal') || q.includes('sight') || q.includes('cataract')) return 'Ophthalmologist';
+    if (q.includes('uro') || q.includes('kidney stone') || q.includes('urin') || q.includes('prostate') || q.includes('urolog')) return 'Urologist';
+    if (q.includes('plastic') || q.includes('cosmetic') || q.includes('reconstruct') || q.includes('rhinoplasty')) return 'Plastic Surgeon';
+    if (q.includes('radio') || q.includes('scan') || q.includes('x-ray') || q.includes('mri') || q.includes('ct scan')) return 'Radiologist';
+    if (q.includes('neonato') || q.includes('nicu') || q.includes('newborn') || q.includes('premature')) return 'Neonatologist';
+    if (q.includes('geriat') || q.includes('elder') || q.includes('senior') || q.includes('ageing') || q.includes('old age')) return 'Geriatrician';
+    if (q.includes('hepato') || q.includes('liver') || q.includes('cirrhosis') || q.includes('jaundice')) return 'Hepatologist';
+    if (q.includes('hemato') || q.includes('blood') || q.includes('anemia') || q.includes('platelet') || q.includes('leukemia') || q.includes('bone marrow')) return 'Hematologist';
+    if (q.includes('allerg') || q.includes('immuno') || q.includes('allergy') || q.includes('sneezing') || q.includes('dust')) return 'Allergist & Immunologist';
+    if (q.includes('ortho') || q.includes('bone') || q.includes('joint') || q.includes('fracture') || q.includes('knee') || q.includes('spine')) return 'Orthopedic';
     return null;
   },
 

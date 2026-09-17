@@ -1,250 +1,18 @@
 /**
- * Database Seed Data with 10 Specialists Across 10 Districts Per Specialty
+ * Database Seed Data with 22 Specialties & 10 Specialists Across 10 Districts Per Specialty (220 Doctors)
  */
 
 const SEED_DOCTORS = [
   {
-    "name": "Dr. Katrina Fernandez",
-    "email": "_katrina_fernandez@hospital.com",
+    "name": "Dr. Nethra Sundaram",
+    "email": "_nethra_sundaram@hospital.com",
     "mobile": "+91 9840100001",
-    "specialization": "Dermatologist",
-    "qualification": "MBBS, MD (DVL)",
-    "hospital": "Ganga Medical Centre & Hospital",
-    "district": "Coimbatore",
-    "address": "Ganga Medical Centre & Hospital, Coimbatore, Tamil Nadu",
-    "consultationFee": 650,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.8,
-    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Meera Nambiar",
-    "email": "_meera_nambiar@hospital.com",
-    "mobile": "+91 9840100002",
-    "specialization": "Dermatologist",
-    "qualification": "MBBS, MD (DVL)",
-    "hospital": "Apollo Hospitals, Greams Road",
-    "district": "Chennai",
-    "address": "Apollo Hospitals, Greams Road, Chennai, Tamil Nadu",
-    "consultationFee": 650,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.9,
-    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Suresh K",
-    "email": "_suresh_k@hospital.com",
-    "mobile": "+91 9840100003",
-    "specialization": "Dermatologist",
-    "qualification": "MBBS, MD (DVL)",
-    "hospital": "Meenakshi Mission Hospital",
-    "district": "Madurai",
-    "address": "Meenakshi Mission Hospital, Madurai, Tamil Nadu",
-    "consultationFee": 650,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 5,
-    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Radhika Balaji",
-    "email": "_radhika_balaji@hospital.com",
-    "mobile": "+91 9840100004",
-    "specialization": "Dermatologist",
-    "qualification": "MBBS, MD (DVL)",
-    "hospital": "Manipal Hospital Care",
-    "district": "Salem",
-    "address": "Manipal Hospital Care, Salem, Tamil Nadu",
-    "consultationFee": 650,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.7,
-    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Ashwin Kumar",
-    "email": "_ashwin_kumar@hospital.com",
-    "mobile": "+91 9840100005",
-    "specialization": "Dermatologist",
-    "qualification": "MBBS, MD (DVL)",
-    "hospital": "Kauvery Multi-Speciality Hospital",
-    "district": "Tiruchirappalli",
-    "address": "Kauvery Multi-Speciality Hospital, Tiruchirappalli, Tamil Nadu",
-    "consultationFee": 650,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.8,
-    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Nithya Raman",
-    "email": "_nithya_raman@hospital.com",
-    "mobile": "+91 9840100006",
-    "specialization": "Dermatologist",
-    "qualification": "MBBS, MD (DVL)",
-    "hospital": "CMC Health Center",
+    "specialization": "General Physician",
+    "qualification": "MBBS, MD (General Medicine)",
+    "hospital": "CMC Hospital Care",
     "district": "Vellore",
-    "address": "CMC Health Center, Vellore, Tamil Nadu",
-    "consultationFee": 650,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.9,
-    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Vigneshwaran T",
-    "email": "_vigneshwaran_t@hospital.com",
-    "mobile": "+91 9840100007",
-    "specialization": "Dermatologist",
-    "qualification": "MBBS, MD (DVL)",
-    "hospital": "Shifa Health City",
-    "district": "Tirunelveli",
-    "address": "Shifa Health City, Tirunelveli, Tamil Nadu",
-    "consultationFee": 650,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 5,
-    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Deepa Sundar",
-    "email": "_deepa_sundar@hospital.com",
-    "mobile": "+91 9840100008",
-    "specialization": "Dermatologist",
-    "qualification": "MBBS, MD (DVL)",
-    "hospital": "Lotus Medical Care Centre",
-    "district": "Erode",
-    "address": "Lotus Medical Care Centre, Erode, Tamil Nadu",
-    "consultationFee": 650,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.7,
-    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Prakash Raj",
-    "email": "_prakash_raj@hospital.com",
-    "mobile": "+91 9840100009",
-    "specialization": "Dermatologist",
-    "qualification": "MBBS, MD (DVL)",
-    "hospital": "Meenakshi Multi-Speciality",
-    "district": "Thanjavur",
-    "address": "Meenakshi Multi-Speciality, Thanjavur, Tamil Nadu",
-    "consultationFee": 650,
+    "address": "CMC Hospital Care, Vellore, Tamil Nadu",
+    "consultationFee": 450,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -262,18 +30,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.8,
-    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Sangeetha Mani",
-    "email": "_sangeetha_mani@hospital.com",
-    "mobile": "+91 9840100010",
-    "specialization": "Dermatologist",
-    "qualification": "MBBS, MD (DVL)",
-    "hospital": "Annai Multi-Speciality Healthcare",
-    "district": "Kanchipuram",
-    "address": "Annai Multi-Speciality Healthcare, Kanchipuram, Tamil Nadu",
-    "consultationFee": 650,
+    "name": "Dr. Aarav Mehta",
+    "email": "_aarav_mehta@hospital.com",
+    "mobile": "+91 9840100002",
+    "specialization": "General Physician",
+    "qualification": "MBBS, MD (General Medicine)",
+    "hospital": "MGM Healthcare Clinic",
+    "district": "Chennai",
+    "address": "MGM Healthcare Clinic, Chennai, Tamil Nadu",
+    "consultationFee": 450,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -291,7 +59,239 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.9,
-    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Krishnan M",
+    "email": "_krishnan_m@hospital.com",
+    "mobile": "+91 9840100003",
+    "specialization": "General Physician",
+    "qualification": "MBBS, MD (General Medicine)",
+    "hospital": "Sri Ramakrishna Hospital",
+    "district": "Coimbatore",
+    "address": "Sri Ramakrishna Hospital, Coimbatore, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Vijayalakshmi",
+    "email": "_vijayalakshmi@hospital.com",
+    "mobile": "+91 9840100004",
+    "specialization": "General Physician",
+    "qualification": "MBBS, MD (General Medicine)",
+    "hospital": "Velammal Medical Center",
+    "district": "Madurai",
+    "address": "Velammal Medical Center, Madurai, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Manivel P",
+    "email": "_manivel_p@hospital.com",
+    "mobile": "+91 9840100005",
+    "specialization": "General Physician",
+    "qualification": "MBBS, MD (General Medicine)",
+    "hospital": "Salem Polyclinic & Care",
+    "district": "Salem",
+    "address": "Salem Polyclinic & Care, Salem, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Jayaprakash",
+    "email": "_jayaprakash@hospital.com",
+    "mobile": "+91 9840100006",
+    "specialization": "General Physician",
+    "qualification": "MBBS, MD (General Medicine)",
+    "hospital": "Maruti Family Clinic",
+    "district": "Tiruchirappalli",
+    "address": "Maruti Family Clinic, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Ponraj T",
+    "email": "_ponraj_t@hospital.com",
+    "mobile": "+91 9840100007",
+    "specialization": "General Physician",
+    "qualification": "MBBS, MD (General Medicine)",
+    "hospital": "Nellai City Health Clinic",
+    "district": "Tirunelveli",
+    "address": "Nellai City Health Clinic, Tirunelveli, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Govindaraj",
+    "email": "_govindaraj@hospital.com",
+    "mobile": "+91 9840100008",
+    "specialization": "General Physician",
+    "qualification": "MBBS, MD (General Medicine)",
+    "hospital": "Surabhi Medical Care",
+    "district": "Erode",
+    "address": "Surabhi Medical Care, Erode, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Sivakumar",
+    "email": "_sivakumar@hospital.com",
+    "mobile": "+91 9840100009",
+    "specialization": "General Physician",
+    "qualification": "MBBS, MD (General Medicine)",
+    "hospital": "Sri Venkateshwara Clinic",
+    "district": "Thanjavur",
+    "address": "Sri Venkateshwara Clinic, Thanjavur, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Uthra Devi",
+    "email": "_uthra_devi@hospital.com",
+    "mobile": "+91 9840100010",
+    "specialization": "General Physician",
+    "qualification": "MBBS, MD (General Medicine)",
+    "hospital": "Kanchi Health Centre",
+    "district": "Kanchipuram",
+    "address": "Kanchi Health Centre, Kanchipuram, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
   },
   {
     "name": "Dr. Diya Sharma",
@@ -874,15 +874,15 @@ const SEED_DOCTORS = [
     "bio": "Certified Neurologist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Riyana Sen",
-    "email": "_riyana_sen@hospital.com",
+    "name": "Dr. Madhavan V",
+    "email": "_madhavan_v@hospital.com",
     "mobile": "+91 9840100031",
-    "specialization": "Pediatrician",
-    "qualification": "MBBS, MD (Pediatrics), DCH",
-    "hospital": "Manipal Children's Clinic",
-    "district": "Salem",
-    "address": "Manipal Children's Clinic, Salem, Tamil Nadu",
-    "consultationFee": 500,
+    "specialization": "Nephrologist",
+    "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
+    "hospital": "Apollo Kidney & Renal Institute",
+    "district": "Chennai",
+    "address": "Apollo Kidney & Renal Institute, Chennai, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -900,18 +900,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 5,
-    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Priya Darshini",
-    "email": "_priya_darshini@hospital.com",
+    "name": "Dr. Senthilkumar K",
+    "email": "_senthilkumar_k@hospital.com",
     "mobile": "+91 9840100032",
-    "specialization": "Pediatrician",
-    "qualification": "MBBS, MD (Pediatrics), DCH",
-    "hospital": "Rainbow Children's Hospital",
-    "district": "Chennai",
-    "address": "Rainbow Children's Hospital, Chennai, Tamil Nadu",
-    "consultationFee": 500,
+    "specialization": "Nephrologist",
+    "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
+    "hospital": "KG Hospital Nephrology Unit",
+    "district": "Coimbatore",
+    "address": "KG Hospital Nephrology Unit, Coimbatore, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -929,18 +929,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.7,
-    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Sudha Mohan",
-    "email": "_sudha_mohan@hospital.com",
+    "name": "Dr. Balakrishnan",
+    "email": "_balakrishnan@hospital.com",
     "mobile": "+91 9840100033",
-    "specialization": "Pediatrician",
-    "qualification": "MBBS, MD (Pediatrics), DCH",
-    "hospital": "GKNM Children's Center",
-    "district": "Coimbatore",
-    "address": "GKNM Children's Center, Coimbatore, Tamil Nadu",
-    "consultationFee": 500,
+    "specialization": "Nephrologist",
+    "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
+    "hospital": "Meenakshi Mission Renal Care",
+    "district": "Madurai",
+    "address": "Meenakshi Mission Renal Care, Madurai, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -958,18 +958,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.8,
-    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Aravind Swamy",
-    "email": "_aravind_swamy@hospital.com",
+    "name": "Dr. Geetha Mohan",
+    "email": "_geetha_mohan@hospital.com",
     "mobile": "+91 9840100034",
-    "specialization": "Pediatrician",
-    "qualification": "MBBS, MD (Pediatrics), DCH",
-    "hospital": "Grace Children Hospital",
-    "district": "Madurai",
-    "address": "Grace Children Hospital, Madurai, Tamil Nadu",
-    "consultationFee": 500,
+    "specialization": "Nephrologist",
+    "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
+    "hospital": "Manipal Kidney Center",
+    "district": "Salem",
+    "address": "Manipal Kidney Center, Salem, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -987,18 +987,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.9,
-    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Kavitha Rajan",
-    "email": "_kavitha_rajan@hospital.com",
+    "name": "Dr. Jayaraj P",
+    "email": "_jayaraj_p@hospital.com",
     "mobile": "+91 9840100035",
-    "specialization": "Pediatrician",
-    "qualification": "MBBS, MD (Pediatrics), DCH",
-    "hospital": "Kauvery Child Care Clinic",
+    "specialization": "Nephrologist",
+    "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
+    "hospital": "Kauvery Nephrology Centre",
     "district": "Tiruchirappalli",
-    "address": "Kauvery Child Care Clinic, Tiruchirappalli, Tamil Nadu",
-    "consultationFee": 500,
+    "address": "Kauvery Nephrology Centre, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1016,18 +1016,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 5,
-    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Mohan Kumar",
-    "email": "_mohan_kumar@hospital.com",
+    "name": "Dr. Chakravarti R",
+    "email": "_chakravarti_r@hospital.com",
     "mobile": "+91 9840100036",
-    "specialization": "Pediatrician",
-    "qualification": "MBBS, MD (Pediatrics), DCH",
-    "hospital": "CMC Child Health Center",
+    "specialization": "Nephrologist",
+    "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
+    "hospital": "CMC Renal & Dialysis Clinic",
     "district": "Vellore",
-    "address": "CMC Child Health Center, Vellore, Tamil Nadu",
-    "consultationFee": 500,
+    "address": "CMC Renal & Dialysis Clinic, Vellore, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1045,18 +1045,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.7,
-    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Selva Kumar",
-    "email": "_selva_kumar@hospital.com",
+    "name": "Dr. Paramasivam",
+    "email": "_paramasivam@hospital.com",
     "mobile": "+91 9840100037",
-    "specialization": "Pediatrician",
-    "qualification": "MBBS, MD (Pediatrics), DCH",
-    "hospital": "Annai Child Clinic",
+    "specialization": "Nephrologist",
+    "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
+    "hospital": "Nellai Kidney Institute",
     "district": "Tirunelveli",
-    "address": "Annai Child Clinic, Tirunelveli, Tamil Nadu",
-    "consultationFee": 500,
+    "address": "Nellai Kidney Institute, Tirunelveli, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1074,18 +1074,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.8,
-    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Revathi S",
-    "email": "_revathi_s@hospital.com",
+    "name": "Dr. Narendran S",
+    "email": "_narendran_s@hospital.com",
     "mobile": "+91 9840100038",
-    "specialization": "Pediatrician",
-    "qualification": "MBBS, MD (Pediatrics), DCH",
-    "hospital": "Maruthi Children Hospital",
+    "specialization": "Nephrologist",
+    "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
+    "hospital": "Lotus Renal Care Center",
     "district": "Erode",
-    "address": "Maruthi Children Hospital, Erode, Tamil Nadu",
-    "consultationFee": 500,
+    "address": "Lotus Renal Care Center, Erode, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1103,18 +1103,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.9,
-    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Kumaran M",
-    "email": "_kumaran_m@hospital.com",
+    "name": "Dr. Srinivasa Rao",
+    "email": "_srinivasa_rao@hospital.com",
     "mobile": "+91 9840100039",
-    "specialization": "Pediatrician",
-    "qualification": "MBBS, MD (Pediatrics), DCH",
-    "hospital": "Vinodhagan Pediatric Center",
+    "specialization": "Nephrologist",
+    "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
+    "hospital": "Thanjavur Kidney Care",
     "district": "Thanjavur",
-    "address": "Vinodhagan Pediatric Center, Thanjavur, Tamil Nadu",
-    "consultationFee": 500,
+    "address": "Thanjavur Kidney Care, Thanjavur, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1132,18 +1132,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 5,
-    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Malini V",
-    "email": "_malini_v@hospital.com",
+    "name": "Dr. Kousalya R",
+    "email": "_kousalya_r@hospital.com",
     "mobile": "+91 9840100040",
-    "specialization": "Pediatrician",
-    "qualification": "MBBS, MD (Pediatrics), DCH",
-    "hospital": "Little Stars Pediatric Care",
+    "specialization": "Nephrologist",
+    "qualification": "MBBS, MD, DM (Nephrology & Renal Care)",
+    "hospital": "Kanchi Dialysis & Renal Unit",
     "district": "Kanchipuram",
-    "address": "Little Stars Pediatric Care, Kanchipuram, Tamil Nadu",
-    "consultationFee": 500,
+    "address": "Kanchi Dialysis & Renal Unit, Kanchipuram, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1161,18 +1161,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.7,
-    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Adhira Nair",
-    "email": "_adhira_nair@hospital.com",
+    "name": "Dr. Vikram S",
+    "email": "_vikram_s@hospital.com",
     "mobile": "+91 9840100041",
-    "specialization": "Orthopedic",
-    "qualification": "MBBS, MS (Orthopedics), M.Ch",
-    "hospital": "Kauvery Orthopedic Hospital",
-    "district": "Tiruchirappalli",
-    "address": "Kauvery Orthopedic Hospital, Tiruchirappalli, Tamil Nadu",
-    "consultationFee": 700,
+    "specialization": "Psychiatrist",
+    "qualification": "MBBS, MD, DPM (Psychiatry)",
+    "hospital": "SCARF India Mental Health",
+    "district": "Chennai",
+    "address": "SCARF India Mental Health, Chennai, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1190,18 +1190,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.8,
-    "bio": "Certified Orthopedic specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Ishaan Verma",
-    "email": "_ishaan_verma@hospital.com",
+    "name": "Dr. Senthilvel",
+    "email": "_senthilvel@hospital.com",
     "mobile": "+91 9840100042",
-    "specialization": "Orthopedic",
-    "qualification": "MBBS, MS (Orthopedics), M.Ch",
-    "hospital": "Gleneagles Global Health City",
-    "district": "Chennai",
-    "address": "Gleneagles Global Health City, Chennai, Tamil Nadu",
-    "consultationFee": 700,
+    "specialization": "Psychiatrist",
+    "qualification": "MBBS, MD, DPM (Psychiatry)",
+    "hospital": "VGM Mind Care Hospital",
+    "district": "Coimbatore",
+    "address": "VGM Mind Care Hospital, Coimbatore, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1219,18 +1219,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.9,
-    "bio": "Certified Orthopedic specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Gopinath R",
-    "email": "_gopinath_r@hospital.com",
+    "name": "Dr. Manonmani",
+    "email": "_manonmani@hospital.com",
     "mobile": "+91 9840100043",
-    "specialization": "Orthopedic",
-    "qualification": "MBBS, MS (Orthopedics), M.Ch",
-    "hospital": "Ganga Hospital Joint & Spine",
-    "district": "Coimbatore",
-    "address": "Ganga Hospital Joint & Spine, Coimbatore, Tamil Nadu",
-    "consultationFee": 700,
+    "specialization": "Psychiatrist",
+    "qualification": "MBBS, MD, DPM (Psychiatry)",
+    "hospital": "M.S. Chellamuthu Trust",
+    "district": "Madurai",
+    "address": "M.S. Chellamuthu Trust, Madurai, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1248,18 +1248,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 5,
-    "bio": "Certified Orthopedic specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Shanmugam K",
-    "email": "_shanmugam_k@hospital.com",
+    "name": "Dr. Balaji K",
+    "email": "_balaji_k@hospital.com",
     "mobile": "+91 9840100044",
-    "specialization": "Orthopedic",
-    "qualification": "MBBS, MS (Orthopedics), M.Ch",
-    "hospital": "Devadoss Multispeciality Ortho",
-    "district": "Madurai",
-    "address": "Devadoss Multispeciality Ortho, Madurai, Tamil Nadu",
-    "consultationFee": 700,
+    "specialization": "Psychiatrist",
+    "qualification": "MBBS, MD, DPM (Psychiatry)",
+    "hospital": "Salem Mind Wellness Center",
+    "district": "Salem",
+    "address": "Salem Mind Wellness Center, Salem, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1277,18 +1277,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.7,
-    "bio": "Certified Orthopedic specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Elango T",
-    "email": "_elango_t@hospital.com",
+    "name": "Dr. Arunkumar",
+    "email": "_arunkumar@hospital.com",
     "mobile": "+91 9840100045",
-    "specialization": "Orthopedic",
-    "qualification": "MBBS, MS (Orthopedics), M.Ch",
-    "hospital": "Dhanvantri Critical Ortho Care",
-    "district": "Salem",
-    "address": "Dhanvantri Critical Ortho Care, Salem, Tamil Nadu",
-    "consultationFee": 700,
+    "specialization": "Psychiatrist",
+    "qualification": "MBBS, MD, DPM (Psychiatry)",
+    "hospital": "Athma Mind Care Clinic",
+    "district": "Tiruchirappalli",
+    "address": "Athma Mind Care Clinic, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1306,18 +1306,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.8,
-    "bio": "Certified Orthopedic specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Prem Kumar",
-    "email": "_prem_kumar@hospital.com",
+    "name": "Dr. Poongodi",
+    "email": "_poongodi@hospital.com",
     "mobile": "+91 9840100046",
-    "specialization": "Orthopedic",
-    "qualification": "MBBS, MS (Orthopedics), M.Ch",
-    "hospital": "Scudder Memorial Ortho Unit",
+    "specialization": "Psychiatrist",
+    "qualification": "MBBS, MD, DPM (Psychiatry)",
+    "hospital": "Vellore Mental Wellness",
     "district": "Vellore",
-    "address": "Scudder Memorial Ortho Unit, Vellore, Tamil Nadu",
-    "consultationFee": 700,
+    "address": "Vellore Mental Wellness, Vellore, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1335,18 +1335,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.9,
-    "bio": "Certified Orthopedic specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Arulmozhi V",
-    "email": "_arulmozhi_v@hospital.com",
+    "name": "Dr. Nagarajan",
+    "email": "_nagarajan@hospital.com",
     "mobile": "+91 9840100047",
-    "specialization": "Orthopedic",
-    "qualification": "MBBS, MS (Orthopedics), M.Ch",
-    "hospital": "Royal Ortho Care Institute",
+    "specialization": "Psychiatrist",
+    "qualification": "MBBS, MD, DPM (Psychiatry)",
+    "hospital": "Nellai Psychiatry Centre",
     "district": "Tirunelveli",
-    "address": "Royal Ortho Care Institute, Tirunelveli, Tamil Nadu",
-    "consultationFee": 700,
+    "address": "Nellai Psychiatry Centre, Tirunelveli, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1364,18 +1364,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 5,
-    "bio": "Certified Orthopedic specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Balamurugan",
-    "email": "_balamurugan@hospital.com",
+    "name": "Dr. Deepalakshmi",
+    "email": "_deepalakshmi@hospital.com",
     "mobile": "+91 9840100048",
-    "specialization": "Orthopedic",
-    "qualification": "MBBS, MS (Orthopedics), M.Ch",
-    "hospital": "Erode Ortho Joint Clinic",
+    "specialization": "Psychiatrist",
+    "qualification": "MBBS, MD, DPM (Psychiatry)",
+    "hospital": "Lotus Mind Clinic",
     "district": "Erode",
-    "address": "Erode Ortho Joint Clinic, Erode, Tamil Nadu",
-    "consultationFee": 700,
+    "address": "Lotus Mind Clinic, Erode, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1393,18 +1393,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.7,
-    "bio": "Certified Orthopedic specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Sridhar S",
-    "email": "_sridhar_s@hospital.com",
+    "name": "Dr. Sundararajan",
+    "email": "_sundararajan@hospital.com",
     "mobile": "+91 9840100049",
-    "specialization": "Orthopedic",
-    "qualification": "MBBS, MS (Orthopedics), M.Ch",
-    "hospital": "Meenakshi Bone & Joint Care",
+    "specialization": "Psychiatrist",
+    "qualification": "MBBS, MD, DPM (Psychiatry)",
+    "hospital": "Delta Mind Care Hospital",
     "district": "Thanjavur",
-    "address": "Meenakshi Bone & Joint Care, Thanjavur, Tamil Nadu",
-    "consultationFee": 700,
+    "address": "Delta Mind Care Hospital, Thanjavur, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1422,18 +1422,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.8,
-    "bio": "Certified Orthopedic specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Thirumalai",
-    "email": "_thirumalai@hospital.com",
+    "name": "Dr. Preetha R",
+    "email": "_preetha_r@hospital.com",
     "mobile": "+91 9840100050",
-    "specialization": "Orthopedic",
-    "qualification": "MBBS, MS (Orthopedics), M.Ch",
-    "hospital": "Kanchi Orthopedic Institute",
+    "specialization": "Psychiatrist",
+    "qualification": "MBBS, MD, DPM (Psychiatry)",
+    "hospital": "Kanchi Mind Wellness Center",
     "district": "Kanchipuram",
-    "address": "Kanchi Orthopedic Institute, Kanchipuram, Tamil Nadu",
-    "consultationFee": 700,
+    "address": "Kanchi Mind Wellness Center, Kanchipuram, Tamil Nadu",
+    "consultationFee": 750,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1451,18 +1451,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.9,
-    "bio": "Certified Orthopedic specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Nethra Sundaram",
-    "email": "_nethra_sundaram@hospital.com",
+    "name": "Dr. Sanjay Ram",
+    "email": "_sanjay_ram@hospital.com",
     "mobile": "+91 9840100051",
-    "specialization": "General Physician",
-    "qualification": "MBBS, MD (General Medicine)",
-    "hospital": "CMC Hospital Care",
-    "district": "Vellore",
-    "address": "CMC Hospital Care, Vellore, Tamil Nadu",
-    "consultationFee": 450,
+    "specialization": "Dentist",
+    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
+    "hospital": "Smile Care Dental Hospital",
+    "district": "Chennai",
+    "address": "Smile Care Dental Hospital, Chennai, Tamil Nadu",
+    "consultationFee": 400,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1480,18 +1480,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 5,
-    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
+    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Aarav Mehta",
-    "email": "_aarav_mehta@hospital.com",
+    "name": "Dr. Priya Mohan",
+    "email": "_priya_mohan@hospital.com",
     "mobile": "+91 9840100052",
-    "specialization": "General Physician",
-    "qualification": "MBBS, MD (General Medicine)",
-    "hospital": "MGM Healthcare Clinic",
-    "district": "Chennai",
-    "address": "MGM Healthcare Clinic, Chennai, Tamil Nadu",
-    "consultationFee": 450,
+    "specialization": "Dentist",
+    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
+    "hospital": "Dr. Mohan's Dental Studio",
+    "district": "Coimbatore",
+    "address": "Dr. Mohan's Dental Studio, Coimbatore, Tamil Nadu",
+    "consultationFee": 400,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1509,18 +1509,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.7,
-    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Krishnan M",
-    "email": "_krishnan_m@hospital.com",
+    "name": "Dr. Vignesh R",
+    "email": "_vignesh_r@hospital.com",
     "mobile": "+91 9840100053",
-    "specialization": "General Physician",
-    "qualification": "MBBS, MD (General Medicine)",
-    "hospital": "Sri Ramakrishna Hospital",
-    "district": "Coimbatore",
-    "address": "Sri Ramakrishna Hospital, Coimbatore, Tamil Nadu",
-    "consultationFee": 450,
+    "specialization": "Dentist",
+    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
+    "hospital": "Madurai Smile Centre",
+    "district": "Madurai",
+    "address": "Madurai Smile Centre, Madurai, Tamil Nadu",
+    "consultationFee": 400,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1538,18 +1538,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.8,
-    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Vijayalakshmi",
-    "email": "_vijayalakshmi@hospital.com",
+    "name": "Dr. Divya Sri",
+    "email": "_divya_sri@hospital.com",
     "mobile": "+91 9840100054",
-    "specialization": "General Physician",
-    "qualification": "MBBS, MD (General Medicine)",
-    "hospital": "Velammal Medical Center",
-    "district": "Madurai",
-    "address": "Velammal Medical Center, Madurai, Tamil Nadu",
-    "consultationFee": 450,
+    "specialization": "Dentist",
+    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
+    "hospital": "Salem Dental Polyclinic",
+    "district": "Salem",
+    "address": "Salem Dental Polyclinic, Salem, Tamil Nadu",
+    "consultationFee": 400,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1567,18 +1567,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.9,
-    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
+    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Manivel P",
-    "email": "_manivel_p@hospital.com",
+    "name": "Dr. Hariprasad",
+    "email": "_hariprasad@hospital.com",
     "mobile": "+91 9840100055",
-    "specialization": "General Physician",
-    "qualification": "MBBS, MD (General Medicine)",
-    "hospital": "Salem Polyclinic & Care",
-    "district": "Salem",
-    "address": "Salem Polyclinic & Care, Salem, Tamil Nadu",
-    "consultationFee": 450,
+    "specialization": "Dentist",
+    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
+    "hospital": "Trichy Dental Studio",
+    "district": "Tiruchirappalli",
+    "address": "Trichy Dental Studio, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 400,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1596,366 +1596,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 5,
-    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
+    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Jayaprakash",
-    "email": "_jayaprakash@hospital.com",
+    "name": "Dr. Sandhiya",
+    "email": "_sandhiya@hospital.com",
     "mobile": "+91 9840100056",
-    "specialization": "General Physician",
-    "qualification": "MBBS, MD (General Medicine)",
-    "hospital": "Maruti Family Clinic",
-    "district": "Tiruchirappalli",
-    "address": "Maruti Family Clinic, Tiruchirappalli, Tamil Nadu",
-    "consultationFee": 450,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.7,
-    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Ponraj T",
-    "email": "_ponraj_t@hospital.com",
-    "mobile": "+91 9840100057",
-    "specialization": "General Physician",
-    "qualification": "MBBS, MD (General Medicine)",
-    "hospital": "Nellai City Health Clinic",
-    "district": "Tirunelveli",
-    "address": "Nellai City Health Clinic, Tirunelveli, Tamil Nadu",
-    "consultationFee": 450,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.8,
-    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Govindaraj",
-    "email": "_govindaraj@hospital.com",
-    "mobile": "+91 9840100058",
-    "specialization": "General Physician",
-    "qualification": "MBBS, MD (General Medicine)",
-    "hospital": "Surabhi Medical Care",
-    "district": "Erode",
-    "address": "Surabhi Medical Care, Erode, Tamil Nadu",
-    "consultationFee": 450,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.9,
-    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Sivakumar",
-    "email": "_sivakumar@hospital.com",
-    "mobile": "+91 9840100059",
-    "specialization": "General Physician",
-    "qualification": "MBBS, MD (General Medicine)",
-    "hospital": "Sri Venkateshwara Clinic",
-    "district": "Thanjavur",
-    "address": "Sri Venkateshwara Clinic, Thanjavur, Tamil Nadu",
-    "consultationFee": 450,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 5,
-    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Uthra Devi",
-    "email": "_uthra_devi@hospital.com",
-    "mobile": "+91 9840100060",
-    "specialization": "General Physician",
-    "qualification": "MBBS, MD (General Medicine)",
-    "hospital": "Kanchi Health Centre",
-    "district": "Kanchipuram",
-    "address": "Kanchi Health Centre, Kanchipuram, Tamil Nadu",
-    "consultationFee": 450,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.7,
-    "bio": "Certified General Physician specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Ishita Patel",
-    "email": "_ishita_patel@hospital.com",
-    "mobile": "+91 9840100061",
-    "specialization": "Gynecologist",
-    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-    "hospital": "MIOT International Women's Care",
-    "district": "Chennai",
-    "address": "MIOT International Women's Care, Chennai, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.8,
-    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Lishika Reddy",
-    "email": "_lishika_reddy@hospital.com",
-    "mobile": "+91 9840100062",
-    "specialization": "Gynecologist",
-    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-    "hospital": "Women's Center by Motherhood",
-    "district": "Coimbatore",
-    "address": "Women's Center by Motherhood, Coimbatore, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.9,
-    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Vasanthi R",
-    "email": "_vasanthi_r@hospital.com",
-    "mobile": "+91 9840100063",
-    "specialization": "Gynecologist",
-    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-    "hospital": "Hannah Joseph Maternity Center",
-    "district": "Madurai",
-    "address": "Hannah Joseph Maternity Center, Madurai, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 5,
-    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Subhashini K",
-    "email": "_subhashini_k@hospital.com",
-    "mobile": "+91 9840100064",
-    "specialization": "Gynecologist",
-    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-    "hospital": "Dharani Women's Hospital",
-    "district": "Salem",
-    "address": "Dharani Women's Hospital, Salem, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.7,
-    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Uma Maheshwari",
-    "email": "_uma_maheshwari@hospital.com",
-    "mobile": "+91 9840100065",
-    "specialization": "Gynecologist",
-    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-    "hospital": "Deepam Women's Health",
-    "district": "Tiruchirappalli",
-    "address": "Deepam Women's Health, Tiruchirappalli, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.8,
-    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Mythili S",
-    "email": "_mythili_s@hospital.com",
-    "mobile": "+91 9840100066",
-    "specialization": "Gynecologist",
-    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-    "hospital": "Naruvi Women's Center",
+    "specialization": "Dentist",
+    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
+    "hospital": "Vellore Dental Care",
     "district": "Vellore",
-    "address": "Naruvi Women's Center, Vellore, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.9,
-    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Gomathi N",
-    "email": "_gomathi_n@hospital.com",
-    "mobile": "+91 9840100067",
-    "specialization": "Gynecologist",
-    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-    "hospital": "Gomathi Maternity Care",
-    "district": "Tirunelveli",
-    "address": "Gomathi Maternity Care, Tirunelveli, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 5,
-    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Soundarya P",
-    "email": "_soundarya_p@hospital.com",
-    "mobile": "+91 9840100068",
-    "specialization": "Gynecologist",
-    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-    "hospital": "Mother & Child Care Clinic",
-    "district": "Erode",
-    "address": "Mother & Child Care Clinic, Erode, Tamil Nadu",
-    "consultationFee": 750,
+    "address": "Vellore Dental Care, Vellore, Tamil Nadu",
+    "consultationFee": 400,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -1973,18 +1625,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.7,
-    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Indumathi",
-    "email": "_indumathi@hospital.com",
-    "mobile": "+91 9840100069",
-    "specialization": "Gynecologist",
-    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-    "hospital": "Raja Mirasudar Maternity Wing",
-    "district": "Thanjavur",
-    "address": "Raja Mirasudar Maternity Wing, Thanjavur, Tamil Nadu",
-    "consultationFee": 750,
+    "name": "Dr. Guruprasad",
+    "email": "_guruprasad@hospital.com",
+    "mobile": "+91 9840100057",
+    "specialization": "Dentist",
+    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
+    "hospital": "Nellai Dental Hub",
+    "district": "Tirunelveli",
+    "address": "Nellai Dental Hub, Tirunelveli, Tamil Nadu",
+    "consultationFee": 400,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -2002,18 +1654,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.8,
-    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Geetha Priya",
-    "email": "_geetha_priya@hospital.com",
-    "mobile": "+91 9840100070",
-    "specialization": "Gynecologist",
-    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
-    "hospital": "Kanchi Maternity & Fertility",
-    "district": "Kanchipuram",
-    "address": "Kanchi Maternity & Fertility, Kanchipuram, Tamil Nadu",
-    "consultationFee": 750,
+    "name": "Dr. Sharmila",
+    "email": "_sharmila@hospital.com",
+    "mobile": "+91 9840100058",
+    "specialization": "Dentist",
+    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
+    "hospital": "Erode Dental Studio",
+    "district": "Erode",
+    "address": "Erode Dental Studio, Erode, Tamil Nadu",
+    "consultationFee": 400,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -2031,7 +1683,355 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.9,
-    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Manikandan",
+    "email": "_manikandan@hospital.com",
+    "mobile": "+91 9840100059",
+    "specialization": "Dentist",
+    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
+    "hospital": "Thanjavur Dental Clinic",
+    "district": "Thanjavur",
+    "address": "Thanjavur Dental Clinic, Thanjavur, Tamil Nadu",
+    "consultationFee": 400,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Swetha N",
+    "email": "_swetha_n@hospital.com",
+    "mobile": "+91 9840100060",
+    "specialization": "Dentist",
+    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
+    "hospital": "Kanchi Dental Care",
+    "district": "Kanchipuram",
+    "address": "Kanchi Dental Care, Kanchipuram, Tamil Nadu",
+    "consultationFee": 400,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Dinesh Kumar (PT)",
+    "email": "_dinesh_kumar__pt_@hospital.com",
+    "mobile": "+91 9840100061",
+    "specialization": "Physiotherapist",
+    "qualification": "BPT, MPT (Orthopedics, Neuro & Sports Rehab)",
+    "hospital": "Apollo Sports & Rehab Clinic",
+    "district": "Chennai",
+    "address": "Apollo Sports & Rehab Clinic, Chennai, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Physiotherapist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Shanthi Mohan (PT)",
+    "email": "_shanthi_mohan__pt_@hospital.com",
+    "mobile": "+91 9840100062",
+    "specialization": "Physiotherapist",
+    "qualification": "BPT, MPT (Orthopedics, Neuro & Sports Rehab)",
+    "hospital": "Ganga Physio & Spine Rehab",
+    "district": "Coimbatore",
+    "address": "Ganga Physio & Spine Rehab, Coimbatore, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Physiotherapist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Rajeshwari K (PT)",
+    "email": "_rajeshwari_k__pt_@hospital.com",
+    "mobile": "+91 9840100063",
+    "specialization": "Physiotherapist",
+    "qualification": "BPT, MPT (Orthopedics, Neuro & Sports Rehab)",
+    "hospital": "Meenakshi Physio Care",
+    "district": "Madurai",
+    "address": "Meenakshi Physio Care, Madurai, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Physiotherapist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Anand Babu (PT)",
+    "email": "_anand_babu__pt_@hospital.com",
+    "mobile": "+91 9840100064",
+    "specialization": "Physiotherapist",
+    "qualification": "BPT, MPT (Orthopedics, Neuro & Sports Rehab)",
+    "hospital": "Salem Active Rehab Center",
+    "district": "Salem",
+    "address": "Salem Active Rehab Center, Salem, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Physiotherapist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Pradeep R (PT)",
+    "email": "_pradeep_r__pt_@hospital.com",
+    "mobile": "+91 9840100065",
+    "specialization": "Physiotherapist",
+    "qualification": "BPT, MPT (Orthopedics, Neuro & Sports Rehab)",
+    "hospital": "Kauvery Mobility Care",
+    "district": "Tiruchirappalli",
+    "address": "Kauvery Mobility Care, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Physiotherapist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Mary Varghese (PT)",
+    "email": "_mary_varghese__pt_@hospital.com",
+    "mobile": "+91 9840100066",
+    "specialization": "Physiotherapist",
+    "qualification": "BPT, MPT (Orthopedics, Neuro & Sports Rehab)",
+    "hospital": "CMC Physical Medicine Unit",
+    "district": "Vellore",
+    "address": "CMC Physical Medicine Unit, Vellore, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Physiotherapist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Sundaresan (PT)",
+    "email": "_sundaresan__pt_@hospital.com",
+    "mobile": "+91 9840100067",
+    "specialization": "Physiotherapist",
+    "qualification": "BPT, MPT (Orthopedics, Neuro & Sports Rehab)",
+    "hospital": "Nellai Physio Spine Hub",
+    "district": "Tirunelveli",
+    "address": "Nellai Physio Spine Hub, Tirunelveli, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Physiotherapist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Deepanraj (PT)",
+    "email": "_deepanraj__pt_@hospital.com",
+    "mobile": "+91 9840100068",
+    "specialization": "Physiotherapist",
+    "qualification": "BPT, MPT (Orthopedics, Neuro & Sports Rehab)",
+    "hospital": "Lotus Sports Therapy Center",
+    "district": "Erode",
+    "address": "Lotus Sports Therapy Center, Erode, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Physiotherapist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Vasanthan (PT)",
+    "email": "_vasanthan__pt_@hospital.com",
+    "mobile": "+91 9840100069",
+    "specialization": "Physiotherapist",
+    "qualification": "BPT, MPT (Orthopedics, Neuro & Sports Rehab)",
+    "hospital": "Thanjavur Joint Rehab",
+    "district": "Thanjavur",
+    "address": "Thanjavur Joint Rehab, Thanjavur, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Physiotherapist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Kirubakaran (PT)",
+    "email": "_kirubakaran__pt_@hospital.com",
+    "mobile": "+91 9840100070",
+    "specialization": "Physiotherapist",
+    "qualification": "BPT, MPT (Orthopedics, Neuro & Sports Rehab)",
+    "hospital": "Kanchi Physiotherapy Clinic",
+    "district": "Kanchipuram",
+    "address": "Kanchi Physiotherapy Clinic, Kanchipuram, Tamil Nadu",
+    "consultationFee": 450,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Physiotherapist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
   },
   {
     "name": "Dr. Shaan Mukherjee",
@@ -2324,73 +2324,15 @@ const SEED_DOCTORS = [
     "bio": "Certified ENT Specialist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Lavanya Swaminathan",
-    "email": "_lavanya_swaminathan@hospital.com",
+    "name": "Dr. Katrina Fernandez",
+    "email": "_katrina_fernandez@hospital.com",
     "mobile": "+91 9840100081",
-    "specialization": "Ophthalmologist",
-    "qualification": "MBBS, MS (Ophthalmology), DO",
-    "hospital": "Lotus Eye Care Hospital",
-    "district": "Erode",
-    "address": "Lotus Eye Care Hospital, Erode, Tamil Nadu",
-    "consultationFee": 550,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.8,
-    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Aravind S",
-    "email": "_aravind_s@hospital.com",
-    "mobile": "+91 9840100082",
-    "specialization": "Ophthalmologist",
-    "qualification": "MBBS, MS (Ophthalmology), DO",
-    "hospital": "Sankara Nethralaya Eye Care",
-    "district": "Chennai",
-    "address": "Sankara Nethralaya Eye Care, Chennai, Tamil Nadu",
-    "consultationFee": 550,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.9,
-    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Thendral K",
-    "email": "_thendral_k@hospital.com",
-    "mobile": "+91 9840100083",
-    "specialization": "Ophthalmologist",
-    "qualification": "MBBS, MS (Ophthalmology), DO",
-    "hospital": "Aravind Eye Hospital Coimbatore",
+    "specialization": "Dermatologist",
+    "qualification": "MBBS, MD (DVL)",
+    "hospital": "Ganga Medical Centre & Hospital",
     "district": "Coimbatore",
-    "address": "Aravind Eye Hospital Coimbatore, Coimbatore, Tamil Nadu",
-    "consultationFee": 550,
+    "address": "Ganga Medical Centre & Hospital, Coimbatore, Tamil Nadu",
+    "consultationFee": 650,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -2407,106 +2349,48 @@ const SEED_DOCTORS = [
       "03:00 PM",
       "04:00 PM"
     ],
-    "rating": 5,
-    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+    "rating": 4.8,
+    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Ganesan P",
-    "email": "_ganesan_p@hospital.com",
-    "mobile": "+91 9840100084",
-    "specialization": "Ophthalmologist",
-    "qualification": "MBBS, MS (Ophthalmology), DO",
-    "hospital": "Aravind Eye Hospital Madurai",
+    "name": "Dr. Meera Nambiar",
+    "email": "_meera_nambiar@hospital.com",
+    "mobile": "+91 9840100082",
+    "specialization": "Dermatologist",
+    "qualification": "MBBS, MD (DVL)",
+    "hospital": "Apollo Hospitals, Greams Road",
+    "district": "Chennai",
+    "address": "Apollo Hospitals, Greams Road, Chennai, Tamil Nadu",
+    "consultationFee": 650,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Suresh K",
+    "email": "_suresh_k@hospital.com",
+    "mobile": "+91 9840100083",
+    "specialization": "Dermatologist",
+    "qualification": "MBBS, MD (DVL)",
+    "hospital": "Meenakshi Mission Hospital",
     "district": "Madurai",
-    "address": "Aravind Eye Hospital Madurai, Madurai, Tamil Nadu",
-    "consultationFee": 550,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.7,
-    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Saranya R",
-    "email": "_saranya_r@hospital.com",
-    "mobile": "+91 9840100085",
-    "specialization": "Ophthalmologist",
-    "qualification": "MBBS, MS (Ophthalmology), DO",
-    "hospital": "Vasan Eye Care Salem",
-    "district": "Salem",
-    "address": "Vasan Eye Care Salem, Salem, Tamil Nadu",
-    "consultationFee": 550,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.8,
-    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Muthukumar",
-    "email": "_muthukumar@hospital.com",
-    "mobile": "+91 9840100086",
-    "specialization": "Ophthalmologist",
-    "qualification": "MBBS, MS (Ophthalmology), DO",
-    "hospital": "Joseph Eye Hospital",
-    "district": "Tiruchirappalli",
-    "address": "Joseph Eye Hospital, Tiruchirappalli, Tamil Nadu",
-    "consultationFee": 550,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.9,
-    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Chitra Devi",
-    "email": "_chitra_devi@hospital.com",
-    "mobile": "+91 9840100087",
-    "specialization": "Ophthalmologist",
-    "qualification": "MBBS, MS (Ophthalmology), DO",
-    "hospital": "CMC Eye Clinic",
-    "district": "Vellore",
-    "address": "CMC Eye Clinic, Vellore, Tamil Nadu",
-    "consultationFee": 550,
+    "address": "Meenakshi Mission Hospital, Madurai, Tamil Nadu",
+    "consultationFee": 650,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -2524,18 +2408,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 5,
-    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
+    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Velmurugan",
-    "email": "_velmurugan@hospital.com",
-    "mobile": "+91 9840100088",
-    "specialization": "Ophthalmologist",
-    "qualification": "MBBS, MS (Ophthalmology), DO",
-    "hospital": "Agarwal Eye Hospital",
-    "district": "Tirunelveli",
-    "address": "Agarwal Eye Hospital, Tirunelveli, Tamil Nadu",
-    "consultationFee": 550,
+    "name": "Dr. Radhika Balaji",
+    "email": "_radhika_balaji@hospital.com",
+    "mobile": "+91 9840100084",
+    "specialization": "Dermatologist",
+    "qualification": "MBBS, MD (DVL)",
+    "hospital": "Manipal Hospital Care",
+    "district": "Salem",
+    "address": "Manipal Hospital Care, Salem, Tamil Nadu",
+    "consultationFee": 650,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -2553,18 +2437,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.7,
-    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Rajendran",
-    "email": "_rajendran@hospital.com",
-    "mobile": "+91 9840100089",
-    "specialization": "Ophthalmologist",
-    "qualification": "MBBS, MS (Ophthalmology), DO",
-    "hospital": "Eye Foundation Thanjavur",
-    "district": "Thanjavur",
-    "address": "Eye Foundation Thanjavur, Thanjavur, Tamil Nadu",
-    "consultationFee": 550,
+    "name": "Dr. Ashwin Kumar",
+    "email": "_ashwin_kumar@hospital.com",
+    "mobile": "+91 9840100085",
+    "specialization": "Dermatologist",
+    "qualification": "MBBS, MD (DVL)",
+    "hospital": "Kauvery Multi-Speciality Hospital",
+    "district": "Tiruchirappalli",
+    "address": "Kauvery Multi-Speciality Hospital, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 650,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -2582,18 +2466,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.8,
-    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Sowmya K",
-    "email": "_sowmya_k@hospital.com",
-    "mobile": "+91 9840100090",
-    "specialization": "Ophthalmologist",
-    "qualification": "MBBS, MS (Ophthalmology), DO",
-    "hospital": "Kanchi Eye Foundation",
-    "district": "Kanchipuram",
-    "address": "Kanchi Eye Foundation, Kanchipuram, Tamil Nadu",
-    "consultationFee": 550,
+    "name": "Dr. Nithya Raman",
+    "email": "_nithya_raman@hospital.com",
+    "mobile": "+91 9840100086",
+    "specialization": "Dermatologist",
+    "qualification": "MBBS, MD (DVL)",
+    "hospital": "CMC Health Center",
+    "district": "Vellore",
+    "address": "CMC Health Center, Vellore, Tamil Nadu",
+    "consultationFee": 650,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -2611,7 +2495,123 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.9,
-    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Vigneshwaran T",
+    "email": "_vigneshwaran_t@hospital.com",
+    "mobile": "+91 9840100087",
+    "specialization": "Dermatologist",
+    "qualification": "MBBS, MD (DVL)",
+    "hospital": "Shifa Health City",
+    "district": "Tirunelveli",
+    "address": "Shifa Health City, Tirunelveli, Tamil Nadu",
+    "consultationFee": 650,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Deepa Sundar",
+    "email": "_deepa_sundar@hospital.com",
+    "mobile": "+91 9840100088",
+    "specialization": "Dermatologist",
+    "qualification": "MBBS, MD (DVL)",
+    "hospital": "Lotus Medical Care Centre",
+    "district": "Erode",
+    "address": "Lotus Medical Care Centre, Erode, Tamil Nadu",
+    "consultationFee": 650,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Prakash Raj",
+    "email": "_prakash_raj@hospital.com",
+    "mobile": "+91 9840100089",
+    "specialization": "Dermatologist",
+    "qualification": "MBBS, MD (DVL)",
+    "hospital": "Meenakshi Multi-Speciality",
+    "district": "Thanjavur",
+    "address": "Meenakshi Multi-Speciality, Thanjavur, Tamil Nadu",
+    "consultationFee": 650,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Sangeetha Mani",
+    "email": "_sangeetha_mani@hospital.com",
+    "mobile": "+91 9840100090",
+    "specialization": "Dermatologist",
+    "qualification": "MBBS, MD (DVL)",
+    "hospital": "Annai Multi-Speciality Healthcare",
+    "district": "Kanchipuram",
+    "address": "Annai Multi-Speciality Healthcare, Kanchipuram, Tamil Nadu",
+    "consultationFee": 650,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Dermatologist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
   },
   {
     "name": "Dr. Roshini Krishnan",
@@ -3194,15 +3194,15 @@ const SEED_DOCTORS = [
     "bio": "Certified Gastroenterologist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Vikram S",
-    "email": "_vikram_s@hospital.com",
+    "name": "Dr. Riyana Sen",
+    "email": "_riyana_sen@hospital.com",
     "mobile": "+91 9840100111",
-    "specialization": "Psychiatrist",
-    "qualification": "MBBS, MD, DPM (Psychiatry)",
-    "hospital": "SCARF India Mental Health",
-    "district": "Chennai",
-    "address": "SCARF India Mental Health, Chennai, Tamil Nadu",
-    "consultationFee": 750,
+    "specialization": "Pediatrician",
+    "qualification": "MBBS, MD (Pediatrics), DCH",
+    "hospital": "Manipal Children's Clinic",
+    "district": "Salem",
+    "address": "Manipal Children's Clinic, Salem, Tamil Nadu",
+    "consultationFee": 500,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -3220,279 +3220,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 5,
-    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Senthilvel",
-    "email": "_senthilvel@hospital.com",
+    "name": "Dr. Priya Darshini",
+    "email": "_priya_darshini@hospital.com",
     "mobile": "+91 9840100112",
-    "specialization": "Psychiatrist",
-    "qualification": "MBBS, MD, DPM (Psychiatry)",
-    "hospital": "VGM Mind Care Hospital",
-    "district": "Coimbatore",
-    "address": "VGM Mind Care Hospital, Coimbatore, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.7,
-    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Manonmani",
-    "email": "_manonmani@hospital.com",
-    "mobile": "+91 9840100113",
-    "specialization": "Psychiatrist",
-    "qualification": "MBBS, MD, DPM (Psychiatry)",
-    "hospital": "M.S. Chellamuthu Trust",
-    "district": "Madurai",
-    "address": "M.S. Chellamuthu Trust, Madurai, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.8,
-    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Balaji K",
-    "email": "_balaji_k@hospital.com",
-    "mobile": "+91 9840100114",
-    "specialization": "Psychiatrist",
-    "qualification": "MBBS, MD, DPM (Psychiatry)",
-    "hospital": "Salem Mind Wellness Center",
-    "district": "Salem",
-    "address": "Salem Mind Wellness Center, Salem, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.9,
-    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Arunkumar",
-    "email": "_arunkumar@hospital.com",
-    "mobile": "+91 9840100115",
-    "specialization": "Psychiatrist",
-    "qualification": "MBBS, MD, DPM (Psychiatry)",
-    "hospital": "Athma Mind Care Clinic",
-    "district": "Tiruchirappalli",
-    "address": "Athma Mind Care Clinic, Tiruchirappalli, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 5,
-    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Poongodi",
-    "email": "_poongodi@hospital.com",
-    "mobile": "+91 9840100116",
-    "specialization": "Psychiatrist",
-    "qualification": "MBBS, MD, DPM (Psychiatry)",
-    "hospital": "Vellore Mental Wellness",
-    "district": "Vellore",
-    "address": "Vellore Mental Wellness, Vellore, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.7,
-    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Nagarajan",
-    "email": "_nagarajan@hospital.com",
-    "mobile": "+91 9840100117",
-    "specialization": "Psychiatrist",
-    "qualification": "MBBS, MD, DPM (Psychiatry)",
-    "hospital": "Nellai Psychiatry Centre",
-    "district": "Tirunelveli",
-    "address": "Nellai Psychiatry Centre, Tirunelveli, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.8,
-    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Deepalakshmi",
-    "email": "_deepalakshmi@hospital.com",
-    "mobile": "+91 9840100118",
-    "specialization": "Psychiatrist",
-    "qualification": "MBBS, MD, DPM (Psychiatry)",
-    "hospital": "Lotus Mind Clinic",
-    "district": "Erode",
-    "address": "Lotus Mind Clinic, Erode, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.9,
-    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Sundararajan",
-    "email": "_sundararajan@hospital.com",
-    "mobile": "+91 9840100119",
-    "specialization": "Psychiatrist",
-    "qualification": "MBBS, MD, DPM (Psychiatry)",
-    "hospital": "Delta Mind Care Hospital",
-    "district": "Thanjavur",
-    "address": "Delta Mind Care Hospital, Thanjavur, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 5,
-    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Preetha R",
-    "email": "_preetha_r@hospital.com",
-    "mobile": "+91 9840100120",
-    "specialization": "Psychiatrist",
-    "qualification": "MBBS, MD, DPM (Psychiatry)",
-    "hospital": "Kanchi Mind Wellness Center",
-    "district": "Kanchipuram",
-    "address": "Kanchi Mind Wellness Center, Kanchipuram, Tamil Nadu",
-    "consultationFee": 750,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.7,
-    "bio": "Certified Psychiatrist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Sanjay Ram",
-    "email": "_sanjay_ram@hospital.com",
-    "mobile": "+91 9840100121",
-    "specialization": "Dentist",
-    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
-    "hospital": "Smile Care Dental Hospital",
+    "specialization": "Pediatrician",
+    "qualification": "MBBS, MD (Pediatrics), DCH",
+    "hospital": "Rainbow Children's Hospital",
     "district": "Chennai",
-    "address": "Smile Care Dental Hospital, Chennai, Tamil Nadu",
-    "consultationFee": 400,
+    "address": "Rainbow Children's Hospital, Chennai, Tamil Nadu",
+    "consultationFee": 500,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -3509,19 +3248,19 @@ const SEED_DOCTORS = [
       "03:00 PM",
       "04:00 PM"
     ],
-    "rating": 4.8,
-    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+    "rating": 4.7,
+    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Priya Mohan",
-    "email": "_priya_mohan@hospital.com",
-    "mobile": "+91 9840100122",
-    "specialization": "Dentist",
-    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
-    "hospital": "Dr. Mohan's Dental Studio",
+    "name": "Dr. Sudha Mohan",
+    "email": "_sudha_mohan@hospital.com",
+    "mobile": "+91 9840100113",
+    "specialization": "Pediatrician",
+    "qualification": "MBBS, MD (Pediatrics), DCH",
+    "hospital": "GKNM Children's Center",
     "district": "Coimbatore",
-    "address": "Dr. Mohan's Dental Studio, Coimbatore, Tamil Nadu",
-    "consultationFee": 400,
+    "address": "GKNM Children's Center, Coimbatore, Tamil Nadu",
+    "consultationFee": 500,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -3538,19 +3277,19 @@ const SEED_DOCTORS = [
       "03:00 PM",
       "04:00 PM"
     ],
-    "rating": 4.9,
-    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+    "rating": 4.8,
+    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Vignesh R",
-    "email": "_vignesh_r@hospital.com",
-    "mobile": "+91 9840100123",
-    "specialization": "Dentist",
-    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
-    "hospital": "Madurai Smile Centre",
+    "name": "Dr. Aravind Swamy",
+    "email": "_aravind_swamy@hospital.com",
+    "mobile": "+91 9840100114",
+    "specialization": "Pediatrician",
+    "qualification": "MBBS, MD (Pediatrics), DCH",
+    "hospital": "Grace Children Hospital",
     "district": "Madurai",
-    "address": "Madurai Smile Centre, Madurai, Tamil Nadu",
-    "consultationFee": 400,
+    "address": "Grace Children Hospital, Madurai, Tamil Nadu",
+    "consultationFee": 500,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -3567,106 +3306,19 @@ const SEED_DOCTORS = [
       "03:00 PM",
       "04:00 PM"
     ],
-    "rating": 5,
-    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
+    "rating": 4.9,
+    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Divya Sri",
-    "email": "_divya_sri@hospital.com",
-    "mobile": "+91 9840100124",
-    "specialization": "Dentist",
-    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
-    "hospital": "Salem Dental Polyclinic",
-    "district": "Salem",
-    "address": "Salem Dental Polyclinic, Salem, Tamil Nadu",
-    "consultationFee": 400,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.7,
-    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Hariprasad",
-    "email": "_hariprasad@hospital.com",
-    "mobile": "+91 9840100125",
-    "specialization": "Dentist",
-    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
-    "hospital": "Trichy Dental Studio",
+    "name": "Dr. Kavitha Rajan",
+    "email": "_kavitha_rajan@hospital.com",
+    "mobile": "+91 9840100115",
+    "specialization": "Pediatrician",
+    "qualification": "MBBS, MD (Pediatrics), DCH",
+    "hospital": "Kauvery Child Care Clinic",
     "district": "Tiruchirappalli",
-    "address": "Trichy Dental Studio, Tiruchirappalli, Tamil Nadu",
-    "consultationFee": 400,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.8,
-    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Sandhiya",
-    "email": "_sandhiya@hospital.com",
-    "mobile": "+91 9840100126",
-    "specialization": "Dentist",
-    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
-    "hospital": "Vellore Dental Care",
-    "district": "Vellore",
-    "address": "Vellore Dental Care, Vellore, Tamil Nadu",
-    "consultationFee": 400,
-    "availableDays": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
-    ],
-    "availableTimeSlots": [
-      "09:00 AM",
-      "10:00 AM",
-      "11:00 AM",
-      "02:00 PM",
-      "03:00 PM",
-      "04:00 PM"
-    ],
-    "rating": 4.9,
-    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
-  },
-  {
-    "name": "Dr. Guruprasad",
-    "email": "_guruprasad@hospital.com",
-    "mobile": "+91 9840100127",
-    "specialization": "Dentist",
-    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
-    "hospital": "Nellai Dental Hub",
-    "district": "Tirunelveli",
-    "address": "Nellai Dental Hub, Tirunelveli, Tamil Nadu",
-    "consultationFee": 400,
+    "address": "Kauvery Child Care Clinic, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 500,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -3684,18 +3336,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 5,
-    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Sharmila",
-    "email": "_sharmila@hospital.com",
-    "mobile": "+91 9840100128",
-    "specialization": "Dentist",
-    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
-    "hospital": "Erode Dental Studio",
-    "district": "Erode",
-    "address": "Erode Dental Studio, Erode, Tamil Nadu",
-    "consultationFee": 400,
+    "name": "Dr. Mohan Kumar",
+    "email": "_mohan_kumar@hospital.com",
+    "mobile": "+91 9840100116",
+    "specialization": "Pediatrician",
+    "qualification": "MBBS, MD (Pediatrics), DCH",
+    "hospital": "CMC Child Health Center",
+    "district": "Vellore",
+    "address": "CMC Child Health Center, Vellore, Tamil Nadu",
+    "consultationFee": 500,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -3713,18 +3365,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.7,
-    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Manikandan",
-    "email": "_manikandan@hospital.com",
-    "mobile": "+91 9840100129",
-    "specialization": "Dentist",
-    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
-    "hospital": "Thanjavur Dental Clinic",
-    "district": "Thanjavur",
-    "address": "Thanjavur Dental Clinic, Thanjavur, Tamil Nadu",
-    "consultationFee": 400,
+    "name": "Dr. Selva Kumar",
+    "email": "_selva_kumar@hospital.com",
+    "mobile": "+91 9840100117",
+    "specialization": "Pediatrician",
+    "qualification": "MBBS, MD (Pediatrics), DCH",
+    "hospital": "Annai Child Clinic",
+    "district": "Tirunelveli",
+    "address": "Annai Child Clinic, Tirunelveli, Tamil Nadu",
+    "consultationFee": 500,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -3742,18 +3394,18 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.8,
-    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
   },
   {
-    "name": "Dr. Swetha N",
-    "email": "_swetha_n@hospital.com",
-    "mobile": "+91 9840100130",
-    "specialization": "Dentist",
-    "qualification": "BDS, MDS (Oral & Maxillofacial / Endodontics)",
-    "hospital": "Kanchi Dental Care",
-    "district": "Kanchipuram",
-    "address": "Kanchi Dental Care, Kanchipuram, Tamil Nadu",
-    "consultationFee": 400,
+    "name": "Dr. Revathi S",
+    "email": "_revathi_s@hospital.com",
+    "mobile": "+91 9840100118",
+    "specialization": "Pediatrician",
+    "qualification": "MBBS, MD (Pediatrics), DCH",
+    "hospital": "Maruthi Children Hospital",
+    "district": "Erode",
+    "address": "Maruthi Children Hospital, Erode, Tamil Nadu",
+    "consultationFee": 500,
     "availableDays": [
       "Monday",
       "Tuesday",
@@ -3771,12 +3423,650 @@ const SEED_DOCTORS = [
       "04:00 PM"
     ],
     "rating": 4.9,
-    "bio": "Certified Dentist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Kumaran M",
+    "email": "_kumaran_m@hospital.com",
+    "mobile": "+91 9840100119",
+    "specialization": "Pediatrician",
+    "qualification": "MBBS, MD (Pediatrics), DCH",
+    "hospital": "Vinodhagan Pediatric Center",
+    "district": "Thanjavur",
+    "address": "Vinodhagan Pediatric Center, Thanjavur, Tamil Nadu",
+    "consultationFee": 500,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Malini V",
+    "email": "_malini_v@hospital.com",
+    "mobile": "+91 9840100120",
+    "specialization": "Pediatrician",
+    "qualification": "MBBS, MD (Pediatrics), DCH",
+    "hospital": "Little Stars Pediatric Care",
+    "district": "Kanchipuram",
+    "address": "Little Stars Pediatric Care, Kanchipuram, Tamil Nadu",
+    "consultationFee": 500,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Pediatrician specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Ishita Patel",
+    "email": "_ishita_patel@hospital.com",
+    "mobile": "+91 9840100121",
+    "specialization": "Gynecologist",
+    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
+    "hospital": "MIOT International Women's Care",
+    "district": "Chennai",
+    "address": "MIOT International Women's Care, Chennai, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Lishika Reddy",
+    "email": "_lishika_reddy@hospital.com",
+    "mobile": "+91 9840100122",
+    "specialization": "Gynecologist",
+    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
+    "hospital": "Women's Center by Motherhood",
+    "district": "Coimbatore",
+    "address": "Women's Center by Motherhood, Coimbatore, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Vasanthi R",
+    "email": "_vasanthi_r@hospital.com",
+    "mobile": "+91 9840100123",
+    "specialization": "Gynecologist",
+    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
+    "hospital": "Hannah Joseph Maternity Center",
+    "district": "Madurai",
+    "address": "Hannah Joseph Maternity Center, Madurai, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Subhashini K",
+    "email": "_subhashini_k@hospital.com",
+    "mobile": "+91 9840100124",
+    "specialization": "Gynecologist",
+    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
+    "hospital": "Dharani Women's Hospital",
+    "district": "Salem",
+    "address": "Dharani Women's Hospital, Salem, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Uma Maheshwari",
+    "email": "_uma_maheshwari@hospital.com",
+    "mobile": "+91 9840100125",
+    "specialization": "Gynecologist",
+    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
+    "hospital": "Deepam Women's Health",
+    "district": "Tiruchirappalli",
+    "address": "Deepam Women's Health, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Mythili S",
+    "email": "_mythili_s@hospital.com",
+    "mobile": "+91 9840100126",
+    "specialization": "Gynecologist",
+    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
+    "hospital": "Naruvi Women's Center",
+    "district": "Vellore",
+    "address": "Naruvi Women's Center, Vellore, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Gomathi N",
+    "email": "_gomathi_n@hospital.com",
+    "mobile": "+91 9840100127",
+    "specialization": "Gynecologist",
+    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
+    "hospital": "Gomathi Maternity Care",
+    "district": "Tirunelveli",
+    "address": "Gomathi Maternity Care, Tirunelveli, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Soundarya P",
+    "email": "_soundarya_p@hospital.com",
+    "mobile": "+91 9840100128",
+    "specialization": "Gynecologist",
+    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
+    "hospital": "Mother & Child Care Clinic",
+    "district": "Erode",
+    "address": "Mother & Child Care Clinic, Erode, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Indumathi",
+    "email": "_indumathi@hospital.com",
+    "mobile": "+91 9840100129",
+    "specialization": "Gynecologist",
+    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
+    "hospital": "Raja Mirasudar Maternity Wing",
+    "district": "Thanjavur",
+    "address": "Raja Mirasudar Maternity Wing, Thanjavur, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Geetha Priya",
+    "email": "_geetha_priya@hospital.com",
+    "mobile": "+91 9840100130",
+    "specialization": "Gynecologist",
+    "qualification": "MBBS, MD, DGO (Obstetrics & Gynecology)",
+    "hospital": "Kanchi Maternity & Fertility",
+    "district": "Kanchipuram",
+    "address": "Kanchi Maternity & Fertility, Kanchipuram, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Gynecologist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Lavanya Swaminathan",
+    "email": "_lavanya_swaminathan@hospital.com",
+    "mobile": "+91 9840100131",
+    "specialization": "Ophthalmologist",
+    "qualification": "MBBS, MS (Ophthalmology), DO",
+    "hospital": "Lotus Eye Care Hospital",
+    "district": "Erode",
+    "address": "Lotus Eye Care Hospital, Erode, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Aravind S",
+    "email": "_aravind_s@hospital.com",
+    "mobile": "+91 9840100132",
+    "specialization": "Ophthalmologist",
+    "qualification": "MBBS, MS (Ophthalmology), DO",
+    "hospital": "Sankara Nethralaya Eye Care",
+    "district": "Chennai",
+    "address": "Sankara Nethralaya Eye Care, Chennai, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Thendral K",
+    "email": "_thendral_k@hospital.com",
+    "mobile": "+91 9840100133",
+    "specialization": "Ophthalmologist",
+    "qualification": "MBBS, MS (Ophthalmology), DO",
+    "hospital": "Aravind Eye Hospital Coimbatore",
+    "district": "Coimbatore",
+    "address": "Aravind Eye Hospital Coimbatore, Coimbatore, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Ganesan P",
+    "email": "_ganesan_p@hospital.com",
+    "mobile": "+91 9840100134",
+    "specialization": "Ophthalmologist",
+    "qualification": "MBBS, MS (Ophthalmology), DO",
+    "hospital": "Aravind Eye Hospital Madurai",
+    "district": "Madurai",
+    "address": "Aravind Eye Hospital Madurai, Madurai, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Saranya R",
+    "email": "_saranya_r@hospital.com",
+    "mobile": "+91 9840100135",
+    "specialization": "Ophthalmologist",
+    "qualification": "MBBS, MS (Ophthalmology), DO",
+    "hospital": "Vasan Eye Care Salem",
+    "district": "Salem",
+    "address": "Vasan Eye Care Salem, Salem, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Muthukumar",
+    "email": "_muthukumar@hospital.com",
+    "mobile": "+91 9840100136",
+    "specialization": "Ophthalmologist",
+    "qualification": "MBBS, MS (Ophthalmology), DO",
+    "hospital": "Joseph Eye Hospital",
+    "district": "Tiruchirappalli",
+    "address": "Joseph Eye Hospital, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Chitra Devi",
+    "email": "_chitra_devi@hospital.com",
+    "mobile": "+91 9840100137",
+    "specialization": "Ophthalmologist",
+    "qualification": "MBBS, MS (Ophthalmology), DO",
+    "hospital": "CMC Eye Clinic",
+    "district": "Vellore",
+    "address": "CMC Eye Clinic, Vellore, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Velmurugan",
+    "email": "_velmurugan@hospital.com",
+    "mobile": "+91 9840100138",
+    "specialization": "Ophthalmologist",
+    "qualification": "MBBS, MS (Ophthalmology), DO",
+    "hospital": "Agarwal Eye Hospital",
+    "district": "Tirunelveli",
+    "address": "Agarwal Eye Hospital, Tirunelveli, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Rajendran",
+    "email": "_rajendran@hospital.com",
+    "mobile": "+91 9840100139",
+    "specialization": "Ophthalmologist",
+    "qualification": "MBBS, MS (Ophthalmology), DO",
+    "hospital": "Eye Foundation Thanjavur",
+    "district": "Thanjavur",
+    "address": "Eye Foundation Thanjavur, Thanjavur, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Sowmya K",
+    "email": "_sowmya_k@hospital.com",
+    "mobile": "+91 9840100140",
+    "specialization": "Ophthalmologist",
+    "qualification": "MBBS, MS (Ophthalmology), DO",
+    "hospital": "Kanchi Eye Foundation",
+    "district": "Kanchipuram",
+    "address": "Kanchi Eye Foundation, Kanchipuram, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Ophthalmologist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
   },
   {
     "name": "Dr. Sudhakar V",
     "email": "_sudhakar_v@hospital.com",
-    "mobile": "+91 9840100131",
+    "mobile": "+91 9840100141",
     "specialization": "Urologist",
     "qualification": "MBBS, MS, M.Ch (Urology)",
     "hospital": "Apollo Urology Institute",
@@ -3799,13 +4089,13 @@ const SEED_DOCTORS = [
       "03:00 PM",
       "04:00 PM"
     ],
-    "rating": 5,
+    "rating": 4.8,
     "bio": "Certified Urologist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
   },
   {
     "name": "Dr. Thilagaraj",
     "email": "_thilagaraj@hospital.com",
-    "mobile": "+91 9840100132",
+    "mobile": "+91 9840100142",
     "specialization": "Urologist",
     "qualification": "MBBS, MS, M.Ch (Urology)",
     "hospital": "KMCH Kidney & Urology",
@@ -3828,13 +4118,13 @@ const SEED_DOCTORS = [
       "03:00 PM",
       "04:00 PM"
     ],
-    "rating": 4.7,
+    "rating": 4.9,
     "bio": "Certified Urologist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
   },
   {
     "name": "Dr. Subramaniam",
     "email": "_subramaniam@hospital.com",
-    "mobile": "+91 9840100133",
+    "mobile": "+91 9840100143",
     "specialization": "Urologist",
     "qualification": "MBBS, MS, M.Ch (Urology)",
     "hospital": "Preethi Urology Hospital",
@@ -3857,13 +4147,13 @@ const SEED_DOCTORS = [
       "03:00 PM",
       "04:00 PM"
     ],
-    "rating": 4.8,
+    "rating": 5,
     "bio": "Certified Urologist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
   },
   {
     "name": "Dr. Ravichandran",
     "email": "_ravichandran@hospital.com",
-    "mobile": "+91 9840100134",
+    "mobile": "+91 9840100144",
     "specialization": "Urologist",
     "qualification": "MBBS, MS, M.Ch (Urology)",
     "hospital": "Salem Kidney Care Center",
@@ -3886,13 +4176,13 @@ const SEED_DOCTORS = [
       "03:00 PM",
       "04:00 PM"
     ],
-    "rating": 4.9,
+    "rating": 4.7,
     "bio": "Certified Urologist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
   },
   {
     "name": "Dr. Natarajan",
     "email": "_natarajan@hospital.com",
-    "mobile": "+91 9840100135",
+    "mobile": "+91 9840100145",
     "specialization": "Urologist",
     "qualification": "MBBS, MS, M.Ch (Urology)",
     "hospital": "Trichy Urology Centre",
@@ -3915,13 +4205,13 @@ const SEED_DOCTORS = [
       "03:00 PM",
       "04:00 PM"
     ],
-    "rating": 5,
+    "rating": 4.8,
     "bio": "Certified Urologist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
   },
   {
     "name": "Dr. Venkatachalam",
     "email": "_venkatachalam@hospital.com",
-    "mobile": "+91 9840100136",
+    "mobile": "+91 9840100146",
     "specialization": "Urologist",
     "qualification": "MBBS, MS, M.Ch (Urology)",
     "hospital": "Naruvi Kidney & Uro Center",
@@ -3944,13 +4234,13 @@ const SEED_DOCTORS = [
       "03:00 PM",
       "04:00 PM"
     ],
-    "rating": 4.7,
+    "rating": 4.9,
     "bio": "Certified Urologist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
   },
   {
     "name": "Dr. Alagappan",
     "email": "_alagappan@hospital.com",
-    "mobile": "+91 9840100137",
+    "mobile": "+91 9840100147",
     "specialization": "Urologist",
     "qualification": "MBBS, MS, M.Ch (Urology)",
     "hospital": "Nellai Kidney Centre",
@@ -3973,13 +4263,13 @@ const SEED_DOCTORS = [
       "03:00 PM",
       "04:00 PM"
     ],
-    "rating": 4.8,
+    "rating": 5,
     "bio": "Certified Urologist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
   },
   {
     "name": "Dr. Sadasivam",
     "email": "_sadasivam@hospital.com",
-    "mobile": "+91 9840100138",
+    "mobile": "+91 9840100148",
     "specialization": "Urologist",
     "qualification": "MBBS, MS, M.Ch (Urology)",
     "hospital": "Erode Uro Care Hospital",
@@ -4002,13 +4292,13 @@ const SEED_DOCTORS = [
       "03:00 PM",
       "04:00 PM"
     ],
-    "rating": 4.9,
+    "rating": 4.7,
     "bio": "Certified Urologist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
   },
   {
     "name": "Dr. Rengasamy",
     "email": "_rengasamy@hospital.com",
-    "mobile": "+91 9840100139",
+    "mobile": "+91 9840100149",
     "specialization": "Urologist",
     "qualification": "MBBS, MS, M.Ch (Urology)",
     "hospital": "Thanjavur Urology Hospital",
@@ -4031,13 +4321,13 @@ const SEED_DOCTORS = [
       "03:00 PM",
       "04:00 PM"
     ],
-    "rating": 5,
+    "rating": 4.8,
     "bio": "Certified Urologist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
   },
   {
     "name": "Dr. Kasinathan",
     "email": "_kasinathan@hospital.com",
-    "mobile": "+91 9840100140",
+    "mobile": "+91 9840100150",
     "specialization": "Urologist",
     "qualification": "MBBS, MS, M.Ch (Urology)",
     "hospital": "Kanchi Kidney & Uro Care",
@@ -4060,8 +4350,2038 @@ const SEED_DOCTORS = [
       "03:00 PM",
       "04:00 PM"
     ],
-    "rating": 4.7,
+    "rating": 4.9,
     "bio": "Certified Urologist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Raja Sabapathy",
+    "email": "_raja_sabapathy@hospital.com",
+    "mobile": "+91 9840100151",
+    "specialization": "Plastic Surgeon",
+    "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
+    "hospital": "Ganga Plastic & Microsurgery",
+    "district": "Coimbatore",
+    "address": "Ganga Plastic & Microsurgery, Coimbatore, Tamil Nadu",
+    "consultationFee": 850,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Plastic Surgeon specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Anantharaman",
+    "email": "_anantharaman@hospital.com",
+    "mobile": "+91 9840100152",
+    "specialization": "Plastic Surgeon",
+    "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
+    "hospital": "Apollo Cosmetic & Plastic Center",
+    "district": "Chennai",
+    "address": "Apollo Cosmetic & Plastic Center, Chennai, Tamil Nadu",
+    "consultationFee": 850,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Plastic Surgeon specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Muthumanickam",
+    "email": "_muthumanickam@hospital.com",
+    "mobile": "+91 9840100153",
+    "specialization": "Plastic Surgeon",
+    "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
+    "hospital": "Meenakshi Aesthetic Institute",
+    "district": "Madurai",
+    "address": "Meenakshi Aesthetic Institute, Madurai, Tamil Nadu",
+    "consultationFee": 850,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Plastic Surgeon specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Bhuvaneswari",
+    "email": "_bhuvaneswari@hospital.com",
+    "mobile": "+91 9840100154",
+    "specialization": "Plastic Surgeon",
+    "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
+    "hospital": "Salem Reconstructive Care",
+    "district": "Salem",
+    "address": "Salem Reconstructive Care, Salem, Tamil Nadu",
+    "consultationFee": 850,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Plastic Surgeon specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Saravanan B",
+    "email": "_saravanan_b@hospital.com",
+    "mobile": "+91 9840100155",
+    "specialization": "Plastic Surgeon",
+    "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
+    "hospital": "Kauvery Cosmetic Care",
+    "district": "Tiruchirappalli",
+    "address": "Kauvery Cosmetic Care, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 850,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Plastic Surgeon specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Sukumar R",
+    "email": "_sukumar_r@hospital.com",
+    "mobile": "+91 9840100156",
+    "specialization": "Plastic Surgeon",
+    "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
+    "hospital": "CMC Plastic Surgery Wing",
+    "district": "Vellore",
+    "address": "CMC Plastic Surgery Wing, Vellore, Tamil Nadu",
+    "consultationFee": 850,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Plastic Surgeon specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Chendur Pandian",
+    "email": "_chendur_pandian@hospital.com",
+    "mobile": "+91 9840100157",
+    "specialization": "Plastic Surgeon",
+    "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
+    "hospital": "Nellai Plastic Surgery Hub",
+    "district": "Tirunelveli",
+    "address": "Nellai Plastic Surgery Hub, Tirunelveli, Tamil Nadu",
+    "consultationFee": 850,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Plastic Surgeon specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Ezhilarasi",
+    "email": "_ezhilarasi@hospital.com",
+    "mobile": "+91 9840100158",
+    "specialization": "Plastic Surgeon",
+    "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
+    "hospital": "Lotus Cosmetic Surgery Centre",
+    "district": "Erode",
+    "address": "Lotus Cosmetic Surgery Centre, Erode, Tamil Nadu",
+    "consultationFee": 850,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Plastic Surgeon specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Thangaraj",
+    "email": "_thangaraj@hospital.com",
+    "mobile": "+91 9840100159",
+    "specialization": "Plastic Surgeon",
+    "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
+    "hospital": "Thanjavur Aesthetic Clinic",
+    "district": "Thanjavur",
+    "address": "Thanjavur Aesthetic Clinic, Thanjavur, Tamil Nadu",
+    "consultationFee": 850,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Plastic Surgeon specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Menaka S",
+    "email": "_menaka_s@hospital.com",
+    "mobile": "+91 9840100160",
+    "specialization": "Plastic Surgeon",
+    "qualification": "MBBS, MS, M.Ch (Plastic & Reconstructive Surgery)",
+    "hospital": "Kanchi Plastic Care Center",
+    "district": "Kanchipuram",
+    "address": "Kanchi Plastic Care Center, Kanchipuram, Tamil Nadu",
+    "consultationFee": 850,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Plastic Surgeon specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Karthikeyan S",
+    "email": "_karthikeyan_s@hospital.com",
+    "mobile": "+91 9840100161",
+    "specialization": "Radiologist",
+    "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
+    "hospital": "Aarthi Scans & Apollo Diagnostics",
+    "district": "Chennai",
+    "address": "Aarthi Scans & Apollo Diagnostics, Chennai, Tamil Nadu",
+    "consultationFee": 600,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Radiologist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Padmavathi R",
+    "email": "_padmavathi_r@hospital.com",
+    "mobile": "+91 9840100162",
+    "specialization": "Radiologist",
+    "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
+    "hospital": "KMCH Imaging & Diagnostics",
+    "district": "Coimbatore",
+    "address": "KMCH Imaging & Diagnostics, Coimbatore, Tamil Nadu",
+    "consultationFee": 600,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Radiologist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Senthil Nathan R",
+    "email": "_senthil_nathan_r@hospital.com",
+    "mobile": "+91 9840100163",
+    "specialization": "Radiologist",
+    "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
+    "hospital": "Meenakshi Advanced Imaging",
+    "district": "Madurai",
+    "address": "Meenakshi Advanced Imaging, Madurai, Tamil Nadu",
+    "consultationFee": 600,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Radiologist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Haripriya",
+    "email": "_haripriya@hospital.com",
+    "mobile": "+91 9840100164",
+    "specialization": "Radiologist",
+    "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
+    "hospital": "SKS Diagnostic & MRI Wing",
+    "district": "Salem",
+    "address": "SKS Diagnostic & MRI Wing, Salem, Tamil Nadu",
+    "consultationFee": 600,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Radiologist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Mohanraj C",
+    "email": "_mohanraj_c@hospital.com",
+    "mobile": "+91 9840100165",
+    "specialization": "Radiologist",
+    "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
+    "hospital": "Trichy Scans & Diagnostics",
+    "district": "Tiruchirappalli",
+    "address": "Trichy Scans & Diagnostics, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 600,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Radiologist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Jayachandran",
+    "email": "_jayachandran@hospital.com",
+    "mobile": "+91 9840100166",
+    "specialization": "Radiologist",
+    "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
+    "hospital": "CMC Radio-Diagnosis Unit",
+    "district": "Vellore",
+    "address": "CMC Radio-Diagnosis Unit, Vellore, Tamil Nadu",
+    "consultationFee": 600,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Radiologist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Sudha Raman",
+    "email": "_sudha_raman@hospital.com",
+    "mobile": "+91 9840100167",
+    "specialization": "Radiologist",
+    "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
+    "hospital": "Nellai Digital Imaging Centre",
+    "district": "Tirunelveli",
+    "address": "Nellai Digital Imaging Centre, Tirunelveli, Tamil Nadu",
+    "consultationFee": 600,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Radiologist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Boopathi",
+    "email": "_boopathi@hospital.com",
+    "mobile": "+91 9840100168",
+    "specialization": "Radiologist",
+    "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
+    "hospital": "Erode Scans Diagnostic Hub",
+    "district": "Erode",
+    "address": "Erode Scans Diagnostic Hub, Erode, Tamil Nadu",
+    "consultationFee": 600,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Radiologist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Sivasankari",
+    "email": "_sivasankari@hospital.com",
+    "mobile": "+91 9840100169",
+    "specialization": "Radiologist",
+    "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
+    "hospital": "Delta Diagnostic Imaging",
+    "district": "Thanjavur",
+    "address": "Delta Diagnostic Imaging, Thanjavur, Tamil Nadu",
+    "consultationFee": 600,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Radiologist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Jayabalan",
+    "email": "_jayabalan@hospital.com",
+    "mobile": "+91 9840100170",
+    "specialization": "Radiologist",
+    "qualification": "MBBS, MD (Radio-Diagnosis), DMRD",
+    "hospital": "Kanchi Scans & Radio Center",
+    "district": "Kanchipuram",
+    "address": "Kanchi Scans & Radio Center, Kanchipuram, Tamil Nadu",
+    "consultationFee": 600,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Radiologist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Deepthi Rao",
+    "email": "_deepthi_rao@hospital.com",
+    "mobile": "+91 9840100171",
+    "specialization": "Neonatologist",
+    "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
+    "hospital": "Rainbow Neonatal Care Center",
+    "district": "Chennai",
+    "address": "Rainbow Neonatal Care Center, Chennai, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Neonatologist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Nirmal Kumar",
+    "email": "_nirmal_kumar@hospital.com",
+    "mobile": "+91 9840100172",
+    "specialization": "Neonatologist",
+    "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
+    "hospital": "GKNM NICU Specialty Wing",
+    "district": "Coimbatore",
+    "address": "GKNM NICU Specialty Wing, Coimbatore, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Neonatologist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Meenambigai",
+    "email": "_meenambigai@hospital.com",
+    "mobile": "+91 9840100173",
+    "specialization": "Neonatologist",
+    "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
+    "hospital": "Meenakshi NICU Care Unit",
+    "district": "Madurai",
+    "address": "Meenakshi NICU Care Unit, Madurai, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Neonatologist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Thamarai Selvi",
+    "email": "_thamarai_selvi@hospital.com",
+    "mobile": "+91 9840100174",
+    "specialization": "Neonatologist",
+    "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
+    "hospital": "Manipal Neonatal ICU",
+    "district": "Salem",
+    "address": "Manipal Neonatal ICU, Salem, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Neonatologist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Pradeep Chandar",
+    "email": "_pradeep_chandar@hospital.com",
+    "mobile": "+91 9840100175",
+    "specialization": "Neonatologist",
+    "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
+    "hospital": "Kauvery Neonatal Institute",
+    "district": "Tiruchirappalli",
+    "address": "Kauvery Neonatal Institute, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Neonatologist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Santhanam",
+    "email": "_santhanam@hospital.com",
+    "mobile": "+91 9840100176",
+    "specialization": "Neonatologist",
+    "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
+    "hospital": "CMC Newborn Specialty Center",
+    "district": "Vellore",
+    "address": "CMC Newborn Specialty Center, Vellore, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Neonatologist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Arunkumar P",
+    "email": "_arunkumar_p@hospital.com",
+    "mobile": "+91 9840100177",
+    "specialization": "Neonatologist",
+    "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
+    "hospital": "Nellai Infant Health Hub",
+    "district": "Tirunelveli",
+    "address": "Nellai Infant Health Hub, Tirunelveli, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Neonatologist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Gayathri V",
+    "email": "_gayathri_v@hospital.com",
+    "mobile": "+91 9840100178",
+    "specialization": "Neonatologist",
+    "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
+    "hospital": "Lotus Newborn Care Center",
+    "district": "Erode",
+    "address": "Lotus Newborn Care Center, Erode, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Neonatologist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Balasundaram",
+    "email": "_balasundaram@hospital.com",
+    "mobile": "+91 9840100179",
+    "specialization": "Neonatologist",
+    "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
+    "hospital": "Thanjavur Infant Care Wing",
+    "district": "Thanjavur",
+    "address": "Thanjavur Infant Care Wing, Thanjavur, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Neonatologist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Hemavathi",
+    "email": "_hemavathi@hospital.com",
+    "mobile": "+91 9840100180",
+    "specialization": "Neonatologist",
+    "qualification": "MBBS, MD (Pediatrics), DM (Neonatology)",
+    "hospital": "Kanchi Neonatal Clinic",
+    "district": "Kanchipuram",
+    "address": "Kanchi Neonatal Clinic, Kanchipuram, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Neonatologist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. V. S. Natarajan Care Team",
+    "email": "_v__s__natarajan_care_team@hospital.com",
+    "mobile": "+91 9840100181",
+    "specialization": "Geriatrician",
+    "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
+    "hospital": "Apollo Senior Citizens Care",
+    "district": "Chennai",
+    "address": "Apollo Senior Citizens Care, Chennai, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Geriatrician specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Kalyanasundaram",
+    "email": "_kalyanasundaram@hospital.com",
+    "mobile": "+91 9840100182",
+    "specialization": "Geriatrician",
+    "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
+    "hospital": "PSG Elder Healthcare Center",
+    "district": "Coimbatore",
+    "address": "PSG Elder Healthcare Center, Coimbatore, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Geriatrician specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Soundararajan",
+    "email": "_soundararajan@hospital.com",
+    "mobile": "+91 9840100183",
+    "specialization": "Geriatrician",
+    "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
+    "hospital": "Meenakshi Senior Care Wing",
+    "district": "Madurai",
+    "address": "Meenakshi Senior Care Wing, Madurai, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Geriatrician specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Devaki R",
+    "email": "_devaki_r@hospital.com",
+    "mobile": "+91 9840100184",
+    "specialization": "Geriatrician",
+    "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
+    "hospital": "Gokulam Active Ageing Care",
+    "district": "Salem",
+    "address": "Gokulam Active Ageing Care, Salem, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Geriatrician specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Ramasamy M",
+    "email": "_ramasamy_m@hospital.com",
+    "mobile": "+91 9840100185",
+    "specialization": "Geriatrician",
+    "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
+    "hospital": "Kauvery Senior Citizen Clinic",
+    "district": "Tiruchirappalli",
+    "address": "Kauvery Senior Citizen Clinic, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Geriatrician specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Surendran T",
+    "email": "_surendran_t@hospital.com",
+    "mobile": "+91 9840100186",
+    "specialization": "Geriatrician",
+    "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
+    "hospital": "CMC Geriatric Medicine Unit",
+    "district": "Vellore",
+    "address": "CMC Geriatric Medicine Unit, Vellore, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Geriatrician specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Subbiah",
+    "email": "_subbiah@hospital.com",
+    "mobile": "+91 9840100187",
+    "specialization": "Geriatrician",
+    "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
+    "hospital": "Nellai Elder Wellness Center",
+    "district": "Tirunelveli",
+    "address": "Nellai Elder Wellness Center, Tirunelveli, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Geriatrician specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Baghyalakshmi",
+    "email": "_baghyalakshmi@hospital.com",
+    "mobile": "+91 9840100188",
+    "specialization": "Geriatrician",
+    "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
+    "hospital": "Lotus Senior Healthcare",
+    "district": "Erode",
+    "address": "Lotus Senior Healthcare, Erode, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Geriatrician specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Veeramani",
+    "email": "_veeramani@hospital.com",
+    "mobile": "+91 9840100189",
+    "specialization": "Geriatrician",
+    "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
+    "hospital": "Thanjavur Geriatric Hub",
+    "district": "Thanjavur",
+    "address": "Thanjavur Geriatric Hub, Thanjavur, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Geriatrician specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Srividya",
+    "email": "_srividya@hospital.com",
+    "mobile": "+91 9840100190",
+    "specialization": "Geriatrician",
+    "qualification": "MBBS, MD (Geriatric Medicine & Elder Care)",
+    "hospital": "Kanchi Elder Care Centre",
+    "district": "Kanchipuram",
+    "address": "Kanchi Elder Care Centre, Kanchipuram, Tamil Nadu",
+    "consultationFee": 550,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Geriatrician specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Mohamed Rela Care Team",
+    "email": "_mohamed_rela_care_team@hospital.com",
+    "mobile": "+91 9840100191",
+    "specialization": "Hepatologist",
+    "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
+    "hospital": "Rela Institute & Medical Centre",
+    "district": "Chennai",
+    "address": "Rela Institute & Medical Centre, Chennai, Tamil Nadu",
+    "consultationFee": 800,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Hepatologist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Palanivelu Care Team",
+    "email": "_palanivelu_care_team@hospital.com",
+    "mobile": "+91 9840100192",
+    "specialization": "Hepatologist",
+    "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
+    "hospital": "GEM Liver & Digestive Institute",
+    "district": "Coimbatore",
+    "address": "GEM Liver & Digestive Institute, Coimbatore, Tamil Nadu",
+    "consultationFee": 800,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Hepatologist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Dharmarajan",
+    "email": "_dharmarajan@hospital.com",
+    "mobile": "+91 9840100193",
+    "specialization": "Hepatologist",
+    "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
+    "hospital": "Meenakshi Liver Care Center",
+    "district": "Madurai",
+    "address": "Meenakshi Liver Care Center, Madurai, Tamil Nadu",
+    "consultationFee": 800,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Hepatologist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Jayakodi",
+    "email": "_jayakodi@hospital.com",
+    "mobile": "+91 9840100194",
+    "specialization": "Hepatologist",
+    "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
+    "hospital": "SKS Liver & Gastro Wing",
+    "district": "Salem",
+    "address": "SKS Liver & Gastro Wing, Salem, Tamil Nadu",
+    "consultationFee": 800,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Hepatologist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Senthamil Selvan",
+    "email": "_senthamil_selvan@hospital.com",
+    "mobile": "+91 9840100195",
+    "specialization": "Hepatologist",
+    "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
+    "hospital": "Kauvery Liver Specialty Center",
+    "district": "Tiruchirappalli",
+    "address": "Kauvery Liver Specialty Center, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 800,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Hepatologist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Eapen C. E.",
+    "email": "_eapen_c__e_@hospital.com",
+    "mobile": "+91 9840100196",
+    "specialization": "Hepatologist",
+    "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
+    "hospital": "CMC Hepatology Unit",
+    "district": "Vellore",
+    "address": "CMC Hepatology Unit, Vellore, Tamil Nadu",
+    "consultationFee": 800,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Hepatologist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Paramasivan R",
+    "email": "_paramasivan_r@hospital.com",
+    "mobile": "+91 9840100197",
+    "specialization": "Hepatologist",
+    "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
+    "hospital": "Nellai Liver Care Clinic",
+    "district": "Tirunelveli",
+    "address": "Nellai Liver Care Clinic, Tirunelveli, Tamil Nadu",
+    "consultationFee": 800,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Hepatologist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Gnanasekaran",
+    "email": "_gnanasekaran@hospital.com",
+    "mobile": "+91 9840100198",
+    "specialization": "Hepatologist",
+    "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
+    "hospital": "Lotus Liver Wellness Center",
+    "district": "Erode",
+    "address": "Lotus Liver Wellness Center, Erode, Tamil Nadu",
+    "consultationFee": 800,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Hepatologist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Ilanchezhian",
+    "email": "_ilanchezhian@hospital.com",
+    "mobile": "+91 9840100199",
+    "specialization": "Hepatologist",
+    "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
+    "hospital": "Delta Liver Care Hospital",
+    "district": "Thanjavur",
+    "address": "Delta Liver Care Hospital, Thanjavur, Tamil Nadu",
+    "consultationFee": 800,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Hepatologist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Kokilavani",
+    "email": "_kokilavani@hospital.com",
+    "mobile": "+91 9840100200",
+    "specialization": "Hepatologist",
+    "qualification": "MBBS, MD, DM (Hepatology & Liver Transplant)",
+    "hospital": "Kanchi Liver Health Clinic",
+    "district": "Kanchipuram",
+    "address": "Kanchi Liver Health Clinic, Kanchipuram, Tamil Nadu",
+    "consultationFee": 800,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Hepatologist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Revathi Raj",
+    "email": "_revathi_raj@hospital.com",
+    "mobile": "+91 9840100201",
+    "specialization": "Hematologist",
+    "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
+    "hospital": "Apollo Hematology & BMT Unit",
+    "district": "Chennai",
+    "address": "Apollo Hematology & BMT Unit, Chennai, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Hematologist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Suresh Kumar",
+    "email": "_suresh_kumar@hospital.com",
+    "mobile": "+91 9840100202",
+    "specialization": "Hematologist",
+    "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
+    "hospital": "KMCH Hematology Care",
+    "district": "Coimbatore",
+    "address": "KMCH Hematology Care, Coimbatore, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Hematologist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Kannan K",
+    "email": "_kannan_k@hospital.com",
+    "mobile": "+91 9840100203",
+    "specialization": "Hematologist",
+    "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
+    "hospital": "Meenakshi Blood Disorder Wing",
+    "district": "Madurai",
+    "address": "Meenakshi Blood Disorder Wing, Madurai, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Hematologist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Balamurali",
+    "email": "_balamurali@hospital.com",
+    "mobile": "+91 9840100204",
+    "specialization": "Hematologist",
+    "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
+    "hospital": "Salem Hematology Center",
+    "district": "Salem",
+    "address": "Salem Hematology Center, Salem, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Hematologist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Gopinathan C",
+    "email": "_gopinathan_c@hospital.com",
+    "mobile": "+91 9840100205",
+    "specialization": "Hematologist",
+    "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
+    "hospital": "Kauvery Blood Care Unit",
+    "district": "Tiruchirappalli",
+    "address": "Kauvery Blood Care Unit, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Hematologist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Alok Srivastava",
+    "email": "_alok_srivastava@hospital.com",
+    "mobile": "+91 9840100206",
+    "specialization": "Hematologist",
+    "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
+    "hospital": "CMC Center for Stem Cell Research",
+    "district": "Vellore",
+    "address": "CMC Center for Stem Cell Research, Vellore, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Hematologist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Maruthupandian",
+    "email": "_maruthupandian@hospital.com",
+    "mobile": "+91 9840100207",
+    "specialization": "Hematologist",
+    "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
+    "hospital": "Nellai Blood Care Hub",
+    "district": "Tirunelveli",
+    "address": "Nellai Blood Care Hub, Tirunelveli, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Hematologist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Sangeetha Priya",
+    "email": "_sangeetha_priya@hospital.com",
+    "mobile": "+91 9840100208",
+    "specialization": "Hematologist",
+    "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
+    "hospital": "Lotus Hematology Clinic",
+    "district": "Erode",
+    "address": "Lotus Hematology Clinic, Erode, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Hematologist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Rajagopal",
+    "email": "_rajagopal@hospital.com",
+    "mobile": "+91 9840100209",
+    "specialization": "Hematologist",
+    "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
+    "hospital": "Thanjavur Blood Health Wing",
+    "district": "Thanjavur",
+    "address": "Thanjavur Blood Health Wing, Thanjavur, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Hematologist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Tamilselvan",
+    "email": "_tamilselvan@hospital.com",
+    "mobile": "+91 9840100210",
+    "specialization": "Hematologist",
+    "qualification": "MBBS, MD, DM (Clinical Hematology & Bone Marrow)",
+    "hospital": "Kanchi Hematology Center",
+    "district": "Kanchipuram",
+    "address": "Kanchi Hematology Center, Kanchipuram, Tamil Nadu",
+    "consultationFee": 750,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Hematologist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Jayaprakash K",
+    "email": "_jayaprakash_k@hospital.com",
+    "mobile": "+91 9840100211",
+    "specialization": "Allergist & Immunologist",
+    "qualification": "MBBS, MD, DAA (Allergy, Asthma & Clinical Immunology)",
+    "hospital": "Apollo Allergy & Asthma Center",
+    "district": "Chennai",
+    "address": "Apollo Allergy & Asthma Center, Chennai, Tamil Nadu",
+    "consultationFee": 650,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Allergist & Immunologist specialist with extensive clinical experience serving patients in Chennai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Manickavel",
+    "email": "_manickavel@hospital.com",
+    "mobile": "+91 9840100212",
+    "specialization": "Allergist & Immunologist",
+    "qualification": "MBBS, MD, DAA (Allergy, Asthma & Clinical Immunology)",
+    "hospital": "Ganga Allergy & Immunology Hub",
+    "district": "Coimbatore",
+    "address": "Ganga Allergy & Immunology Hub, Coimbatore, Tamil Nadu",
+    "consultationFee": 650,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Allergist & Immunologist specialist with extensive clinical experience serving patients in Coimbatore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Senthamarai",
+    "email": "_senthamarai@hospital.com",
+    "mobile": "+91 9840100213",
+    "specialization": "Allergist & Immunologist",
+    "qualification": "MBBS, MD, DAA (Allergy, Asthma & Clinical Immunology)",
+    "hospital": "Meenakshi Allergy Care",
+    "district": "Madurai",
+    "address": "Meenakshi Allergy Care, Madurai, Tamil Nadu",
+    "consultationFee": 650,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Allergist & Immunologist specialist with extensive clinical experience serving patients in Madurai district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Radhakrishnan",
+    "email": "_radhakrishnan@hospital.com",
+    "mobile": "+91 9840100214",
+    "specialization": "Allergist & Immunologist",
+    "qualification": "MBBS, MD, DAA (Allergy, Asthma & Clinical Immunology)",
+    "hospital": "Salem Allergy & Asthma Clinic",
+    "district": "Salem",
+    "address": "Salem Allergy & Asthma Clinic, Salem, Tamil Nadu",
+    "consultationFee": 650,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Allergist & Immunologist specialist with extensive clinical experience serving patients in Salem district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Vijayalakshmi S",
+    "email": "_vijayalakshmi_s@hospital.com",
+    "mobile": "+91 9840100215",
+    "specialization": "Allergist & Immunologist",
+    "qualification": "MBBS, MD, DAA (Allergy, Asthma & Clinical Immunology)",
+    "hospital": "Kauvery Allergy Care",
+    "district": "Tiruchirappalli",
+    "address": "Kauvery Allergy Care, Tiruchirappalli, Tamil Nadu",
+    "consultationFee": 650,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Allergist & Immunologist specialist with extensive clinical experience serving patients in Tiruchirappalli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. David Prakash",
+    "email": "_david_prakash@hospital.com",
+    "mobile": "+91 9840100216",
+    "specialization": "Allergist & Immunologist",
+    "qualification": "MBBS, MD, DAA (Allergy, Asthma & Clinical Immunology)",
+    "hospital": "CMC Immunology Health Center",
+    "district": "Vellore",
+    "address": "CMC Immunology Health Center, Vellore, Tamil Nadu",
+    "consultationFee": 650,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Allergist & Immunologist specialist with extensive clinical experience serving patients in Vellore district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Subhashree",
+    "email": "_subhashree@hospital.com",
+    "mobile": "+91 9840100217",
+    "specialization": "Allergist & Immunologist",
+    "qualification": "MBBS, MD, DAA (Allergy, Asthma & Clinical Immunology)",
+    "hospital": "Nellai Allergy Care Clinic",
+    "district": "Tirunelveli",
+    "address": "Nellai Allergy Care Clinic, Tirunelveli, Tamil Nadu",
+    "consultationFee": 650,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.8,
+    "bio": "Certified Allergist & Immunologist specialist with extensive clinical experience serving patients in Tirunelveli district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Shanmugavel",
+    "email": "_shanmugavel@hospital.com",
+    "mobile": "+91 9840100218",
+    "specialization": "Allergist & Immunologist",
+    "qualification": "MBBS, MD, DAA (Allergy, Asthma & Clinical Immunology)",
+    "hospital": "Lotus Allergy Wellness Center",
+    "district": "Erode",
+    "address": "Lotus Allergy Wellness Center, Erode, Tamil Nadu",
+    "consultationFee": 650,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.9,
+    "bio": "Certified Allergist & Immunologist specialist with extensive clinical experience serving patients in Erode district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Thirumavalavan",
+    "email": "_thirumavalavan@hospital.com",
+    "mobile": "+91 9840100219",
+    "specialization": "Allergist & Immunologist",
+    "qualification": "MBBS, MD, DAA (Allergy, Asthma & Clinical Immunology)",
+    "hospital": "Delta Allergy Institute",
+    "district": "Thanjavur",
+    "address": "Delta Allergy Institute, Thanjavur, Tamil Nadu",
+    "consultationFee": 650,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 5,
+    "bio": "Certified Allergist & Immunologist specialist with extensive clinical experience serving patients in Thanjavur district and across Tamil Nadu."
+  },
+  {
+    "name": "Dr. Karpagam",
+    "email": "_karpagam@hospital.com",
+    "mobile": "+91 9840100220",
+    "specialization": "Allergist & Immunologist",
+    "qualification": "MBBS, MD, DAA (Allergy, Asthma & Clinical Immunology)",
+    "hospital": "Kanchi Allergy & Immunology",
+    "district": "Kanchipuram",
+    "address": "Kanchi Allergy & Immunology, Kanchipuram, Tamil Nadu",
+    "consultationFee": 650,
+    "availableDays": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "availableTimeSlots": [
+      "09:00 AM",
+      "10:00 AM",
+      "11:00 AM",
+      "02:00 PM",
+      "03:00 PM",
+      "04:00 PM"
+    ],
+    "rating": 4.7,
+    "bio": "Certified Allergist & Immunologist specialist with extensive clinical experience serving patients in Kanchipuram district and across Tamil Nadu."
   }
 ];
 

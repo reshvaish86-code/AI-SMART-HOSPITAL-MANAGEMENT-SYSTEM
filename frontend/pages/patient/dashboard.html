@@ -118,14 +118,14 @@
             <label class="small fw-bold text-secondary text-uppercase mb-0">
               <i class="fa-solid fa-layer-group text-primary me-1"></i> Quick Specialty Filter (Shows 10 Specialists from 10 Districts):
             </label>
-            <span class="badge bg-light text-muted border rounded-pill small">14 Disciplines</span>
+            <span class="badge bg-light text-muted border rounded-pill small">22 Medical Disciplines</span>
           </div>
           <div class="specialty-chips-wrap" id="specialtyChipsBar">
             <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('All', this)">
               <i class="fa-solid fa-stethoscope text-primary"></i> All Specialties
             </button>
-            <button class="specialty-chip-btn active" onclick="PatientApp.filterBySpecialtyChip('Dermatologist', this)">
-              <i class="fa-solid fa-hand-dots text-warning"></i> Dermatologist
+            <button class="specialty-chip-btn active" onclick="PatientApp.filterBySpecialtyChip('General Physician', this)">
+              <i class="fa-solid fa-user-doctor text-success"></i> General Physician
             </button>
             <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Cardiologist', this)">
               <i class="fa-solid fa-heart-pulse text-danger"></i> Cardiologist
@@ -133,29 +133,8 @@
             <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Neurologist', this)">
               <i class="fa-solid fa-brain text-info"></i> Neurologist
             </button>
-            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Pediatrician', this)">
-              <i class="fa-solid fa-baby text-primary"></i> Pediatrician
-            </button>
-            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Orthopedic', this)">
-              <i class="fa-solid fa-bone text-secondary"></i> Orthopedic
-            </button>
-            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('General Physician', this)">
-              <i class="fa-solid fa-user-doctor text-success"></i> General Physician
-            </button>
-            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Gynecologist', this)">
-              <i class="fa-solid fa-person-pregnant text-danger"></i> Gynecologist
-            </button>
-            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('ENT Specialist', this)">
-              <i class="fa-solid fa-ear-listen text-warning"></i> ENT Specialist
-            </button>
-            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Ophthalmologist', this)">
-              <i class="fa-solid fa-eye text-primary"></i> Ophthalmologist
-            </button>
-            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Pulmonologist', this)">
-              <i class="fa-solid fa-lungs text-info"></i> Pulmonologist
-            </button>
-            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Gastroenterologist', this)">
-              <i class="fa-solid fa-cubes-stacked text-danger"></i> Gastroenterologist
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Nephrologist', this)">
+              <i class="fa-solid fa-kidneys text-primary"></i> Nephrologist
             </button>
             <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Psychiatrist', this)">
               <i class="fa-solid fa-head-side-virus text-warning"></i> Psychiatrist
@@ -163,8 +142,53 @@
             <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Dentist', this)">
               <i class="fa-solid fa-tooth text-info"></i> Dentist
             </button>
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Physiotherapist', this)">
+              <i class="fa-solid fa-person-walking text-success"></i> Physiotherapist
+            </button>
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('ENT Specialist', this)">
+              <i class="fa-solid fa-ear-listen text-warning"></i> ENT Specialist
+            </button>
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Dermatologist', this)">
+              <i class="fa-solid fa-hand-dots text-warning"></i> Dermatologist
+            </button>
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Pulmonologist', this)">
+              <i class="fa-solid fa-lungs text-info"></i> Pulmonologist
+            </button>
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Gastroenterologist', this)">
+              <i class="fa-solid fa-cubes-stacked text-danger"></i> Gastroenterologist
+            </button>
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Pediatrician', this)">
+              <i class="fa-solid fa-baby text-primary"></i> Pediatrician
+            </button>
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Gynecologist', this)">
+              <i class="fa-solid fa-person-pregnant text-danger"></i> Gynecologist
+            </button>
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Ophthalmologist', this)">
+              <i class="fa-solid fa-eye text-primary"></i> Ophthalmologist
+            </button>
             <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Urologist', this)">
               <i class="fa-solid fa-shield-virus text-primary"></i> Urologist
+            </button>
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Plastic Surgeon', this)">
+              <i class="fa-solid fa-wand-magic text-danger"></i> Plastic Surgeon
+            </button>
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Radiologist', this)">
+              <i class="fa-solid fa-x-ray text-info"></i> Radiologist
+            </button>
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Neonatologist', this)">
+              <i class="fa-solid fa-baby-carriage text-warning"></i> Neonatologist
+            </button>
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Geriatrician', this)">
+              <i class="fa-solid fa-person-cane text-secondary"></i> Geriatrician
+            </button>
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Hepatologist', this)">
+              <i class="fa-solid fa-disease text-danger"></i> Hepatologist
+            </button>
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Hematologist', this)">
+              <i class="fa-solid fa-droplet text-danger"></i> Hematologist
+            </button>
+            <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('Allergist & Immunologist', this)">
+              <i class="fa-solid fa-shield-halved text-success"></i> Allergist & Immunologist
             </button>
           </div>
         </div>
