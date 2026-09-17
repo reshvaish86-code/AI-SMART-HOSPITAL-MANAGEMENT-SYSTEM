@@ -438,7 +438,7 @@ const CONFIG = {
     },
     {
       _id: 'doc_ramesh_27',
-      user: { name: 'Dr. Ramesh Babu', email: 'doctor.ramesh@hospital.com', mobile: '+91 9840100027' },
+      user: { name: 'Dr. Ramesh Chandran', email: 'doctor.ramesh@hospital.com', mobile: '+91 9840100027' },
       specialization: 'Gastroenterologist',
       qualification: 'MBBS, MD, DM (Gastroenterology)',
       hospital: 'Apollo Speciality Hospital',

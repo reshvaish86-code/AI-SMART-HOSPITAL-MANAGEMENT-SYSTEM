@@ -483,7 +483,7 @@ const seedDatabase = async (autoDisconnect = false) => {
         bio: 'Painless single-sitting root canal specialist, aesthetic cosmetic dentistry, and dental implantology.'
       },
       {
-        name: 'Dr. Ramesh Babu',
+        name: 'Dr. Ramesh Chandran',
         email: 'doctor.ramesh@hospital.com',
         mobile: '+91 9840100027',
         password: 'Doctor@123',
