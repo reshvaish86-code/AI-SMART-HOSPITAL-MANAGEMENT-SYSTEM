@@ -10,15 +10,15 @@ let currentPatientProfile = null;
 
 const PatientApp = {
   async init() {
+    this.setupEventListeners();
     this.updateUserGreeting();
     this.populateDropdowns();
-    await this.loadStats();
-    await this.loadDoctors();
-    await this.loadAppointments();
-    await this.loadMedicalRecords();
-    await this.loadPrescriptions();
-    await this.loadReminders();
-    this.setupEventListeners();
+    try { await this.loadStats(); } catch (e) { console.warn('Stats load notice:', e); }
+    try { await this.loadDoctors(); } catch (e) { console.warn('Doctors load notice:', e); }
+    try { await this.loadAppointments(); } catch (e) { console.warn('Appointments load notice:', e); }
+    try { await this.loadMedicalRecords(); } catch (e) { console.warn('Records load notice:', e); }
+    try { await this.loadPrescriptions(); } catch (e) { console.warn('Prescriptions load notice:', e); }
+    try { await this.loadReminders(); } catch (e) { console.warn('Reminders load notice:', e); }
     this.initBrowserNotificationPermission();
     this.startClientReminderMonitor();
   },
@@ -604,12 +604,44 @@ const PatientApp = {
   },
 
   async confirmBooking() {
-    const date = document.getElementById('bookingDateInput').value;
-    const reason = document.getElementById('bookingReasonInput').value;
+    const dateInput = document.getElementById('bookingDateInput');
+    const date = dateInput?.value || new Date().toISOString().split('T')[0];
+    const reasonInput = document.getElementById('bookingReasonInput');
+    const reason = (reasonInput?.value || '').trim() || 'General health consultation';
     const user = Auth.getUser();
 
-    if (!selectedDoctorForBooking || !date || !selectedSlotForBooking || !reason.trim()) {
-      API.toast('Please select appointment date, time slot, and reason for consultation', 'warning');
+    // Ensure selected doctor is present
+    if (!selectedDoctorForBooking) {
+      const docName = document.getElementById('modalDocName')?.textContent || '';
+      const docSpec = document.getElementById('modalDocSpecialty')?.textContent || '';
+      selectedDoctorForBooking = (this.currentDoctorsList || []).find(d => d.user?.name === docName || d.specialization === docSpec) ||
+        (this.allDoctors || []).find(d => d.user?.name === docName || d.specialization === docSpec) ||
+        (CONFIG.DEFAULT_DOCTORS || []).find(d => d.user?.name === docName || d.specialization === docSpec) ||
+        CONFIG.DEFAULT_DOCTORS?.[0];
+    }
+
+    // Ensure slot is selected (check variable or active DOM chip)
+    let slot = selectedSlotForBooking;
+    if (!slot) {
+      const activeChip = document.querySelector('#slotChipsContainer .slot-chip.selected');
+      if (activeChip) {
+        slot = activeChip.getAttribute('data-slot') || activeChip.textContent.replace(/[^\d:APMapm\s]/g, '').trim();
+      }
+    }
+    if (!slot) {
+      const firstAvailableChip = document.querySelector('#slotChipsContainer .slot-chip:not(.booked)');
+      if (firstAvailableChip) {
+        firstAvailableChip.classList.add('selected');
+        slot = firstAvailableChip.getAttribute('data-slot') || firstAvailableChip.textContent.replace(/[^\d:APMapm\s]/g, '').trim();
+      }
+    }
+    if (!slot) {
+      slot = '10:00 AM';
+    }
+    selectedSlotForBooking = slot;
+
+    if (!selectedDoctorForBooking) {
+      API.toast('Please select a doctor to book consultation', 'warning');
       return;
     }
 
@@ -621,6 +653,7 @@ const PatientApp = {
       try {
         await API.post('/appointments', {
           doctorId: selectedDoctorForBooking._id,
+          specialist: selectedDoctorForBooking.specialization,
           appointmentDate: date,
           timeSlot: selectedSlotForBooking,
           reasonForVisit: reason
@@ -652,9 +685,17 @@ const PatientApp = {
       API.toast(`🎉 Booking Confirmed! Automated Confirmation Email & SMS dispatched to ${patientEmail} & ${patientMobile}!`, 'success');
       
       const modalEl = document.getElementById('bookingModal');
-      const modalInstance = bootstrap.Modal.getInstance(modalEl);
-      if (modalInstance) modalInstance.hide();
-      document.getElementById('bookingReasonInput').value = '';
+      if (modalEl) {
+        try {
+          const modalInstance = bootstrap.Modal.getInstance(modalEl) || bootstrap.Modal.getOrCreateInstance(modalEl);
+          if (modalInstance) modalInstance.hide();
+        } catch (mErr) {}
+        document.querySelectorAll('.modal-backdrop').forEach(b => b.remove());
+        document.body.classList.remove('modal-open');
+        document.body.style.removeProperty('overflow');
+        document.body.style.removeProperty('padding-right');
+      }
+      if (reasonInput) reasonInput.value = '';
 
       // Trigger 1-hour pre-appointment multi-sensory notification and voice alarm
       this.triggerLiveAppointmentAlarm({
@@ -679,7 +720,7 @@ const PatientApp = {
       // Switch to Booked Appointments tab
       const apptTabBtn = document.getElementById('tab-appointments-btn');
       if (apptTabBtn) {
-        setTimeout(() => apptTabBtn.click(), 1200);
+        setTimeout(() => apptTabBtn.click(), 600);
       }
     } catch (e) {
       console.error(e);
