@@ -552,8 +552,21 @@ const PatientApp = {
 
       const today = new Date().toISOString().split('T')[0];
       const dateInput = document.getElementById('bookingDateInput');
-      dateInput.min = today;
-      dateInput.value = today;
+      if (dateInput) {
+        dateInput.min = today;
+        dateInput.value = today;
+      }
+
+      const user = Auth.getUser();
+      const emailInput = document.getElementById('bookingEmailInput');
+      if (emailInput) {
+        emailInput.value = user?.email || localStorage.getItem('hospital_last_email') || 'reshvaish86@gmail.com';
+      }
+
+      const mobileInput = document.getElementById('bookingMobileInput');
+      if (mobileInput) {
+        mobileInput.value = user?.mobile || localStorage.getItem('hospital_last_mobile') || '+91 9840123456';
+      }
 
       await this.loadDoctorSlots(today);
 
@@ -691,8 +704,13 @@ const PatientApp = {
       selectedSlotForBooking = slot;
 
       const doctorName = selectedDoctorForBooking?.user?.name || 'Doctor';
-      const patientEmail = user?.email || 'patient@hospital.com';
-      const patientMobile = user?.mobile || '+91 9840123456';
+      const emailInput = document.getElementById('bookingEmailInput');
+      const patientEmail = (emailInput?.value || user?.email || localStorage.getItem('hospital_last_email') || 'reshvaish86@gmail.com').trim();
+      const mobileInput = document.getElementById('bookingMobileInput');
+      const patientMobile = (mobileInput?.value || user?.mobile || localStorage.getItem('hospital_last_mobile') || '+91 9840123456').trim();
+
+      localStorage.setItem('hospital_last_email', patientEmail);
+      localStorage.setItem('hospital_last_mobile', patientMobile);
 
       // 3. IMMEDIATELY close modal so user is never blocked
       this.closeModal('bookingModal');
@@ -710,6 +728,8 @@ const PatientApp = {
         location: selectedDoctorForBooking.district || 'Tamil Nadu',
         hospital: selectedDoctorForBooking.hospital || 'Hospital',
         reasonForVisit: reason,
+        patientEmail: patientEmail,
+        patientMobile: patientMobile,
         consultationFee: selectedDoctorForBooking.consultationFee || 600,
         status: 'Confirmed',
         createdAt: new Date().toISOString()
@@ -725,7 +745,7 @@ const PatientApp = {
       this.switchTab('tab-appointments', 'tab-appointments-btn');
 
       // 7. Instant Toast, Voice announcement and 1-hour alarm
-      API.toast(`🎉 Booking Confirmed! Automated Confirmation Email & SMS dispatched to ${patientEmail} & ${patientMobile}!`, 'success');
+      API.toast(`🎉 Booking Confirmed! Automated Confirmation Email dispatched to ${patientEmail}!`, 'success');
       
       try {
         this.triggerLiveAppointmentAlarm({
@@ -753,9 +773,12 @@ const PatientApp = {
             doctorName: doctorName,
             appointmentDate: date,
             timeSlot: slot,
-            reasonForVisit: reason
+            reasonForVisit: reason,
+            patientEmail: patientEmail,
+            patientMobile: patientMobile,
+            patientName: user?.name || 'Patient'
           });
-          console.log('✅ Backend appointment sync & email/sms dispatch completed');
+          console.log(`✅ Backend appointment sync & email dispatch to ${patientEmail} completed`);
           try { await this.loadAppointments(); } catch (e) {}
           try { await this.loadStats(); } catch (e) {}
         } catch (err) {

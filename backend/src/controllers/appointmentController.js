@@ -17,7 +17,7 @@ const { APPOINTMENT_STATUS } = require('../utils/constants');
  */
 const bookAppointment = async (req, res, next) => {
   try {
-    const { doctorId, appointmentDate, timeSlot, reasonForVisit } = req.body;
+    const { doctorId, appointmentDate, timeSlot, reasonForVisit, patientEmail, patientMobile, patientName } = req.body;
 
     if (!doctorId || !appointmentDate || !timeSlot || !reasonForVisit) {
       return res.status(400).json({
@@ -109,10 +109,21 @@ const bookAppointment = async (req, res, next) => {
       reminderSent: false
     });
 
+    const targetEmail = (patientEmail && patientEmail.includes('@')) ? patientEmail.trim() : (req.user?.email || 'reshvaish86@gmail.com');
+    const targetMobile = patientMobile || req.user?.mobile || '+91 9840123456';
+    const targetName = patientName || req.user?.name || 'Patient';
+
+    const effectivePatientUser = {
+      _id: req.user._id,
+      name: targetName,
+      email: targetEmail,
+      mobile: targetMobile
+    };
+
     // 6. Dispatch Multi-Channel Notifications (Email, SMS & In-App)
     await sendAppointmentConfirmation({
       appointment,
-      patientUser: req.user,
+      patientUser: effectivePatientUser,
       doctorUser: doctor.user,
       doctorProfile: doctor
     });
@@ -127,7 +138,7 @@ const bookAppointment = async (req, res, next) => {
       if (diff >= 0 && diff <= 90) {
         sendPreAppointmentReminder({
           appointment,
-          patientUser: req.user,
+          patientUser: effectivePatientUser,
           doctorUser: doctor.user,
           doctorProfile: doctor
         }).catch(err => console.error('Error auto-triggering pre-appointment reminder:', err));

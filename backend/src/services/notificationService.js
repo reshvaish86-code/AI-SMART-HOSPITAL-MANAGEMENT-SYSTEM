@@ -392,7 +392,9 @@ async function sendAppointmentConfirmation({ appointment, patientUser, doctorUse
             <p style="margin: 4px 0;"><strong>Hospital / Clinic:</strong> ${hospitalName}</p>
             <p style="margin: 4px 0;"><strong>Date:</strong> ${appointment.appointmentDate}</p>
             <p style="margin: 4px 0;"><strong>Time Slot:</strong> ${appointment.timeSlot}</p>
-            <p style="margin: 4px 0;"><strong>Status:</strong> <span style="color:#0284c7;font-weight:bold;">${appointment.status || 'Pending'}</span></p>
+            <p style="margin: 4px 0;"><strong>Consultation Fee:</strong> ₹${appointment.consultationFee || 600}</p>
+            <p style="margin: 4px 0;"><strong>Reason:</strong> ${appointment.reasonForVisit || 'General checkup'}</p>
+            <p style="margin: 4px 0;"><strong>Status:</strong> <span style="color:#0284c7;font-weight:bold;">${appointment.status || 'Confirmed'}</span></p>
           </div>
           <p>Please arrive 15 minutes before your scheduled consultation slot.</p>
           <p style="font-size: 13px; color: #64748b; margin-top: 24px;">For assistance, visit your dashboard at <a href="${process.env.FRONTEND_URL || 'https://ai-smart-hospital-management-system.vercel.app'}" style="color: #0284c7;">AI Smart Hospital Portal</a>.</p>
@@ -400,11 +402,31 @@ async function sendAppointmentConfirmation({ appointment, patientUser, doctorUse
       </div>
     `;
 
-    sendEmail({
-      to: patientEmail,
-      subject: `Appointment Confirmed with ${doctorName} - AI Smart Hospital`,
-      html
-    }).catch(err => console.error('Error in sendEmail:', err));
+    try {
+      const emailRes = await sendEmail({
+        to: patientEmail,
+        subject: `🎉 Appointment Confirmed with ${doctorName} - AI Smart Hospital`,
+        html
+      });
+      console.log(`📧 [Patient Confirmation Email Sent] To: ${patientEmail} | Success: ${emailRes?.success} | MessageId: ${emailRes?.messageId || emailRes?.error}`);
+    } catch (err) {
+      console.error('❌ [Error sending patient confirmation email]:', err.message);
+    }
+
+    // Also send admin notification copy if different from patient email
+    const adminEmail = process.env.EMAIL_USER ? process.env.EMAIL_USER.trim() : '';
+    if (adminEmail && adminEmail.toLowerCase() !== patientEmail.toLowerCase()) {
+      try {
+        await sendEmail({
+          to: adminEmail,
+          subject: `[Hospital Booking Alert] ${patientName} booked with ${doctorName} on ${appointment.appointmentDate}`,
+          html: `<div style="background:#eff6ff;padding:10px 14px;border-left:4px solid #0284c7;margin-bottom:14px;font-size:13px;"><strong>Hospital Alert:</strong> New appointment booked by patient <code>${patientEmail}</code></div>` + html
+        });
+        console.log(`📧 [Admin Booking Notification Sent] To: ${adminEmail}`);
+      } catch (err) {
+        console.error('❌ [Error sending admin copy]:', err.message);
+      }
+    }
   }
 
   // SMS to Patient
@@ -450,11 +472,16 @@ async function sendPreAppointmentReminder({ appointment, patientUser, doctorUser
       </div>
     `;
 
-    sendEmail({
-      to: patientEmail,
-      subject: `⏰ 1-Hour Reminder: Consultation with ${doctorName} at ${appointment.timeSlot}`,
-      html
-    }).catch(err => console.error('Error in sendEmail:', err));
+    try {
+      await sendEmail({
+        to: patientEmail,
+        subject: `⏰ 1-Hour Reminder: Consultation with ${doctorName} at ${appointment.timeSlot}`,
+        html
+      });
+      console.log(`📧 [1-Hour Reminder Email Sent] To: ${patientEmail}`);
+    } catch (err) {
+      console.error('❌ [Error sending 1-hour reminder email]:', err.message);
+    }
   }
 
   if (patientMobile) {

@@ -474,6 +474,20 @@
             <label class="form-label text-dark fw-semibold small">3. Reason for Visit / Symptoms *</label>
             <textarea id="bookingReasonInput" class="form-control" rows="2" placeholder="Briefly describe your symptoms or consultation reason..." required></textarea>
           </div>
+
+          <!-- Notification Destination Email & Mobile -->
+          <div class="mb-3">
+            <label class="form-label text-dark fw-semibold small"><i class="fa-solid fa-envelope text-primary me-1"></i> 4. Send Confirmation Email & SMS To *</label>
+            <div class="row g-2">
+              <div class="col-md-7">
+                <input type="email" id="bookingEmailInput" class="form-control" placeholder="Email address (e.g. yourname@gmail.com)" required>
+              </div>
+              <div class="col-md-5">
+                <input type="tel" id="bookingMobileInput" class="form-control" placeholder="Mobile (+91 9840123456)">
+              </div>
+            </div>
+            <small class="text-muted">Booking confirmation receipt and 1-hour pre-appointment reminders will be delivered here.</small>
+          </div>
         </div>
         <div class="modal-footer bg-light border-0 py-3">
           <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
