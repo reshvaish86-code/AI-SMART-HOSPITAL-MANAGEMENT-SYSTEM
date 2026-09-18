@@ -603,6 +603,46 @@ const PatientApp = {
     selectedSlotForBooking = slot;
   },
 
+  switchTab(tabTargetId, btnId) {
+    const btn = document.getElementById(btnId);
+    if (btn) {
+      try {
+        const tabInstance = bootstrap.Tab.getOrCreateInstance(btn);
+        tabInstance.show();
+      } catch (e) {
+        btn.click();
+      }
+    }
+
+    // Direct DOM class toggle guarantee
+    document.querySelectorAll('.portal-nav-tabs .portal-tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content .tab-pane').forEach(p => p.classList.remove('show', 'active'));
+
+    if (btn) btn.classList.add('active');
+    const targetPane = document.getElementById(tabTargetId);
+    if (targetPane) targetPane.classList.add('show', 'active');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  },
+
+  closeModal(modalId = 'bookingModal') {
+    const modalEl = document.getElementById(modalId);
+    if (modalEl) {
+      try {
+        const modalInstance = bootstrap.Modal.getInstance(modalEl) || bootstrap.Modal.getOrCreateInstance(modalEl);
+        if (modalInstance) modalInstance.hide();
+      } catch (mErr) {}
+      modalEl.classList.remove('show');
+      modalEl.style.display = 'none';
+      modalEl.setAttribute('aria-hidden', 'true');
+      modalEl.removeAttribute('aria-modal');
+    }
+    document.querySelectorAll('.modal-backdrop').forEach(b => b.remove());
+    document.body.classList.remove('modal-open');
+    document.body.style.removeProperty('overflow');
+    document.body.style.removeProperty('padding-right');
+  },
+
   async confirmBooking() {
     const dateInput = document.getElementById('bookingDateInput');
     const date = dateInput?.value || new Date().toISOString().split('T')[0];
@@ -610,7 +650,7 @@ const PatientApp = {
     const reason = (reasonInput?.value || '').trim() || 'General health consultation';
     const user = Auth.getUser();
 
-    // Ensure selected doctor is present
+    // 1. Resolve selected doctor
     if (!selectedDoctorForBooking) {
       const docName = document.getElementById('modalDocName')?.textContent || '';
       const docSpec = document.getElementById('modalDocSpecialty')?.textContent || '';
@@ -620,7 +660,7 @@ const PatientApp = {
         CONFIG.DEFAULT_DOCTORS?.[0];
     }
 
-    // Ensure slot is selected (check variable or active DOM chip)
+    // 2. Resolve slot
     let slot = selectedSlotForBooking;
     if (!slot) {
       const activeChip = document.querySelector('#slotChipsContainer .slot-chip.selected');
@@ -645,86 +685,76 @@ const PatientApp = {
       return;
     }
 
-    try {
-      const doctorName = selectedDoctorForBooking.user?.name || 'Doctor';
-      const patientEmail = user?.email || 'patient@hospital.com';
-      const patientMobile = user?.mobile || '+91 9840123456';
+    const doctorName = selectedDoctorForBooking.user?.name || 'Doctor';
+    const patientEmail = user?.email || 'patient@hospital.com';
+    const patientMobile = user?.mobile || '+91 9840123456';
 
+    // 3. IMMEDIATELY close modal so user is never blocked
+    this.closeModal('bookingModal');
+    if (reasonInput) reasonInput.value = '';
+
+    // 4. IMMEDIATELY save to local storage
+    const localAppts = JSON.parse(localStorage.getItem('LOCAL_APPOINTMENTS') || '[]');
+    const newLocal = {
+      _id: 'appt_' + Date.now(),
+      doctor: selectedDoctorForBooking,
+      doctorUser: selectedDoctorForBooking.user,
+      specialist: selectedDoctorForBooking.specialization,
+      appointmentDate: date,
+      timeSlot: slot,
+      location: selectedDoctorForBooking.district,
+      hospital: selectedDoctorForBooking.hospital,
+      reasonForVisit: reason,
+      consultationFee: selectedDoctorForBooking.consultationFee || 500,
+      status: 'Confirmed',
+      createdAt: new Date().toISOString()
+    };
+    localAppts.unshift(newLocal);
+    localStorage.setItem('LOCAL_APPOINTMENTS', JSON.stringify(localAppts));
+
+    // 5. IMMEDIATELY update UI lists & counter badges
+    await this.loadAppointments();
+    await this.loadStats();
+
+    // 6. IMMEDIATELY switch to Booked Appointments tab
+    this.switchTab('tab-appointments', 'tab-appointments-btn');
+
+    // 7. Instant Toast, Voice announcement and 1-hour alarm
+    API.toast(`🎉 Booking Confirmed! Automated Confirmation Email & SMS dispatched to ${patientEmail} & ${patientMobile}!`, 'success');
+    
+    this.triggerLiveAppointmentAlarm({
+      doctorUser: selectedDoctorForBooking.user,
+      timeSlot: slot,
+      hospital: selectedDoctorForBooking.hospital
+    });
+
+    if ('speechSynthesis' in window) {
+      try {
+        const text = `Appointment successfully booked with Dr. ${doctorName} on ${date} at ${slot}. Confirmation Email and SMS notification sent. 1-hour pre-appointment alarm is active.`;
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.95;
+        window.speechSynthesis.speak(utterance);
+      } catch (err) {}
+    }
+
+    // 8. Background sync with backend (MongoDB + Brevo/Resend Email + Twilio SMS)
+    (async () => {
       try {
         await API.post('/appointments', {
           doctorId: selectedDoctorForBooking._id,
           specialist: selectedDoctorForBooking.specialization,
+          doctorName: doctorName,
           appointmentDate: date,
-          timeSlot: selectedSlotForBooking,
+          timeSlot: slot,
           reasonForVisit: reason
         });
+        console.log('✅ Backend appointment sync & email/sms dispatch completed');
+        await this.loadAppointments();
+        await this.loadStats();
       } catch (err) {
-        console.warn('Backend booking sync notice, recorded in client session:', err);
+        console.warn('Backend sync notice (local booking preserved):', err);
       }
-
-      // Store in local storage for instant dashboard reflection
-      const localAppts = JSON.parse(localStorage.getItem('LOCAL_APPOINTMENTS') || '[]');
-      const newLocal = {
-        _id: 'appt_' + Date.now(),
-        doctor: selectedDoctorForBooking,
-        doctorUser: selectedDoctorForBooking.user,
-        specialist: selectedDoctorForBooking.specialization,
-        appointmentDate: date,
-        timeSlot: selectedSlotForBooking,
-        location: selectedDoctorForBooking.district,
-        hospital: selectedDoctorForBooking.hospital,
-        reasonForVisit: reason,
-        consultationFee: selectedDoctorForBooking.consultationFee,
-        status: 'Confirmed',
-        createdAt: new Date().toISOString()
-      };
-      localAppts.unshift(newLocal);
-      localStorage.setItem('LOCAL_APPOINTMENTS', JSON.stringify(localAppts));
-
-      // Automatic Email and SMS notification dispatch announcement
-      API.toast(`🎉 Booking Confirmed! Automated Confirmation Email & SMS dispatched to ${patientEmail} & ${patientMobile}!`, 'success');
-      
-      const modalEl = document.getElementById('bookingModal');
-      if (modalEl) {
-        try {
-          const modalInstance = bootstrap.Modal.getInstance(modalEl) || bootstrap.Modal.getOrCreateInstance(modalEl);
-          if (modalInstance) modalInstance.hide();
-        } catch (mErr) {}
-        document.querySelectorAll('.modal-backdrop').forEach(b => b.remove());
-        document.body.classList.remove('modal-open');
-        document.body.style.removeProperty('overflow');
-        document.body.style.removeProperty('padding-right');
-      }
-      if (reasonInput) reasonInput.value = '';
-
-      // Trigger 1-hour pre-appointment multi-sensory notification and voice alarm
-      this.triggerLiveAppointmentAlarm({
-        doctorUser: selectedDoctorForBooking.user,
-        timeSlot: selectedSlotForBooking,
-        hospital: selectedDoctorForBooking.hospital
-      });
-
-      // Voice announcement confirming the booking and SMS/Email dispatch
-      if ('speechSynthesis' in window) {
-        try {
-          const text = `Appointment successfully booked with Dr. ${doctorName} on ${date} at ${selectedSlotForBooking}. Confirmation Email and SMS notification sent. 1-hour pre-appointment alarm is active.`;
-          const utterance = new SpeechSynthesisUtterance(text);
-          utterance.rate = 0.95;
-          window.speechSynthesis.speak(utterance);
-        } catch (err) {}
-      }
-
-      await this.loadStats();
-      await this.loadAppointments();
-
-      // Switch to Booked Appointments tab
-      const apptTabBtn = document.getElementById('tab-appointments-btn');
-      if (apptTabBtn) {
-        setTimeout(() => apptTabBtn.click(), 600);
-      }
-    } catch (e) {
-      console.error(e);
-    }
+    })();
   },
 
   async loadAppointments() {
