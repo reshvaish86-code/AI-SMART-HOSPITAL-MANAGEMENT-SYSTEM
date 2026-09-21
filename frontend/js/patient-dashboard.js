@@ -662,21 +662,59 @@ const PatientApp = {
       '09:00 AM', '10:00 AM', '11:00 AM', '02:00 PM', '03:00 PM', '04:00 PM'
     ];
 
+    let firstSelectable = null;
+
+    // Find first non-booked slot
+    for (const s of availableSlots) {
+      if (!bookedSlots.includes(s)) {
+        firstSelectable = s;
+        break;
+      }
+    }
+
+    if (!selectedSlotForBooking || bookedSlots.includes(selectedSlotForBooking)) {
+      selectedSlotForBooking = firstSelectable;
+    }
+
     slotContainer.innerHTML = availableSlots.map(slot => {
       const isBooked = bookedSlots.includes(slot);
+      const isSelected = (selectedSlotForBooking === slot);
+
       return `
-        <div class="slot-chip ${isBooked ? 'booked' : ''}" 
+        <div class="slot-chip ${isBooked ? 'booked' : ''} ${isSelected ? 'selected' : ''}" 
              data-slot="${slot}" 
+             role="radio"
+             aria-checked="${isSelected ? 'true' : 'false'}"
              ${!isBooked ? `onclick="PatientApp.selectSlot(this, '${slot}')"` : 'title="Slot Already Booked"'}>
-          ${slot} ${isBooked ? '<i class="fa-solid fa-ban ms-1 text-danger"></i>' : ''}
+          <div class="d-flex align-items-center justify-content-between gap-1 pointer-events-none">
+            <span><i class="fa-regular fa-clock me-1 opacity-75"></i>${slot}</span>
+            <span class="slot-check-indicator">
+              ${isBooked ? '<i class="fa-solid fa-ban text-danger"></i>' : (isSelected ? '<i class="fa-solid fa-circle-check text-white"></i>' : '<i class="fa-regular fa-circle text-muted"></i>')}
+            </span>
+          </div>
         </div>
       `;
     }).join('');
   },
 
   selectSlot(element, slot) {
-    document.querySelectorAll('.slot-chip').forEach(c => c.classList.remove('selected'));
-    element.classList.add('selected');
+    if (!element) return;
+    document.querySelectorAll('.slot-chip').forEach(c => {
+      c.classList.remove('selected');
+      c.setAttribute('aria-checked', 'false');
+      const indicator = c.querySelector('.slot-check-indicator');
+      if (indicator && !c.classList.contains('booked')) {
+        indicator.innerHTML = '<i class="fa-regular fa-circle text-muted"></i>';
+      }
+    });
+
+    const targetEl = element.closest('.slot-chip') || element;
+    targetEl.classList.add('selected');
+    targetEl.setAttribute('aria-checked', 'true');
+    const indicator = targetEl.querySelector('.slot-check-indicator');
+    if (indicator) {
+      indicator.innerHTML = '<i class="fa-solid fa-circle-check text-white"></i>';
+    }
     selectedSlotForBooking = slot;
   },
 
@@ -1210,13 +1248,22 @@ const PatientApp = {
     // Reminders
     document.getElementById('btnAddReminder')?.addEventListener('click', () => this.addReminder());
 
-    // Global document-level click delegation fallback for modal confirm button
+    // Global document-level click delegation fallback for modal confirm button and time slots
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('#btnConfirmBooking');
       if (btn) {
         e.preventDefault();
         e.stopPropagation();
         this.confirmBooking();
+        return;
+      }
+
+      const slotChip = e.target.closest('.slot-chip:not(.booked)');
+      if (slotChip) {
+        const slotVal = slotChip.getAttribute('data-slot');
+        if (slotVal) {
+          this.selectSlot(slotChip, slotVal);
+        }
       }
     });
   }

@@ -486,7 +486,12 @@
                 <input type="tel" id="bookingMobileInput" class="form-control" placeholder="Mobile (+91 9840123456)">
               </div>
             </div>
-            <small class="text-muted">Booking confirmation receipt and 1-hour pre-appointment reminders will be delivered here.</small>
+            <div class="form-check form-switch mt-2">
+              <input class="form-check-input" type="checkbox" id="bookingNotificationConsent" checked>
+              <label class="form-check-label small text-muted" for="bookingNotificationConsent">
+                <i class="fa-solid fa-bell text-warning me-1"></i> Send instant booking confirmation email & 1-hour pre-appointment reminder
+              </label>
+            </div>
           </div>
         </div>
         <div class="modal-footer bg-light border-0 py-3">

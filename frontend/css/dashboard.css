@@ -296,22 +296,21 @@ body {
    ========================================================================== */
 .slot-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: 10px;
   margin-top: 10px;
 }
 
 .slot-chip {
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid #cbd5e1;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1.5px solid #cbd5e1;
   background: #ffffff;
-  color: #334155;
+  color: #1e293b;
   font-size: 0.88rem;
   font-weight: 600;
-  text-align: center;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
 }
 
@@ -319,17 +318,23 @@ body {
   border-color: var(--portal-primary);
   color: var(--portal-primary);
   background: #f0f9ff;
+  transform: translateY(-1px);
 }
 
 .slot-chip.selected {
   background: var(--portal-primary);
   border-color: var(--portal-primary);
   color: #ffffff;
-  box-shadow: 0 4px 12px var(--portal-primary-glow);
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+  transform: translateY(-1px);
+}
+
+.slot-chip.selected .slot-check-indicator i {
+  color: #ffffff !important;
 }
 
 .slot-chip.booked {
-  background: #f1f5f9;
+  background: #f8fafc;
   border-color: #e2e8f0;
   color: #94a3b8;
   cursor: not-allowed;
