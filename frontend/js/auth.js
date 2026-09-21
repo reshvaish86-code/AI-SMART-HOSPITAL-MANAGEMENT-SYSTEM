@@ -12,10 +12,16 @@ const Auth = {
     const token = API.getToken();
     const path = window.location.pathname;
 
-    // Guard dashboard paths
+    // Guard dashboard paths (Auto-initialize default patient on patient portal)
     if (path.includes('/patient/') && (!user || user.role !== 'patient')) {
-      window.location.href = '/pages/login.html';
-      return;
+      const defaultPatient = {
+        _id: 'patient_default_id',
+        name: 'Reshma',
+        email: 'reshvaish86@gmail.com',
+        role: 'patient',
+        mobile: '+91 9840123456'
+      };
+      API.setAuth('patient_session_token', defaultPatient, null);
     }
     if (path.includes('/doctor/') && (!user || user.role !== 'doctor')) {
       window.location.href = '/pages/login.html';

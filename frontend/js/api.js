@@ -58,8 +58,8 @@ const API = {
       const data = await response.json();
 
       if (!response.ok) {
-        // Auto logout on 401 unauthenticated
-        if (response.status === 401 && !url.includes('/auth/login')) {
+        // Auto logout on 401 unauthenticated ONLY for doctor/admin management routes
+        if (response.status === 401 && !url.includes('/auth/login') && (window.location.pathname.includes('/doctor/') || window.location.pathname.includes('/admin/'))) {
           this.clearAuth();
           window.location.href = '/pages/login.html?expired=1';
           return null;
