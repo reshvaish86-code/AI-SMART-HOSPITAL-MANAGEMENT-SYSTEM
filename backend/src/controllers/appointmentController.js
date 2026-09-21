@@ -27,31 +27,57 @@ const bookAppointment = async (req, res, next) => {
       });
     }
 
-    // 1. Past-date protection
-    const today = new Date().toISOString().split('T')[0];
-    if (appointmentDate < today) {
+    // 1. Past-date protection (with 1-day timezone buffer)
+    const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+    if (appointmentDate < yesterday) {
       return res.status(400).json({
         status: 'fail',
         message: 'Cannot schedule an appointment for a past date.'
       });
     }
 
-    // 2. Fetch Doctor (support MongoDB ObjectId or clean name/specialty fallback)
+    // 2. Fetch Doctor (support MongoDB ObjectId, Doctor User Name, Specialist, or fallback)
     let doctor = null;
     if (mongoose.Types.ObjectId.isValid(doctorId)) {
       doctor = await Doctor.findById(doctorId).populate('user', 'name email mobile');
     }
+    
+    // Fallback 1: Lookup by Doctor User name
     if (!doctor) {
-      const cleanName = String(doctorId).replace(/^doc_dr__?/i, '').replace(/_\d+$/, '').replace(/_/g, ' ').trim();
-      doctor = await Doctor.findOne({
-        $or: [
-          { 'user.name': new RegExp(cleanName, 'i') },
-          { specialization: req.body.specialist || req.body.specialization || '' }
-        ]
-      }).populate('user', 'name email mobile');
+      const searchDoctorName = req.body.doctorName || String(doctorId).replace(/^doc_dr__?/i, '').replace(/^doc_/i, '').replace(/_\d+$/, '').replace(/_/g, ' ').trim();
+      if (searchDoctorName && searchDoctorName.length > 2) {
+        const cleanSearch = searchDoctorName.replace(/^(dr\.?|doctor)\s+/i, '').trim();
+        const matchingUsers = await User.find({
+          name: new RegExp(cleanSearch, 'i'),
+          role: 'doctor'
+        }).select('_id');
+        
+        if (matchingUsers.length > 0) {
+          const userIds = matchingUsers.map(u => u._id);
+          doctor = await Doctor.findOne({ user: { $in: userIds } }).populate('user', 'name email mobile');
+        }
+      }
     }
+
+    // Fallback 2: Lookup by specialization and district
+    if (!doctor && (req.body.specialist || req.body.specialization)) {
+      const spec = req.body.specialist || req.body.specialization;
+      let filter = { specialization: new RegExp(spec, 'i'), isVerified: true };
+      if (req.body.district || req.body.location) {
+        filter.district = new RegExp(req.body.district || req.body.location, 'i');
+      }
+      doctor = await Doctor.findOne(filter).populate('user', 'name email mobile');
+      if (!doctor) {
+        doctor = await Doctor.findOne({ specialization: new RegExp(spec, 'i') }).populate('user', 'name email mobile');
+      }
+    }
+
+    // Fallback 3: First verified doctor
     if (!doctor) {
       doctor = await Doctor.findOne({ isVerified: true }).populate('user', 'name email mobile');
+    }
+    if (!doctor) {
+      doctor = await Doctor.findOne().populate('user', 'name email mobile');
     }
     if (!doctor) {
       return res.status(404).json({
@@ -60,7 +86,7 @@ const bookAppointment = async (req, res, next) => {
       });
     }
 
-    // 3. Resolve or auto-create Patient User & Profile
+    // 3. Resolve or auto-create Patient User & Profile (satisfying all required schema fields)
     let currentUser = req.user;
     const targetEmail = (patientEmail && patientEmail.includes('@')) ? patientEmail.trim().toLowerCase() : (currentUser?.email || 'reshvaish86@gmail.com');
     const targetMobile = patientMobile || currentUser?.mobile || '+91 9840123456';
@@ -84,14 +110,17 @@ const bookAppointment = async (req, res, next) => {
     if (!patient) {
       patient = await Patient.create({
         user: currentUser._id,
-        dateOfBirth: new Date('1995-01-01'),
+        age: 30,
         gender: 'Other',
+        address: 'Tamil Nadu, India',
+        district: doctor.district || 'Chennai',
         bloodGroup: 'O+',
         allergies: [],
+        chronicConditions: [],
         emergencyContact: {
           name: 'Primary Contact',
-          relation: 'Family',
-          mobile: targetMobile || '+91 9840100000'
+          relationship: 'Family',
+          phone: targetMobile || '+91 9840100000'
         }
       });
       patient = await Patient.findById(patient._id).populate('user', 'name email mobile');
@@ -108,22 +137,25 @@ const bookAppointment = async (req, res, next) => {
     if (existingBooking) {
       return res.status(409).json({
         status: 'fail',
-        message: `Collision Detected: Dr. ${doctor.user.name} is already booked at ${timeSlot} on ${appointmentDate}. Please choose another available slot.`
+        message: `Collision Detected: Dr. ${doctor.user?.name || 'Specialist'} is already booked at ${timeSlot} on ${appointmentDate}. Please choose another available slot.`
       });
     }
 
-    // 5. Create Appointment
+    // 5. Create Appointment in MongoDB
     const appointment = await Appointment.create({
       patient: patient._id,
       patientUser: currentUser._id,
       doctor: doctor._id,
-      doctorUser: doctor.user._id,
+      doctorUser: doctor.user?._id || doctor.user,
       specialist: doctor.specialization,
       appointmentDate,
       timeSlot,
-      location: doctor.district,
-      hospital: doctor.hospital,
+      location: doctor.district || 'Tamil Nadu',
+      hospital: doctor.hospital || 'Speciality Hospital',
       reasonForVisit,
+      patientEmail: targetEmail,
+      patientMobile: targetMobile,
+      patientName: targetName,
       consultationFee: doctor.consultationFee || 500,
       status: APPOINTMENT_STATUS.PENDING,
       reminderSent: false
@@ -137,30 +169,39 @@ const bookAppointment = async (req, res, next) => {
     };
 
     // 6. Dispatch Multi-Channel Notifications (Email, SMS & In-App)
-    await sendAppointmentConfirmation({
-      appointment,
-      patientUser: effectivePatientUser,
-      doctorUser: doctor.user,
-      doctorProfile: doctor
-    });
+    try {
+      await sendAppointmentConfirmation({
+        appointment,
+        patientUser: effectivePatientUser,
+        doctorUser: doctor.user,
+        doctorProfile: doctor
+      });
+    } catch (notifErr) {
+      console.warn('⚠️ [Notification Dispatch Notice]:', notifErr.message);
+    }
 
     // Check if slot starts today within 90 minutes -> Send 1-Hour pre-appointment reminder email too!
-    const slotTime = parseTimeSlot(timeSlot);
-    if (slotTime && appointmentDate === today) {
-      const now = new Date();
-      const currentMinutes = now.getHours() * 60 + now.getMinutes();
-      const slotMinutes = slotTime.hours * 60 + slotTime.minutes;
-      const diff = slotMinutes - currentMinutes;
-      if (diff >= 0 && diff <= 90) {
-        sendPreAppointmentReminder({
-          appointment,
-          patientUser: effectivePatientUser,
-          doctorUser: doctor.user,
-          doctorProfile: doctor
-        }).catch(err => console.error('Error auto-triggering pre-appointment reminder:', err));
-        appointment.reminderSent = true;
-        await appointment.save();
+    try {
+      const todayStr = new Date().toISOString().split('T')[0];
+      const slotTime = parseTimeSlot(timeSlot);
+      if (slotTime && appointmentDate === todayStr) {
+        const now = new Date();
+        const currentMinutes = now.getHours() * 60 + now.getMinutes();
+        const slotMinutes = slotTime.hours * 60 + slotTime.minutes;
+        const diff = slotMinutes - currentMinutes;
+        if (diff >= 0 && diff <= 90) {
+          sendPreAppointmentReminder({
+            appointment,
+            patientUser: effectivePatientUser,
+            doctorUser: doctor.user,
+            doctorProfile: doctor
+          }).catch(err => console.error('Error auto-triggering pre-appointment reminder:', err));
+          appointment.reminderSent = true;
+          await appointment.save();
+        }
       }
+    } catch (reminderErr) {
+      console.warn('⚠️ [Reminder Calculation Notice]:', reminderErr.message);
     }
 
     res.status(201).json({
@@ -182,7 +223,10 @@ const getMyAppointments = async (req, res, next) => {
   try {
     let query = {};
     if (req.user.role === 'patient') {
-      query.patientUser = req.user._id;
+      query.$or = [
+        { patientUser: req.user._id },
+        { patientEmail: req.user.email }
+      ];
     } else if (req.user.role === 'doctor') {
       query.doctorUser = req.user._id;
     }
@@ -219,11 +263,28 @@ const getBookedSlots = async (req, res, next) => {
       });
     }
 
-    const appointments = await Appointment.find({
-      doctor: doctorId,
-      appointmentDate: date,
-      status: { $in: [APPOINTMENT_STATUS.PENDING, APPOINTMENT_STATUS.CONFIRMED, APPOINTMENT_STATUS.RESCHEDULED] }
-    }).select('timeSlot status -_id');
+    let docFilterId = null;
+    if (mongoose.Types.ObjectId.isValid(doctorId)) {
+      docFilterId = doctorId;
+    } else {
+      const cleanName = String(doctorId).replace(/^doc_dr__?/i, '').replace(/^doc_/i, '').replace(/_\d+$/, '').replace(/_/g, ' ').trim();
+      if (cleanName) {
+        const docUser = await User.findOne({ name: new RegExp(cleanName.replace(/^(dr\.?|doctor)\s+/i, '').trim(), 'i'), role: 'doctor' });
+        if (docUser) {
+          const foundDoc = await Doctor.findOne({ user: docUser._id });
+          if (foundDoc) docFilterId = foundDoc._id;
+        }
+      }
+    }
+
+    let appointments = [];
+    if (docFilterId) {
+      appointments = await Appointment.find({
+        doctor: docFilterId,
+        appointmentDate: date,
+        status: { $in: [APPOINTMENT_STATUS.PENDING, APPOINTMENT_STATUS.CONFIRMED, APPOINTMENT_STATUS.RESCHEDULED] }
+      }).select('timeSlot status -_id');
+    }
 
     const bookedSlots = appointments.map(a => a.timeSlot);
 

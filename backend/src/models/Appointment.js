@@ -42,6 +42,18 @@ const appointmentSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  patientEmail: {
+    type: String,
+    default: ''
+  },
+  patientMobile: {
+    type: String,
+    default: ''
+  },
+  patientName: {
+    type: String,
+    default: ''
+  },
   reasonForVisit: {
     type: String,
     required: [true, 'Please provide reason for visit or symptoms'],
