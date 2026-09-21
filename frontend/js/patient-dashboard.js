@@ -982,8 +982,14 @@ const PatientApp = {
     if (!container) return;
 
     try {
-      const res = await API.get('/medical-records/my');
-      const records = res?.data || [];
+      let records = [];
+      try {
+        const res = await API.get('/medical-records');
+        records = res?.data || [];
+      } catch (err) {
+        // Silent fallback for guest / initial load
+      }
+
       if (records.length === 0) {
         container.innerHTML = '<div class="text-center py-4 text-muted"><i class="fa-solid fa-folder-open fs-2 text-muted mb-2"></i><p class="small mb-0">No clinical records on file yet. Records appear here after doctor consultation.</p></div>';
         return;
@@ -1013,8 +1019,14 @@ const PatientApp = {
     if (!container) return;
 
     try {
-      const res = await API.get('/prescriptions/my');
-      const prescriptions = res?.data || [];
+      let prescriptions = [];
+      try {
+        const res = await API.get('/prescriptions');
+        prescriptions = res?.data || [];
+      } catch (err) {
+        // Silent fallback for guest / initial load
+      }
+
       if (prescriptions.length === 0) {
         container.innerHTML = '<div class="text-center py-4 text-muted"><i class="fa-solid fa-file-prescription fs-2 text-muted mb-2"></i><p class="small mb-0">No active electronic prescriptions issued yet.</p></div>';
         return;
@@ -1023,7 +1035,7 @@ const PatientApp = {
       container.innerHTML = prescriptions.map(p => `
         <div class="card border rounded-3 p-3 mb-3 bg-white shadow-sm">
           <div class="d-flex justify-content-between align-items-center mb-2">
-            <span class="fw-bold text-success"><i class="fa-solid fa-file-prescription me-1"></i> e-Prescription #${p._id.slice(-6)}</span>
+            <span class="fw-bold text-success"><i class="fa-solid fa-file-prescription me-1"></i> e-Prescription #${p._id ? p._id.slice(-6) : 'RX'}</span>
             <button class="btn btn-outline-primary btn-sm rounded-pill" onclick="window.print()"><i class="fa-solid fa-print me-1"></i> Print Rx</button>
           </div>
           <p class="text-muted small mb-1"><strong>Consulting Doctor:</strong> ${p.doctor?.user?.name || 'Doctor'}</p>

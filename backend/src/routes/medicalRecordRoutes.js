@@ -8,5 +8,6 @@ router.use(protect);
 
 router.post('/', authorize('doctor'), createMedicalRecord);
 router.get('/', getMedicalRecords);
+router.get('/my', getMedicalRecords);
 
 module.exports = router;

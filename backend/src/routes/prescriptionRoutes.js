@@ -12,6 +12,7 @@ router.use(protect);
 
 router.post('/', authorize('doctor'), createPrescription);
 router.get('/', getPrescriptions);
+router.get('/my', getPrescriptions);
 router.get('/:id', getPrescriptionById);
 
 module.exports = router;
