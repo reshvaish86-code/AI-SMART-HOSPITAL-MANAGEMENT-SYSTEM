@@ -27,16 +27,7 @@ const bookAppointment = async (req, res, next) => {
       });
     }
 
-    // 1. Past-date protection (with 1-day timezone buffer)
-    const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().split('T')[0];
-    if (appointmentDate < yesterday) {
-      return res.status(400).json({
-        status: 'fail',
-        message: 'Cannot schedule an appointment for a past date.'
-      });
-    }
-
-    // 2. Fetch Doctor (support MongoDB ObjectId, Doctor User Name, Specialist, or fallback)
+    // 1. Fetch Doctor (support MongoDB ObjectId, Doctor User Name, Specialist, or fallback)
     let doctor = null;
     if (mongoose.Types.ObjectId.isValid(doctorId)) {
       doctor = await Doctor.findById(doctorId).populate('user', 'name email mobile');
