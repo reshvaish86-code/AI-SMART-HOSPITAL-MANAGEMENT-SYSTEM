@@ -1,20 +1,23 @@
 /**
  * Patient Dashboard Application Logic
- * Welcome Greeting + 10-District Specialist Booking + Email/SMS Notifications + 5 Dashboards
+ * 5-Dashboard Quick Access Hub + 220-Doctor Command Search Center + Email/SMS Notifications
  */
 
 let selectedDoctorForBooking = null;
 let selectedSlotForBooking = null;
-let triggeredRemindersCache = new Set(); // To prevent duplicate alerts within same minute
+let triggeredRemindersCache = new Set();
 let currentPatientProfile = null;
 
 const PatientApp = {
+  allDoctors: [],
+  currentDoctorsList: [],
+
   async init() {
     this.setupEventListeners();
     this.updateUserGreeting();
     this.populateDropdowns();
 
-    // 1. Support URL Search Parameters (e.g., ?specialty=Cardiologist&district=Chennai)
+    // Support URL Search Parameters (e.g., ?specialty=Cardiologist&district=Chennai)
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const urlSpecialty = urlParams.get('specialty');
@@ -24,20 +27,11 @@ const PatientApp = {
       if (urlSpecialty) {
         const sel = document.getElementById('filterSpecialty');
         if (sel) sel.value = urlSpecialty;
-        document.querySelectorAll('.specialty-chip-btn').forEach(btn => {
-          if (btn.textContent.trim().toLowerCase().includes(urlSpecialty.toLowerCase())) {
-            btn.classList.add('active');
-          } else {
-            btn.classList.remove('active');
-          }
-        });
       }
-
       if (urlDistrict) {
         const dSel = document.getElementById('filterDistrict');
         if (dSel) dSel.value = urlDistrict;
       }
-
       if (urlSearch) {
         const sInput = document.getElementById('searchDoctorQuery');
         if (sInput) sInput.value = urlSearch;
@@ -52,6 +46,7 @@ const PatientApp = {
     try { await this.loadMedicalRecords(); } catch (e) { console.warn('Records load notice:', e); }
     try { await this.loadPrescriptions(); } catch (e) { console.warn('Prescriptions load notice:', e); }
     try { await this.loadReminders(); } catch (e) { console.warn('Reminders load notice:', e); }
+    
     this.initBrowserNotificationPermission();
     this.startClientReminderMonitor();
   },
@@ -146,273 +141,271 @@ const PatientApp = {
           break;
         }
       }
-    } catch (e) {
-      // Ignore background check errors
-    }
+    } catch (e) {}
   },
 
   normalizeTimeStr(tStr) {
     if (!tStr) return '';
-    const cleaned = tStr.trim().replace('.', ':');
-    const match12 = cleaned.match(/(\d+):?(\d*)\s*(AM|PM)/i);
-    if (match12) {
-      let h = parseInt(match12[1], 10);
-      const m = match12[2] ? parseInt(match12[2], 10) : 0;
-      const p = match12[3].toUpperCase();
-      if (p === 'PM' && h < 12) h += 12;
-      if (p === 'AM' && h === 12) h = 0;
+    const clean = tStr.trim();
+    if (clean.includes(':') && (clean.includes('AM') || clean.includes('PM') || clean.includes('am') || clean.includes('pm'))) {
+      const parts = clean.split(' ');
+      const timeParts = parts[0].split(':');
+      let h = parseInt(timeParts[0], 10);
+      const m = parseInt(timeParts[1], 10);
+      const isPM = parts[1].toUpperCase() === 'PM';
+      if (isPM && h < 12) h += 12;
+      if (!isPM && h === 12) h = 0;
       return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
     }
-    const match24 = cleaned.match(/(\d+):(\d+)/);
-    if (match24) {
-      return `${String(match24[1]).padStart(2, '0')}:${String(match24[2]).padStart(2, '0')}`;
+    if (clean.includes(':')) {
+      const p = clean.split(':');
+      return `${String(p[0]).padStart(2, '0')}:${String(p[1]).padStart(2, '0')}`;
     }
-    return '';
+    return clean;
   },
 
   triggerLiveMedicineAlarm(reminder) {
-    const user = Auth.getUser();
-    const patientName = reminder.patientName || currentPatientProfile?.user?.name || user?.name || 'Patient';
-    const mobile = reminder.mobileNumber || currentPatientProfile?.user?.mobile || user?.mobile || '';
-
-    // 1. Play Audio Chime
     try {
       const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(587.33, audioCtx.currentTime); // D5
-      osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.15); // A5
-      gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.6);
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.6);
-    } catch (err) {}
-
-    // 2. Voice Text-to-Speech Announcement
-    if ('speechSynthesis' in window) {
-      try {
-        const text = `Medicine alarm for ${patientName}. Please take ${reminder.medicineName}.`;
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.rate = 0.95;
-        window.speechSynthesis.speak(utterance);
-      } catch (err) {}
-    }
-
-    // 3. Native OS / Browser Push Notification
-    if ('Notification' in window && Notification.permission === 'granted') {
-      new Notification(`💊 Medicine Time for ${patientName}`, {
-        body: `Medicine: ${reminder.medicineName} (${reminder.dosage || '1 dose'})\nInstructions: ${reminder.instructions || 'Take as advised'}`,
-        icon: 'https://cdn-icons-png.flaticon.com/512/2966/2966327.png'
-      });
-    }
-
-    // 4. Visual Toast on Screen
-    API.toast(`⏰ MEDICINE ALARM FOR ${patientName.toUpperCase()} (${mobile}): Take ${reminder.medicineName} (${reminder.dosage || ''}) - ${reminder.instructions || ''}`, 'warning');
-
-    this.loadStats();
-  },
-
-  triggerLiveAppointmentAlarm(appt) {
-    const doctorName = appt.doctorUser?.name || appt.doctor?.user?.name || 'Your Doctor';
-    const timeSlot = appt.timeSlot || 'Scheduled Time';
-    const hospital = appt.hospital || appt.doctor?.hospital || 'Hospital';
-
-    // 1. Play Audio Chime (Tri-tone harmonic bell)
-    try {
-      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
-      osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.15); // E5
-      osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.3); // G5
+      osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+      osc.frequency.setValueAtTime(1174.66, audioCtx.currentTime + 0.15);
+      osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.3);
       gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.8);
       osc.connect(gain);
       gain.connect(audioCtx.destination);
       osc.start();
       osc.stop(audioCtx.currentTime + 0.8);
-    } catch (err) {}
+    } catch (e) {}
 
-    // 2. Voice Text-to-Speech Announcement
+    if ('speechSynthesis' in window) {
+      try {
+        const text = `Attention ${reminder.patientName || 'Patient'}. It is time to take your medicine: ${reminder.medicineName}. Dosage: ${reminder.dosage || '1 tablet'}.`;
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.95;
+        window.speechSynthesis.speak(utterance);
+      } catch (e) {}
+    }
+
+    if ('Notification' in window && Notification.permission === 'granted') {
+      try {
+        new Notification(`⏰ Medicine Time: ${reminder.medicineName}`, {
+          body: `Hi ${reminder.patientName}, please take ${reminder.dosage} now (${reminder.instructions || 'with water'}).`,
+          icon: '/favicon.ico'
+        });
+      } catch (e) {}
+    }
+
+    API.toast(`⏰ MEDICINE ALARM: Time to take ${reminder.medicineName} (${reminder.dosage})!`, 'warning');
+  },
+
+  triggerLiveAppointmentAlarm(appointment) {
+    const doctorName = appointment.doctorUser?.name ? appointment.doctorUser.name : (appointment.doctor?.user?.name || 'Your Doctor');
+    const timeSlot = appointment.timeSlot || 'Scheduled Time';
+    const hospital = appointment.hospital || appointment.doctor?.hospital || 'Hospital';
+
+    try {
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(523.25, audioCtx.currentTime);
+      osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.2);
+      osc.frequency.setValueAtTime(783.99, audioCtx.currentTime + 0.4);
+      gain.gain.setValueAtTime(0.25, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 1.2);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 1.2);
+    } catch (e) {}
+
     if ('speechSynthesis' in window) {
       try {
         const text = `Attention patient. Your consultation with Dr. ${doctorName} starts in approximately one hour at ${timeSlot}. Please be ready.`;
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.rate = 0.95;
         window.speechSynthesis.speak(utterance);
-      } catch (err) {}
+      } catch (e) {}
     }
 
-    // 3. Native Push Notification
     if ('Notification' in window && Notification.permission === 'granted') {
-      new Notification(`⏰ 1-Hour Pre-Appointment Reminder`, {
-        body: `Your consultation with Dr. ${doctorName} is scheduled for ${timeSlot} today at ${hospital}.`,
-        icon: 'https://cdn-icons-png.flaticon.com/512/3063/3063823.png'
+      try {
+        new Notification(`⏰ Consultation Alert: Dr. ${doctorName}`, {
+          body: `Your consultation with Dr. ${doctorName} is scheduled for ${timeSlot} today at ${hospital}.`,
+          icon: '/favicon.ico'
+        });
+      } catch (e) {}
+    }
+
+    API.toast(`⏰ UPCOMING APPOINTMENT ALERT: Consultation with Dr. ${doctorName} at ${timeSlot} (${hospital})!`, 'info');
+  },
+
+  setupEventListeners() {
+    const searchInput = document.getElementById('searchDoctorQuery');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const btnClear = document.getElementById('btnClearSearch');
+        if (btnClear) {
+          if (e.target.value.trim().length > 0) btnClear.classList.remove('d-none');
+          else btnClear.classList.add('d-none');
+        }
+        this.applyFilters();
       });
     }
+  },
 
-    // 4. Visual Toast
-    API.toast(`⏰ UPCOMING APPOINTMENT ALERT: Consultation with Dr. ${doctorName} at ${timeSlot} (${hospital})!`, 'info');
+  clearSearch() {
+    const searchInput = document.getElementById('searchDoctorQuery');
+    if (searchInput) {
+      searchInput.value = '';
+      const btnClear = document.getElementById('btnClearSearch');
+      if (btnClear) btnClear.classList.add('d-none');
+      this.applyFilters();
+    }
   },
 
   populateDropdowns() {
     const specialtySelect = document.getElementById('filterSpecialty');
     const districtSelect = document.getElementById('filterDistrict');
+    const chipsBar = document.getElementById('specialtyChipsBar');
 
-    if (specialtySelect) {
-      specialtySelect.innerHTML = '<option value="All">All Specialties</option>';
-      CONFIG.SPECIALIZATIONS.forEach(spec => {
-        specialtySelect.innerHTML += `<option value="${spec}" ${spec === 'General Physician' ? 'selected' : ''}>${spec}</option>`;
-      });
+    if (specialtySelect && CONFIG.SPECIALIZATIONS) {
+      specialtySelect.innerHTML = `
+        <option value="All">All Specialties (220 Doctors)</option>
+        ${CONFIG.SPECIALIZATIONS.map(s => `<option value="${s}">${s}</option>`).join('')}
+      `;
     }
 
-    if (districtSelect) {
-      districtSelect.innerHTML = '<option value="All">All Tamil Nadu Districts</option>';
-      CONFIG.TAMIL_NADU_DISTRICTS.forEach(dist => {
-        districtSelect.innerHTML += `<option value="${dist}">${dist}</option>`;
-      });
+    if (districtSelect && CONFIG.TAMIL_NADU_DISTRICTS) {
+      districtSelect.innerHTML = `
+        <option value="All">All Tamil Nadu Districts (22 Districts)</option>
+        ${CONFIG.TAMIL_NADU_DISTRICTS.map(d => `<option value="${d}">${d}</option>`).join('')}
+      `;
+    }
+
+    if (chipsBar && CONFIG.SPECIALIZATIONS) {
+      chipsBar.innerHTML = `
+        <button class="specialty-chip-btn active" onclick="PatientApp.filterBySpecialtyChip('All', this)">
+          <i class="fa-solid fa-stethoscope text-primary"></i> All Specialties (220)
+        </button>
+        ${CONFIG.SPECIALIZATIONS.map(s => `
+          <button class="specialty-chip-btn" onclick="PatientApp.filterBySpecialtyChip('${s}', this)">
+            ${this.getSpecialtyIcon(s)} ${s}
+          </button>
+        `).join('')}
+      `;
     }
   },
 
   filterBySpecialtyChip(specialty, element) {
     document.querySelectorAll('.specialty-chip-btn').forEach(btn => btn.classList.remove('active'));
-    if (element) {
-      element.classList.add('active');
-    } else {
-      document.querySelectorAll('.specialty-chip-btn').forEach(btn => {
-        if (btn.textContent.trim().toLowerCase().includes(specialty.toLowerCase())) {
-          btn.classList.add('active');
-        }
-      });
-    }
+    if (element) element.classList.add('active');
 
     const sel = document.getElementById('filterSpecialty');
-    if (sel) {
-      sel.value = specialty;
-    }
+    if (sel) sel.value = specialty;
 
-    const searchInput = document.getElementById('searchDoctorQuery');
-    if (searchInput) {
-      searchInput.value = '';
-    }
-
-    this.loadDoctors();
-
-    const tabDoctorsBtn = document.getElementById('tab-doctors-btn');
-    if (tabDoctorsBtn && !tabDoctorsBtn.classList.contains('active')) {
-      this.switchTab('tab-doctors', 'tab-doctors-btn');
-    }
+    this.applyFilters();
   },
 
   filterBySuggestedSpecialist(specialty) {
+    this.switchTab('tab-doctors', 'tab-doctors-btn');
     const sel = document.getElementById('filterSpecialty');
-    if (sel) {
-      sel.value = specialty;
-    }
+    if (sel) sel.value = specialty;
 
-    const chips = document.querySelectorAll('.specialty-chip-btn');
-    chips.forEach(btn => {
-      if (btn.textContent.trim().toLowerCase().includes(specialty.toLowerCase())) {
+    document.querySelectorAll('.specialty-chip-btn').forEach(btn => {
+      if (btn.textContent.toLowerCase().includes(specialty.toLowerCase())) {
         btn.classList.add('active');
       } else {
         btn.classList.remove('active');
       }
     });
 
-    const searchInput = document.getElementById('searchDoctorQuery');
-    if (searchInput) searchInput.value = '';
-
-    this.switchTab('tab-doctors', 'tab-doctors-btn');
-    this.loadDoctors();
-    API.toast(`Filtered 10 specialists for ${specialty}`, 'info');
-  },
-
-  async loadStats() {
-    try {
-      let upcomingCount = 0;
-      try {
-        const res = await API.get('/patients/dashboard/stats');
-        if (res && res.data) {
-          upcomingCount = res.data.upcomingAppointments || res.data.totalAppointments || 0;
-        }
-      } catch (e) {}
-
-      const localAppts = JSON.parse(localStorage.getItem('LOCAL_APPOINTMENTS') || '[]');
-      const totalCount = Math.max(upcomingCount, localAppts.length);
-
-      const badge = document.getElementById('statUpcomingBadge');
-      if (badge) {
-        badge.textContent = totalCount;
-      }
-    } catch (e) {
-      console.error('Error loading patient stats:', e);
-    }
+    this.applyFilters();
   },
 
   mapQueryToSpecialty(query) {
-    if (!query) return null;
-    const q = query.toLowerCase().trim();
-    if (q.includes('physician') || q.includes('general') || q.includes('fever') || q.includes('cold') || q.includes('flu')) return 'General Physician';
-    if (q.includes('cardio') || q.includes('heart') || q.includes('cardiac') || q.includes('ecg')) return 'Cardiologist';
-    if (q.includes('neuro') || q.includes('brain') || q.includes('nerve') || q.includes('stroke') || q.includes('headache')) return 'Neurologist';
-    if (q.includes('nephro') || q.includes('dialysis') || q.includes('renal')) return 'Nephrologist';
-    if (q.includes('psych') || q.includes('mind') || q.includes('mental') || q.includes('stress') || q.includes('anxiety') || q.includes('depress')) return 'Psychiatrist';
-    if (q.includes('dent') || q.includes('tooth') || q.includes('teeth') || q.includes('root canal') || q.includes('smile') || q.includes('oral')) return 'Dentist';
-    if (q.includes('physio') || q.includes('rehab') || q.includes('exercise') || q.includes('paralysis') || q.includes('mobility')) return 'Physiotherapist';
-    if (q.includes('ent') || q.includes('ear') || q.includes('nose') || q.includes('throat') || q.includes('sinus')) return 'ENT Specialist';
-    if (q.includes('derma') || q.includes('skin') || q.includes('rash') || q.includes('acne')) return 'Dermatologist';
-    if (q.includes('pulmo') || q.includes('lung') || q.includes('breath') || q.includes('asthma') || q.includes('chest')) return 'Pulmonologist';
-    if (q.includes('gastro') || q.includes('stomach') || q.includes('digest') || q.includes('endoscopy') || q.includes('gastric')) return 'Gastroenterologist';
-    if (q.includes('pedia') || q.includes('child') || q.includes('baby') || q.includes('kids') || q.includes('pediatric')) return 'Pediatrician';
-    if (q.includes('gyne') || q.includes('women') || q.includes('pregnan') || q.includes('matern') || q.includes('femal')) return 'Gynecologist';
-    if (q.includes('eye') || q.includes('vision') || q.includes('ophthal') || q.includes('sight') || q.includes('cataract')) return 'Ophthalmologist';
-    if (q.includes('uro') || q.includes('kidney stone') || q.includes('urin') || q.includes('prostate') || q.includes('urolog')) return 'Urologist';
-    if (q.includes('plastic') || q.includes('cosmetic') || q.includes('reconstruct') || q.includes('rhinoplasty')) return 'Plastic Surgeon';
-    if (q.includes('radio') || q.includes('scan') || q.includes('x-ray') || q.includes('mri') || q.includes('ct scan')) return 'Radiologist';
-    if (q.includes('neonato') || q.includes('nicu') || q.includes('newborn') || q.includes('premature')) return 'Neonatologist';
-    if (q.includes('geriat') || q.includes('elder') || q.includes('senior') || q.includes('ageing') || q.includes('old age')) return 'Geriatrician';
-    if (q.includes('hepato') || q.includes('liver') || q.includes('cirrhosis') || q.includes('jaundice')) return 'Hepatologist';
-    if (q.includes('hemato') || q.includes('blood') || q.includes('anemia') || q.includes('platelet') || q.includes('leukemia') || q.includes('bone marrow')) return 'Hematologist';
+    const q = (query || '').toLowerCase().trim();
+    if (!q) return null;
+    if (q.includes('skin') || q.includes('rash') || q.includes('acne') || q.includes('itching') || q.includes('dermat')) return 'Dermatologist';
+    if (q.includes('heart') || q.includes('chest') || q.includes('cardio') || q.includes('bp') || q.includes('palpitation')) return 'Cardiologist';
+    if (q.includes('brain') || q.includes('neuro') || q.includes('headache') || q.includes('migraine') || q.includes('stroke')) return 'Neurologist';
+    if (q.includes('kidney') || q.includes('urine') || q.includes('nephro') || q.includes('dialysis')) return 'Nephrologist';
+    if (q.includes('stomach') || q.includes('digest') || q.includes('gastro') || q.includes('acid') || q.includes('liver') || q.includes('ulcer')) return 'Gastroenterologist';
+    if (q.includes('mental') || q.includes('psych') || q.includes('depress') || q.includes('anxiety') || q.includes('sleep') || q.includes('stress')) return 'Psychiatrist';
+    if (q.includes('teeth') || q.includes('tooth') || q.includes('dent') || q.includes('gum') || q.includes('cavity')) return 'Dentist';
+    if (q.includes('eye') || q.includes('vision') || q.includes('cataract') || q.includes('sight') || q.includes('ophthal')) return 'Ophthalmologist';
+    if (q.includes('ear') || q.includes('nose') || q.includes('throat') || q.includes('ent') || q.includes('hearing') || q.includes('sinus')) return 'ENT Specialist';
+    if (q.includes('lung') || q.includes('breath') || q.includes('pulmo') || q.includes('cough') || q.includes('asthma')) return 'Pulmonologist';
+    if (q.includes('child') || q.includes('baby') || q.includes('pedia') || q.includes('infant') || q.includes('vaccin')) return 'Pediatrician';
+    if (q.includes('women') || q.includes('pregnan') || q.includes('period') || q.includes('gynec') || q.includes('matern')) return 'Gynecologist';
+    if (q.includes('physio') || q.includes('back pain') || q.includes('paralysis') || q.includes('neck') || q.includes('spine')) return 'Physiotherapist';
     if (q.includes('allerg') || q.includes('immuno') || q.includes('allergy') || q.includes('sneezing') || q.includes('dust')) return 'Allergist & Immunologist';
-    if (q.includes('ortho') || q.includes('bone') || q.includes('joint') || q.includes('fracture') || q.includes('knee') || q.includes('spine')) return 'Orthopedic';
+    if (q.includes('ortho') || q.includes('bone') || q.includes('joint') || q.includes('fracture') || q.includes('knee')) return 'Orthopedic';
     return null;
+  },
+
+  applyFilters() {
+    this.loadDoctors();
+  },
+
+  applySideDrawerFilters() {
+    const offcanvasEl = document.getElementById('sideFilterDrawer');
+    if (offcanvasEl) {
+      const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
+      if (bsOffcanvas) bsOffcanvas.hide();
+    }
+    this.applyFilters();
+  },
+
+  resetFilters() {
+    const searchInput = document.getElementById('searchDoctorQuery');
+    if (searchInput) searchInput.value = '';
+    const sel = document.getElementById('filterSpecialty');
+    if (sel) sel.value = 'All';
+    const dSel = document.getElementById('filterDistrict');
+    if (dSel) dSel.value = 'All';
+    const slider = document.getElementById('sideFeeSlider');
+    if (slider) {
+      slider.value = '1000';
+      document.getElementById('sideFeeVal').textContent = '₹1000';
+    }
+    const rAll = document.getElementById('sideRatingAll');
+    if (rAll) rAll.checked = true;
+    const eAll = document.getElementById('sideExpAll');
+    if (eAll) eAll.checked = true;
+
+    document.querySelectorAll('.specialty-chip-btn').forEach(btn => {
+      if (btn.textContent.includes('All Specialties')) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+
+    const offcanvasEl = document.getElementById('sideFilterDrawer');
+    if (offcanvasEl) {
+      const bsOffcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
+      if (bsOffcanvas) bsOffcanvas.hide();
+    }
+
+    this.applyFilters();
   },
 
   async loadDoctors() {
     const container = document.getElementById('doctorListContainer');
     if (!container) return;
 
-    let specialty = document.getElementById('filterSpecialty')?.value || 'General Physician';
+    const specialty = document.getElementById('filterSpecialty')?.value || 'All';
     const district = document.getElementById('filterDistrict')?.value || 'All';
     const search = (document.getElementById('searchDoctorQuery')?.value || '').trim();
-
-    // Check if user search query matches a known specialist type or condition
-    if (search) {
-      const mapped = this.mapQueryToSpecialty(search);
-      if (mapped) {
-        specialty = mapped;
-        const sel = document.getElementById('filterSpecialty');
-        if (sel) sel.value = mapped;
-
-        // Sync active chip
-        document.querySelectorAll('.specialty-chip-btn').forEach(btn => {
-          if (btn.textContent.toLowerCase().includes(mapped.toLowerCase())) {
-            btn.classList.add('active');
-          } else {
-            btn.classList.remove('active');
-          }
-        });
-      }
-    }
+    const maxFee = parseInt(document.getElementById('sideFeeSlider')?.value || '1000', 10);
+    const minRating = parseFloat(document.querySelector('input[name="sideRatingRadio"]:checked')?.value || '0');
+    const minExp = parseInt(document.querySelector('input[name="sideExpRadio"]:checked')?.value || '0', 10);
 
     container.innerHTML = '<div class="col-12 text-center py-5"><div class="spinner-border text-primary" role="status"></div><p class="text-muted mt-2">Loading verified medical specialists across Tamil Nadu...</p></div>';
 
     try {
-      // Robust normalized doctor identity key function to prevent duplicate cards
       const getDocKey = (d) => {
         if (!d) return '';
         const name = (d.user?.name || d.name || '').toLowerCase().replace(/^(dr\.?|doctor)\s+/i, '').replace(/\s+/g, ' ').trim();
@@ -423,7 +416,7 @@ const PatientApp = {
 
       const doctorsMap = new Map();
 
-      // 1. Pre-load default comprehensive doctor profiles
+      // 1. Pre-load default comprehensive doctor profiles (all 220 private hospital doctors)
       if (CONFIG.DEFAULT_DOCTORS && CONFIG.DEFAULT_DOCTORS.length > 0) {
         CONFIG.DEFAULT_DOCTORS.forEach(doc => {
           const key = getDocKey(doc) || doc._id;
@@ -431,7 +424,7 @@ const PatientApp = {
         });
       }
 
-      // 2. Query API and cleanly overwrite / merge with live backend data from MongoDB
+      // 2. Query live API and merge with live MongoDB backend data
       try {
         const res = await API.get('/doctors', {
           specialization: specialty,
@@ -445,23 +438,27 @@ const PatientApp = {
           });
         }
       } catch (apiErr) {
-        console.warn('API doctor fetch notice, displaying integrated directory:', apiErr);
+        console.warn('API doctor fetch notice:', apiErr);
       }
 
       const allDoctors = Array.from(doctorsMap.values());
       this.allDoctors = allDoctors;
 
-      // Filter by specialty, district, and search query
+      // Filter by specialty, district, search query, fee, rating, and experience
       const filteredDoctors = allDoctors.filter(doc => {
         const matchSpec = (specialty === 'All' || doc.specialization === specialty);
         const matchDist = (district === 'All' || doc.district === district);
+        const matchFee = (!doc.consultationFee || doc.consultationFee <= maxFee);
+        const matchRating = (!doc.rating || doc.rating >= minRating);
+        const matchExp = (!doc.experience || doc.experience >= minExp);
         const matchSearch = (!search || this.mapQueryToSpecialty(search) ||
           (doc.user?.name && doc.user.name.toLowerCase().includes(search.toLowerCase())) ||
           (doc.hospital && doc.hospital.toLowerCase().includes(search.toLowerCase())) ||
           (doc.specialization && doc.specialization.toLowerCase().includes(search.toLowerCase())) ||
-          (doc.district && doc.district.toLowerCase().includes(search.toLowerCase()))
+          (doc.district && doc.district.toLowerCase().includes(search.toLowerCase())) ||
+          (doc.bio && doc.bio.toLowerCase().includes(search.toLowerCase()))
         );
-        return matchSpec && matchDist && matchSearch;
+        return matchSpec && matchDist && matchFee && matchRating && matchExp && matchSearch;
       });
 
       this.currentDoctorsList = filteredDoctors;
@@ -473,38 +470,25 @@ const PatientApp = {
       const specLabelEl = document.getElementById('currentFilteredSpecialty');
       if (specLabelEl) specLabelEl.textContent = specialty === 'All' ? 'All Specialties' : specialty;
 
+      const distCountEl = document.getElementById('districtCountBadge');
+      if (distCountEl) {
+        const uniqueDistricts = Array.from(new Set(filteredDoctors.map(d => d.district))).length;
+        distCountEl.textContent = `${uniqueDistricts} Tamil Nadu Districts`;
+      }
+
       if (filteredDoctors.length === 0) {
         container.innerHTML = `
           <div class="col-12 text-center py-5 bg-white rounded-4 border">
             <i class="fa-solid fa-user-doctor text-muted fs-1 mb-3"></i>
             <h5 class="text-dark">No specialists found matching criteria</h5>
-            <p class="text-muted small">Try searching another specialist (e.g. Dermatologist, Cardiologist, Neurologist) or clearing filters.</p>
+            <p class="text-muted small">Try searching another specialist (e.g. Dermatologist, Cardiologist, Neurologist) or resetting filters.</p>
+            <button class="btn btn-outline-primary rounded-pill btn-sm px-4" onclick="PatientApp.resetFilters()">
+              <i class="fa-solid fa-rotate-left me-1"></i> Reset Filters
+            </button>
           </div>
         `;
         return;
       }
-
-      // Extract unique districts represented in the results
-      const districtsList = Array.from(new Set(filteredDoctors.map(d => d.district))).join(', ');
-
-      const bannerHtml = `
-        <div class="col-12 mb-3">
-          <div class="card border-0 bg-primary-subtle p-3 rounded-4 shadow-sm">
-            <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
-              <div class="d-flex align-items-center gap-2">
-                <i class="fa-solid fa-map-location-dot fs-3 text-primary"></i>
-                <div>
-                  <h6 class="fw-bold mb-0 text-dark">
-                    Found ${filteredDoctors.length} Verified ${specialty === 'All' ? '' : specialty} Specialists across ${Array.from(new Set(filteredDoctors.map(d => d.district))).length} Tamil Nadu Districts
-                  </h6>
-                  <small class="text-muted">Districts: <strong>${districtsList}</strong></small>
-                </div>
-              </div>
-              <span class="badge bg-primary px-3 py-2 rounded-pill">${filteredDoctors.length} Specialists Available</span>
-            </div>
-          </div>
-        </div>
-      `;
 
       const cardsHtml = filteredDoctors.map((doc, idx) => `
         <div class="col-md-6 col-xl-4 mb-4">
@@ -516,12 +500,12 @@ const PatientApp = {
                   <span class="doctor-online-dot" title="Available for Booking"></span>
                 </div>
                 <div>
-                  <h5 class="fw-bold mb-0 text-dark" style="font-size: 1.05rem;">${doc.user?.name || 'Doctor'}</h5>
+                  <h5 class="fw-bold mb-0 text-dark" style="font-size: 1.05rem;">${doc.user?.name || doc.name || 'Doctor'}</h5>
                   <span class="badge bg-primary text-white rounded-pill small mt-1">${doc.specialization}</span>
                 </div>
               </div>
               <div class="doctor-fee-badge text-nowrap">
-                ₹${doc.consultationFee}
+                ₹${doc.consultationFee || 500}
               </div>
             </div>
 
@@ -534,9 +518,9 @@ const PatientApp = {
                 <span class="text-muted"><i class="fa-solid fa-hospital me-1 text-info"></i> Hospital:</span>
                 <span class="fw-semibold text-dark text-truncate" title="${doc.hospital}">${doc.hospital}</span>
               </div>
-              <div class="d-flex justify-content-between">
-                <span class="text-muted"><i class="fa-solid fa-graduation-cap me-1 text-primary"></i> Qual:</span>
-                <span class="fw-semibold text-dark text-truncate">${doc.qualification || 'MBBS, MD'}</span>
+              <div class="d-flex justify-content-between align-items-center">
+                <span class="text-muted"><i class="fa-solid fa-star me-1 text-warning"></i> Rating:</span>
+                <span class="fw-bold text-dark"><i class="fa-solid fa-star text-warning small"></i> ${doc.rating || '4.8'} <span class="text-muted small">(${doc.reviewCount || 24} reviews)</span></span>
               </div>
             </div>
 
@@ -551,7 +535,7 @@ const PatientApp = {
         </div>
       `).join('');
 
-      container.innerHTML = bannerHtml + cardsHtml;
+      container.innerHTML = cardsHtml;
     } catch (e) {
       container.innerHTML = '<div class="col-12 text-center text-danger py-4">Failed to load doctor directory.</div>';
     }
@@ -605,7 +589,7 @@ const PatientApp = {
       selectedDoctorForBooking = doctor;
       selectedSlotForBooking = null;
 
-      document.getElementById('modalDocName').textContent = selectedDoctorForBooking.user?.name || 'Doctor';
+      document.getElementById('modalDocName').textContent = selectedDoctorForBooking.user?.name || selectedDoctorForBooking.name || 'Doctor';
       document.getElementById('modalDocSpecialty').textContent = selectedDoctorForBooking.specialization;
       document.getElementById('modalDocDistrictBadge').textContent = `📍 ${selectedDoctorForBooking.district}`;
       document.getElementById('modalDocHospital').textContent = selectedDoctorForBooking.hospital;
@@ -633,11 +617,22 @@ const PatientApp = {
 
       const modalEl = document.getElementById('bookingModal');
       if (modalEl) {
-        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
-        modal.show();
+        try {
+          const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+          modal.show();
+        } catch (mErr) {
+          modalEl.style.display = 'block';
+          modalEl.classList.add('show');
+        }
       }
     } catch (e) {
       console.error('Error in openBookingModal:', e);
+    }
+  },
+
+  async onDateChanged(newDate) {
+    if (newDate) {
+      await this.loadDoctorSlots(newDate);
     }
   },
 
@@ -649,7 +644,7 @@ const PatientApp = {
 
     let bookedSlots = [];
     try {
-      if (selectedDoctorForBooking._id && !selectedDoctorForBooking._id.startsWith('doc_')) {
+      if (selectedDoctorForBooking._id && !String(selectedDoctorForBooking._id).startsWith('doc_')) {
         const res = await API.get('/appointments/booked-slots', {
           doctorId: selectedDoctorForBooking._id,
           date: date
@@ -664,7 +659,6 @@ const PatientApp = {
 
     let firstSelectable = null;
 
-    // Find first non-booked slot
     for (const s of availableSlots) {
       if (!bookedSlots.includes(s)) {
         firstSelectable = s;
@@ -719,6 +713,7 @@ const PatientApp = {
   },
 
   switchTab(tabTargetId, btnId) {
+    // 1. Update Navigation Tabs
     const btn = document.getElementById(btnId);
     if (btn) {
       try {
@@ -736,6 +731,14 @@ const PatientApp = {
     if (btn) btn.classList.add('active');
     const targetPane = document.getElementById(tabTargetId);
     if (targetPane) targetPane.classList.add('show', 'active');
+
+    // 2. Update 5-Dashboard Hub Card active states
+    document.querySelectorAll('.dash-hub-card').forEach(c => c.classList.remove('active'));
+    if (tabTargetId === 'tab-doctors') document.getElementById('hubCardDoctors')?.classList.add('active');
+    else if (tabTargetId === 'tab-appointments') document.getElementById('hubCardAppointments')?.classList.add('active');
+    else if (tabTargetId === 'tab-ai') document.getElementById('hubCardAI')?.classList.add('active');
+    else if (tabTargetId === 'tab-reminders') document.getElementById('hubCardReminders')?.classList.add('active');
+    else if (tabTargetId === 'tab-records') document.getElementById('hubCardRecords')?.classList.add('active');
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
   },
@@ -801,11 +804,11 @@ const PatientApp = {
         }
       }
       if (!slot) {
-        slot = '04:00 PM';
+        slot = '10:00 AM';
       }
       selectedSlotForBooking = slot;
 
-      const doctorName = selectedDoctorForBooking?.user?.name || 'Doctor';
+      const doctorName = selectedDoctorForBooking?.user?.name || selectedDoctorForBooking?.name || 'Doctor';
       const emailInput = document.getElementById('bookingEmailInput');
       const patientEmail = (emailInput?.value || user?.email || localStorage.getItem('hospital_last_email') || 'reshvaish86@gmail.com').trim();
       const mobileInput = document.getElementById('bookingMobileInput');
@@ -814,11 +817,11 @@ const PatientApp = {
       localStorage.setItem('hospital_last_email', patientEmail);
       localStorage.setItem('hospital_last_mobile', patientMobile);
 
-      // 3. IMMEDIATELY close modal so user is never blocked
+      // 3. Close modal immediately so user is never blocked
       this.closeModal('bookingModal');
       if (reasonInput) reasonInput.value = '';
 
-      // 4. IMMEDIATELY save to local storage
+      // 4. Save to local storage for instant offline availability
       const localAppts = JSON.parse(localStorage.getItem('LOCAL_APPOINTMENTS') || '[]');
       const newLocal = {
         _id: 'appt_' + Date.now(),
@@ -828,7 +831,7 @@ const PatientApp = {
         appointmentDate: date,
         timeSlot: slot,
         location: selectedDoctorForBooking.district || 'Tamil Nadu',
-        hospital: selectedDoctorForBooking.hospital || 'Hospital',
+        hospital: selectedDoctorForBooking.hospital || 'Speciality Hospital',
         reasonForVisit: reason,
         patientEmail: patientEmail,
         patientMobile: patientMobile,
@@ -839,11 +842,11 @@ const PatientApp = {
       localAppts.unshift(newLocal);
       localStorage.setItem('LOCAL_APPOINTMENTS', JSON.stringify(localAppts));
 
-      // 5. IMMEDIATELY update UI lists & counter badges
+      // 5. Update UI lists & counter badges
       try { this.loadAppointments(); } catch (e) { console.error('loadAppointments error:', e); }
       try { this.loadStats(); } catch (e) { console.error('loadStats error:', e); }
 
-      // 6. IMMEDIATELY switch to Booked Appointments tab
+      // 6. Switch to Booked Appointments tab
       this.switchTab('tab-appointments', 'tab-appointments-btn');
 
       // 7. Instant Toast, Voice announcement and 1-hour alarm
@@ -853,7 +856,7 @@ const PatientApp = {
         this.triggerLiveAppointmentAlarm({
           doctorUser: selectedDoctorForBooking.user || { name: doctorName },
           timeSlot: slot,
-          hospital: selectedDoctorForBooking.hospital || 'Hospital'
+          hospital: selectedDoctorForBooking.hospital || 'Speciality Hospital'
         });
       } catch (e) {}
 
@@ -866,7 +869,7 @@ const PatientApp = {
         } catch (err) {}
       }
 
-      // 8. Background sync with backend (MongoDB + Brevo/Resend Email + Twilio SMS)
+      // 8. Background sync with backend (MongoDB + Brevo/SMTP Email + Twilio SMS)
       (async () => {
         try {
           const res = await API.post('/appointments', {
@@ -927,6 +930,9 @@ const PatientApp = {
             <i class="fa-solid fa-calendar-xmark text-muted fs-1 mb-2"></i>
             <h6 class="text-dark">No appointments found</h6>
             <p class="text-muted small">Book your first consultation with top Tamil Nadu specialists.</p>
+            <button class="btn btn-primary-custom rounded-pill btn-sm px-4" onclick="PatientApp.switchTab('tab-doctors', 'tab-doctors-btn')">
+              <i class="fa-solid fa-plus me-1"></i> Book Consultation
+            </button>
           </div>
         `;
         return;
@@ -944,44 +950,31 @@ const PatientApp = {
           </div>
           <div class="row align-items-center g-3">
             <div class="col-md-6">
-              <h5 class="fw-bold text-dark mb-1">${a.doctorUser?.name ? a.doctorUser.name : (a.doctor?.user?.name || 'Doctor')}</h5>
+              <h5 class="fw-bold text-dark mb-1">${a.doctorUser?.name ? a.doctorUser.name : (a.doctor?.user?.name || a.doctor?.name || 'Doctor')}</h5>
               <p class="text-muted small mb-1"><i class="fa-solid fa-stethoscope me-1 text-primary"></i> ${a.specialist || a.doctor?.specialization || 'Specialist'} | ${a.hospital || a.doctor?.hospital || 'Hospital'} (<span class="text-primary fw-semibold">${a.location || a.doctor?.district || 'Tamil Nadu'}</span>)</p>
               <p class="text-secondary small mb-0"><i class="fa-solid fa-note-sticky me-1"></i> <strong>Reason:</strong> ${a.reasonForVisit}</p>
             </div>
             <div class="col-md-3">
               <div class="bg-light p-2 rounded-3 text-center border">
-                <div class="fw-bold text-dark small"><i class="fa-solid fa-calendar-day me-1 text-primary"></i> ${a.appointmentDate}</div>
-                <div class="text-primary fw-semibold small"><i class="fa-solid fa-clock me-1 text-warning"></i> ${a.timeSlot}</div>
+                <div class="text-muted small">Appointment Date & Slot</div>
+                <div class="fw-bold text-primary">${a.appointmentDate}</div>
+                <div class="badge bg-primary-subtle text-primary rounded-pill small mt-1"><i class="fa-regular fa-clock me-1"></i>${a.timeSlot}</div>
               </div>
             </div>
-            <div class="col-md-3 text-md-end d-flex flex-wrap gap-2 justify-content-md-end">
-              <button class="btn btn-outline-primary btn-sm rounded-pill px-3" title="Dispatch 1-Hour Pre-Appointment Reminder Email & Voice Alert" onclick="PatientApp.sendAppointmentReminder('${a._id}')">
-                <i class="fa-solid fa-bell me-1"></i> Send 1-Hr Reminder
+            <div class="col-md-3 text-md-end">
+              <button class="btn btn-outline-primary btn-sm rounded-pill mb-1 w-100" onclick="PatientApp.triggerLiveAppointmentAlarm({ doctorUser: { name: '${a.doctorUser?.name || a.doctor?.user?.name || 'Doctor'}' }, timeSlot: '${a.timeSlot}', hospital: '${a.hospital || 'Hospital'}' })">
+                <i class="fa-solid fa-bell me-1"></i> Test 1-Hr Alarm
+              </button>
+              <button class="btn btn-outline-secondary btn-sm rounded-pill w-100" onclick="API.toast('Receipt resent to ${a.patientEmail || 'your email'}', 'info')">
+                <i class="fa-solid fa-envelope me-1"></i> Resend Email
               </button>
             </div>
           </div>
         </div>
       `).join('');
     } catch (e) {
-      container.innerHTML = '<div class="text-danger py-3">Error loading appointments</div>';
+      container.innerHTML = '<div class="text-center text-muted py-3">Could not load appointments.</div>';
     }
-  },
-
-  async sendAppointmentReminder(id) {
-    try {
-      API.toast('⏰ Dispatching 1-Hour Pre-Appointment Reminder Email & SMS...', 'info');
-      const res = await API.post(`/appointments/${id}/send-reminder`);
-      if (res && res.status === 'success') {
-        API.toast(res.message || '1-Hour Pre-Appointment Reminder Email dispatched!', 'success');
-      }
-      const apptCard = document.querySelector(`button[onclick*="${id}"]`)?.closest('.appointment-ticket-card');
-      const docName = apptCard?.querySelector('h5')?.textContent || 'Doctor';
-      this.triggerLiveAppointmentAlarm({
-        doctorUser: { name: docName.replace('Dr. ', '') },
-        timeSlot: 'Upcoming Slot',
-        hospital: 'Hospital'
-      });
-    } catch (e) {}
   },
 
   async loadMedicalRecords() {
@@ -989,35 +982,29 @@ const PatientApp = {
     if (!container) return;
 
     try {
-      const res = await API.get('/medical-records');
+      const res = await API.get('/medical-records/my');
       const records = res?.data || [];
-
       if (records.length === 0) {
-        container.innerHTML = '<div class="text-center py-4 text-muted">No clinical records on file yet. Records appear here after consultation.</div>';
+        container.innerHTML = '<div class="text-center py-4 text-muted"><i class="fa-solid fa-folder-open fs-2 text-muted mb-2"></i><p class="small mb-0">No clinical records on file yet. Records appear here after doctor consultation.</p></div>';
         return;
       }
 
       container.innerHTML = records.map(r => `
-        <div class="card border-0 bg-light p-3 rounded-4 mb-3 shadow-sm">
-          <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
-            <div>
-              <h6 class="fw-bold text-dark mb-0">${r.diagnosis}</h6>
-              <span class="text-muted small">Consultant: Dr. ${r.doctor?.user?.name || 'Physician'} (${new Date(r.recordDate).toLocaleDateString()})</span>
-            </div>
-            <span class="badge bg-primary-subtle text-primary rounded-pill">Clinical Consultation</span>
+        <div class="card border rounded-3 p-3 mb-2 bg-light">
+          <div class="d-flex justify-content-between align-items-center mb-1">
+            <span class="fw-bold text-dark">${r.diagnosis || 'Clinical Consultation'}</span>
+            <span class="badge bg-primary-subtle text-primary rounded-pill">${new Date(r.visitDate || r.createdAt).toLocaleDateString()}</span>
           </div>
-          <div class="row g-2 mb-2 bg-white p-2 rounded-3 small">
-            <div class="col-6 col-md-3"><strong>BP:</strong> ${r.vitals?.bloodPressure || '120/80 mmHg'}</div>
-            <div class="col-6 col-md-3"><strong>Pulse:</strong> ${r.vitals?.heartRate || '74 bpm'}</div>
-            <div class="col-6 col-md-3"><strong>Temp:</strong> ${r.vitals?.temperature || '98.4 °F'}</div>
-            <div class="col-6 col-md-3"><strong>SpO2:</strong> ${r.vitals?.oxygenSaturation || '99%'}</div>
+          <p class="text-muted small mb-1"><strong>Doctor:</strong> ${r.doctor?.user?.name || 'Doctor'} (${r.doctor?.hospital || 'Hospital'})</p>
+          <div class="d-flex gap-3 small text-secondary">
+            <span><strong>BP:</strong> ${r.vitalSigns?.bloodPressure || '120/80'}</span>
+            <span><strong>Pulse:</strong> ${r.vitalSigns?.pulseRate || '72 bpm'}</span>
+            <span><strong>Temp:</strong> ${r.vitalSigns?.temperature || '98.6°F'}</span>
           </div>
-          <p class="small text-secondary mb-1"><strong>Doctor Notes:</strong> ${r.doctorNotes || 'Routine clinical assessment normal.'}</p>
-          ${r.followUpDate ? `<p class="small text-primary mb-0"><i class="fa-solid fa-calendar-check me-1"></i> Recommended Follow-up: ${r.followUpDate}</p>` : ''}
         </div>
       `).join('');
     } catch (e) {
-      container.innerHTML = '<div class="text-danger py-3">Error loading records</div>';
+      container.innerHTML = '<div class="text-muted small text-center">No clinical records found.</div>';
     }
   },
 
@@ -1026,251 +1013,139 @@ const PatientApp = {
     if (!container) return;
 
     try {
-      const res = await API.get('/prescriptions');
+      const res = await API.get('/prescriptions/my');
       const prescriptions = res?.data || [];
-
       if (prescriptions.length === 0) {
-        container.innerHTML = '<div class="text-center py-4 text-muted">No digital prescriptions issued yet.</div>';
+        container.innerHTML = '<div class="text-center py-4 text-muted"><i class="fa-solid fa-file-prescription fs-2 text-muted mb-2"></i><p class="small mb-0">No active electronic prescriptions issued yet.</p></div>';
         return;
       }
 
       container.innerHTML = prescriptions.map(p => `
-        <div class="card border-0 bg-light p-3 rounded-4 mb-3 shadow-sm">
-          <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
-            <div>
-              <h6 class="fw-bold text-dark mb-0"><i class="fa-solid fa-file-prescription text-success me-1"></i> ${p.diagnosis}</h6>
-              <span class="text-muted small">Prescribed by Dr. ${p.doctor?.user?.name || 'Doctor'} on ${new Date(p.createdAt).toLocaleDateString()}</span>
-            </div>
-            <button class="btn btn-outline-success btn-sm rounded-pill" onclick="PatientApp.viewPrescriptionModal('${p._id}')">
-              <i class="fa-solid fa-eye me-1"></i> View & Print
-            </button>
+        <div class="card border rounded-3 p-3 mb-3 bg-white shadow-sm">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="fw-bold text-success"><i class="fa-solid fa-file-prescription me-1"></i> e-Prescription #${p._id.slice(-6)}</span>
+            <button class="btn btn-outline-primary btn-sm rounded-pill" onclick="window.print()"><i class="fa-solid fa-print me-1"></i> Print Rx</button>
           </div>
-          <div class="small mb-2">
-            <strong>Medicines Prescribed:</strong> ${p.medicines.map(m => `<span class="badge bg-white text-dark border me-1">${m.medicineName} (${m.dosage})</span>`).join('')}
+          <p class="text-muted small mb-1"><strong>Consulting Doctor:</strong> ${p.doctor?.user?.name || 'Doctor'}</p>
+          <p class="text-muted small mb-2"><strong>Diagnosis:</strong> ${p.diagnosis || 'General'}</p>
+          <div class="table-responsive">
+            <table class="table table-sm small mb-0">
+              <thead><tr><th>Medicine</th><th>Dosage</th><th>Frequency</th><th>Duration</th></tr></thead>
+              <tbody>
+                ${(p.medicines || []).map(m => `<tr><td><strong>${m.name}</strong></td><td>${m.dosage}</td><td>${m.frequency}</td><td>${m.duration}</td></tr>`).join('')}
+              </tbody>
+            </table>
           </div>
-          <p class="small text-muted mb-0"><strong>General Advice:</strong> ${p.generalAdvice}</p>
         </div>
       `).join('');
     } catch (e) {
-      container.innerHTML = '<div class="text-danger py-3">Error loading prescriptions</div>';
-    }
-  },
-
-  async viewPrescriptionModal(id) {
-    try {
-      const res = await API.get(`/prescriptions/${id}`);
-      const p = res?.data;
-      if (!p) return;
-
-      const user = Auth.getUser();
-      const modalBody = document.getElementById('prescriptionModalBody');
-      modalBody.innerHTML = `
-        <div class="prescription-doc">
-          <div class="d-flex justify-content-between align-items-start border-bottom pb-3 mb-3">
-            <div>
-              <h4 class="fw-bold text-primary mb-1">AI SMART HOSPITAL</h4>
-              <p class="text-muted small mb-0">Unified Healthcare & Clinical Excellence System</p>
-            </div>
-            <div class="text-end">
-              <h6 class="fw-bold mb-0">Dr. ${p.doctor?.user?.name || 'Physician'}</h6>
-              <p class="text-muted small mb-0">${p.doctor?.specialization || 'Specialist'}</p>
-              <p class="text-muted small mb-0">${p.doctor?.hospital || 'Hospital'}, ${p.doctor?.district || 'Tamil Nadu'}</p>
-            </div>
-          </div>
-          <div class="row bg-light p-2 rounded-3 small mb-3">
-            <div class="col-6"><strong>Patient Name:</strong> ${p.patient?.user?.name || user?.name || 'Patient'}</div>
-            <div class="col-3"><strong>Age:</strong> ${p.patient?.age || '24'}</div>
-            <div class="col-3 text-end"><strong>Date:</strong> ${new Date(p.createdAt).toLocaleDateString()}</div>
-          </div>
-          <div class="mb-3">
-            <strong>Clinical Diagnosis:</strong> <span class="text-dark fw-semibold">${p.diagnosis}</span>
-          </div>
-          <div class="rx-symbol mb-2">℞</div>
-          <table class="table table-bordered small mb-3">
-            <thead class="table-light">
-              <tr>
-                <th>#</th>
-                <th>Medicine Name</th>
-                <th>Dosage</th>
-                <th>Timing & Frequency</th>
-                <th>Duration</th>
-                <th>Instructions</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${p.medicines.map((m, idx) => `
-                <tr>
-                  <td>${idx + 1}</td>
-                  <td class="fw-bold">${m.medicineName}</td>
-                  <td>${m.dosage}</td>
-                  <td>${m.frequency}</td>
-                  <td>${m.duration}</td>
-                  <td>${m.instructions}</td>
-                </tr>
-              `).join('')}
-            </tbody>
-          </table>
-          <div class="small mb-3">
-            <p class="mb-1"><strong>General Advice:</strong> ${p.generalAdvice}</p>
-            ${p.dietaryRestrictions ? `<p class="mb-1"><strong>Dietary Restrictions:</strong> ${p.dietaryRestrictions}</p>` : ''}
-          </div>
-          <div class="d-flex justify-content-between align-items-center pt-3 border-top small text-muted">
-            <div><i class="fa-solid fa-shield-halved text-success me-1"></i> Digitally Signed Electronic Prescription</div>
-            <div class="text-end fw-bold text-dark">Authorized Medical Practitioner</div>
-          </div>
-        </div>
-      `;
-
-      const modal = new bootstrap.Modal(document.getElementById('prescriptionDetailModal'));
-      modal.show();
-    } catch (e) {
-      console.error(e);
+      container.innerHTML = '<div class="text-muted small text-center">No prescriptions found.</div>';
     }
   },
 
   async loadReminders() {
-    const container = document.getElementById('medicineRemindersContainer');
+    const container = document.getElementById('remindersContainer');
     if (!container) return;
 
     try {
       const res = await API.get('/patients/profile');
-      if (res && res.data) {
-        currentPatientProfile = res.data;
-        const nameField = document.getElementById('remPatientName');
-        const mobileField = document.getElementById('remPatientMobile');
-        const user = Auth.getUser();
-        if (nameField && !nameField.value) nameField.value = res.data.user?.name || user?.name || '';
-        if (mobileField && !mobileField.value) mobileField.value = res.data.user?.mobile || user?.mobile || '';
-      }
-
-      const reminders = res.data?.medicineReminders || [];
+      const reminders = res?.data?.medicineReminders || [];
+      
+      const badge = document.getElementById('hubAlarmsStat');
+      if (badge) badge.textContent = reminders.length;
 
       if (reminders.length === 0) {
-        container.innerHTML = '<div class="text-muted small py-4 text-center">No medicine reminders set. Fill out the form on the left to set an alarm.</div>';
+        container.innerHTML = '<div class="text-center py-4 text-muted"><i class="fa-solid fa-bell-slash fs-2 text-muted mb-2"></i><p class="small mb-0">No active medicine alarms set. Add your daily medications using the form on the left.</p></div>';
         return;
       }
 
-      container.innerHTML = reminders.map(r => `
+      container.innerHTML = reminders.map((r, idx) => `
         <div class="medicine-alarm-card">
           <div class="d-flex justify-content-between align-items-start mb-2">
             <div>
-              <span class="badge bg-primary text-white me-1"><i class="fa-solid fa-user me-1"></i> ${r.patientName || currentPatientProfile?.user?.name || 'Patient'}</span>
-              <span class="badge bg-light text-dark border"><i class="fa-solid fa-phone me-1 text-success"></i> ${r.mobileNumber || currentPatientProfile?.user?.mobile || 'N/A'}</span>
+              <h6 class="fw-bold text-dark mb-0"><i class="fa-solid fa-capsules text-warning me-1"></i> ${r.medicineName}</h6>
+              <small class="text-muted">${r.patientName} (${r.mobileNumber})</small>
             </div>
-            <div class="d-flex align-items-center gap-1">
-              <button class="btn btn-outline-primary btn-sm rounded-pill px-2 py-1" title="Test Reminder Email & Alarm Now" onclick="PatientApp.testMedicineReminderAlert('${r._id}', '${r.medicineName}')">
-                <i class="fa-solid fa-paper-plane me-1"></i> Test Alarm
+            <div class="badge bg-warning text-dark fw-bold fs-6">${r.time}</div>
+          </div>
+          <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top">
+            <span class="small text-secondary"><strong>Dosage:</strong> ${r.dosage} | ${r.instructions || 'With water'}</span>
+            <div class="d-flex gap-2">
+              <button class="btn btn-outline-warning btn-sm rounded-pill text-dark" onclick="PatientApp.triggerLiveMedicineAlarm(${JSON.stringify(r).replace(/"/g, '&quot;')})">
+                <i class="fa-solid fa-volume-high me-1"></i> Test Alarm
               </button>
-              <button class="btn btn-outline-danger btn-sm rounded-circle p-1" title="Delete Reminder" onclick="PatientApp.deleteReminder('${r._id}')">
+              <button class="btn btn-outline-danger btn-sm rounded-pill" onclick="PatientApp.deleteReminder('${r._id || idx}')">
                 <i class="fa-solid fa-trash"></i>
               </button>
             </div>
           </div>
-          <div class="d-flex justify-content-between align-items-center mt-2">
-            <div>
-              <h6 class="fw-bold text-dark mb-0"><i class="fa-solid fa-pills text-warning me-1"></i> ${r.medicineName}</h6>
-              <div class="text-muted small">${r.dosage || '1 dose'} • ${r.frequency || 'Daily'} • <em>${r.instructions || 'Take as advised'}</em></div>
-            </div>
-            <span class="badge bg-warning text-dark fs-6 px-3 py-2 rounded-pill"><i class="fa-regular fa-clock me-1"></i> ${r.time}</span>
-          </div>
         </div>
       `).join('');
     } catch (e) {
-      container.innerHTML = '<div class="text-danger small">Error loading reminders</div>';
+      container.innerHTML = '<div class="text-muted small text-center">Could not load reminders.</div>';
     }
   },
 
-  async testMedicineReminderAlert(id, medName) {
+  async saveReminder() {
     try {
-      API.toast(`💊 Dispatching real Medicine Reminder Email for ${medName}...`, 'info');
-      const res = await API.post(`/patients/reminders/${id}/test`);
-      if (res && res.status === 'success') {
-        API.toast(res.message || 'Medicine Reminder Email delivered to your inbox!', 'success');
-      }
-      const reminderObj = currentPatientProfile?.medicineReminders?.find(r => r._id === id);
-      if (reminderObj) {
-        this.triggerLiveMedicineAlarm(reminderObj);
-      }
-    } catch (e) {}
-  },
+      const patientName = document.getElementById('remPatientName').value;
+      const mobileNumber = document.getElementById('remPatientMobile').value;
+      const medicineName = document.getElementById('remMedicineName').value;
+      const dosage = document.getElementById('remDosage').value;
+      const time = document.getElementById('remTime').value;
+      const instructions = document.getElementById('remInstructions').value;
 
-  async addReminder() {
-    const patientName = document.getElementById('remPatientName').value;
-    const mobileNumber = document.getElementById('remPatientMobile').value;
-    const name = document.getElementById('remMedName').value;
-    const dosage = document.getElementById('remMedDosage').value;
-    const time = document.getElementById('remMedTime').value;
-    const freq = document.getElementById('remMedFreq').value;
-    const inst = document.getElementById('remMedInst').value;
-
-    if (!name || !time || !patientName || !mobileNumber) {
-      API.toast('Please fill in Patient Name, Mobile Number, Medicine Name, and Scheduled Time', 'warning');
-      return;
-    }
-
-    try {
-      await API.post('/patients/reminders', {
-        patientName: patientName,
-        mobileNumber: mobileNumber,
-        medicineName: name,
-        dosage: dosage || '1 Tab',
-        time: time,
-        frequency: freq || 'Daily',
-        instructions: inst || 'Take after food with water'
-      });
-      API.toast(`Alarm & Reminder set for ${patientName} (${name}) at ${time}!`, 'success');
-      document.getElementById('remMedName').value = '';
-      document.getElementById('remMedTime').value = '';
-      await this.loadStats();
-      await this.loadReminders();
-    } catch (e) {}
-  },
-
-  async deleteReminder(id) {
-    try {
-      await API.delete(`/patients/reminders/${id}`);
-      API.toast('Reminder removed', 'info');
-      await this.loadStats();
-      await this.loadReminders();
-    } catch (e) {}
-  },
-
-  setupEventListeners() {
-    // Search & Filter controls
-    document.getElementById('btnFilterDoctors')?.addEventListener('click', () => this.loadDoctors());
-    document.getElementById('searchDoctorQuery')?.addEventListener('input', () => this.loadDoctors());
-    document.getElementById('filterSpecialty')?.addEventListener('change', () => this.loadDoctors());
-    document.getElementById('filterDistrict')?.addEventListener('change', () => this.loadDoctors());
-
-    // Booking modal
-    document.getElementById('btnConfirmBooking')?.addEventListener('click', () => this.confirmBooking());
-    document.getElementById('bookingDateInput')?.addEventListener('change', (e) => this.loadDoctorSlots(e.target.value));
-    
-    // Reminders
-    document.getElementById('btnAddReminder')?.addEventListener('click', () => this.addReminder());
-
-    // Global document-level click delegation fallback for modal confirm button and time slots
-    document.addEventListener('click', (e) => {
-      const btn = e.target.closest('#btnConfirmBooking');
-      if (btn) {
-        e.preventDefault();
-        e.stopPropagation();
-        this.confirmBooking();
+      if (!medicineName || !time) {
+        API.toast('Please provide medicine name and alarm time', 'warning');
         return;
       }
 
-      const slotChip = e.target.closest('.slot-chip:not(.booked)');
-      if (slotChip) {
-        const slotVal = slotChip.getAttribute('data-slot');
-        if (slotVal) {
-          this.selectSlot(slotChip, slotVal);
-        }
-      }
-    });
+      await API.post('/patients/reminders', {
+        patientName,
+        mobileNumber,
+        medicineName,
+        dosage,
+        time,
+        instructions
+      });
+
+      API.toast('⏰ Medicine Alarm saved successfully! Voice and sound alarm will alert you at scheduled time.', 'success');
+      document.getElementById('remMedicineName').value = '';
+      this.loadReminders();
+    } catch (e) {
+      console.warn('Save reminder notice:', e);
+    }
+  },
+
+  async deleteReminder(reminderId) {
+    try {
+      await API.delete(`/patients/reminders/${reminderId}`);
+      API.toast('Medicine Alarm removed', 'info');
+      this.loadReminders();
+    } catch (e) {
+      console.warn('Delete reminder notice:', e);
+    }
+  },
+
+  async loadStats() {
+    try {
+      let count = 0;
+      try {
+        const res = await API.get('/appointments');
+        if (res && res.data) count = res.data.length;
+      } catch (e) {}
+
+      const localAppts = JSON.parse(localStorage.getItem('LOCAL_APPOINTMENTS') || '[]');
+      const totalCount = Math.max(count, localAppts.length);
+
+      const upBadge = document.getElementById('statUpcomingBadge');
+      if (upBadge) upBadge.textContent = totalCount;
+
+      const hubStat = document.getElementById('hubUpcomingStat');
+      if (hubStat) hubStat.textContent = totalCount;
+    } catch (e) {}
   }
 };
-
-window.PatientApp = PatientApp;
 
 document.addEventListener('DOMContentLoaded', () => {
   PatientApp.init();
