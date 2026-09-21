@@ -13,6 +13,39 @@ const PatientApp = {
     this.setupEventListeners();
     this.updateUserGreeting();
     this.populateDropdowns();
+
+    // 1. Support URL Search Parameters (e.g., ?specialty=Cardiologist&district=Chennai)
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlSpecialty = urlParams.get('specialty');
+      const urlDistrict = urlParams.get('district');
+      const urlSearch = urlParams.get('search');
+      
+      if (urlSpecialty) {
+        const sel = document.getElementById('filterSpecialty');
+        if (sel) sel.value = urlSpecialty;
+        document.querySelectorAll('.specialty-chip-btn').forEach(btn => {
+          if (btn.textContent.trim().toLowerCase().includes(urlSpecialty.toLowerCase())) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+      }
+
+      if (urlDistrict) {
+        const dSel = document.getElementById('filterDistrict');
+        if (dSel) dSel.value = urlDistrict;
+      }
+
+      if (urlSearch) {
+        const sInput = document.getElementById('searchDoctorQuery');
+        if (sInput) sInput.value = urlSearch;
+      }
+    } catch (paramErr) {
+      console.warn('URL params init notice:', paramErr);
+    }
+
     try { await this.loadStats(); } catch (e) { console.warn('Stats load notice:', e); }
     try { await this.loadDoctors(); } catch (e) { console.warn('Doctors load notice:', e); }
     try { await this.loadAppointments(); } catch (e) { console.warn('Appointments load notice:', e); }
@@ -249,6 +282,12 @@ const PatientApp = {
     document.querySelectorAll('.specialty-chip-btn').forEach(btn => btn.classList.remove('active'));
     if (element) {
       element.classList.add('active');
+    } else {
+      document.querySelectorAll('.specialty-chip-btn').forEach(btn => {
+        if (btn.textContent.trim().toLowerCase().includes(specialty.toLowerCase())) {
+          btn.classList.add('active');
+        }
+      });
     }
 
     const sel = document.getElementById('filterSpecialty');
@@ -262,6 +301,11 @@ const PatientApp = {
     }
 
     this.loadDoctors();
+
+    const tabDoctorsBtn = document.getElementById('tab-doctors-btn');
+    if (tabDoctorsBtn && !tabDoctorsBtn.classList.contains('active')) {
+      this.switchTab('tab-doctors', 'tab-doctors-btn');
+    }
   },
 
   filterBySuggestedSpecialist(specialty) {
@@ -279,9 +323,10 @@ const PatientApp = {
       }
     });
 
-    const tabBtn = document.getElementById('tab-doctors-btn');
-    if (tabBtn) tabBtn.click();
+    const searchInput = document.getElementById('searchDoctorQuery');
+    if (searchInput) searchInput.value = '';
 
+    this.switchTab('tab-doctors', 'tab-doctors-btn');
     this.loadDoctors();
     API.toast(`Filtered 10 specialists for ${specialty}`, 'info');
   },
@@ -499,7 +544,7 @@ const PatientApp = {
               ${doc.bio || 'Verified medical specialist providing clinical consultation across Tamil Nadu.'}
             </p>
 
-            <button class="btn-book-doctor" onclick="PatientApp.openBookingModal('${doc._id || doc.user?.name}')">
+            <button class="btn-book-doctor" onclick="PatientApp.openBookingModal(${idx})">
               <i class="fa-solid fa-calendar-plus"></i> Book Consultation
             </button>
           </div>
@@ -512,28 +557,44 @@ const PatientApp = {
     }
   },
 
-  async openBookingModal(doctorId) {
+  async openBookingModal(doctorIdOrIndex) {
     try {
       let doctor = null;
-      if (this.currentDoctorsList && this.currentDoctorsList.length > 0) {
-        doctor = this.currentDoctorsList.find(d => d._id === doctorId || d.user?.name === doctorId || d.specialization === doctorId);
-      }
-      if (!doctor && this.allDoctors && this.allDoctors.length > 0) {
-        doctor = this.allDoctors.find(d => d._id === doctorId || d.user?.name === doctorId || d.specialization === doctorId);
-      }
-      if (!doctor && CONFIG.DEFAULT_DOCTORS) {
-        doctor = CONFIG.DEFAULT_DOCTORS.find(d => d._id === doctorId || d.user?.name === doctorId || d.specialization === doctorId);
+
+      // 1. Check if index was passed
+      if (typeof doctorIdOrIndex === 'number' || (!isNaN(doctorIdOrIndex) && typeof doctorIdOrIndex === 'string' && String(doctorIdOrIndex).length < 5)) {
+        const idx = parseInt(doctorIdOrIndex, 10);
+        if (this.currentDoctorsList && this.currentDoctorsList[idx]) {
+          doctor = this.currentDoctorsList[idx];
+        }
       }
 
-      if (!doctor) {
+      // 2. Lookup by ID or name
+      if (!doctor && this.currentDoctorsList && this.currentDoctorsList.length > 0) {
+        doctor = this.currentDoctorsList.find(d => String(d._id) === String(doctorIdOrIndex) || d.user?.name === doctorIdOrIndex || d.specialization === doctorIdOrIndex);
+      }
+      if (!doctor && this.allDoctors && this.allDoctors.length > 0) {
+        doctor = this.allDoctors.find(d => String(d._id) === String(doctorIdOrIndex) || d.user?.name === doctorIdOrIndex || d.specialization === doctorIdOrIndex);
+      }
+      if (!doctor && CONFIG.DEFAULT_DOCTORS) {
+        doctor = CONFIG.DEFAULT_DOCTORS.find(d => String(d._id) === String(doctorIdOrIndex) || d.user?.name === doctorIdOrIndex || d.specialization === doctorIdOrIndex);
+      }
+
+      // 3. Fallback API lookup
+      if (!doctor && typeof doctorIdOrIndex === 'string' && doctorIdOrIndex.length > 10) {
         try {
-          const res = await API.get(`/doctors/${doctorId}`);
+          const res = await API.get(`/doctors/${doctorIdOrIndex}`);
           if (res && res.data) {
             doctor = res.data;
           }
         } catch (err) {
           console.warn('API doctor fetch notice:', err);
         }
+      }
+
+      // 4. Default fallback
+      if (!doctor) {
+        doctor = this.currentDoctorsList?.[0] || this.allDoctors?.[0] || CONFIG.DEFAULT_DOCTORS?.[0];
       }
 
       if (!doctor) {
@@ -548,7 +609,7 @@ const PatientApp = {
       document.getElementById('modalDocSpecialty').textContent = selectedDoctorForBooking.specialization;
       document.getElementById('modalDocDistrictBadge').textContent = `📍 ${selectedDoctorForBooking.district}`;
       document.getElementById('modalDocHospital').textContent = selectedDoctorForBooking.hospital;
-      document.getElementById('modalDocFee').textContent = `₹${selectedDoctorForBooking.consultationFee}`;
+      document.getElementById('modalDocFee').textContent = `₹${selectedDoctorForBooking.consultationFee || 500}`;
 
       const today = new Date().toISOString().split('T')[0];
       const dateInput = document.getElementById('bookingDateInput');
@@ -570,10 +631,13 @@ const PatientApp = {
 
       await this.loadDoctorSlots(today);
 
-      const modal = new bootstrap.Modal(document.getElementById('bookingModal'));
-      modal.show();
+      const modalEl = document.getElementById('bookingModal');
+      if (modalEl) {
+        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        modal.show();
+      }
     } catch (e) {
-      console.error(e);
+      console.error('Error in openBookingModal:', e);
     }
   },
 
