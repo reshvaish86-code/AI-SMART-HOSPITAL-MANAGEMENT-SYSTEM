@@ -62,4 +62,38 @@ const protect = async (req, res, next) => {
   }
 };
 
-module.exports = { protect };
+/**
+ * Optional authentication middleware: attaches user if token is valid, but allows guest booking if no token
+ */
+const optionalProtect = async (req, res, next) => {
+  let token;
+
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    token = req.headers.authorization.split(' ')[1];
+  }
+
+  if (!token) {
+    return next();
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'dev_jwt_secret_hospital_management_system_secure_key_2026');
+    const currentUser = await User.findById(decoded.id);
+    if (currentUser && currentUser.isActive) {
+      req.user = currentUser;
+      if (currentUser.role === 'patient') {
+        req.patientProfile = await Patient.findOne({ user: currentUser._id });
+      } else if (currentUser.role === 'doctor') {
+        req.doctorProfile = await Doctor.findOne({ user: currentUser._id });
+      }
+    }
+    next();
+  } catch (err) {
+    next();
+  }
+};
+
+module.exports = { protect, optionalProtect };

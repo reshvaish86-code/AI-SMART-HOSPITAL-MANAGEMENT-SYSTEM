@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Appointment = require('../models/Appointment');
 const Doctor = require('../models/Doctor');
 const Patient = require('../models/Patient');
+const User = require('../models/User');
 const { 
   sendAppointmentConfirmation, 
   sendAppointmentStatusUpdate,
@@ -13,7 +14,7 @@ const { APPOINTMENT_STATUS } = require('../utils/constants');
 /**
  * @desc    Book a new Appointment with collision prevention & past date check
  * @route   POST /api/appointments
- * @access  Private (Patient only)
+ * @access  Public / Private (Supports both authenticated & guest booking)
  */
 const bookAppointment = async (req, res, next) => {
   try {
@@ -59,11 +60,30 @@ const bookAppointment = async (req, res, next) => {
       });
     }
 
-    // 3. Fetch or auto-create Patient profile
-    let patient = await Patient.findOne({ user: req.user._id }).populate('user', 'name email mobile');
+    // 3. Resolve or auto-create Patient User & Profile
+    let currentUser = req.user;
+    const targetEmail = (patientEmail && patientEmail.includes('@')) ? patientEmail.trim().toLowerCase() : (currentUser?.email || 'reshvaish86@gmail.com');
+    const targetMobile = patientMobile || currentUser?.mobile || '+91 9840123456';
+    const targetName = patientName || currentUser?.name || 'Patient';
+
+    if (!currentUser) {
+      currentUser = await User.findOne({ email: targetEmail });
+      if (!currentUser) {
+        currentUser = await User.create({
+          name: targetName,
+          email: targetEmail,
+          password: 'GuestPassword123!',
+          role: 'patient',
+          mobile: targetMobile,
+          isActive: true
+        });
+      }
+    }
+
+    let patient = await Patient.findOne({ user: currentUser._id }).populate('user', 'name email mobile');
     if (!patient) {
       patient = await Patient.create({
-        user: req.user._id,
+        user: currentUser._id,
         dateOfBirth: new Date('1995-01-01'),
         gender: 'Other',
         bloodGroup: 'O+',
@@ -71,7 +91,7 @@ const bookAppointment = async (req, res, next) => {
         emergencyContact: {
           name: 'Primary Contact',
           relation: 'Family',
-          mobile: req.user.mobile || '+91 9840100000'
+          mobile: targetMobile || '+91 9840100000'
         }
       });
       patient = await Patient.findById(patient._id).populate('user', 'name email mobile');
@@ -95,7 +115,7 @@ const bookAppointment = async (req, res, next) => {
     // 5. Create Appointment
     const appointment = await Appointment.create({
       patient: patient._id,
-      patientUser: req.user._id,
+      patientUser: currentUser._id,
       doctor: doctor._id,
       doctorUser: doctor.user._id,
       specialist: doctor.specialization,
@@ -109,12 +129,8 @@ const bookAppointment = async (req, res, next) => {
       reminderSent: false
     });
 
-    const targetEmail = (patientEmail && patientEmail.includes('@')) ? patientEmail.trim() : (req.user?.email || 'reshvaish86@gmail.com');
-    const targetMobile = patientMobile || req.user?.mobile || '+91 9840123456';
-    const targetName = patientName || req.user?.name || 'Patient';
-
     const effectivePatientUser = {
-      _id: req.user._id,
+      _id: currentUser._id,
       name: targetName,
       email: targetEmail,
       mobile: targetMobile

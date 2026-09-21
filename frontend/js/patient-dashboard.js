@@ -869,7 +869,7 @@ const PatientApp = {
       // 8. Background sync with backend (MongoDB + Brevo/Resend Email + Twilio SMS)
       (async () => {
         try {
-          await API.post('/appointments', {
+          const res = await API.post('/appointments', {
             doctorId: selectedDoctorForBooking._id || 'doc_fallback',
             specialist: selectedDoctorForBooking.specialization,
             doctorName: doctorName,
@@ -880,7 +880,8 @@ const PatientApp = {
             patientMobile: patientMobile,
             patientName: user?.name || 'Patient'
           });
-          console.log(`✅ Backend appointment sync & email dispatch to ${patientEmail} completed`);
+          console.log(`✅ Backend appointment sync & email dispatch to ${patientEmail} completed:`, res);
+          API.toast(`📧 Confirmation email successfully sent to ${patientEmail}!`, 'success');
           try { await this.loadAppointments(); } catch (e) {}
           try { await this.loadStats(); } catch (e) {}
         } catch (err) {
