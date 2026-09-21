@@ -593,13 +593,21 @@ const PatientApp = {
       document.getElementById('modalDocSpecialty').textContent = selectedDoctorForBooking.specialization;
       document.getElementById('modalDocDistrictBadge').textContent = `📍 ${selectedDoctorForBooking.district}`;
       document.getElementById('modalDocHospital').textContent = selectedDoctorForBooking.hospital;
-      document.getElementById('modalDocFee').textContent = `₹${selectedDoctorForBooking.consultationFee || 500}`;
+      // Intelligently check current hour: if after 5:00 PM (17:00), default to tomorrow so patient gets fresh slots
+      const now = new Date();
+      const isLateEvening = now.getHours() >= 17;
+      let targetDateObj = new Date();
+      if (isLateEvening) {
+        targetDateObj.setDate(targetDateObj.getDate() + 1);
+      }
+      
+      const todayISO = new Date().toISOString().split('T')[0];
+      const defaultDateISO = targetDateObj.toISOString().split('T')[0];
 
-      const today = new Date().toISOString().split('T')[0];
       const dateInput = document.getElementById('bookingDateInput');
       if (dateInput) {
-        dateInput.min = today;
-        dateInput.value = today;
+        dateInput.min = todayISO;
+        dateInput.value = defaultDateISO;
       }
 
       const user = Auth.getUser();
@@ -613,7 +621,7 @@ const PatientApp = {
         mobileInput.value = user?.mobile || localStorage.getItem('hospital_last_mobile') || '+91 9840123456';
       }
 
-      await this.loadDoctorSlots(today);
+      await this.loadDoctorSlots(defaultDateISO);
 
       const modalEl = document.getElementById('bookingModal');
       if (modalEl) {
@@ -654,41 +662,81 @@ const PatientApp = {
     } catch (e) {}
 
     const availableSlots = selectedDoctorForBooking.availableTimeSlots || [
-      '09:00 AM', '10:00 AM', '11:00 AM', '02:00 PM', '03:00 PM', '04:00 PM'
+      '09:00 AM', '10:00 AM', '11:00 AM', '02:00 PM', '03:00 PM', '04:00 PM', '06:00 PM'
     ];
+
+    const todayISO = new Date().toISOString().split('T')[0];
+    const now = new Date();
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
 
     let firstSelectable = null;
 
     for (const s of availableSlots) {
-      if (!bookedSlots.includes(s)) {
+      const isBooked = bookedSlots.includes(s);
+      
+      // If selected date is today, check if slot time has passed
+      let isPastToday = false;
+      if (date === todayISO) {
+        const parsed = this.parseSlotToMinutes(s);
+        if (parsed !== null && parsed <= currentMinutes) {
+          isPastToday = true;
+        }
+      }
+
+      if (!isBooked && !isPastToday && !firstSelectable) {
         firstSelectable = s;
-        break;
       }
     }
 
     if (!selectedSlotForBooking || bookedSlots.includes(selectedSlotForBooking)) {
-      selectedSlotForBooking = firstSelectable;
+      selectedSlotForBooking = firstSelectable || availableSlots[0];
     }
 
     slotContainer.innerHTML = availableSlots.map(slot => {
       const isBooked = bookedSlots.includes(slot);
-      const isSelected = (selectedSlotForBooking === slot);
+      let isPastToday = false;
+      if (date === todayISO) {
+        const parsed = this.parseSlotToMinutes(slot);
+        if (parsed !== null && parsed <= currentMinutes) {
+          isPastToday = true;
+        }
+      }
+
+      const isDisabled = isBooked || isPastToday;
+      const isSelected = (selectedSlotForBooking === slot && !isDisabled);
 
       return `
-        <div class="slot-chip ${isBooked ? 'booked' : ''} ${isSelected ? 'selected' : ''}" 
+        <div class="slot-chip ${isDisabled ? 'booked' : ''} ${isSelected ? 'selected' : ''}" 
              data-slot="${slot}" 
              role="radio"
              aria-checked="${isSelected ? 'true' : 'false'}"
-             ${!isBooked ? `onclick="PatientApp.selectSlot(this, '${slot}')"` : 'title="Slot Already Booked"'}>
+             ${!isDisabled ? `onclick="PatientApp.selectSlot(this, '${slot}')"` : `title="${isPastToday ? 'Past Time for Today' : 'Slot Already Booked'}"`}>
           <div class="d-flex align-items-center justify-content-between gap-1 pointer-events-none">
             <span><i class="fa-regular fa-clock me-1 opacity-75"></i>${slot}</span>
             <span class="slot-check-indicator">
-              ${isBooked ? '<i class="fa-solid fa-ban text-danger"></i>' : (isSelected ? '<i class="fa-solid fa-circle-check text-white"></i>' : '<i class="fa-regular fa-circle text-muted"></i>')}
+              ${isBooked ? '<i class="fa-solid fa-ban text-danger"></i>' : (isPastToday ? '<small class="badge bg-secondary" style="font-size:0.65rem;">Past</small>' : (isSelected ? '<i class="fa-solid fa-circle-check text-white"></i>' : '<i class="fa-regular fa-circle text-muted"></i>'))}
             </span>
           </div>
         </div>
       `;
     }).join('');
+  },
+
+  parseSlotToMinutes(slotStr) {
+    if (!slotStr) return null;
+    try {
+      const clean = slotStr.trim().toUpperCase();
+      const parts = clean.split(' ');
+      const timeParts = parts[0].split(':');
+      let h = parseInt(timeParts[0], 10);
+      const m = parseInt(timeParts[1], 10);
+      const isPM = parts[1] === 'PM';
+      if (isPM && h < 12) h += 12;
+      if (!isPM && h === 12) h = 0;
+      return h * 60 + m;
+    } catch {
+      return null;
+    }
   },
 
   selectSlot(element, slot) {
