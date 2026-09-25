@@ -44,19 +44,22 @@ const DoctorApp = {
         if (todayAppts.length === 0) {
           queueContainer.innerHTML = '<div class="text-center py-4 text-muted">No appointments scheduled for today.</div>';
         } else {
-          queueContainer.innerHTML = todayAppts.map(a => `
+          queueContainer.innerHTML = todayAppts.map(a => {
+            const bId = a.bookingId || ('BK-' + (a._id ? String(a._id).slice(-5).toUpperCase() : 'N/A'));
+            return `
             <div class="card border-0 shadow-sm rounded-4 mb-3 p-3 ${a.status === 'Confirmed' ? 'border-start border-4 border-primary' : ''}">
               <div class="d-flex justify-content-between align-items-center mb-2">
-                <div class="d-flex align-items-center gap-2">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
                   <span class="badge bg-primary text-white rounded-pill px-3"><i class="fa-solid fa-clock me-1"></i> ${a.timeSlot}</span>
+                  <span class="badge bg-light text-primary border rounded-pill px-2 py-1 small fw-bold"><i class="fa-solid fa-ticket me-1"></i> ${bId}</span>
                   <span class="badge-status-${a.status.toLowerCase()}">${a.status}</span>
                 </div>
                 <div class="fw-bold text-dark">₹${a.consultationFee}</div>
               </div>
               <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <div>
-                  <h6 class="fw-bold text-dark mb-1">${a.patient?.user?.name || 'Patient'} <span class="text-muted small">(${a.patient?.age || 'N/A'} yrs, ${a.patient?.gender || 'N/A'})</span></h6>
-                  <p class="text-secondary small mb-1"><i class="fa-solid fa-phone me-1"></i> ${a.patient?.user?.mobile || 'N/A'} | <i class="fa-solid fa-droplet text-danger me-1"></i> Blood: ${a.patient?.bloodGroup || 'Unknown'}</p>
+                  <h6 class="fw-bold text-dark mb-1">${a.patient?.user?.name || a.patientUser?.name || 'Patient'} <span class="text-muted small">(${a.patient?.age || 'N/A'} yrs, ${a.patient?.gender || 'N/A'})</span></h6>
+                  <p class="text-secondary small mb-1"><i class="fa-solid fa-phone me-1"></i> ${a.patient?.user?.mobile || a.patientUser?.mobile || 'N/A'} | <i class="fa-solid fa-droplet text-danger me-1"></i> Blood: ${a.patient?.bloodGroup || 'Unknown'}</p>
                   <p class="text-muted small mb-0"><i class="fa-solid fa-note-sticky me-1"></i> <strong>Reason:</strong> ${a.reasonForVisit}</p>
                 </div>
                 <div class="d-flex gap-2 flex-wrap">
@@ -79,7 +82,8 @@ const DoctorApp = {
                 </div>
               </div>
             </div>
-          `).join('');
+          `;
+          }).join('');
         }
       }
 
@@ -88,10 +92,12 @@ const DoctorApp = {
         if (appts.length === 0) {
           allApptsContainer.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-muted">No appointments found</td></tr>';
         } else {
-          allApptsContainer.innerHTML = appts.map((a, idx) => `
+          allApptsContainer.innerHTML = appts.map((a, idx) => {
+            const bId = a.bookingId || ('BK-' + (a._id ? String(a._id).slice(-5).toUpperCase() : 'N/A'));
+            return `
             <tr>
-              <td>${idx + 1}</td>
-              <td class="fw-semibold text-dark">${a.patient?.user?.name || 'Patient'}</td>
+              <td><span class="badge bg-light text-primary border rounded-pill px-2 py-1 fw-bold">${bId}</span></td>
+              <td class="fw-semibold text-dark">${a.patient?.user?.name || a.patientUser?.name || 'Patient'}</td>
               <td>${a.appointmentDate}</td>
               <td>${a.timeSlot}</td>
               <td class="small max-w-200 text-truncate">${a.reasonForVisit}</td>
@@ -115,7 +121,8 @@ const DoctorApp = {
                 </div>
               </td>
             </tr>
-          `).join('');
+          `;
+          }).join('');
         }
       }
     } catch (e) {
@@ -314,11 +321,13 @@ const DoctorApp = {
         const bioInput = document.getElementById('profileBio');
         const hospitalInput = document.getElementById('profileHospital');
         const districtInput = document.getElementById('profileDistrict');
+        const headerIdEl = document.getElementById('doctorHeaderId');
 
         if (feeInput) feeInput.value = doc.consultationFee || 500;
         if (bioInput) bioInput.value = doc.bio || '';
         if (hospitalInput) hospitalInput.value = doc.hospital || '';
         if (districtInput) districtInput.value = doc.district || 'Chennai';
+        if (headerIdEl) headerIdEl.textContent = `ID: ${doc.doctorId || 'DOC-TN-101'}`;
       }
     } catch (e) {
       console.error(e);

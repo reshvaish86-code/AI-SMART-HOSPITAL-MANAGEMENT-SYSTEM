@@ -27,13 +27,18 @@ const bookAppointment = async (req, res, next) => {
       });
     }
 
-    // 1. Fetch Doctor (support MongoDB ObjectId, Doctor User Name, Specialist, or fallback)
+    // 1. Fetch Doctor (support MongoDB ObjectId, doctorId string, Doctor User Name, Specialist, or fallback)
     let doctor = null;
     if (mongoose.Types.ObjectId.isValid(doctorId)) {
       doctor = await Doctor.findById(doctorId).populate('user', 'name email mobile');
     }
     
-    // Fallback 1: Lookup by Doctor User name
+    // Fallback 1: Lookup by Doctor unique ID (e.g. DOC-TN-101)
+    if (!doctor && typeof doctorId === 'string' && doctorId.toUpperCase().startsWith('DOC-')) {
+      doctor = await Doctor.findOne({ doctorId: doctorId.trim().toUpperCase() }).populate('user', 'name email mobile');
+    }
+
+    // Fallback 2: Lookup by Doctor User name
     if (!doctor) {
       const searchDoctorName = req.body.doctorName || String(doctorId).replace(/^doc_dr__?/i, '').replace(/^doc_/i, '').replace(/_\d+$/, '').replace(/_/g, ' ').trim();
       if (searchDoctorName && searchDoctorName.length > 2) {
@@ -50,7 +55,7 @@ const bookAppointment = async (req, res, next) => {
       }
     }
 
-    // Fallback 2: Lookup by specialization and district
+    // Fallback 3: Lookup by specialization and district
     if (!doctor && (req.body.specialist || req.body.specialization)) {
       const spec = req.body.specialist || req.body.specialization;
       let filter = { specialization: new RegExp(spec, 'i'), isVerified: true };
@@ -63,7 +68,7 @@ const bookAppointment = async (req, res, next) => {
       }
     }
 
-    // Fallback 3: First verified doctor
+    // Fallback 4: First verified doctor
     if (!doctor) {
       doctor = await Doctor.findOne({ isVerified: true }).populate('user', 'name email mobile');
     }
@@ -132,8 +137,12 @@ const bookAppointment = async (req, res, next) => {
       });
     }
 
-    // 5. Create Appointment in MongoDB
+    // 5. Generate Unique Booking ID & Create Appointment in MongoDB
+    const randomBookingDigits = Math.floor(10000 + Math.random() * 90000);
+    const generatedBookingId = `BK-${randomBookingDigits}`;
+
     const appointment = await Appointment.create({
+      bookingId: generatedBookingId,
       patient: patient._id,
       patientUser: currentUser._id,
       doctor: doctor._id,
@@ -198,6 +207,8 @@ const bookAppointment = async (req, res, next) => {
     res.status(201).json({
       status: 'success',
       message: 'Appointment booked successfully and awaiting doctor confirmation',
+      bookingId: appointment.bookingId,
+      doctorId: doctor.doctorId || `DOC-TN-101`,
       data: appointment
     });
   } catch (error) {
@@ -222,8 +233,12 @@ const getMyAppointments = async (req, res, next) => {
       query.doctorUser = req.user._id;
     }
 
+    if (req.query.bookingId) {
+      query.bookingId = req.query.bookingId.trim().toUpperCase();
+    }
+
     const appointments = await Appointment.find(query)
-      .populate('doctor', 'hospital specialization consultationFee experience district rating')
+      .populate('doctor', 'doctorId hospital specialization consultationFee experience district rating')
       .populate('doctorUser', 'name email mobile')
       .populate('patientUser', 'name email mobile')
       .populate('patient', 'age gender bloodGroup emergencyContact')

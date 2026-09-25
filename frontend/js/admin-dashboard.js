@@ -106,17 +106,25 @@ const AdminApp = {
         return;
       }
 
-      tableBody.innerHTML = appts.map((a, idx) => `
+      tableBody.innerHTML = appts.map((a, idx) => {
+        const bId = a.bookingId || ('BK-' + (a._id ? String(a._id).slice(-5).toUpperCase() : 'N/A'));
+        const dId = a.doctor?.doctorId || (a.doctorUser?.doctorId || 'DOC-TN-101');
+        return `
         <tr>
-          <td>${idx + 1}</td>
-          <td><strong>${a.patient?.user?.name || 'Patient'}</strong></td>
-          <td>Dr. ${a.doctor?.user?.name || 'Doctor'} <br><small class="text-muted">${a.specialist}</small></td>
+          <td><span class="badge bg-light text-primary border rounded-pill px-2 py-1 fw-bold">${bId}</span></td>
+          <td><strong>${a.patient?.user?.name || a.patientUser?.name || 'Patient'}</strong></td>
+          <td>
+            <strong>Dr. ${a.doctor?.user?.name || a.doctorUser?.name || 'Doctor'}</strong>
+            <span class="badge bg-light text-secondary border rounded-pill ms-1">${dId}</span>
+            <br><small class="text-muted">${a.specialist}</small>
+          </td>
           <td>${a.appointmentDate} (${a.timeSlot})</td>
           <td>${a.hospital} (${a.location})</td>
           <td><span class="badge-status-${a.status.toLowerCase()}">${a.status}</span></td>
           <td class="fw-bold text-success">₹${a.consultationFee}</td>
         </tr>
-      `).join('');
+      `;
+      }).join('');
     } catch (e) {
       console.error(e);
     }

@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 const { APPOINTMENT_STATUS } = require('../utils/constants');
 
 const appointmentSchema = new mongoose.Schema({
+  bookingId: {
+    type: String,
+    unique: true,
+    sparse: true,
+    index: true
+  },
   patient: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Patient',
@@ -102,5 +108,14 @@ const appointmentSchema = new mongoose.Schema({
 appointmentSchema.index({ doctor: 1, appointmentDate: 1, timeSlot: 1 });
 appointmentSchema.index({ patient: 1, appointmentDate: 1 });
 appointmentSchema.index({ reminderSent: 1, status: 1 });
+appointmentSchema.index({ bookingId: 1 });
+
+appointmentSchema.pre('save', function (next) {
+  if (!this.bookingId) {
+    const randomNum = Math.floor(10000 + Math.random() * 90000);
+    this.bookingId = `BK-${randomNum}`;
+  }
+  next();
+});
 
 module.exports = mongoose.model('Appointment', appointmentSchema);

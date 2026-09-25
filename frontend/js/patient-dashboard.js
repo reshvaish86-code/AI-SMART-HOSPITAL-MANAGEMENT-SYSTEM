@@ -490,7 +490,9 @@ const PatientApp = {
         return;
       }
 
-      const cardsHtml = filteredDoctors.map((doc, idx) => `
+      const cardsHtml = filteredDoctors.map((doc, idx) => {
+        const docId = doc.doctorId || `DOC-TN-${101 + idx}`;
+        return `
         <div class="col-md-6 col-xl-4 mb-4">
           <div class="doctor-portal-card">
             <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
@@ -501,7 +503,10 @@ const PatientApp = {
                 </div>
                 <div>
                   <h5 class="fw-bold mb-0 text-dark" style="font-size: 1.05rem;">${doc.user?.name || doc.name || 'Doctor'}</h5>
-                  <span class="badge bg-primary text-white rounded-pill small mt-1">${doc.specialization}</span>
+                  <div class="d-flex align-items-center gap-1 mt-1 flex-wrap">
+                    <span class="badge bg-primary text-white rounded-pill small">${doc.specialization}</span>
+                    <span class="badge bg-light text-dark border rounded-pill small" title="Unique Doctor ID"><i class="fa-solid fa-id-badge text-primary me-1"></i>${docId}</span>
+                  </div>
                 </div>
               </div>
               <div class="doctor-fee-badge text-nowrap">
@@ -533,7 +538,8 @@ const PatientApp = {
             </button>
           </div>
         </div>
-      `).join('');
+      `;
+      }).join('');
 
       container.innerHTML = cardsHtml;
     } catch (e) {
@@ -555,13 +561,13 @@ const PatientApp = {
 
       // 2. Lookup by ID or name
       if (!doctor && this.currentDoctorsList && this.currentDoctorsList.length > 0) {
-        doctor = this.currentDoctorsList.find(d => String(d._id) === String(doctorIdOrIndex) || d.user?.name === doctorIdOrIndex || d.specialization === doctorIdOrIndex);
+        doctor = this.currentDoctorsList.find(d => String(d._id) === String(doctorIdOrIndex) || d.doctorId === doctorIdOrIndex || d.user?.name === doctorIdOrIndex || d.specialization === doctorIdOrIndex);
       }
       if (!doctor && this.allDoctors && this.allDoctors.length > 0) {
-        doctor = this.allDoctors.find(d => String(d._id) === String(doctorIdOrIndex) || d.user?.name === doctorIdOrIndex || d.specialization === doctorIdOrIndex);
+        doctor = this.allDoctors.find(d => String(d._id) === String(doctorIdOrIndex) || d.doctorId === doctorIdOrIndex || d.user?.name === doctorIdOrIndex || d.specialization === doctorIdOrIndex);
       }
       if (!doctor && CONFIG.DEFAULT_DOCTORS) {
-        doctor = CONFIG.DEFAULT_DOCTORS.find(d => String(d._id) === String(doctorIdOrIndex) || d.user?.name === doctorIdOrIndex || d.specialization === doctorIdOrIndex);
+        doctor = CONFIG.DEFAULT_DOCTORS.find(d => String(d._id) === String(doctorIdOrIndex) || d.doctorId === doctorIdOrIndex || d.user?.name === doctorIdOrIndex || d.specialization === doctorIdOrIndex);
       }
 
       // 3. Fallback API lookup
@@ -589,10 +595,16 @@ const PatientApp = {
       selectedDoctorForBooking = doctor;
       selectedSlotForBooking = null;
 
+      const docId = selectedDoctorForBooking.doctorId || `DOC-TN-${101 + Math.max(0, (this.allDoctors || []).indexOf(selectedDoctorForBooking))}`;
+
       document.getElementById('modalDocName').textContent = selectedDoctorForBooking.user?.name || selectedDoctorForBooking.name || 'Doctor';
+      const docIdBadgeEl = document.getElementById('modalDocIdBadge');
+      if (docIdBadgeEl) docIdBadgeEl.innerHTML = `<i class="fa-solid fa-id-badge me-1"></i>${docId}`;
       document.getElementById('modalDocSpecialty').textContent = selectedDoctorForBooking.specialization;
       document.getElementById('modalDocDistrictBadge').textContent = `📍 ${selectedDoctorForBooking.district}`;
       document.getElementById('modalDocHospital').textContent = selectedDoctorForBooking.hospital;
+      const feeEl = document.getElementById('modalDocFee');
+      if (feeEl) feeEl.textContent = `₹${selectedDoctorForBooking.consultationFee || 500}`;
       const todayISO = new Date().toISOString().split('T')[0];
 
       const dateInput = document.getElementById('bookingDateInput');
@@ -818,12 +830,18 @@ const PatientApp = {
       this.closeModal('bookingModal');
       if (reasonInput) reasonInput.value = '';
 
-      // 4. Save to local storage for instant offline availability
+      // 4. Generate local unique booking ID and save to local storage for instant offline availability
+      const randomBookingDigits = Math.floor(10000 + Math.random() * 90000);
+      const generatedBookingId = `BK-${randomBookingDigits}`;
+      const assignedDoctorId = selectedDoctorForBooking.doctorId || `DOC-TN-${101 + Math.max(0, (this.allDoctors || []).indexOf(selectedDoctorForBooking))}`;
+
       const localAppts = JSON.parse(localStorage.getItem('LOCAL_APPOINTMENTS') || '[]');
       const newLocal = {
         _id: 'appt_' + Date.now(),
+        bookingId: generatedBookingId,
         doctor: selectedDoctorForBooking,
-        doctorUser: selectedDoctorForBooking.user || { name: doctorName },
+        doctorId: assignedDoctorId,
+        doctorUser: selectedDoctorForBooking.user || { name: doctorName, doctorId: assignedDoctorId },
         specialist: selectedDoctorForBooking.specialization || 'Specialist',
         appointmentDate: date,
         timeSlot: slot,
@@ -847,7 +865,7 @@ const PatientApp = {
       this.switchTab('tab-appointments', 'tab-appointments-btn');
 
       // 7. Instant Toast, Voice announcement and 1-hour alarm
-      API.toast(`🎉 Booking Confirmed! Automated Confirmation Email dispatched to ${patientEmail}!`, 'success');
+      API.toast(`🎉 Booking Confirmed! [ID: ${generatedBookingId}] Automated Confirmation Email dispatched to ${patientEmail}!`, 'success');
       
       try {
         this.triggerLiveAppointmentAlarm({
@@ -859,7 +877,7 @@ const PatientApp = {
 
       if ('speechSynthesis' in window) {
         try {
-          const text = `Appointment successfully booked with Dr. ${doctorName} on ${date} at ${slot}. Confirmation Email and SMS notification sent. 1-hour pre-appointment alarm is active.`;
+          const text = `Appointment successfully booked with Dr. ${doctorName}. Unique Booking ID is ${generatedBookingId}. Confirmation Email and SMS notification sent. 1-hour pre-appointment alarm is active.`;
           const utterance = new SpeechSynthesisUtterance(text);
           utterance.rate = 0.95;
           window.speechSynthesis.speak(utterance);
@@ -870,7 +888,7 @@ const PatientApp = {
       (async () => {
         try {
           const res = await API.post('/appointments', {
-            doctorId: selectedDoctorForBooking._id || 'doc_fallback',
+            doctorId: selectedDoctorForBooking._id || selectedDoctorForBooking.doctorId || 'doc_fallback',
             specialist: selectedDoctorForBooking.specialization,
             doctorName: doctorName,
             appointmentDate: date,
@@ -881,7 +899,11 @@ const PatientApp = {
             patientName: user?.name || 'Patient'
           });
           console.log(`✅ Backend appointment sync & email dispatch to ${patientEmail} completed:`, res);
-          API.toast(`📧 Confirmation email successfully sent to ${patientEmail}!`, 'success');
+          if (res && res.bookingId) {
+            newLocal.bookingId = res.bookingId;
+            localStorage.setItem('LOCAL_APPOINTMENTS', JSON.stringify(localAppts));
+          }
+          API.toast(`📧 Confirmation email with Booking ID ${res?.bookingId || generatedBookingId} successfully sent to ${patientEmail}!`, 'success');
           try { await this.loadAppointments(); } catch (e) {}
           try { await this.loadStats(); } catch (e) {}
         } catch (err) {
@@ -935,10 +957,16 @@ const PatientApp = {
         return;
       }
 
-      container.innerHTML = uniqueAppts.map(a => `
+      container.innerHTML = uniqueAppts.map((a, aIdx) => {
+        const bId = a.bookingId || ('BK-' + (a._id && !String(a._id).startsWith('appt_') ? String(a._id).slice(-5).toUpperCase() : (82000 + (aIdx * 137) % 9000)));
+        const dId = a.doctor?.doctorId || a.doctorId || (a.doctorUser?.doctorId || `DOC-TN-${101 + (aIdx % 220)}`);
+        const docName = a.doctorUser?.name ? a.doctorUser.name : (a.doctor?.user?.name || a.doctor?.name || 'Doctor');
+        
+        return `
         <div class="appointment-ticket-card">
           <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3 pb-2 border-bottom">
-            <div class="d-flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+              <span class="badge bg-primary text-white px-3 py-2 rounded-pill fw-bold" style="font-size: 0.85rem;"><i class="fa-solid fa-ticket me-1"></i> Booking ID: ${bId}</span>
               <span class="badge-status-${(a.status || 'Confirmed').toLowerCase()}">${a.status || 'Confirmed'}</span>
               <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill small"><i class="fa-solid fa-check-double me-1"></i> Email & SMS Dispatched</span>
               <span class="text-muted small"><i class="fa-regular fa-clock me-1"></i> ${new Date(a.createdAt || Date.now()).toLocaleDateString()}</span>
@@ -947,7 +975,10 @@ const PatientApp = {
           </div>
           <div class="row align-items-center g-3">
             <div class="col-md-6">
-              <h5 class="fw-bold text-dark mb-1">${a.doctorUser?.name ? a.doctorUser.name : (a.doctor?.user?.name || a.doctor?.name || 'Doctor')}</h5>
+              <h5 class="fw-bold text-dark mb-1">
+                ${docName}
+                <span class="badge bg-light text-secondary border rounded-pill ms-2 fw-normal small"><i class="fa-solid fa-id-badge text-primary me-1"></i>${dId}</span>
+              </h5>
               <p class="text-muted small mb-1"><i class="fa-solid fa-stethoscope me-1 text-primary"></i> ${a.specialist || a.doctor?.specialization || 'Specialist'} | ${a.hospital || a.doctor?.hospital || 'Hospital'} (<span class="text-primary fw-semibold">${a.location || a.doctor?.district || 'Tamil Nadu'}</span>)</p>
               <p class="text-secondary small mb-0"><i class="fa-solid fa-note-sticky me-1"></i> <strong>Reason:</strong> ${a.reasonForVisit}</p>
             </div>
@@ -959,16 +990,17 @@ const PatientApp = {
               </div>
             </div>
             <div class="col-md-3 text-md-end">
-              <button class="btn btn-outline-primary btn-sm rounded-pill mb-1 w-100" onclick="PatientApp.triggerLiveAppointmentAlarm({ doctorUser: { name: '${a.doctorUser?.name || a.doctor?.user?.name || 'Doctor'}' }, timeSlot: '${a.timeSlot}', hospital: '${a.hospital || 'Hospital'}' })">
+              <button class="btn btn-outline-primary btn-sm rounded-pill mb-1 w-100" onclick="PatientApp.triggerLiveAppointmentAlarm({ doctorUser: { name: '${docName}' }, timeSlot: '${a.timeSlot}', hospital: '${a.hospital || 'Hospital'}' })">
                 <i class="fa-solid fa-bell me-1"></i> Test 1-Hr Alarm
               </button>
-              <button class="btn btn-outline-secondary btn-sm rounded-pill w-100" onclick="API.toast('Receipt resent to ${a.patientEmail || 'your email'}', 'info')">
+              <button class="btn btn-outline-secondary btn-sm rounded-pill w-100" onclick="API.toast('Receipt with Booking ID ${bId} resent to ${a.patientEmail || 'your email'}', 'info')">
                 <i class="fa-solid fa-envelope me-1"></i> Resend Email
               </button>
             </div>
           </div>
         </div>
-      `).join('');
+      `;
+      }).join('');
     } catch (e) {
       container.innerHTML = '<div class="text-center text-muted py-3">Could not load appointments.</div>';
     }

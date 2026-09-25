@@ -78,8 +78,16 @@ const getAllDoctors = async (req, res, next) => {
  */
 const getDoctorById = async (req, res, next) => {
   try {
-    const doctor = await Doctor.findById(req.params.id)
-      .populate('user', 'name email mobile avatar isActive');
+    let doctor = null;
+    if (mongoose.Types.ObjectId.isValid(req.params.id)) {
+      doctor = await Doctor.findById(req.params.id)
+        .populate('user', 'name email mobile avatar isActive');
+    }
+    
+    if (!doctor) {
+      doctor = await Doctor.findOne({ doctorId: req.params.id.toUpperCase() })
+        .populate('user', 'name email mobile avatar isActive');
+    }
 
     if (!doctor) {
       return res.status(404).json({

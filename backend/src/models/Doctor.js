@@ -2,6 +2,12 @@ const mongoose = require('mongoose');
 const { SPECIALIZATIONS, TAMIL_NADU_DISTRICTS, DAYS_OF_WEEK, DEFAULT_TIME_SLOTS } = require('../utils/constants');
 
 const doctorSchema = new mongoose.Schema({
+  doctorId: {
+    type: String,
+    unique: true,
+    sparse: true,
+    index: true
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -81,5 +87,15 @@ const doctorSchema = new mongoose.Schema({
 
 // Text indexing for fast search by name, hospital, specialization and district
 doctorSchema.index({ specialization: 1, district: 1 });
+doctorSchema.index({ doctorId: 1 });
+
+doctorSchema.pre('save', function (next) {
+  if (!this.doctorId) {
+    const randomNum = Math.floor(100 + Math.random() * 900);
+    this.doctorId = `DOC-TN-${randomNum}`;
+  }
+  next();
+});
 
 module.exports = mongoose.model('Doctor', doctorSchema);
+

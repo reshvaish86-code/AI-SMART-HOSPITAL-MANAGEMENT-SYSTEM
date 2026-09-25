@@ -6662,7 +6662,10 @@ const seedDatabase = async (forceClean = false) => {
     let createdCount = 0;
     let updatedCount = 0;
 
-    for (const docData of SEED_DOCTORS) {
+    for (let idx = 0; idx < SEED_DOCTORS.length; idx++) {
+      const docData = SEED_DOCTORS[idx];
+      const assignedDoctorId = docData.doctorId || `DOC-TN-${101 + idx}`;
+
       let docUser = await User.findOne({ email: docData.email });
       if (!docUser) {
         docUser = await User.create({
@@ -6685,6 +6688,7 @@ const seedDatabase = async (forceClean = false) => {
       let doctorDoc = await Doctor.findOne({ user: docUser._id });
       if (!doctorDoc) {
         await Doctor.create({
+          doctorId: assignedDoctorId,
           user: docUser._id,
           specialization: docData.specialization,
           qualification: docData.qualification,
@@ -6700,6 +6704,7 @@ const seedDatabase = async (forceClean = false) => {
           isVerified: true
         });
       } else {
+        doctorDoc.doctorId = assignedDoctorId;
         doctorDoc.specialization = docData.specialization;
         doctorDoc.qualification = docData.qualification;
         doctorDoc.hospital = docData.hospital;
