@@ -87,6 +87,7 @@ const bookAppointment = async (req, res, next) => {
     const targetEmail = (patientEmail && patientEmail.includes('@')) ? patientEmail.trim().toLowerCase() : (currentUser?.email || 'reshvaish86@gmail.com');
     const targetMobile = patientMobile || currentUser?.mobile || '+91 9840123456';
     const targetName = patientName || currentUser?.name || 'Patient';
+    const targetGender = req.body.patientGender || req.body.gender || currentUser?.gender || 'Female';
 
     if (!currentUser) {
       currentUser = await User.findOne({ email: targetEmail });
@@ -106,11 +107,11 @@ const bookAppointment = async (req, res, next) => {
     if (!patient) {
       patient = await Patient.create({
         user: currentUser._id,
-        age: 30,
-        gender: 'Other',
+        age: 28,
+        gender: targetGender,
         address: 'Tamil Nadu, India',
         district: doctor.district || 'Chennai',
-        bloodGroup: 'O+',
+        bloodGroup: 'B+',
         allergies: [],
         chronicConditions: [],
         emergencyContact: {
@@ -120,6 +121,9 @@ const bookAppointment = async (req, res, next) => {
         }
       });
       patient = await Patient.findById(patient._id).populate('user', 'name email mobile');
+    } else if (req.body.patientGender || req.body.gender) {
+      patient.gender = targetGender;
+      await patient.save();
     }
 
     // 4. Strict Slot Collision / Double-Booking Prevention
@@ -156,6 +160,7 @@ const bookAppointment = async (req, res, next) => {
       patientEmail: targetEmail,
       patientMobile: targetMobile,
       patientName: targetName,
+      patientGender: targetGender,
       consultationFee: doctor.consultationFee || 500,
       status: APPOINTMENT_STATUS.PENDING,
       reminderSent: false
@@ -165,7 +170,8 @@ const bookAppointment = async (req, res, next) => {
       _id: currentUser._id,
       name: targetName,
       email: targetEmail,
-      mobile: targetMobile
+      mobile: targetMobile,
+      gender: targetGender
     };
 
     // 6. Dispatch Multi-Channel Notifications (Email, SMS & In-App)
@@ -173,6 +179,7 @@ const bookAppointment = async (req, res, next) => {
       await sendAppointmentConfirmation({
         appointment,
         patientUser: effectivePatientUser,
+        patientProfile: patient,
         doctorUser: doctor.user,
         doctorProfile: doctor
       });

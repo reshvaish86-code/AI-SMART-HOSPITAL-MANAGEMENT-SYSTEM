@@ -613,6 +613,16 @@ const PatientApp = {
       }
 
       const user = Auth.getUser();
+      const nameInput = document.getElementById('bookingPatientName');
+      if (nameInput) {
+        nameInput.value = user?.name || 'Reshma';
+      }
+
+      const genderInput = document.getElementById('bookingPatientGender');
+      if (genderInput) {
+        genderInput.value = currentPatientProfile?.gender || user?.gender || 'Female';
+      }
+
       const emailInput = document.getElementById('bookingEmailInput');
       if (emailInput) {
         emailInput.value = user?.email || localStorage.getItem('hospital_last_email') || 'reshvaish86@gmail.com';
@@ -818,6 +828,11 @@ const PatientApp = {
       selectedSlotForBooking = slot;
 
       const doctorName = selectedDoctorForBooking?.user?.name || selectedDoctorForBooking?.name || 'Doctor';
+      const nameInput = document.getElementById('bookingPatientName');
+      const patientName = (nameInput?.value || user?.name || 'Patient').trim();
+      const genderInput = document.getElementById('bookingPatientGender');
+      const patientGender = (genderInput?.value || currentPatientProfile?.gender || user?.gender || 'Female').trim();
+
       const emailInput = document.getElementById('bookingEmailInput');
       const patientEmail = (emailInput?.value || user?.email || localStorage.getItem('hospital_last_email') || 'reshvaish86@gmail.com').trim();
       const mobileInput = document.getElementById('bookingMobileInput');
@@ -848,6 +863,8 @@ const PatientApp = {
         location: selectedDoctorForBooking.district || 'Tamil Nadu',
         hospital: selectedDoctorForBooking.hospital || 'Speciality Hospital',
         reasonForVisit: reason,
+        patientName: patientName,
+        patientGender: patientGender,
         patientEmail: patientEmail,
         patientMobile: patientMobile,
         consultationFee: selectedDoctorForBooking.consultationFee || 600,
@@ -894,9 +911,11 @@ const PatientApp = {
             appointmentDate: date,
             timeSlot: slot,
             reasonForVisit: reason,
+            patientName: patientName,
+            patientGender: patientGender,
+            gender: patientGender,
             patientEmail: patientEmail,
-            patientMobile: patientMobile,
-            patientName: user?.name || 'Patient'
+            patientMobile: patientMobile
           });
           console.log(`✅ Backend appointment sync & email dispatch to ${patientEmail} completed:`, res);
           if (res && res.bookingId) {

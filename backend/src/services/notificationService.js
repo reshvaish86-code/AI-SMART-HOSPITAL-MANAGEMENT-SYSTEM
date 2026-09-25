@@ -347,14 +347,21 @@ async function broadcastNotification({ targetRole = 'all', title, message }) {
 /**
  * 1. Instant Appointment Confirmation Notification (Email + SMS + In-App)
  */
-async function sendAppointmentConfirmation({ appointment, patientUser, doctorUser, doctorProfile }) {
+async function sendAppointmentConfirmation({ appointment, patientUser, patientProfile, doctorUser, doctorProfile }) {
   const doctorName = doctorUser ? (doctorUser.name || 'Doctor') : 'Your Specialist';
+  const specialistName = appointment.specialist || (doctorProfile && doctorProfile.specialization) || 'Specialist';
   const hospitalName = (doctorProfile && doctorProfile.hospital) ? doctorProfile.hospital : (appointment.hospital || 'AI Smart Hospital Medical Center');
+  const location = appointment.location || (doctorProfile && doctorProfile.district) || 'Tamil Nadu';
   const patientEmail = (patientUser && patientUser.email) ? patientUser.email : null;
   const patientMobile = (patientUser && patientUser.mobile) ? patientUser.mobile : null;
-  const patientName = (patientUser && patientUser.name) ? patientUser.name : 'Patient';
+  const patientName = (patientUser && patientUser.name) ? patientUser.name : (appointment.patientName || 'Patient');
+  const patientGender = appointment.patientGender || patientProfile?.gender || patientUser?.gender || 'Female';
   const bookingId = appointment.bookingId || ('BK-' + (appointment._id ? appointment._id.toString().slice(-5).toUpperCase() : Math.floor(10000 + Math.random() * 90000)));
   const doctorId = doctorProfile?.doctorId || doctorUser?.doctorId || 'DOC-TN-101';
+  const appointmentDate = appointment.appointmentDate;
+  const timeSlot = appointment.timeSlot;
+  const reason = appointment.reasonForVisit || 'General Medical Consultation';
+  const consultationMessage = `Your appointment has been successfully scheduled. Reason: ${reason}. Please arrive 15 minutes before your scheduled consultation slot.`;
 
   // In-app alert for Patient
   if (patientUser && patientUser._id) {
@@ -362,7 +369,7 @@ async function sendAppointmentConfirmation({ appointment, patientUser, doctorUse
       recipient: patientUser._id,
       type: 'appointment',
       title: 'Appointment Request Submitted 📅',
-      message: `Your appointment with ${doctorName} (Doctor ID: ${doctorId}) on ${appointment.appointmentDate} at ${appointment.timeSlot} is submitted. Booking ID: ${bookingId}.`,
+      message: `Your appointment with ${doctorName} (${specialistName}) [Doctor ID: ${doctorId}] on ${appointmentDate} at ${timeSlot} is submitted. Booking ID: ${bookingId}.`,
       link: '/pages/patient/dashboard.html'
     });
   }
@@ -373,57 +380,117 @@ async function sendAppointmentConfirmation({ appointment, patientUser, doctorUse
       recipient: doctorUser._id,
       type: 'appointment',
       title: 'New Patient Booking Request 🩺',
-      message: `Patient ${patientName} has booked slot on ${appointment.appointmentDate} at ${appointment.timeSlot}. Booking ID: ${bookingId}.`,
+      message: `Patient ${patientName} (${patientGender}) has booked slot on ${appointmentDate} at ${timeSlot}. Booking ID: ${bookingId}.`,
       link: '/pages/doctor/dashboard.html'
     });
   }
 
-  // Email to Patient
+  // Email to Patient (Formatted in the exact requested sequence)
   if (patientEmail) {
     const html = `
-      <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
-        <div style="background-color: #0284c7; padding: 20px; text-align: center; color: #ffffff;">
-          <h2 style="margin: 0;">AI Smart Hospital</h2>
-          <p style="margin: 5px 0 0 0; opacity: 0.9;">Appointment Booking Confirmation</p>
+      <div style="font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 620px; margin: auto; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; background-color: #ffffff; box-shadow: 0 4px 16px rgba(0,0,0,0.06);">
+        <!-- Header Banner -->
+        <div style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); padding: 24px; text-align: center; color: #ffffff;">
+          <h1 style="margin: 0; font-size: 22px; font-weight: 700; letter-spacing: 0.5px;">AI SMART HOSPITAL</h1>
+          <p style="margin: 6px 0 0 0; font-size: 14px; opacity: 0.95;">Official Consultation Confirmation Pass</p>
         </div>
-        <div style="padding: 24px; color: #334155; line-height: 1.6;">
-          <p>Dear <strong>${patientName}</strong>,</p>
-          <p>Your appointment has been successfully scheduled. Here are your consultation details:</p>
-          
-          <div style="background-color: #f0f9ff; border: 1px solid #bae6fd; border-radius: 6px; padding: 12px 16px; margin: 16px 0; display: flex; justify-content: space-between; align-items: center;">
-            <div>
-              <span style="font-size: 12px; color: #0369a1; text-transform: uppercase; font-weight: bold; letter-spacing: 0.5px;">Unique Booking ID</span>
-              <div style="font-size: 18px; font-weight: bold; color: #0284c7; font-family: monospace;">🎟️ ${bookingId}</div>
-            </div>
-            <div style="text-align: right;">
-              <span style="font-size: 12px; color: #475569; text-transform: uppercase; font-weight: bold; letter-spacing: 0.5px;">Doctor ID</span>
-              <div style="font-size: 15px; font-weight: bold; color: #334155; font-family: monospace;">🆔 ${doctorId}</div>
-            </div>
+
+        <div style="padding: 28px 24px; color: #334155; line-height: 1.6;">
+          <!-- 1. Greetings -->
+          <div style="margin-bottom: 20px;">
+            <p style="margin: 0 0 6px 0; font-size: 17px; color: #0f172a;">Dear <strong>${patientName}</strong>,</p>
+            <p style="margin: 0; font-size: 15px; color: #475569;">Warm greetings from <strong>AI Smart Hospital</strong>! Your consultation has been successfully scheduled. Below are your confirmed appointment details:</p>
           </div>
 
-          <div style="background-color: #f8fafc; border-left: 4px solid #0284c7; padding: 14px; margin: 18px 0;">
-            <p style="margin: 4px 0;"><strong>Unique Booking ID:</strong> <span style="font-family: monospace; font-weight: bold; color: #0284c7;">${bookingId}</span></p>
-            <p style="margin: 4px 0;"><strong>Doctor:</strong> ${doctorName} (Doctor ID: <span style="font-family: monospace; font-weight: bold;">${doctorId}</span>) - ${appointment.specialist || 'Specialist'}</p>
-            <p style="margin: 4px 0;"><strong>Hospital / Clinic:</strong> ${hospitalName}</p>
-            <p style="margin: 4px 0;"><strong>Date:</strong> ${appointment.appointmentDate}</p>
-            <p style="margin: 4px 0;"><strong>Time Slot:</strong> ${appointment.timeSlot}</p>
-            <p style="margin: 4px 0;"><strong>Consultation Fee:</strong> ₹${appointment.consultationFee || 600}</p>
-            <p style="margin: 4px 0;"><strong>Reason:</strong> ${appointment.reasonForVisit || 'General checkup'}</p>
-            <p style="margin: 4px 0;"><strong>Status:</strong> <span style="color:#0284c7;font-weight:bold;">${appointment.status || 'Confirmed'}</span></p>
+          <!-- Exact Requested Format Table -->
+          <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; margin: 20px 0;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+              <tbody>
+                <!-- 2. Name -->
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 12px 18px; font-weight: 600; color: #475569; width: 38%; background-color: #ffffff;">👤 Name</td>
+                  <td style="padding: 12px 18px; color: #0f172a; font-weight: 700; background-color: #ffffff;">${patientName}</td>
+                </tr>
+                <!-- 3. Gender -->
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 12px 18px; font-weight: 600; color: #475569; background-color: #f8fafc;">⚧️ Gender</td>
+                  <td style="padding: 12px 18px; color: #0f172a; font-weight: 600; background-color: #f8fafc;">${patientGender}</td>
+                </tr>
+                <!-- 4. Booking ID -->
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 12px 18px; font-weight: 600; color: #0369a1; background-color: #f0f9ff;">🎟️ Booking ID</td>
+                  <td style="padding: 12px 18px; color: #0284c7; font-weight: 800; font-family: monospace; font-size: 16px; background-color: #f0f9ff;">${bookingId}</td>
+                </tr>
+                <!-- 5. Doctor ID -->
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 12px 18px; font-weight: 600; color: #0369a1; background-color: #f0f9ff;">🆔 Doctor ID</td>
+                  <td style="padding: 12px 18px; color: #0369a1; font-weight: 800; font-family: monospace; font-size: 15px; background-color: #f0f9ff;">${doctorId}</td>
+                </tr>
+                <!-- 6. Specialist name -->
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 12px 18px; font-weight: 600; color: #475569; background-color: #ffffff;">🩺 Specialist Name</td>
+                  <td style="padding: 12px 18px; color: #0f172a; font-weight: 700; background-color: #ffffff;">${doctorName} (${specialistName})</td>
+                </tr>
+                <!-- 7. Time -->
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 12px 18px; font-weight: 600; color: #475569; background-color: #f8fafc;">⏰ Time</td>
+                  <td style="padding: 12px 18px; color: #0f172a; font-weight: 700; background-color: #f8fafc;">${timeSlot}</td>
+                </tr>
+                <!-- 8. Location -->
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 12px 18px; font-weight: 600; color: #475569; background-color: #ffffff;">📍 Location</td>
+                  <td style="padding: 12px 18px; color: #0f172a; font-weight: 600; background-color: #ffffff;">${location}</td>
+                </tr>
+                <!-- 9. Hospital name -->
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 12px 18px; font-weight: 600; color: #475569; background-color: #f8fafc;">🏥 Hospital Name</td>
+                  <td style="padding: 12px 18px; color: #0f172a; font-weight: 600; background-color: #f8fafc;">${hospitalName}</td>
+                </tr>
+                <!-- 10. Appointment date -->
+                <tr style="border-bottom: 1px solid #e2e8f0;">
+                  <td style="padding: 12px 18px; font-weight: 600; color: #475569; background-color: #ffffff;">📅 Appointment Date</td>
+                  <td style="padding: 12px 18px; color: #0f172a; font-weight: 700; background-color: #ffffff;">${appointmentDate}</td>
+                </tr>
+                <!-- 11. Message -->
+                <tr>
+                  <td style="padding: 12px 18px; font-weight: 600; color: #475569; background-color: #f8fafc; vertical-align: top;">💬 Message</td>
+                  <td style="padding: 12px 18px; color: #334155; line-height: 1.5; background-color: #f8fafc;">${consultationMessage}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <p>Please arrive 15 minutes before your scheduled consultation slot.</p>
-          <p style="font-size: 13px; color: #64748b; margin-top: 24px;">For assistance, visit your dashboard at <a href="${process.env.FRONTEND_URL || 'https://ai-smart-hospital-management-system.vercel.app'}" style="color: #0284c7;">AI Smart Hospital Portal</a>.</p>
+
+          <!-- Footer Advice -->
+          <p style="margin: 20px 0 0 0; font-size: 13px; color: #64748b; line-height: 1.5;">
+            💡 <em>Please arrive 15 minutes before your scheduled consultation slot. You can view your electronic prescriptions and records anytime on the <a href="${process.env.FRONTEND_URL || 'https://ai-smart-hospital-management-system.vercel.app'}/pages/patient/dashboard.html" style="color: #0284c7; text-decoration: underline;">AI Smart Hospital Portal</a>.</em>
+          </p>
         </div>
       </div>
     `;
 
+    const text = `
+Warm greetings from AI Smart Hospital!
+
+Name: ${patientName}
+Gender: ${patientGender}
+Booking ID: ${bookingId}
+Doctor ID: ${doctorId}
+Specialist name: ${doctorName} (${specialistName})
+Time: ${timeSlot}
+Location: ${location}
+Hospital name: ${hospitalName}
+Appointment date: ${appointmentDate}
+Message: ${consultationMessage}
+    `.trim();
+
     try {
       const emailRes = await sendEmail({
         to: patientEmail,
-        subject: `🎉 Booking Confirmed [ID: ${bookingId}] with ${doctorName} - AI Smart Hospital`,
-        html
+        subject: `🎉 Booking Confirmed [ID: ${bookingId}] - ${doctorName} (${specialistName})`,
+        html,
+        text
       });
-      console.log(`📧 [Patient Confirmation Email Sent] To: ${patientEmail} | Booking ID: ${bookingId} | Success: ${emailRes?.success} | MessageId: ${emailRes?.messageId || emailRes?.error}`);
+      console.log(`📧 [Patient Confirmation Email Sent] To: ${patientEmail} | Booking ID: ${bookingId} | Doctor ID: ${doctorId} | Success: ${emailRes?.success} | MessageId: ${emailRes?.messageId || emailRes?.error}`);
     } catch (err) {
       console.error('❌ [Error sending patient confirmation email]:', err.message);
     }
@@ -435,7 +502,8 @@ async function sendAppointmentConfirmation({ appointment, patientUser, doctorUse
         await sendEmail({
           to: adminEmail,
           subject: `[Hospital Booking Alert] ${patientName} booked with ${doctorName} (Booking ID: ${bookingId})`,
-          html: `<div style="background:#eff6ff;padding:10px 14px;border-left:4px solid #0284c7;margin-bottom:14px;font-size:13px;"><strong>Hospital Alert:</strong> New appointment booked by patient <code>${patientEmail}</code> (Booking ID: <code>${bookingId}</code>, Doctor ID: <code>${doctorId}</code>)</div>` + html
+          html: `<div style="background:#eff6ff;padding:10px 14px;border-left:4px solid #0284c7;margin-bottom:14px;font-size:13px;"><strong>Hospital Alert:</strong> New appointment booked by patient <code>${patientEmail}</code> (Booking ID: <code>${bookingId}</code>, Doctor ID: <code>${doctorId}</code>)</div>` + html,
+          text: `[Admin Copy]\n` + text
         });
         console.log(`📧 [Admin Booking Notification Sent] To: ${adminEmail}`);
       } catch (err) {
@@ -446,7 +514,7 @@ async function sendAppointmentConfirmation({ appointment, patientUser, doctorUse
 
   // SMS to Patient
   if (patientMobile) {
-    const body = `AI Smart Hospital: Hi ${patientName}, your appointment with ${doctorName} (Doctor ID: ${doctorId}) is confirmed for ${appointment.appointmentDate} at ${appointment.timeSlot} at ${hospitalName}. Unique Booking ID: ${bookingId}.`;
+    const body = `AI Smart Hospital: Hi ${patientName}, your appointment with ${doctorName} (Doctor ID: ${doctorId}) is confirmed for ${appointmentDate} at ${timeSlot} at ${hospitalName}. Unique Booking ID: ${bookingId}.`;
     sendSMS({ to: patientMobile, body }).catch(err => console.error('Error in sendSMS:', err));
   }
 }

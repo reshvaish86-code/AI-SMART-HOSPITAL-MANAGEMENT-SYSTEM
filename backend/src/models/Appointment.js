@@ -60,6 +60,10 @@ const appointmentSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  patientGender: {
+    type: String,
+    default: 'Female'
+  },
   reasonForVisit: {
     type: String,
     required: [true, 'Please provide reason for visit or symptoms'],
