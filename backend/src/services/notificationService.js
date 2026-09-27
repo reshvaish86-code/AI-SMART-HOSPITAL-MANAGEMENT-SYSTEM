@@ -169,10 +169,17 @@ function getEmailTransporter() {
   const rawPass = process.env.EMAIL_PASS ? process.env.EMAIL_PASS.trim() : '';
   const pass = rawPass.replace(/\s+/g, '');
 
-  if (user && pass) {
+  if (user && pass && pass.length >= 16) {
     try {
       return nodemailer.createTransport({
         service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        pool: true,
+        maxConnections: 5,
+        maxMessages: 100,
+        rateLimit: 10,
         auth: { user, pass }
       });
     } catch (err) {

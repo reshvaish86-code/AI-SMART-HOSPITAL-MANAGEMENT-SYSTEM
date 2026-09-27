@@ -174,18 +174,14 @@ const bookAppointment = async (req, res, next) => {
       gender: targetGender
     };
 
-    // 6. Dispatch Multi-Channel Notifications (Email, SMS & In-App)
-    try {
-      await sendAppointmentConfirmation({
-        appointment,
-        patientUser: effectivePatientUser,
-        patientProfile: patient,
-        doctorUser: doctor.user,
-        doctorProfile: doctor
-      });
-    } catch (notifErr) {
-      console.warn('⚠️ [Notification Dispatch Notice]:', notifErr.message);
-    }
+    // 6. Instant Asynchronous Multi-Channel Notification Dispatch (Email, SMS & In-App)
+    sendAppointmentConfirmation({
+      appointment,
+      patientUser: effectivePatientUser,
+      patientProfile: patient,
+      doctorUser: doctor.user,
+      doctorProfile: doctor
+    }).catch(notifErr => console.warn('⚠️ [Notification Dispatch Notice]:', notifErr.message));
 
     // Check if slot starts today within 90 minutes -> Send 1-Hour pre-appointment reminder email too!
     try {
@@ -204,7 +200,7 @@ const bookAppointment = async (req, res, next) => {
             doctorProfile: doctor
           }).catch(err => console.error('Error auto-triggering pre-appointment reminder:', err));
           appointment.reminderSent = true;
-          await appointment.save();
+          appointment.save().catch(() => {});
         }
       }
     } catch (reminderErr) {

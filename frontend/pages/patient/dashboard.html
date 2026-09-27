@@ -608,6 +608,85 @@
     </div>
   </div>
 
+  <!-- Instant Booking Success Confirmation Pass Modal -->
+  <div class="modal fade" id="bookingSuccessModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden">
+        <div class="modal-header bg-success text-white border-0 py-3 px-4">
+          <div class="d-flex align-items-center gap-2">
+            <i class="fa-solid fa-circle-check fs-4"></i>
+            <h5 class="modal-title fw-bold mb-0">Consultation Booked Successfully!</h5>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body p-4 bg-light">
+          <!-- Instant Email Notification Alert Banner -->
+          <div class="alert alert-success d-flex align-items-center gap-3 p-3 rounded-4 shadow-sm mb-3">
+            <div class="bg-success text-white p-2 rounded-circle fs-5">
+              <i class="fa-solid fa-paper-plane"></i>
+            </div>
+            <div>
+              <h6 class="fw-bold mb-0 text-success">Instant Confirmation Email & SMS Dispatched!</h6>
+              <p class="mb-0 small text-dark">Your official 11-step consultation pass has been sent to <strong id="successEmailDisplay" class="text-primary">your email</strong>.</p>
+            </div>
+          </div>
+
+          <!-- Official Consultation Ticket Card -->
+          <div class="card border-0 rounded-4 shadow-sm p-4 bg-white mb-3">
+            <div class="d-flex flex-wrap justify-content-between align-items-center border-bottom pb-3 mb-3">
+              <div>
+                <span class="text-muted small d-block">OFFICIAL BOOKING ID</span>
+                <span id="successBookingId" class="fs-4 fw-bold text-primary font-monospace">BK-00000</span>
+              </div>
+              <div class="text-end">
+                <span class="text-muted small d-block">CONSULTATION STATUS</span>
+                <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill px-3 py-1 fw-bold"><i class="fa-solid fa-check me-1"></i> Confirmed</span>
+              </div>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="text-muted small">👤 Patient Full Name & Gender</div>
+                <div id="successPatientInfo" class="fw-bold text-dark fs-6">-</div>
+              </div>
+              <div class="col-md-6">
+                <div class="text-muted small">🩺 Doctor & Doctor ID</div>
+                <div id="successDoctorInfo" class="fw-bold text-dark fs-6">-</div>
+              </div>
+              <div class="col-md-6">
+                <div class="text-muted small">🏥 Hospital & Specialty</div>
+                <div id="successHospitalInfo" class="fw-bold text-dark">-</div>
+              </div>
+              <div class="col-md-6">
+                <div class="text-muted small">⏰ Appointment Date & Slot</div>
+                <div id="successDateTime" class="fw-bold text-primary fs-6">-</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1-Hour Alarm & Reminders Notice -->
+          <div class="bg-primary-subtle p-3 rounded-3 d-flex align-items-center gap-2 small text-primary mb-2">
+            <i class="fa-solid fa-bell fs-5"></i>
+            <div><strong>1-Hour Pre-Consultation Voice Alarm:</strong> Active on your device. You will receive voice and sound alerts before your slot starts.</div>
+          </div>
+        </div>
+        <div class="modal-footer bg-white border-0 py-3 px-4 d-flex justify-content-between">
+          <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">
+            Close
+          </button>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-outline-primary rounded-pill px-4" onclick="window.print()">
+              <i class="fa-solid fa-print me-1"></i> Print Pass
+            </button>
+            <button type="button" class="btn btn-primary-custom rounded-pill px-4" onclick="PatientApp.viewConfirmedAppointments()">
+              <i class="fa-solid fa-calendar-check me-1"></i> View in My Appointments
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification Container -->
   <div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100;"></div>
 

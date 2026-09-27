@@ -841,14 +841,40 @@ const PatientApp = {
       localStorage.setItem('hospital_last_email', patientEmail);
       localStorage.setItem('hospital_last_mobile', patientMobile);
 
-      // 3. Close modal immediately so user is never blocked
+      // 3. Close input modal and pop open the Official Instant Booking Confirmation Pass Modal
       this.closeModal('bookingModal');
       if (reasonInput) reasonInput.value = '';
 
-      // 4. Generate local unique booking ID and save to local storage for instant offline availability
+      // 4. Generate unique booking ID and doctor ID
       const randomBookingDigits = Math.floor(10000 + Math.random() * 90000);
       const generatedBookingId = `BK-${randomBookingDigits}`;
       const assignedDoctorId = selectedDoctorForBooking.doctorId || `DOC-TN-${101 + Math.max(0, (this.allDoctors || []).indexOf(selectedDoctorForBooking))}`;
+
+      // Populate Success Modal Fields Instantly
+      const successBookingIdEl = document.getElementById('successBookingId');
+      if (successBookingIdEl) successBookingIdEl.textContent = generatedBookingId;
+      const successPatientInfoEl = document.getElementById('successPatientInfo');
+      if (successPatientInfoEl) successPatientInfoEl.textContent = `${patientName} (${patientGender})`;
+      const successDoctorInfoEl = document.getElementById('successDoctorInfo');
+      if (successDoctorInfoEl) successDoctorInfoEl.innerHTML = `${doctorName} <span class="badge bg-dark text-white rounded-pill ms-1">${assignedDoctorId}</span>`;
+      const successHospitalInfoEl = document.getElementById('successHospitalInfo');
+      if (successHospitalInfoEl) successHospitalInfoEl.textContent = `${selectedDoctorForBooking.specialization || 'Specialist'} • ${selectedDoctorForBooking.hospital || 'Hospital'} (${selectedDoctorForBooking.district || 'Tamil Nadu'})`;
+      const successDateTimeEl = document.getElementById('successDateTime');
+      if (successDateTimeEl) successDateTimeEl.textContent = `📅 ${date} | ⏰ ${slot}`;
+      const successEmailDisplayEl = document.getElementById('successEmailDisplay');
+      if (successEmailDisplayEl) successEmailDisplayEl.textContent = patientEmail;
+
+      // Show Instant Confirmation Modal
+      const successModalEl = document.getElementById('bookingSuccessModal');
+      if (successModalEl) {
+        try {
+          const successModal = bootstrap.Modal.getOrCreateInstance(successModalEl);
+          successModal.show();
+        } catch (mErr) {
+          successModalEl.classList.add('show');
+          successModalEl.style.display = 'block';
+        }
+      }
 
       const localAppts = JSON.parse(localStorage.getItem('LOCAL_APPOINTMENTS') || '[]');
       const newLocal = {
@@ -878,12 +904,7 @@ const PatientApp = {
       try { this.loadAppointments(); } catch (e) { console.error('loadAppointments error:', e); }
       try { this.loadStats(); } catch (e) { console.error('loadStats error:', e); }
 
-      // 6. Switch to Booked Appointments tab
-      this.switchTab('tab-appointments', 'tab-appointments-btn');
-
-      // 7. Instant Toast, Voice announcement and 1-hour alarm
-      API.toast(`🎉 Booking Confirmed! [ID: ${generatedBookingId}] Automated Confirmation Email dispatched to ${patientEmail}!`, 'success');
-      
+      // 6. Instant Voice announcement and 1-hour alarm
       try {
         this.triggerLiveAppointmentAlarm({
           doctorUser: selectedDoctorForBooking.user || { name: doctorName },
@@ -894,14 +915,14 @@ const PatientApp = {
 
       if ('speechSynthesis' in window) {
         try {
-          const text = `Appointment successfully booked with Dr. ${doctorName}. Unique Booking ID is ${generatedBookingId}. Confirmation Email and SMS notification sent. 1-hour pre-appointment alarm is active.`;
+          const text = `Appointment successfully booked with Dr. ${doctorName}. Booking ID is ${generatedBookingId}. Confirmation Email dispatched to ${patientEmail}.`;
           const utterance = new SpeechSynthesisUtterance(text);
           utterance.rate = 0.95;
           window.speechSynthesis.speak(utterance);
         } catch (err) {}
       }
 
-      // 8. Background sync with backend (MongoDB + Brevo/SMTP Email + Twilio SMS)
+      // 7. Background sync with backend (MongoDB + Direct Google SMTP Email + SMS)
       (async () => {
         try {
           const res = await API.post('/appointments', {
@@ -920,9 +941,9 @@ const PatientApp = {
           console.log(`✅ Backend appointment sync & email dispatch to ${patientEmail} completed:`, res);
           if (res && res.bookingId) {
             newLocal.bookingId = res.bookingId;
+            if (successBookingIdEl) successBookingIdEl.textContent = res.bookingId;
             localStorage.setItem('LOCAL_APPOINTMENTS', JSON.stringify(localAppts));
           }
-          API.toast(`📧 Confirmation email with Booking ID ${res?.bookingId || generatedBookingId} successfully sent to ${patientEmail}!`, 'success');
           try { await this.loadAppointments(); } catch (e) {}
           try { await this.loadStats(); } catch (e) {}
         } catch (err) {
@@ -935,6 +956,11 @@ const PatientApp = {
       this.switchTab('tab-appointments', 'tab-appointments-btn');
       API.toast('Appointment confirmed and saved to your dashboard!', 'success');
     }
+  },
+
+  viewConfirmedAppointments() {
+    this.closeModal('bookingSuccessModal');
+    this.switchTab('tab-appointments', 'tab-appointments-btn');
   },
 
   async loadAppointments() {
