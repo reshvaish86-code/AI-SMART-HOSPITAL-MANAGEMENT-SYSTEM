@@ -7,10 +7,16 @@
 const BACKEND_RENDER_URL = 'https://ai-smart-hospital-backend-w26k.onrender.com/api';
 
 const CONFIG = {
+  BACKEND_RENDER_URL: BACKEND_RENDER_URL,
   // Automatically detects local environment vs live deployment (Vercel / Netlify / Render)
-  API_BASE_URL: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-    ? 'http://localhost:5000/api'
-    : (localStorage.getItem('CUSTOM_API_URL') || BACKEND_RENDER_URL),
+  API_BASE_URL: (function() {
+    if (localStorage.getItem('CUSTOM_API_URL')) {
+      return localStorage.getItem('CUSTOM_API_URL');
+    }
+    // Default to the high-availability live Render cloud backend for seamless zero-setup instant operation
+    return BACKEND_RENDER_URL;
+  })(),
+  LOCAL_API_URL: 'http://localhost:5000/api',
 
   SPECIALIZATIONS: [
     "General Physician",
