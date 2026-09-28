@@ -48,7 +48,6 @@ const PatientApp = {
     try { await this.loadReminders(); } catch (e) { console.warn('Reminders load notice:', e); }
     
     this.initBrowserNotificationPermission();
-    this.startClientReminderMonitor();
   },
 
   updateUserGreeting() {
