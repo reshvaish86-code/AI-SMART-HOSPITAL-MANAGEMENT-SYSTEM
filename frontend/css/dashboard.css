@@ -122,30 +122,132 @@ body {
   background: linear-gradient(180deg, var(--portal-primary) 0%, var(--portal-accent) 100%);
 }
 
-.max-w-750 {
-  max-width: 750px;
-}
-
 /* ==========================================================================
-   5-DASHBOARD QUICK ACCESS HUB (UNIQUE CARDS)
+   3 Premium SaaS Health Cards & Quick Actions
    ========================================================================== */
-.dashboard-hub-grid {
+.saas-feature-card {
+  background: #ffffff;
+  border: 1px solid var(--portal-border);
+  border-radius: var(--portal-radius);
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.saas-feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  border-color: #bae6fd;
+}
+
+.saas-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.heartbeat-pulse {
+  animation: subtleHeartbeat 2.2s infinite ease-in-out;
+  display: inline-block;
+}
+
+@keyframes subtleHeartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.15); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.15); }
+  70% { transform: scale(1); }
+}
+
+.pulse-green-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+  70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.saas-activity-box {
+  background: #f8fafc;
+  border: 1px solid #edf2f7;
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.saas-activity-box:hover {
+  background: #f0f9ff;
+  border-color: #bae6fd;
+}
+
+.saas-activity-box:last-child {
+  margin-bottom: 0;
+}
+
+.quick-action-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
-  margin-bottom: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
 }
 
-@media (max-width: 1200px) {
-  .dashboard-hub-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.quick-action-card-btn {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1rem 0.85rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
-@media (max-width: 768px) {
-  .dashboard-hub-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.quick-action-card-btn:hover {
+  background: #ffffff;
+  border-color: var(--portal-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(2, 132, 199, 0.12);
+  color: inherit;
+}
+
+.quick-action-icon-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+}
+
+.progress-thin {
+  height: 7px;
+  border-radius: 10px;
+  background: #e2e8f0;
+  overflow: hidden;
 }
 
 @media (max-width: 480px) {

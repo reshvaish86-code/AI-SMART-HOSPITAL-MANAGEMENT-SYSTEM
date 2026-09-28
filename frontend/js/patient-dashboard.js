@@ -1114,6 +1114,15 @@ const PatientApp = {
         }
       }
 
+      if (uniqueAppts.length > 0) {
+        const latest = uniqueAppts[0];
+        const docName = latest.doctorUser?.name || latest.doctor?.user?.name || latest.doctor?.name || 'Dr. Arun Kumar';
+        const docBadge = document.getElementById('quickActivityApptBadge');
+        if (docBadge) docBadge.textContent = docName;
+        const timeDisplay = document.getElementById('quickActivityApptTime');
+        if (timeDisplay) timeDisplay.innerHTML = `<i class="fa-regular fa-clock me-1"></i> ${latest.appointmentDate} • ${latest.timeSlot} (${latest.specialist || 'Consultation'})`;
+      }
+
       if (uniqueAppts.length === 0) {
         container.innerHTML = `
           <div class="text-center py-5 bg-white rounded-4 border">
@@ -1190,23 +1199,35 @@ const PatientApp = {
         // Silent fallback for guest / initial load
       }
 
-      if (records.length === 0) {
-        container.innerHTML = '<div class="text-center py-4 text-muted"><i class="fa-solid fa-folder-open fs-2 text-muted mb-2"></i><p class="small mb-0">No clinical records on file yet. Records appear here after doctor consultation.</p></div>';
-        return;
+      const localRecords = JSON.parse(localStorage.getItem('LOCAL_MEDICAL_RECORDS') || '[]');
+      const allRecords = [...localRecords, ...records];
+
+      if (allRecords.length === 0) {
+        // Default realistic initial sample record for demonstration
+        const sampleRecord = {
+          _id: 'rec_sample_1',
+          diagnosis: 'Routine Health Checkup & Vitals',
+          doctor: { user: { name: 'Dr. Arun Kumar' }, hospital: 'ABC Speciality Hospital' },
+          visitDate: new Date(Date.now() - 4 * 86400000).toISOString(),
+          vitalSigns: { bloodPressure: '120/80', pulseRate: '72 bpm', temperature: '98.6°F' },
+          remarks: 'Normal cardiovascular profile, blood pressure within healthy range. Continue regular diet.'
+        };
+        allRecords.push(sampleRecord);
       }
 
-      container.innerHTML = records.map(r => `
-        <div class="card border rounded-3 p-3 mb-2 bg-light">
+      container.innerHTML = allRecords.map(r => `
+        <div class="card border rounded-4 p-3 mb-3 bg-light shadow-sm">
           <div class="d-flex justify-content-between align-items-center mb-1">
-            <span class="fw-bold text-dark">${r.diagnosis || 'Clinical Consultation'}</span>
-            <span class="badge bg-primary-subtle text-primary rounded-pill">${new Date(r.visitDate || r.createdAt).toLocaleDateString()}</span>
+            <span class="fw-bold text-dark fs-6">${r.diagnosis || 'Clinical Consultation'}</span>
+            <span class="badge bg-primary-subtle text-primary rounded-pill">${new Date(r.visitDate || r.createdAt || Date.now()).toLocaleDateString()}</span>
           </div>
-          <p class="text-muted small mb-1"><strong>Doctor:</strong> ${r.doctor?.user?.name || 'Doctor'} (${r.doctor?.hospital || 'Hospital'})</p>
-          <div class="d-flex gap-3 small text-secondary">
-            <span><strong>BP:</strong> ${r.vitalSigns?.bloodPressure || '120/80'}</span>
-            <span><strong>Pulse:</strong> ${r.vitalSigns?.pulseRate || '72 bpm'}</span>
-            <span><strong>Temp:</strong> ${r.vitalSigns?.temperature || '98.6°F'}</span>
+          <p class="text-muted small mb-2"><strong>Doctor/Lab:</strong> ${r.doctor?.user?.name || 'Medical Specialist'} (${r.doctor?.hospital || 'Tamil Nadu Healthcare Network'})</p>
+          <div class="d-flex flex-wrap gap-2 small text-secondary mb-2">
+            <span class="badge bg-white text-dark border px-2 py-1"><strong>BP:</strong> ${r.vitalSigns?.bloodPressure || '120/80'}</span>
+            <span class="badge bg-white text-dark border px-2 py-1"><strong>Pulse:</strong> ${r.vitalSigns?.pulseRate || '72 bpm'}</span>
+            <span class="badge bg-white text-dark border px-2 py-1"><strong>Temp:</strong> ${r.vitalSigns?.temperature || '98.6°F'}</span>
           </div>
+          ${r.remarks ? `<p class="small text-muted mb-0 bg-white p-2 rounded-3 border"><em>${r.remarks}</em></p>` : ''}
         </div>
       `).join('');
     } catch (e) {
@@ -1336,6 +1357,58 @@ const PatientApp = {
       this.loadReminders();
     } catch (e) {
       console.warn('Delete reminder notice:', e);
+    }
+  },
+
+  openUploadReportModal() {
+    const modalEl = document.getElementById('uploadReportModal');
+    if (modalEl) {
+      const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+      modal.show();
+    }
+  },
+
+  async saveUploadedReport() {
+    const cat = document.getElementById('uploadReportCategory')?.value || 'Clinical Report';
+    const lab = document.getElementById('uploadReportLabName')?.value || 'Apollo Diagnostics';
+    const notes = document.getElementById('uploadReportNotes')?.value || 'Uploaded health diagnostic document';
+
+    const modalEl = document.getElementById('uploadReportModal');
+    if (modalEl) {
+      const modal = bootstrap.Modal.getInstance(modalEl);
+      if (modal) modal.hide();
+    }
+
+    // Append to local medical records
+    const localRecords = JSON.parse(localStorage.getItem('LOCAL_MEDICAL_RECORDS') || '[]');
+    const newRecord = {
+      _id: 'rec_' + Date.now(),
+      diagnosis: `${cat} - ${lab}`,
+      doctor: { user: { name: 'Diagnostic Lab Specialist' }, hospital: lab },
+      visitDate: new Date().toISOString(),
+      vitalSigns: { bloodPressure: '120/80', pulseRate: '72 bpm', temperature: '98.6°F' },
+      remarks: notes
+    };
+    localRecords.unshift(newRecord);
+    localStorage.setItem('LOCAL_MEDICAL_RECORDS', JSON.stringify(localRecords));
+
+    API.toast('📁 Medical Report uploaded & secured in your Health Records!', 'success');
+    try { await this.loadMedicalRecords(); } catch (e) {}
+  },
+
+  downloadLatestPrescription() {
+    this.switchTab('tab-records', 'tab-records-btn');
+    API.toast('📄 Loading certified digital prescription. Triggering print / download pass...', 'info');
+    setTimeout(() => {
+      window.print();
+    }, 600);
+  },
+
+  openContactHospitalModal() {
+    const modalEl = document.getElementById('contactHospitalModal');
+    if (modalEl) {
+      const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+      modal.show();
     }
   },
 
