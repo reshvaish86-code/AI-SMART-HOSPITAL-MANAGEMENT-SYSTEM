@@ -533,7 +533,7 @@ const PatientApp = {
               ${doc.bio || 'Verified medical specialist providing clinical consultation across Tamil Nadu.'}
             </p>
 
-            <button class="btn-book-doctor" onclick="PatientApp.openBookingModal(${idx})">
+            <button class="btn-book-doctor" onclick="PatientApp.openBookingModal('${doc._id || doc.doctorId || (doc.user?.name || '').replace(/'/g, '') || idx}')">
               <i class="fa-solid fa-calendar-plus"></i> Book Consultation
             </button>
           </div>
@@ -551,38 +551,47 @@ const PatientApp = {
     try {
       let doctor = null;
 
-      // 1. Check if index was passed
-      if (typeof doctorIdOrIndex === 'number' || (!isNaN(doctorIdOrIndex) && typeof doctorIdOrIndex === 'string' && String(doctorIdOrIndex).length < 5)) {
-        const idx = parseInt(doctorIdOrIndex, 10);
-        if (this.currentDoctorsList && this.currentDoctorsList[idx]) {
-          doctor = this.currentDoctorsList[idx];
-        }
+      // 1. Direct object matching
+      if (typeof doctorIdOrIndex === 'object' && doctorIdOrIndex !== null) {
+        doctor = doctorIdOrIndex;
       }
 
-      // 2. Lookup by ID or name
+      // 2. Lookup in currentDoctorsList
       if (!doctor && this.currentDoctorsList && this.currentDoctorsList.length > 0) {
-        doctor = this.currentDoctorsList.find(d => String(d._id) === String(doctorIdOrIndex) || d.doctorId === doctorIdOrIndex || d.user?.name === doctorIdOrIndex || d.specialization === doctorIdOrIndex);
+        doctor = this.currentDoctorsList.find(d => 
+          String(d._id) === String(doctorIdOrIndex) || 
+          d.doctorId === doctorIdOrIndex || 
+          d.user?.name === doctorIdOrIndex || 
+          d.specialization === doctorIdOrIndex
+        );
       }
+
+      // 3. Lookup by index if numerical
+      if (!doctor && !isNaN(doctorIdOrIndex) && this.currentDoctorsList && this.currentDoctorsList[parseInt(doctorIdOrIndex, 10)]) {
+        doctor = this.currentDoctorsList[parseInt(doctorIdOrIndex, 10)];
+      }
+
+      // 4. Lookup in allDoctors
       if (!doctor && this.allDoctors && this.allDoctors.length > 0) {
-        doctor = this.allDoctors.find(d => String(d._id) === String(doctorIdOrIndex) || d.doctorId === doctorIdOrIndex || d.user?.name === doctorIdOrIndex || d.specialization === doctorIdOrIndex);
+        doctor = this.allDoctors.find(d => 
+          String(d._id) === String(doctorIdOrIndex) || 
+          d.doctorId === doctorIdOrIndex || 
+          d.user?.name === doctorIdOrIndex || 
+          d.specialization === doctorIdOrIndex
+        );
       }
+
+      // 5. Lookup in CONFIG.DEFAULT_DOCTORS
       if (!doctor && CONFIG.DEFAULT_DOCTORS) {
-        doctor = CONFIG.DEFAULT_DOCTORS.find(d => String(d._id) === String(doctorIdOrIndex) || d.doctorId === doctorIdOrIndex || d.user?.name === doctorIdOrIndex || d.specialization === doctorIdOrIndex);
+        doctor = CONFIG.DEFAULT_DOCTORS.find(d => 
+          String(d._id) === String(doctorIdOrIndex) || 
+          d.doctorId === doctorIdOrIndex || 
+          d.user?.name === doctorIdOrIndex || 
+          d.specialization === doctorIdOrIndex
+        );
       }
 
-      // 3. Fallback API lookup
-      if (!doctor && typeof doctorIdOrIndex === 'string' && doctorIdOrIndex.length > 10) {
-        try {
-          const res = await API.get(`/doctors/${doctorIdOrIndex}`);
-          if (res && res.data) {
-            doctor = res.data;
-          }
-        } catch (err) {
-          console.warn('API doctor fetch notice:', err);
-        }
-      }
-
-      // 4. Default fallback
+      // 6. Default fallback
       if (!doctor) {
         doctor = this.currentDoctorsList?.[0] || this.allDoctors?.[0] || CONFIG.DEFAULT_DOCTORS?.[0];
       }
@@ -596,19 +605,30 @@ const PatientApp = {
       selectedSlotForBooking = null;
 
       const docId = selectedDoctorForBooking.doctorId || `DOC-TN-${101 + Math.max(0, (this.allDoctors || []).indexOf(selectedDoctorForBooking))}`;
+      const docName = selectedDoctorForBooking.user?.name || selectedDoctorForBooking.name || 'Doctor';
 
-      document.getElementById('modalDocName').textContent = selectedDoctorForBooking.user?.name || selectedDoctorForBooking.name || 'Doctor';
+      const docNameEl = document.getElementById('modalDocName');
+      if (docNameEl) docNameEl.textContent = docName;
+      
       const docIdBadgeEl = document.getElementById('modalDocIdBadge');
       if (docIdBadgeEl) docIdBadgeEl.innerHTML = `<i class="fa-solid fa-id-badge me-1"></i>${docId}`;
-      document.getElementById('modalDocSpecialty').textContent = selectedDoctorForBooking.specialization;
-      document.getElementById('modalDocDistrictBadge').textContent = `📍 ${selectedDoctorForBooking.district}`;
-      document.getElementById('modalDocHospital').textContent = selectedDoctorForBooking.hospital;
+      
+      const specEl = document.getElementById('modalDocSpecialty');
+      if (specEl) specEl.textContent = selectedDoctorForBooking.specialization || 'Specialist';
+      
+      const distEl = document.getElementById('modalDocDistrictBadge');
+      if (distEl) distEl.textContent = `📍 ${selectedDoctorForBooking.district || 'Tamil Nadu'}`;
+      
+      const hospEl = document.getElementById('modalDocHospital');
+      if (hospEl) hospEl.textContent = selectedDoctorForBooking.hospital || 'Speciality Hospital';
+      
       const feeEl = document.getElementById('modalDocFee');
       if (feeEl) feeEl.textContent = `₹${selectedDoctorForBooking.consultationFee || 500}`;
+      
       const todayISO = new Date().toISOString().split('T')[0];
-
       const dateInput = document.getElementById('bookingDateInput');
       if (dateInput) {
+        dateInput.min = todayISO;
         dateInput.value = todayISO;
       }
 
@@ -660,73 +680,31 @@ const PatientApp = {
     const slotContainer = document.getElementById('slotChipsContainer');
     if (!slotContainer || !selectedDoctorForBooking) return;
 
-    slotContainer.innerHTML = '<div class="text-muted small py-2"><i class="fa-solid fa-spinner fa-spin me-1"></i> Checking slot availability...</div>';
-
-    let bookedSlots = [];
-    try {
-      if (selectedDoctorForBooking._id && !String(selectedDoctorForBooking._id).startsWith('doc_')) {
-        const res = await API.get('/appointments/booked-slots', {
-          doctorId: selectedDoctorForBooking._id,
-          date: date
-        });
-        bookedSlots = res?.bookedSlots || [];
-      }
-    } catch (e) {}
-
     const availableSlots = selectedDoctorForBooking.availableTimeSlots || [
       '09:00 AM', '10:00 AM', '11:00 AM', '02:00 PM', '03:00 PM', '04:00 PM', '06:00 PM'
     ];
 
-    let firstSelectable = null;
-    for (const s of availableSlots) {
-      if (!bookedSlots.includes(s)) {
-        firstSelectable = s;
-        break;
-      }
-    }
-
-    if (!selectedSlotForBooking || bookedSlots.includes(selectedSlotForBooking)) {
-      selectedSlotForBooking = firstSelectable || availableSlots[0];
+    if (!selectedSlotForBooking || !availableSlots.includes(selectedSlotForBooking)) {
+      selectedSlotForBooking = availableSlots[0] || '10:00 AM';
     }
 
     slotContainer.innerHTML = availableSlots.map(slot => {
-      const isBooked = bookedSlots.includes(slot);
-      const isSelected = (selectedSlotForBooking === slot && !isBooked);
-
+      const isSelected = (selectedSlotForBooking === slot);
       return `
-        <div class="slot-chip ${isBooked ? 'booked' : ''} ${isSelected ? 'selected' : ''}" 
+        <div class="slot-chip ${isSelected ? 'selected' : ''}" 
              data-slot="${slot}" 
-             role="radio"
-             aria-checked="${isSelected ? 'true' : 'false'}"
-             ${!isBooked ? `onclick="PatientApp.selectSlot(this, '${slot}')"` : 'title="Slot Already Booked"'}>
-          <div class="d-flex align-items-center justify-content-between gap-1 pointer-events-none">
-            <span><i class="fa-regular fa-clock me-1 opacity-75"></i>${slot}</span>
-            <span class="slot-check-indicator">
-              ${isBooked ? '<i class="fa-solid fa-ban text-danger"></i>' : (isSelected ? '<i class="fa-solid fa-circle-check text-white"></i>' : '<i class="fa-regular fa-circle text-muted"></i>')}
-            </span>
-          </div>
+             onclick="PatientApp.selectSlot(this, '${slot}')">
+          <i class="fa-regular fa-clock me-1"></i> ${slot}
         </div>
       `;
     }).join('');
   },
 
   selectSlot(element, slot) {
-    if (!element) return;
-    document.querySelectorAll('.slot-chip').forEach(c => {
-      c.classList.remove('selected');
-      c.setAttribute('aria-checked', 'false');
-      const indicator = c.querySelector('.slot-check-indicator');
-      if (indicator && !c.classList.contains('booked')) {
-        indicator.innerHTML = '<i class="fa-regular fa-circle text-muted"></i>';
-      }
-    });
-
-    const targetEl = element.closest('.slot-chip') || element;
-    targetEl.classList.add('selected');
-    targetEl.setAttribute('aria-checked', 'true');
-    const indicator = targetEl.querySelector('.slot-check-indicator');
-    if (indicator) {
-      indicator.innerHTML = '<i class="fa-solid fa-circle-check text-white"></i>';
+    document.querySelectorAll('.slot-chip').forEach(c => c.classList.remove('selected'));
+    if (element) {
+      const el = element.closest('.slot-chip') || element;
+      el.classList.add('selected');
     }
     selectedSlotForBooking = slot;
   },
