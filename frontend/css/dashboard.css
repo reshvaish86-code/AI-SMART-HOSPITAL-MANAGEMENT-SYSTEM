@@ -518,23 +518,72 @@ body {
 }
 
 /* ==========================================================================
+   3-Step Doctor Slot Booking Wizard & Confirmation Modal
+   ========================================================================== */
+.booking-wizard-step {
+  animation: fadeInStep 0.3s ease-in-out;
+}
+
+@keyframes fadeInStep {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.booking-split-card {
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 18px;
+  transition: all 0.2s ease;
+}
+
+.booking-split-card:hover {
+  border-color: #cbd5e1;
+}
+
+.tracking-wider {
+  letter-spacing: 0.75px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.selected-slot-box {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.max-w-550 {
+  max-width: 550px;
+}
+
+/* ==========================================================================
    Slot Selection Chips (Inside Modal)
    ========================================================================== */
 .slot-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   margin-top: 10px;
 }
 
+@media (max-width: 576px) {
+  .slot-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 .slot-chip {
-  padding: 10px 14px;
+  padding: 10px 12px;
   border-radius: 12px;
   border: 1.5px solid #cbd5e1;
   background: #ffffff;
   color: #1e293b;
   font-size: 0.88rem;
   font-weight: 600;
+  text-align: center;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
@@ -548,23 +597,20 @@ body {
 }
 
 .slot-chip.selected {
-  background: var(--portal-primary);
-  border-color: var(--portal-primary);
-  color: #ffffff;
+  background: var(--portal-primary) !important;
+  border-color: var(--portal-primary) !important;
+  color: #ffffff !important;
   box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
   transform: translateY(-1px);
 }
 
-.slot-chip.selected .slot-check-indicator i {
-  color: #ffffff !important;
-}
-
 .slot-chip.booked {
-  background: #f8fafc;
+  background: #f1f5f9;
   border-color: #e2e8f0;
   color: #94a3b8;
   cursor: not-allowed;
   text-decoration: line-through;
+  opacity: 0.6;
 }
 
 /* ==========================================================================

@@ -142,8 +142,9 @@ const bookAppointment = async (req, res, next) => {
     }
 
     // 5. Generate Unique Booking ID & Create Appointment in MongoDB
-    const randomBookingDigits = Math.floor(10000 + Math.random() * 90000);
-    const generatedBookingId = `BK-${randomBookingDigits}`;
+    const dateCompact = (appointmentDate ? appointmentDate.replace(/-/g, '') : new Date().toISOString().slice(0, 10).replace(/-/g, ''));
+    const randomBookingDigits = Math.floor(1000 + Math.random() * 9000);
+    const generatedBookingId = (req.body.bookingId && req.body.bookingId.trim().length > 0) ? req.body.bookingId.trim().toUpperCase() : `AISH-${dateCompact}-${randomBookingDigits}`;
 
     const appointment = await Appointment.create({
       bookingId: generatedBookingId,

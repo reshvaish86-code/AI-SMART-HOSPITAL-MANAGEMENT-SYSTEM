@@ -547,6 +547,31 @@ const PatientApp = {
     }
   },
 
+  goToStep(stepNumber) {
+    document.querySelectorAll('.booking-wizard-step').forEach(step => step.classList.add('d-none'));
+    const targetStep = document.getElementById(`bookingStep${stepNumber}`);
+    if (targetStep) {
+      targetStep.classList.remove('d-none');
+    }
+  },
+
+  formatDateLong(isoDateStr) {
+    if (!isoDateStr) return new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    try {
+      const parts = isoDateStr.split('-');
+      if (parts.length === 3) {
+        const d = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+        return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+      }
+    } catch (e) {}
+    return isoDateStr;
+  },
+
+  formatDateCompact(isoDateStr) {
+    if (!isoDateStr) return new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    return isoDateStr.replace(/-/g, '');
+  },
+
   async openBookingModal(doctorIdOrIndex) {
     try {
       let doctor = null;
@@ -607,6 +632,7 @@ const PatientApp = {
       const docId = selectedDoctorForBooking.doctorId || `DOC-TN-${101 + Math.max(0, (this.allDoctors || []).indexOf(selectedDoctorForBooking))}`;
       const docName = selectedDoctorForBooking.user?.name || selectedDoctorForBooking.name || 'Doctor';
 
+      // Populate Step 1 Doctor Details
       const docNameEl = document.getElementById('modalDocName');
       if (docNameEl) docNameEl.textContent = docName;
       
@@ -616,14 +642,20 @@ const PatientApp = {
       const specEl = document.getElementById('modalDocSpecialty');
       if (specEl) specEl.textContent = selectedDoctorForBooking.specialization || 'Specialist';
       
-      const distEl = document.getElementById('modalDocDistrictBadge');
-      if (distEl) distEl.textContent = `📍 ${selectedDoctorForBooking.district || 'Tamil Nadu'}`;
+      const distEl = document.getElementById('modalDocDistrict');
+      if (distEl) distEl.textContent = selectedDoctorForBooking.district || 'Tamil Nadu';
       
       const hospEl = document.getElementById('modalDocHospital');
       if (hospEl) hospEl.textContent = selectedDoctorForBooking.hospital || 'Speciality Hospital';
       
       const feeEl = document.getElementById('modalDocFee');
-      if (feeEl) feeEl.textContent = `₹${selectedDoctorForBooking.consultationFee || 500}`;
+      if (feeEl) feeEl.textContent = `₹${selectedDoctorForBooking.consultationFee || 800} consultation`;
+
+      const ratingEl = document.getElementById('modalDocRating');
+      if (ratingEl) ratingEl.textContent = selectedDoctorForBooking.rating || '4.8';
+
+      const reviewsEl = document.getElementById('modalDocReviews');
+      if (reviewsEl) reviewsEl.textContent = `(${selectedDoctorForBooking.reviewCount || 24} reviews)`;
       
       const todayISO = new Date().toISOString().split('T')[0];
       const dateInput = document.getElementById('bookingDateInput');
@@ -653,7 +685,11 @@ const PatientApp = {
         mobileInput.value = user?.mobile || localStorage.getItem('hospital_last_mobile') || '+91 9840123456';
       }
 
+      // Load available slots
       await this.loadDoctorSlots(todayISO);
+
+      // Start at Step 1
+      this.goToStep(1);
 
       const modalEl = document.getElementById('bookingModal');
       if (modalEl) {
@@ -680,33 +716,125 @@ const PatientApp = {
     const slotContainer = document.getElementById('slotChipsContainer');
     if (!slotContainer || !selectedDoctorForBooking) return;
 
+    // Comprehensive list of standard consultation slots (as in user wireframes)
     const availableSlots = selectedDoctorForBooking.availableTimeSlots || [
-      '09:00 AM', '10:00 AM', '11:00 AM', '02:00 PM', '03:00 PM', '04:00 PM', '06:00 PM'
+      '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
+      '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM', '04:00 PM', '04:30 PM',
+      '05:00 PM', '05:30 PM', '06:00 PM'
     ];
 
-    if (!selectedSlotForBooking || !availableSlots.includes(selectedSlotForBooking)) {
-      selectedSlotForBooking = availableSlots[0] || '10:00 AM';
+    // Fetch booked slots from backend to prevent double-booking
+    let bookedSlots = [];
+    try {
+      const docId = selectedDoctorForBooking._id || selectedDoctorForBooking.doctorId;
+      const res = await API.get('/appointments/booked-slots', { doctorId: docId, date });
+      if (res && res.data) {
+        bookedSlots = res.data;
+      }
+    } catch (e) {}
+
+    // Check existing local appointments as well
+    try {
+      const localAppts = JSON.parse(localStorage.getItem('LOCAL_APPOINTMENTS') || '[]');
+      const docName = selectedDoctorForBooking.user?.name || selectedDoctorForBooking.name;
+      localAppts.forEach(la => {
+        if (la.appointmentDate === date && (la.doctorUser?.name === docName || la.doctor?._id === selectedDoctorForBooking._id)) {
+          if (!bookedSlots.includes(la.timeSlot)) {
+            bookedSlots.push(la.timeSlot);
+          }
+        }
+      });
+    } catch (e) {}
+
+    // Pick initial slot
+    const firstAvailable = availableSlots.find(s => !bookedSlots.includes(s)) || availableSlots[0] || '10:30 AM';
+    if (!selectedSlotForBooking || bookedSlots.includes(selectedSlotForBooking)) {
+      selectedSlotForBooking = firstAvailable;
     }
 
     slotContainer.innerHTML = availableSlots.map(slot => {
-      const isSelected = (selectedSlotForBooking === slot);
+      const isBooked = bookedSlots.includes(slot);
+      const isSelected = (!isBooked && selectedSlotForBooking === slot);
       return `
-        <div class="slot-chip ${isSelected ? 'selected' : ''}" 
+        <div class="slot-chip ${isBooked ? 'booked' : ''} ${isSelected ? 'selected' : ''}" 
              data-slot="${slot}" 
-             onclick="PatientApp.selectSlot(this, '${slot}')">
-          <i class="fa-regular fa-clock me-1"></i> ${slot}
+             ${isBooked ? 'title="Already Booked"' : `onclick="PatientApp.selectSlot(this, '${slot}')"`}>
+          ${slot}
         </div>
       `;
     }).join('');
+
+    this.updateSelectedSlotDisplay();
   },
 
   selectSlot(element, slot) {
-    document.querySelectorAll('.slot-chip').forEach(c => c.classList.remove('selected'));
+    document.querySelectorAll('#slotChipsContainer .slot-chip').forEach(c => c.classList.remove('selected'));
     if (element) {
       const el = element.closest('.slot-chip') || element;
       el.classList.add('selected');
     }
     selectedSlotForBooking = slot;
+    this.updateSelectedSlotDisplay();
+  },
+
+  updateSelectedSlotDisplay() {
+    const slotDisplayEl = document.getElementById('step1SelectedDisplay');
+    if (slotDisplayEl) {
+      slotDisplayEl.innerHTML = `<i class="fa-solid fa-circle-check text-success me-1"></i> Selected: ${selectedSlotForBooking || '10:30 AM'}`;
+    }
+  },
+
+  goToConfirmationStep() {
+    if (!selectedSlotForBooking) {
+      const activeChip = document.querySelector('#slotChipsContainer .slot-chip.selected');
+      if (activeChip) {
+        selectedSlotForBooking = activeChip.getAttribute('data-slot') || activeChip.textContent.trim();
+      } else {
+        selectedSlotForBooking = '10:30 AM';
+      }
+    }
+
+    const dateInput = document.getElementById('bookingDateInput');
+    const selectedDate = dateInput?.value || new Date().toISOString().split('T')[0];
+    const formattedDate = this.formatDateLong(selectedDate);
+
+    const docName = selectedDoctorForBooking?.user?.name || selectedDoctorForBooking?.name || 'Dr. Arun Kumar';
+    const docSpec = selectedDoctorForBooking?.specialization || 'Cardiologist';
+    const docHospital = selectedDoctorForBooking?.hospital || 'ABC Hospital';
+    const fee = selectedDoctorForBooking?.consultationFee || 800;
+
+    // Populate Step 2 Details Box
+    const confirmDocName = document.getElementById('confirmDocName');
+    if (confirmDocName) confirmDocName.textContent = docName;
+
+    const confirmDocSpec = document.getElementById('confirmDocSpec');
+    if (confirmDocSpec) confirmDocSpec.textContent = docSpec;
+
+    const confirmDocHospital = document.getElementById('confirmDocHospital');
+    if (confirmDocHospital) confirmDocHospital.textContent = docHospital;
+
+    const confirmDateDisplay = document.getElementById('confirmDateDisplay');
+    if (confirmDateDisplay) confirmDateDisplay.textContent = formattedDate;
+
+    const confirmTimeDisplay = document.getElementById('confirmTimeDisplay');
+    if (confirmTimeDisplay) confirmTimeDisplay.textContent = selectedSlotForBooking;
+
+    const confirmFeeDisplay = document.getElementById('confirmFeeDisplay');
+    if (confirmFeeDisplay) confirmFeeDisplay.textContent = `₹${fee}`;
+
+    // Pre-populate patient details
+    const user = Auth.getUser();
+    const nameInput = document.getElementById('bookingPatientName');
+    if (nameInput && !nameInput.value) nameInput.value = user?.name || 'Reshma';
+
+    const emailInput = document.getElementById('bookingEmailInput');
+    if (emailInput && !emailInput.value) emailInput.value = user?.email || localStorage.getItem('hospital_last_email') || 'reshvaish86@gmail.com';
+
+    const mobileInput = document.getElementById('bookingMobileInput');
+    if (mobileInput && !mobileInput.value) mobileInput.value = user?.mobile || localStorage.getItem('hospital_last_mobile') || '+91 9840123456';
+
+    // Transition to Step 2
+    this.goToStep(2);
   },
 
   switchTab(tabTargetId, btnId) {
@@ -759,11 +887,17 @@ const PatientApp = {
   },
 
   async confirmBooking() {
+    const btnConfirm = document.getElementById('btnConfirmBooking');
+    const originalBtnHtml = btnConfirm ? btnConfirm.innerHTML : '';
+
     try {
-      console.log('🚀 [PatientApp.confirmBooking] Triggered booking confirmation');
+      console.log('🚀 [PatientApp.confirmBooking] Initiating booking confirmation workflow');
       
       const dateInput = document.getElementById('bookingDateInput');
       const date = dateInput?.value || new Date().toISOString().split('T')[0];
+      const formattedDateLong = this.formatDateLong(date);
+      const dateCompact = this.formatDateCompact(date);
+
       const reasonInput = document.getElementById('bookingReasonInput');
       const reason = (reasonInput?.value || '').trim() || 'General health consultation';
       const user = Auth.getUser();
@@ -777,11 +911,11 @@ const PatientApp = {
           (CONFIG.DEFAULT_DOCTORS || []).find(d => d.user?.name === docName || d.specialization === docSpec) ||
           CONFIG.DEFAULT_DOCTORS?.[0] || {
             _id: 'doc_generic_1',
-            user: { name: docName || 'Dr. Rhea Kapoor', email: 'doctor@hospital.com', mobile: '+91 9840100001' },
-            specialization: docSpec || 'Dermatologist',
-            hospital: document.getElementById('modalDocHospital')?.textContent || 'KMC Speciality Hospital',
-            district: 'Tiruchirappalli',
-            consultationFee: 600
+            user: { name: docName || 'Dr. Arun Kumar', email: 'doctor@hospital.com', mobile: '+91 9840100001' },
+            specialization: docSpec || 'Cardiologist',
+            hospital: document.getElementById('modalDocHospital')?.textContent || 'ABC Hospital',
+            district: 'Chennai',
+            consultationFee: 800
           };
       }
 
@@ -790,70 +924,80 @@ const PatientApp = {
       if (!slot) {
         const activeChip = document.querySelector('#slotChipsContainer .slot-chip.selected');
         if (activeChip) {
-          slot = activeChip.getAttribute('data-slot') || activeChip.textContent.replace(/[^\d:APMapm\s]/g, '').trim();
+          slot = activeChip.getAttribute('data-slot') || activeChip.textContent.trim();
         }
       }
-      if (!slot) {
-        const firstAvailableChip = document.querySelector('#slotChipsContainer .slot-chip:not(.booked)');
-        if (firstAvailableChip) {
-          firstAvailableChip.classList.add('selected');
-          slot = firstAvailableChip.getAttribute('data-slot') || firstAvailableChip.textContent.replace(/[^\d:APMapm\s]/g, '').trim();
-        }
-      }
-      if (!slot) {
-        slot = '10:00 AM';
-      }
+      if (!slot) slot = '10:30 AM';
       selectedSlotForBooking = slot;
 
-      const doctorName = selectedDoctorForBooking?.user?.name || selectedDoctorForBooking?.name || 'Doctor';
+      const doctorName = selectedDoctorForBooking?.user?.name || selectedDoctorForBooking?.name || 'Dr. Arun Kumar';
+      const doctorSpecialty = selectedDoctorForBooking?.specialization || 'Cardiologist';
+      const doctorHospital = selectedDoctorForBooking?.hospital || 'ABC Hospital';
+
       const nameInput = document.getElementById('bookingPatientName');
-      const patientName = (nameInput?.value || user?.name || 'Patient').trim();
+      const patientName = (nameInput?.value || user?.name || 'Reshma').trim();
+      
       const genderInput = document.getElementById('bookingPatientGender');
       const patientGender = (genderInput?.value || currentPatientProfile?.gender || user?.gender || 'Female').trim();
 
       const emailInput = document.getElementById('bookingEmailInput');
       const patientEmail = (emailInput?.value || user?.email || localStorage.getItem('hospital_last_email') || 'reshvaish86@gmail.com').trim();
+
       const mobileInput = document.getElementById('bookingMobileInput');
       const patientMobile = (mobileInput?.value || user?.mobile || localStorage.getItem('hospital_last_mobile') || '+91 9840123456').trim();
+
+      if (!patientName) {
+        API.toast('Please enter patient name', 'warning');
+        return;
+      }
+      if (!patientEmail || !patientEmail.includes('@')) {
+        API.toast('Please enter a valid email address for confirmation receipt', 'warning');
+        return;
+      }
 
       localStorage.setItem('hospital_last_email', patientEmail);
       localStorage.setItem('hospital_last_mobile', patientMobile);
 
-      // 3. Close input modal and pop open the Official Instant Booking Confirmation Pass Modal
-      this.closeModal('bookingModal');
-      if (reasonInput) reasonInput.value = '';
-
-      // 4. Generate unique booking ID and doctor ID
-      const randomBookingDigits = Math.floor(10000 + Math.random() * 90000);
-      const generatedBookingId = `BK-${randomBookingDigits}`;
-      const assignedDoctorId = selectedDoctorForBooking.doctorId || `DOC-TN-${101 + Math.max(0, (this.allDoctors || []).indexOf(selectedDoctorForBooking))}`;
-
-      // Populate Success Modal Fields Instantly
-      const successBookingIdEl = document.getElementById('successBookingId');
-      if (successBookingIdEl) successBookingIdEl.textContent = generatedBookingId;
-      const successPatientInfoEl = document.getElementById('successPatientInfo');
-      if (successPatientInfoEl) successPatientInfoEl.textContent = `${patientName} (${patientGender})`;
-      const successDoctorInfoEl = document.getElementById('successDoctorInfo');
-      if (successDoctorInfoEl) successDoctorInfoEl.innerHTML = `${doctorName} <span class="badge bg-dark text-white rounded-pill ms-1">${assignedDoctorId}</span>`;
-      const successHospitalInfoEl = document.getElementById('successHospitalInfo');
-      if (successHospitalInfoEl) successHospitalInfoEl.textContent = `${selectedDoctorForBooking.specialization || 'Specialist'} • ${selectedDoctorForBooking.hospital || 'Hospital'} (${selectedDoctorForBooking.district || 'Tamil Nadu'})`;
-      const successDateTimeEl = document.getElementById('successDateTime');
-      if (successDateTimeEl) successDateTimeEl.textContent = `📅 ${date} | ⏰ ${slot}`;
-      const successEmailDisplayEl = document.getElementById('successEmailDisplay');
-      if (successEmailDisplayEl) successEmailDisplayEl.textContent = patientEmail;
-
-      // Show Instant Confirmation Modal
-      const successModalEl = document.getElementById('bookingSuccessModal');
-      if (successModalEl) {
-        try {
-          const successModal = bootstrap.Modal.getOrCreateInstance(successModalEl);
-          successModal.show();
-        } catch (mErr) {
-          successModalEl.classList.add('show');
-          successModalEl.style.display = 'block';
-        }
+      // Visual feedback on button
+      if (btnConfirm) {
+        btnConfirm.disabled = true;
+        btnConfirm.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> Confirming Booking...';
       }
 
+      // 3. Generate unique booking ID in exact format AISH-YYYYMMDD-XXXX
+      const random4Digits = Math.floor(1000 + Math.random() * 9000);
+      const generatedBookingId = `AISH-${dateCompact}-${random4Digits}`;
+      const assignedDoctorId = selectedDoctorForBooking.doctorId || `DOC-TN-${101 + Math.max(0, (this.allDoctors || []).indexOf(selectedDoctorForBooking))}`;
+
+      // 4. Populate Step 3 Elements Instantly
+      const confirmedBookingIdEl = document.getElementById('confirmedBookingId');
+      if (confirmedBookingIdEl) confirmedBookingIdEl.textContent = generatedBookingId;
+
+      const confirmedDocNameEl = document.getElementById('confirmedDocName');
+      if (confirmedDocNameEl) confirmedDocNameEl.textContent = doctorName;
+
+      const confirmedDocSpecEl = document.getElementById('confirmedDocSpec');
+      if (confirmedDocSpecEl) confirmedDocSpecEl.textContent = doctorSpecialty;
+
+      const confirmedDateEl = document.getElementById('confirmedDate');
+      if (confirmedDateEl) confirmedDateEl.textContent = formattedDateLong;
+
+      const confirmedTimeEl = document.getElementById('confirmedTime');
+      if (confirmedTimeEl) confirmedTimeEl.textContent = slot;
+
+      const confirmedHospitalEl = document.getElementById('confirmedHospital');
+      if (confirmedHospitalEl) confirmedHospitalEl.textContent = doctorHospital;
+
+      const confirmedEmailTargetEl = document.getElementById('confirmedEmailTarget');
+      if (confirmedEmailTargetEl) confirmedEmailTargetEl.textContent = patientEmail;
+
+      const confirmedMobileTargetEl = document.getElementById('confirmedMobileTarget');
+      if (confirmedMobileTargetEl) confirmedMobileTargetEl.textContent = patientMobile;
+
+      // 5. Switch to Step 3 (Appointment Confirmed) Screen
+      this.goToStep(3);
+
+      // Save to local storage for immediate persistence
       const localAppts = JSON.parse(localStorage.getItem('LOCAL_APPOINTMENTS') || '[]');
       const newLocal = {
         _id: 'appt_' + Date.now(),
@@ -861,51 +1005,48 @@ const PatientApp = {
         doctor: selectedDoctorForBooking,
         doctorId: assignedDoctorId,
         doctorUser: selectedDoctorForBooking.user || { name: doctorName, doctorId: assignedDoctorId },
-        specialist: selectedDoctorForBooking.specialization || 'Specialist',
+        specialist: doctorSpecialty,
         appointmentDate: date,
         timeSlot: slot,
         location: selectedDoctorForBooking.district || 'Tamil Nadu',
-        hospital: selectedDoctorForBooking.hospital || 'Speciality Hospital',
+        hospital: doctorHospital,
         reasonForVisit: reason,
         patientName: patientName,
         patientGender: patientGender,
         patientEmail: patientEmail,
         patientMobile: patientMobile,
-        consultationFee: selectedDoctorForBooking.consultationFee || 600,
+        consultationFee: selectedDoctorForBooking.consultationFee || 800,
         status: 'Confirmed',
         createdAt: new Date().toISOString()
       };
       localAppts.unshift(newLocal);
       localStorage.setItem('LOCAL_APPOINTMENTS', JSON.stringify(localAppts));
 
-      // 5. Update UI lists & counter badges
-      try { this.loadAppointments(); } catch (e) { console.error('loadAppointments error:', e); }
-      try { this.loadStats(); } catch (e) { console.error('loadStats error:', e); }
-
-      // 6. Instant Voice announcement and 1-hour alarm
+      // 6. Audio announcement & sound alerts
       try {
         this.triggerLiveAppointmentAlarm({
           doctorUser: selectedDoctorForBooking.user || { name: doctorName },
           timeSlot: slot,
-          hospital: selectedDoctorForBooking.hospital || 'Speciality Hospital'
+          hospital: doctorHospital
         });
       } catch (e) {}
 
       if ('speechSynthesis' in window) {
         try {
-          const text = `Appointment successfully booked with Dr. ${doctorName}. Booking ID is ${generatedBookingId}. Confirmation Email dispatched to ${patientEmail}.`;
+          const text = `Appointment confirmed with Dr. ${doctorName}. Booking ID is ${generatedBookingId}. Confirmation email dispatched to ${patientEmail}.`;
           const utterance = new SpeechSynthesisUtterance(text);
           utterance.rate = 0.95;
           window.speechSynthesis.speak(utterance);
         } catch (err) {}
       }
 
-      // 7. Background sync with backend (MongoDB + Direct Google SMTP Email + SMS)
+      // 7. Parallel Backend Dispatch (MongoDB save + Google SMTP Connection Pool Email + SMS)
       (async () => {
         try {
           const res = await API.post('/appointments', {
+            bookingId: generatedBookingId,
             doctorId: selectedDoctorForBooking._id || selectedDoctorForBooking.doctorId || 'doc_fallback',
-            specialist: selectedDoctorForBooking.specialization,
+            specialist: doctorSpecialty,
             doctorName: doctorName,
             appointmentDate: date,
             timeSlot: slot,
@@ -919,7 +1060,7 @@ const PatientApp = {
           console.log(`✅ Backend appointment sync & email dispatch to ${patientEmail} completed:`, res);
           if (res && res.bookingId) {
             newLocal.bookingId = res.bookingId;
-            if (successBookingIdEl) successBookingIdEl.textContent = res.bookingId;
+            if (confirmedBookingIdEl) confirmedBookingIdEl.textContent = res.bookingId;
             localStorage.setItem('LOCAL_APPOINTMENTS', JSON.stringify(localAppts));
           }
           try { await this.loadAppointments(); } catch (e) {}
@@ -928,16 +1069,24 @@ const PatientApp = {
           console.warn('Backend sync notice (local session booking preserved):', err);
         }
       })();
+
+      // Background list updates
+      try { this.loadAppointments(); } catch (e) {}
+      try { this.loadStats(); } catch (e) {}
+
     } catch (criticalErr) {
       console.error('Critical confirmBooking error:', criticalErr);
-      this.closeModal('bookingModal');
-      this.switchTab('tab-appointments', 'tab-appointments-btn');
-      API.toast('Appointment confirmed and saved to your dashboard!', 'success');
+      this.goToStep(3);
+    } finally {
+      if (btnConfirm) {
+        btnConfirm.disabled = false;
+        btnConfirm.innerHTML = originalBtnHtml || '<i class="fa-solid fa-check me-1"></i> Confirm Booking';
+      }
     }
   },
 
   viewConfirmedAppointments() {
-    this.closeModal('bookingSuccessModal');
+    this.closeModal('bookingModal');
     this.switchTab('tab-appointments', 'tab-appointments-btn');
   },
 
