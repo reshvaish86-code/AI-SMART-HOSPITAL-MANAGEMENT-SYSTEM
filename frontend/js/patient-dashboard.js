@@ -532,7 +532,7 @@ const PatientApp = {
               ${doc.bio || 'Verified medical specialist providing clinical consultation across Tamil Nadu.'}
             </p>
 
-            <button class="btn-book-doctor" onclick="PatientApp.openBookingModal('${doc._id || doc.doctorId || (doc.user?.name || '').replace(/'/g, '') || idx}')">
+            <button class="btn-book-doctor" onclick="PatientApp.openBookingModalByIdx(${idx})">
               <i class="fa-solid fa-calendar-plus"></i> Book Consultation
             </button>
           </div>
@@ -544,6 +544,14 @@ const PatientApp = {
     } catch (e) {
       container.innerHTML = '<div class="col-12 text-center text-danger py-4">Failed to load doctor directory.</div>';
     }
+  },
+
+  openBookingModalByIdx(idx) {
+    const doc = (this.currentDoctorsList && this.currentDoctorsList[idx]) || 
+                (this.allDoctors && this.allDoctors[idx]) || 
+                (CONFIG.DEFAULT_DOCTORS && CONFIG.DEFAULT_DOCTORS[idx]) || 
+                CONFIG.DEFAULT_DOCTORS?.[0];
+    this.openBookingModal(doc);
   },
 
   goToStep(stepNumber) {
@@ -571,7 +579,7 @@ const PatientApp = {
     return isoDateStr.replace(/-/g, '');
   },
 
-  async openBookingModal(doctorIdOrIndex) {
+  openBookingModal(doctorIdOrIndex) {
     try {
       let doctor = null;
 
@@ -580,7 +588,12 @@ const PatientApp = {
         doctor = doctorIdOrIndex;
       }
 
-      // 2. Lookup in currentDoctorsList
+      // 2. Numerical index lookup
+      if (!doctor && !isNaN(doctorIdOrIndex) && this.currentDoctorsList && this.currentDoctorsList[parseInt(doctorIdOrIndex, 10)]) {
+        doctor = this.currentDoctorsList[parseInt(doctorIdOrIndex, 10)];
+      }
+
+      // 3. Lookup in currentDoctorsList
       if (!doctor && this.currentDoctorsList && this.currentDoctorsList.length > 0) {
         doctor = this.currentDoctorsList.find(d => 
           String(d._id) === String(doctorIdOrIndex) || 
@@ -588,11 +601,6 @@ const PatientApp = {
           d.user?.name === doctorIdOrIndex || 
           d.specialization === doctorIdOrIndex
         );
-      }
-
-      // 3. Lookup by index if numerical
-      if (!doctor && !isNaN(doctorIdOrIndex) && this.currentDoctorsList && this.currentDoctorsList[parseInt(doctorIdOrIndex, 10)]) {
-        doctor = this.currentDoctorsList[parseInt(doctorIdOrIndex, 10)];
       }
 
       // 4. Lookup in allDoctors
@@ -626,12 +634,12 @@ const PatientApp = {
       }
 
       selectedDoctorForBooking = doctor;
-      selectedSlotForBooking = null;
+      selectedSlotForBooking = '10:30 AM';
 
       const docId = selectedDoctorForBooking.doctorId || `DOC-TN-${101 + Math.max(0, (this.allDoctors || []).indexOf(selectedDoctorForBooking))}`;
       const docName = selectedDoctorForBooking.user?.name || selectedDoctorForBooking.name || 'Doctor';
 
-      // Populate Step 1 Doctor Details
+      // Populate Step 1 Doctor Details safely
       const docNameEl = document.getElementById('modalDocName');
       if (docNameEl) docNameEl.textContent = docName;
       
@@ -684,12 +692,13 @@ const PatientApp = {
         mobileInput.value = user?.mobile || localStorage.getItem('hospital_last_mobile') || '+91 9840123456';
       }
 
-      // Load available slots
-      await this.loadDoctorSlots(todayISO);
+      // Render slots synchronously and immediately
+      this.renderDoctorSlots(todayISO);
 
       // Start at Step 1
       this.goToStep(1);
 
+      // Open Modal Immediately
       const modalEl = document.getElementById('bookingModal');
       if (modalEl) {
         try {
@@ -700,70 +709,90 @@ const PatientApp = {
           modalEl.classList.add('show');
         }
       }
+
+      // Asynchronously fetch booked slots in the background without blocking UI
+      this.syncBookedSlots(todayISO);
+
     } catch (e) {
       console.error('Error in openBookingModal:', e);
     }
   },
 
-  async onDateChanged(newDate) {
+  onDateChanged(newDate) {
     if (newDate) {
-      await this.loadDoctorSlots(newDate);
+      this.renderDoctorSlots(newDate);
+      this.syncBookedSlots(newDate);
     }
   },
 
-  async loadDoctorSlots(date) {
+  renderDoctorSlots(date) {
     const slotContainer = document.getElementById('slotChipsContainer');
     if (!slotContainer || !selectedDoctorForBooking) return;
 
-    // Comprehensive list of standard consultation slots (as in user wireframes)
     const availableSlots = selectedDoctorForBooking.availableTimeSlots || [
       '09:00 AM', '09:30 AM', '10:00 AM', '10:30 AM', '11:00 AM', '11:30 AM',
       '02:00 PM', '02:30 PM', '03:00 PM', '03:30 PM', '04:00 PM', '04:30 PM',
       '05:00 PM', '05:30 PM', '06:00 PM'
     ];
 
-    // Fetch booked slots from backend to prevent double-booking
-    let bookedSlots = [];
-    try {
-      const docId = selectedDoctorForBooking._id || selectedDoctorForBooking.doctorId;
-      const res = await API.get('/appointments/booked-slots', { doctorId: docId, date });
-      if (res && res.data) {
-        bookedSlots = res.data;
-      }
-    } catch (e) {}
-
-    // Check existing local appointments as well
-    try {
-      const localAppts = JSON.parse(localStorage.getItem('LOCAL_APPOINTMENTS') || '[]');
-      const docName = selectedDoctorForBooking.user?.name || selectedDoctorForBooking.name;
-      localAppts.forEach(la => {
-        if (la.appointmentDate === date && (la.doctorUser?.name === docName || la.doctor?._id === selectedDoctorForBooking._id)) {
-          if (!bookedSlots.includes(la.timeSlot)) {
-            bookedSlots.push(la.timeSlot);
-          }
-        }
-      });
-    } catch (e) {}
-
-    // Pick initial slot
-    const firstAvailable = availableSlots.find(s => !bookedSlots.includes(s)) || availableSlots[0] || '10:30 AM';
-    if (!selectedSlotForBooking || bookedSlots.includes(selectedSlotForBooking)) {
-      selectedSlotForBooking = firstAvailable;
+    if (!selectedSlotForBooking || !availableSlots.includes(selectedSlotForBooking)) {
+      selectedSlotForBooking = availableSlots[3] || availableSlots[0] || '10:30 AM';
     }
 
     slotContainer.innerHTML = availableSlots.map(slot => {
-      const isBooked = bookedSlots.includes(slot);
-      const isSelected = (!isBooked && selectedSlotForBooking === slot);
+      const isSelected = (selectedSlotForBooking === slot);
       return `
-        <div class="slot-chip ${isBooked ? 'booked' : ''} ${isSelected ? 'selected' : ''}" 
+        <div class="slot-chip ${isSelected ? 'selected' : ''}" 
              data-slot="${slot}" 
-             ${isBooked ? 'title="Already Booked"' : `onclick="PatientApp.selectSlot(this, '${slot}')"`}>
+             onclick="PatientApp.selectSlot(this, '${slot}')">
           ${slot}
         </div>
       `;
     }).join('');
 
     this.updateSelectedSlotDisplay();
+  },
+
+  async syncBookedSlots(date) {
+    if (!selectedDoctorForBooking) return;
+    try {
+      const docId = selectedDoctorForBooking._id || selectedDoctorForBooking.doctorId;
+      const res = await API.get('/appointments/booked-slots', { doctorId: docId, date }, { silent: true });
+      let bookedSlots = (res && res.data && Array.isArray(res.data)) ? [...res.data] : [];
+
+      // Check existing local appointments as well
+      try {
+        const localAppts = JSON.parse(localStorage.getItem('LOCAL_APPOINTMENTS') || '[]');
+        const docName = selectedDoctorForBooking.user?.name || selectedDoctorForBooking.name;
+        localAppts.forEach(la => {
+          if (la.appointmentDate === date && (la.doctorUser?.name === docName || la.doctor?._id === selectedDoctorForBooking._id)) {
+            if (!bookedSlots.includes(la.timeSlot)) {
+              bookedSlots.push(la.timeSlot);
+            }
+          }
+        });
+      } catch (e) {}
+
+      if (bookedSlots.length > 0) {
+        document.querySelectorAll('#slotChipsContainer .slot-chip').forEach(chip => {
+          const s = chip.getAttribute('data-slot');
+          if (bookedSlots.includes(s)) {
+            chip.classList.add('booked');
+            chip.removeAttribute('onclick');
+            chip.setAttribute('title', 'Already Booked');
+            if (selectedSlotForBooking === s) {
+              chip.classList.remove('selected');
+              const nextUnbooked = document.querySelector('#slotChipsContainer .slot-chip:not(.booked)');
+              if (nextUnbooked) {
+                nextUnbooked.classList.add('selected');
+                selectedSlotForBooking = nextUnbooked.getAttribute('data-slot');
+                this.updateSelectedSlotDisplay();
+              }
+            }
+          }
+        });
+      }
+    } catch (e) {}
   },
 
   selectSlot(element, slot) {
