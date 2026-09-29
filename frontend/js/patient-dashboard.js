@@ -1491,6 +1491,24 @@ const PatientApp = {
       const hubStat = document.getElementById('hubUpcomingStat');
       if (hubStat) hubStat.textContent = totalCount;
     } catch (e) {}
+  },
+
+  clearAllUserData() {
+    localStorage.removeItem('LOCAL_APPOINTMENTS');
+    localStorage.removeItem('LOCAL_MEDICAL_RECORDS');
+    localStorage.removeItem('LOCAL_PRESCRIPTIONS');
+    localStorage.removeItem('LOCAL_REMINDERS');
+    localStorage.removeItem('hospital_last_email');
+    localStorage.removeItem('hospital_last_mobile');
+    localStorage.removeItem('hospital_user');
+    localStorage.removeItem('hospital_token');
+    localStorage.removeItem('hospital_profile');
+    localStorage.removeItem('AI_CHAT_HISTORY');
+    sessionStorage.clear();
+    API.toast('🧹 All local emails, passwords, appointments, records, and AI triage data cleared!', 'success');
+    setTimeout(() => {
+      window.location.reload();
+    }, 800);
   }
 };
 
