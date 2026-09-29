@@ -38,7 +38,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 9,
-    "bio": "Certified General Physician specialist at Apollo Hospitals Greams Lane providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+    "bio": "Certified General Physician specialist at Apollo Hospitals Greams Lane providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-101"
   },
   {
     "name": "Dr. Kiara Kapoor",
@@ -68,7 +69,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 10,
-    "bio": "Certified General Physician specialist at Sri Ramakrishna Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+    "bio": "Certified General Physician specialist at Sri Ramakrishna Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-102"
   },
   {
     "name": "Dr. Vihaan Malhotra",
@@ -98,7 +100,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 11,
-    "bio": "Certified General Physician specialist at Guru Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+    "bio": "Certified General Physician specialist at Guru Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-103"
   },
   {
     "name": "Dr. Pooja Bansal",
@@ -128,7 +131,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 12,
-    "bio": "Certified General Physician specialist at Sri Gokulam Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+    "bio": "Certified General Physician specialist at Sri Gokulam Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu.",
+    "doctorId": "DOC-TN-104"
   },
   {
     "name": "Dr. Riaan Chawla",
@@ -158,7 +162,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 13,
-    "bio": "Certified General Physician specialist at ABC Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+    "bio": "Certified General Physician specialist at ABC Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-105"
   },
   {
     "name": "Dr. Alia Advani",
@@ -188,7 +193,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 14,
-    "bio": "Certified General Physician specialist at Krishna Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified General Physician specialist at Krishna Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-106"
   },
   {
     "name": "Dr. Reyansh Mehta",
@@ -218,7 +224,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 15,
-    "bio": "Certified General Physician specialist at Sri Narayani Hospital & Research Centre providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+    "bio": "Certified General Physician specialist at Sri Narayani Hospital & Research Centre providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-107"
   },
   {
     "name": "Dr. Shruthi Menon",
@@ -248,7 +255,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 16,
-    "bio": "Certified General Physician specialist at Kovai Medical Center Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified General Physician specialist at Kovai Medical Center Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu.",
+    "doctorId": "DOC-TN-108"
   },
   {
     "name": "Dr. Advik Khanna",
@@ -278,7 +286,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 17,
-    "bio": "Certified General Physician specialist at New Raja Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+    "bio": "Certified General Physician specialist at New Raja Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-109"
   },
   {
     "name": "Dr. Myra Sethi",
@@ -308,7 +317,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 18,
-    "bio": "Certified General Physician specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+    "bio": "Certified General Physician specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu.",
+    "doctorId": "DOC-TN-110"
   },
   {
     "name": "Dr. Kareena Khanna",
@@ -338,7 +348,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 19,
-    "bio": "Certified Cardiologist specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Cardiologist specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-111"
   },
   {
     "name": "Dr. Arush Kapoor",
@@ -368,7 +379,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 20,
-    "bio": "Certified Cardiologist specialist at Sri Narayani Hospital & Research Centre providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+    "bio": "Certified Cardiologist specialist at Sri Narayani Hospital & Research Centre providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-112"
   },
   {
     "name": "Dr. Deepika Malhotra",
@@ -398,7 +410,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 21,
-    "bio": "Certified Cardiologist specialist at Sri Amman Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified Cardiologist specialist at Sri Amman Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu.",
+    "doctorId": "DOC-TN-113"
   },
   {
     "name": "Dr. Zayan Siddiqui",
@@ -428,7 +441,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 22,
-    "bio": "Certified Cardiologist specialist at New Raja Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+    "bio": "Certified Cardiologist specialist at New Raja Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-114"
   },
   {
     "name": "Dr. Kriti Mehra",
@@ -458,7 +472,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 8,
-    "bio": "Certified Cardiologist specialist at Muthu Meenakshi Hospitals providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+    "bio": "Certified Cardiologist specialist at Muthu Meenakshi Hospitals providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu.",
+    "doctorId": "DOC-TN-115"
   },
   {
     "name": "Dr. Ahan Oberoi",
@@ -488,7 +503,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 9,
-    "bio": "Certified Cardiologist specialist at Sri Sankara Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+    "bio": "Certified Cardiologist specialist at Sri Sankara Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-116"
   },
   {
     "name": "Dr. Catherine Fernandes",
@@ -518,7 +534,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 10,
-    "bio": "Certified Cardiologist specialist at Rela Institute & Medical Centre providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+    "bio": "Certified Cardiologist specialist at Rela Institute & Medical Centre providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu.",
+    "doctorId": "DOC-TN-117"
   },
   {
     "name": "Dr. Nivaan Arora",
@@ -548,7 +565,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 11,
-    "bio": "Certified Cardiologist specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+    "bio": "Certified Cardiologist specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-118"
   },
   {
     "name": "Dr. Tara Kapoor",
@@ -578,7 +596,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 12,
-    "bio": "Certified Cardiologist specialist at Sri Velavan Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Cardiologist specialist at Sri Velavan Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-119"
   },
   {
     "name": "Dr. Reyansh Khurana",
@@ -608,7 +627,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 13,
-    "bio": "Certified Cardiologist specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Cardiologist specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu.",
+    "doctorId": "DOC-TN-120"
   },
   {
     "name": "Dr. Rayaan Kapoor",
@@ -638,7 +658,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 14,
-    "bio": "Certified Neurologist specialist at Frontline Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+    "bio": "Certified Neurologist specialist at Frontline Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-121"
   },
   {
     "name": "Dr. Karthik Raman",
@@ -668,7 +689,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 15,
-    "bio": "Certified Neurologist specialist at Krishna Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Neurologist specialist at Krishna Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-122"
   },
   {
     "name": "Dr. Naveen Chandran",
@@ -698,7 +720,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 16,
-    "bio": "Certified Neurologist specialist at Scudder Memorial Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+    "bio": "Certified Neurologist specialist at Scudder Memorial Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-123"
   },
   {
     "name": "Dr. Harish Balan",
@@ -728,7 +751,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 17,
-    "bio": "Certified Neurologist specialist at Kovai Medical Center Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified Neurologist specialist at Kovai Medical Center Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu.",
+    "doctorId": "DOC-TN-124"
   },
   {
     "name": "Dr. Manish Gupta",
@@ -758,7 +782,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 18,
-    "bio": "Certified Neurologist specialist at Vallalar Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+    "bio": "Certified Neurologist specialist at Vallalar Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-125"
   },
   {
     "name": "Dr. Rohit Mehta",
@@ -788,7 +813,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 19,
-    "bio": "Certified Neurologist specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+    "bio": "Certified Neurologist specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu.",
+    "doctorId": "DOC-TN-126"
   },
   {
     "name": "Dr. Abhinav Singh",
@@ -818,7 +844,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 20,
-    "bio": "Certified Neurologist specialist at Rela Hospital Kanchipuram providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+    "bio": "Certified Neurologist specialist at Rela Hospital Kanchipuram providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-127"
   },
   {
     "name": "Dr. Arvind Krishnan",
@@ -848,7 +875,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 21,
-    "bio": "Certified Neurologist specialist at Karpaga Vinayaga Institute of Medical Sciences providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+    "bio": "Certified Neurologist specialist at Karpaga Vinayaga Institute of Medical Sciences providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu.",
+    "doctorId": "DOC-TN-128"
   },
   {
     "name": "Dr. Sidharth Nanda",
@@ -878,7 +906,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 22,
-    "bio": "Certified Neurologist specialist at Sri Kumaran Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+    "bio": "Certified Neurologist specialist at Sri Kumaran Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-129"
   },
   {
     "name": "Dr. Tanisha Kapoor",
@@ -908,7 +937,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 8,
-    "bio": "Certified Neurologist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Neurologist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-130"
   },
   {
     "name": "Dr. Alia Mehta",
@@ -938,7 +968,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 9,
-    "bio": "Certified Nephrologist specialist at Ramnad Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist at Ramnad Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-131"
   },
   {
     "name": "Dr. Vihaan Khurana",
@@ -968,7 +999,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 10,
-    "bio": "Certified Nephrologist specialist at Arul Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist at Arul Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu.",
+    "doctorId": "DOC-TN-132"
   },
   {
     "name": "Dr. Malavika Sethi",
@@ -998,7 +1030,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 11,
-    "bio": "Certified Nephrologist specialist at Ramachandra Hospital network facilities providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist at Ramachandra Hospital network facilities providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-133"
   },
   {
     "name": "Dr. Aarav Bansal",
@@ -1028,7 +1061,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 12,
-    "bio": "Certified Nephrologist specialist at Sri Ramana Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist at Sri Ramana Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-134"
   },
   {
     "name": "Dr. Kiara Mehra",
@@ -1058,7 +1092,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 13,
-    "bio": "Certified Nephrologist specialist at Lakshana Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist at Lakshana Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-135"
   },
   {
     "name": "Dr. Zoya Kapoor",
@@ -1088,7 +1123,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 14,
-    "bio": "Certified Nephrologist specialist at Muthu Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist at Muthu Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-136"
   },
   {
     "name": "Dr. Riaan Malhotra",
@@ -1118,7 +1154,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 15,
-    "bio": "Certified Nephrologist specialist at Dhanalakshmi Srinivasan Medical College Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist at Dhanalakshmi Srinivasan Medical College Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-137"
   },
   {
     "name": "Dr. Shobana Krishnan",
@@ -1148,7 +1185,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 16,
-    "bio": "Certified Nephrologist specialist at Dr. Mehta's Hospitals providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist at Dr. Mehta's Hospitals providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-138"
   },
   {
     "name": "Dr. Advik Suri",
@@ -1178,7 +1216,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 17,
-    "bio": "Certified Nephrologist specialist at Ganga Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist at Ganga Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-139"
   },
   {
     "name": "Dr. Anaya Chawla",
@@ -1208,7 +1247,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 18,
-    "bio": "Certified Nephrologist specialist at Vadamalayan Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+    "bio": "Certified Nephrologist specialist at Vadamalayan Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-140"
   },
   {
     "name": "Dr. Zendaya Thomas",
@@ -1238,7 +1278,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 19,
-    "bio": "Certified Psychiatrist specialist at VIMS Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist at VIMS Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-141"
   },
   {
     "name": "Dr. Kabir Khanna",
@@ -1268,7 +1309,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 20,
-    "bio": "Certified Psychiatrist specialist at Sri Lakshmi Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist at Sri Lakshmi Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-142"
   },
   {
     "name": "Dr. Deepika Anand",
@@ -1298,7 +1340,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 21,
-    "bio": "Certified Psychiatrist specialist at Dr. Mehta's Hospitals providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist at Dr. Mehta's Hospitals providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-143"
   },
   {
     "name": "Dr. Pooja Kapoor",
@@ -1328,7 +1371,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 22,
-    "bio": "Certified Psychiatrist specialist at Ganga Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist at Ganga Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-144"
   },
   {
     "name": "Dr. Vihaan Sethi",
@@ -1358,7 +1402,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 8,
-    "bio": "Certified Psychiatrist specialist at Vadamalayan Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist at Vadamalayan Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-145"
   },
   {
     "name": "Dr. Diana Prince",
@@ -1388,7 +1433,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 9,
-    "bio": "Certified Psychiatrist specialist at Kauvery Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist at Kauvery Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu.",
+    "doctorId": "DOC-TN-146"
   },
   {
     "name": "Dr. Myra Malhotra",
@@ -1418,7 +1464,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 10,
-    "bio": "Certified Psychiatrist specialist at Kauvery Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist at Kauvery Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-147"
   },
   {
     "name": "Dr. Ayaan Mehra",
@@ -1448,7 +1495,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 11,
-    "bio": "Certified Psychiatrist specialist at Annai Velankanni Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist at Annai Velankanni Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-148"
   },
   {
     "name": "Dr. Rhea Chawla",
@@ -1478,7 +1526,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 12,
-    "bio": "Certified Psychiatrist specialist at Kalyani Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist at Kalyani Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-149"
   },
   {
     "name": "Dr. Arush Bhatia",
@@ -1508,7 +1557,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 13,
-    "bio": "Certified Psychiatrist specialist at KMCH Speciality Hospital Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified Psychiatrist specialist at KMCH Speciality Hospital Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu.",
+    "doctorId": "DOC-TN-150"
   },
   {
     "name": "Dr. Kriti Kapoor",
@@ -1538,7 +1588,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 14,
-    "bio": "Certified Dentist specialist at Kauvery Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+    "bio": "Certified Dentist specialist at Kauvery Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu.",
+    "doctorId": "DOC-TN-151"
   },
   {
     "name": "Dr. Ahan Mehta",
@@ -1568,7 +1619,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 15,
-    "bio": "Certified Dentist specialist at Apollo Speciality Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+    "bio": "Certified Dentist specialist at Apollo Speciality Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-152"
   },
   {
     "name": "Dr. Kareena Sethi",
@@ -1598,7 +1650,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 16,
-    "bio": "Certified Dentist specialist at Galaxy Hospitals providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Dentist specialist at Galaxy Hospitals providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-153"
   },
   {
     "name": "Dr. Vihaan Arora",
@@ -1628,7 +1681,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 17,
-    "bio": "Certified Dentist specialist at Kalyani Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+    "bio": "Certified Dentist specialist at Kalyani Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-154"
   },
   {
     "name": "Dr. Shruthi Bansal",
@@ -1658,7 +1712,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 18,
-    "bio": "Certified Dentist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified Dentist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu.",
+    "doctorId": "DOC-TN-155"
   },
   {
     "name": "Dr. Riaan Malhotra",
@@ -1688,7 +1743,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 19,
-    "bio": "Certified Dentist specialist at Meenakshi Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+    "bio": "Certified Dentist specialist at Meenakshi Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-156"
   },
   {
     "name": "Dr. Catherine D'Souza",
@@ -1718,7 +1774,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 20,
-    "bio": "Certified Dentist specialist at City Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+    "bio": "Certified Dentist specialist at City Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu.",
+    "doctorId": "DOC-TN-157"
   },
   {
     "name": "Dr. Advik Khurana",
@@ -1748,7 +1805,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 21,
-    "bio": "Certified Dentist specialist at Kanchi Kamakoti Childs Trust Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+    "bio": "Certified Dentist specialist at Kanchi Kamakoti Childs Trust Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-158"
   },
   {
     "name": "Dr. Pooja Mehra",
@@ -1778,7 +1836,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 22,
-    "bio": "Certified Dentist specialist at Chettinad Hospital & Research Institute providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+    "bio": "Certified Dentist specialist at Chettinad Hospital & Research Institute providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu.",
+    "doctorId": "DOC-TN-159"
   },
   {
     "name": "Dr. Zayan Kapoor",
@@ -1808,7 +1867,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 8,
-    "bio": "Certified Dentist specialist at Kovai Medical Center & Hospital – Tiruppur providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+    "bio": "Certified Dentist specialist at Kovai Medical Center & Hospital – Tiruppur providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-160"
   },
   {
     "name": "Dr. Anaya Kapoor",
@@ -1838,7 +1898,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 9,
-    "bio": "Certified Physiotherapist specialist at Meenakshi Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+    "bio": "Certified Physiotherapist specialist at Meenakshi Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-161"
   },
   {
     "name": "Dr. Reyansh Bhatia",
@@ -1868,7 +1929,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 10,
-    "bio": "Certified Physiotherapist specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+    "bio": "Certified Physiotherapist specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu.",
+    "doctorId": "DOC-TN-162"
   },
   {
     "name": "Dr. Deepika Suri",
@@ -1898,7 +1960,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 11,
-    "bio": "Certified Physiotherapist specialist at Rela Hospital Kanchipuram providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+    "bio": "Certified Physiotherapist specialist at Rela Hospital Kanchipuram providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-163"
   },
   {
     "name": "Dr. Ayaan Mehta",
@@ -1928,7 +1991,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 12,
-    "bio": "Certified Physiotherapist specialist at Karpaga Vinayaga Institute of Medical Sciences providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+    "bio": "Certified Physiotherapist specialist at Karpaga Vinayaga Institute of Medical Sciences providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu.",
+    "doctorId": "DOC-TN-164"
   },
   {
     "name": "Dr. Malavika Kapoor",
@@ -1958,7 +2022,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 13,
-    "bio": "Certified Physiotherapist specialist at Sri Kumaran Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+    "bio": "Certified Physiotherapist specialist at Sri Kumaran Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-165"
   },
   {
     "name": "Dr. Kabir Anand",
@@ -1988,7 +2053,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 14,
-    "bio": "Certified Physiotherapist specialist at Sri Velavan Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Physiotherapist specialist at Sri Velavan Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-166"
   },
   {
     "name": "Dr. Kiara Bansal",
@@ -2018,7 +2084,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 15,
-    "bio": "Certified Physiotherapist specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Physiotherapist specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu.",
+    "doctorId": "DOC-TN-167"
   },
   {
     "name": "Dr. Nivaan Malhotra",
@@ -2048,7 +2115,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 16,
-    "bio": "Certified Physiotherapist specialist at K.S. Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+    "bio": "Certified Physiotherapist specialist at K.S. Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-168"
   },
   {
     "name": "Dr. Shobana Sethi",
@@ -2078,7 +2146,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 17,
-    "bio": "Certified Physiotherapist specialist at K.V. Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+    "bio": "Certified Physiotherapist specialist at K.V. Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu.",
+    "doctorId": "DOC-TN-169"
   },
   {
     "name": "Dr. Arush Khanna",
@@ -2108,7 +2177,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 18,
-    "bio": "Certified Physiotherapist specialist at Be Well Hospitals providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
+    "bio": "Certified Physiotherapist specialist at Be Well Hospitals providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-170"
   },
   {
     "name": "Dr. Alia Kapoor",
@@ -2138,7 +2208,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 19,
-    "bio": "Certified ENT Specialist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified ENT Specialist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-171"
   },
   {
     "name": "Dr. Vihaan Suri",
@@ -2168,7 +2239,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 20,
-    "bio": "Certified ENT Specialist specialist at MC Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified ENT Specialist specialist at MC Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu.",
+    "doctorId": "DOC-TN-172"
   },
   {
     "name": "Dr. Kareena Malhotra",
@@ -2198,7 +2270,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 21,
-    "bio": "Certified ENT Specialist specialist at Annai Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+    "bio": "Certified ENT Specialist specialist at Annai Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-173"
   },
   {
     "name": "Dr. Riaan Mehta",
@@ -2228,7 +2301,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 22,
-    "bio": "Certified ENT Specialist specialist at K.V. Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+    "bio": "Certified ENT Specialist specialist at K.V. Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu.",
+    "doctorId": "DOC-TN-174"
   },
   {
     "name": "Dr. Shruthi Kapoor",
@@ -2258,7 +2332,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 8,
-    "bio": "Certified ENT Specialist specialist at Saveetha Medical College & Hospital providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
+    "bio": "Certified ENT Specialist specialist at Saveetha Medical College & Hospital providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-175"
   },
   {
     "name": "Dr. Zayan Arora",
@@ -2288,7 +2363,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 9,
-    "bio": "Certified ENT Specialist specialist at Ramana Maharshi Rangammal Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
+    "bio": "Certified ENT Specialist specialist at Ramana Maharshi Rangammal Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-176"
   },
   {
     "name": "Dr. Pooja Sethi",
@@ -2318,7 +2394,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 10,
-    "bio": "Certified ENT Specialist specialist at Arun Medical Centre providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified ENT Specialist specialist at Arun Medical Centre providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-177"
   },
   {
     "name": "Dr. Advik Bhatia",
@@ -2348,7 +2425,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 11,
-    "bio": "Certified ENT Specialist specialist at Sri Vinayaka Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
+    "bio": "Certified ENT Specialist specialist at Sri Vinayaka Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-178"
   },
   {
     "name": "Dr. Myra Khanna",
@@ -2378,7 +2456,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 12,
-    "bio": "Certified ENT Specialist specialist at Dhanalakshmi Srinivasan Medical College Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+    "bio": "Certified ENT Specialist specialist at Dhanalakshmi Srinivasan Medical College Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-179"
   },
   {
     "name": "Dr. Ahan Kapoor",
@@ -2408,7 +2487,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 13,
-    "bio": "Certified ENT Specialist specialist at MGM Healthcare providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+    "bio": "Certified ENT Specialist specialist at MGM Healthcare providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-180"
   },
   {
     "name": "Dr. Kiara Malhotra",
@@ -2438,7 +2518,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 14,
-    "bio": "Certified Dermatologist specialist at Arunai Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
+    "bio": "Certified Dermatologist specialist at Arunai Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-181"
   },
   {
     "name": "Dr. Ayaan Sethi",
@@ -2468,7 +2549,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 15,
-    "bio": "Certified Dermatologist specialist at Lakshana Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified Dermatologist specialist at Lakshana Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-182"
   },
   {
     "name": "Dr. Deepika Kapoor",
@@ -2498,7 +2580,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 16,
-    "bio": "Certified Dermatologist specialist at Muthu Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
+    "bio": "Certified Dermatologist specialist at Muthu Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-183"
   },
   {
     "name": "Dr. Reyansh Bansal",
@@ -2528,7 +2611,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 17,
-    "bio": "Certified Dermatologist specialist at Sri Lakshmi Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+    "bio": "Certified Dermatologist specialist at Sri Lakshmi Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-184"
   },
   {
     "name": "Dr. Kriti Arora",
@@ -2558,7 +2642,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 18,
-    "bio": "Certified Dermatologist specialist at MGM Healthcare providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+    "bio": "Certified Dermatologist specialist at MGM Healthcare providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-185"
   },
   {
     "name": "Dr. Vihaan Khanna",
@@ -2588,7 +2673,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 19,
-    "bio": "Certified Dermatologist specialist at PSG Hospitals providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+    "bio": "Certified Dermatologist specialist at PSG Hospitals providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-186"
   },
   {
     "name": "Dr. Malavika Mehra",
@@ -2618,7 +2704,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 20,
-    "bio": "Certified Dermatologist specialist at Apollo Speciality Hospitals providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+    "bio": "Certified Dermatologist specialist at Apollo Speciality Hospitals providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-187"
   },
   {
     "name": "Dr. Kabir Malhotra",
@@ -2648,7 +2735,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 21,
-    "bio": "Certified Dermatologist specialist at SKS Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+    "bio": "Certified Dermatologist specialist at SKS Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu.",
+    "doctorId": "DOC-TN-188"
   },
   {
     "name": "Dr. Rhea Kapoor",
@@ -2678,7 +2766,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 22,
-    "bio": "Certified Dermatologist specialist at KMC Speciality Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+    "bio": "Certified Dermatologist specialist at KMC Speciality Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-189"
   },
   {
     "name": "Dr. Zoya Bhatia",
@@ -2708,7 +2797,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 8,
-    "bio": "Certified Dermatologist specialist at Krishna Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Dermatologist specialist at Krishna Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-190"
   },
   {
     "name": "Dr. Kareena Kapoor",
@@ -2738,7 +2828,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 9,
-    "bio": "Certified Pulmonologist specialist at PSG Hospitals providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+    "bio": "Certified Pulmonologist specialist at PSG Hospitals providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-191"
   },
   {
     "name": "Dr. Arush Mehta",
@@ -2768,7 +2859,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 10,
-    "bio": "Certified Pulmonologist specialist at Apollo Speciality Hospitals providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+    "bio": "Certified Pulmonologist specialist at Apollo Speciality Hospitals providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-192"
   },
   {
     "name": "Dr. Shobana Malhotra",
@@ -2798,7 +2890,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 11,
-    "bio": "Certified Pulmonologist specialist at SKS Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+    "bio": "Certified Pulmonologist specialist at SKS Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu.",
+    "doctorId": "DOC-TN-193"
   },
   {
     "name": "Dr. Ayaan Bhatia",
@@ -2828,7 +2921,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 12,
-    "bio": "Certified Pulmonologist specialist at Maruti Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+    "bio": "Certified Pulmonologist specialist at Maruti Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-194"
   },
   {
     "name": "Dr. Kiara Sethi",
@@ -2858,7 +2952,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 13,
-    "bio": "Certified Pulmonologist specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Pulmonologist specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-195"
   },
   {
     "name": "Dr. Vihaan Kapoor",
@@ -2888,7 +2983,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 14,
-    "bio": "Certified Pulmonologist specialist at Christian Medical College & Hospital (CMC) providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+    "bio": "Certified Pulmonologist specialist at Christian Medical College & Hospital (CMC) providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-196"
   },
   {
     "name": "Dr. Catherine Mehra",
@@ -2918,7 +3014,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 15,
-    "bio": "Certified Pulmonologist specialist at Sri Amman Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified Pulmonologist specialist at Sri Amman Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu.",
+    "doctorId": "DOC-TN-197"
   },
   {
     "name": "Dr. Riaan Khanna",
@@ -2948,7 +3045,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 16,
-    "bio": "Certified Pulmonologist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+    "bio": "Certified Pulmonologist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-198"
   },
   {
     "name": "Dr. Pooja Arora",
@@ -2978,7 +3076,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 17,
-    "bio": "Certified Pulmonologist specialist at Muthu Meenakshi Hospitals providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+    "bio": "Certified Pulmonologist specialist at Muthu Meenakshi Hospitals providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu.",
+    "doctorId": "DOC-TN-199"
   },
   {
     "name": "Dr. Advik Kapoor",
@@ -3008,7 +3107,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 18,
-    "bio": "Certified Pulmonologist specialist at Sri Sankara Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+    "bio": "Certified Pulmonologist specialist at Sri Sankara Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-200"
   },
   {
     "name": "Dr. Alia Malhotra",
@@ -3038,7 +3138,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 19,
-    "bio": "Certified Gastroenterologist specialist at Christian Medical College & Hospital (CMC) providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+    "bio": "Certified Gastroenterologist specialist at Christian Medical College & Hospital (CMC) providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-201"
   },
   {
     "name": "Dr. Kabir Mehta",
@@ -3068,7 +3169,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 20,
-    "bio": "Certified Gastroenterologist specialist at KMCH Speciality Hospital Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified Gastroenterologist specialist at KMCH Speciality Hospital Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu.",
+    "doctorId": "DOC-TN-202"
   },
   {
     "name": "Dr. Deepika Sethi",
@@ -3098,7 +3200,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 21,
-    "bio": "Certified Gastroenterologist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+    "bio": "Certified Gastroenterologist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-203"
   },
   {
     "name": "Dr. Reyansh Kapoor",
@@ -3128,7 +3231,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 22,
-    "bio": "Certified Gastroenterologist specialist at Aravind Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+    "bio": "Certified Gastroenterologist specialist at Aravind Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu.",
+    "doctorId": "DOC-TN-204"
   },
   {
     "name": "Dr. Kriti Bansal",
@@ -3158,7 +3262,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 8,
-    "bio": "Certified Gastroenterologist specialist at Meenakshi Medical College Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+    "bio": "Certified Gastroenterologist specialist at Meenakshi Medical College Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-205"
   },
   {
     "name": "Dr. Ahan Khanna",
@@ -3188,7 +3293,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 9,
-    "bio": "Certified Gastroenterologist specialist at Sree Renga Hospital providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+    "bio": "Certified Gastroenterologist specialist at Sree Renga Hospital providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu.",
+    "doctorId": "DOC-TN-206"
   },
   {
     "name": "Dr. Myra Mehra",
@@ -3218,7 +3324,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 10,
-    "bio": "Certified Gastroenterologist specialist at Revathi Medical Center providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+    "bio": "Certified Gastroenterologist specialist at Revathi Medical Center providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-207"
   },
   {
     "name": "Dr. Zayan Kapoor",
@@ -3248,7 +3355,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 11,
-    "bio": "Certified Gastroenterologist specialist at Apollo Hospitals Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Gastroenterologist specialist at Apollo Hospitals Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-208"
   },
   {
     "name": "Dr. Malavika Arora",
@@ -3278,7 +3386,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 12,
-    "bio": "Certified Gastroenterologist specialist at Sri Ram Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Gastroenterologist specialist at Sri Ram Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu.",
+    "doctorId": "DOC-TN-209"
   },
   {
     "name": "Dr. Nivaan Sethi",
@@ -3308,7 +3417,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 13,
-    "bio": "Certified Gastroenterologist specialist at Sri Devi Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+    "bio": "Certified Gastroenterologist specialist at Sri Devi Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-210"
   },
   {
     "name": "Dr. Kiara Bhatia",
@@ -3338,7 +3448,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 14,
-    "bio": "Certified Pediatrician specialist at Chettinad Hospital & Research Institute providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist at Chettinad Hospital & Research Institute providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu.",
+    "doctorId": "DOC-TN-211"
   },
   {
     "name": "Dr. Ayaan Kapoor",
@@ -3368,7 +3479,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 15,
-    "bio": "Certified Pediatrician specialist at Kovai Medical Center & Hospital – Tiruppur providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist at Kovai Medical Center & Hospital – Tiruppur providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-212"
   },
   {
     "name": "Dr. Pooja Mehra",
@@ -3398,7 +3510,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 16,
-    "bio": "Certified Pediatrician specialist at Sri Velavan Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist at Sri Velavan Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-213"
   },
   {
     "name": "Dr. Vihaan Sethi",
@@ -3428,7 +3541,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 17,
-    "bio": "Certified Pediatrician specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu.",
+    "doctorId": "DOC-TN-214"
   },
   {
     "name": "Dr. Shruthi Malhotra",
@@ -3458,7 +3572,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 18,
-    "bio": "Certified Pediatrician specialist at Ramnad Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist at Ramnad Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-215"
   },
   {
     "name": "Dr. Arush Kapoor",
@@ -3488,7 +3603,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 19,
-    "bio": "Certified Pediatrician specialist at AVM Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist at AVM Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu.",
+    "doctorId": "DOC-TN-216"
   },
   {
     "name": "Dr. Anaya Khanna",
@@ -3518,7 +3634,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 20,
-    "bio": "Certified Pediatrician specialist at Ramachandra Hospital network facilities providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist at Ramachandra Hospital network facilities providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-217"
   },
   {
     "name": "Dr. Riaan Mehra",
@@ -3548,7 +3665,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 21,
-    "bio": "Certified Pediatrician specialist at Sri Ramana Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist at Sri Ramana Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-218"
   },
   {
     "name": "Dr. Catherine Bansal",
@@ -3578,7 +3696,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 22,
-    "bio": "Certified Pediatrician specialist at Hanifa Nursing Home providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist at Hanifa Nursing Home providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-219"
   },
   {
     "name": "Dr. Advik Suri",
@@ -3608,7 +3727,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 8,
-    "bio": "Certified Pediatrician specialist at VIMS Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
+    "bio": "Certified Pediatrician specialist at VIMS Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-220"
   },
   {
     "name": "Dr. Deepika Kapoor",
@@ -3638,7 +3758,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 9,
-    "bio": "Certified Gynecologist specialist at AVM Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+    "bio": "Certified Gynecologist specialist at AVM Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu.",
+    "doctorId": "DOC-TN-221"
   },
   {
     "name": "Dr. Kareena Malhotra",
@@ -3668,7 +3789,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 10,
-    "bio": "Certified Gynecologist specialist at Be Well Hospitals providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
+    "bio": "Certified Gynecologist specialist at Be Well Hospitals providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-222"
   },
   {
     "name": "Dr. Alia Sethi",
@@ -3698,7 +3820,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 11,
-    "bio": "Certified Gynecologist specialist at Abirami Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
+    "bio": "Certified Gynecologist specialist at Abirami Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-223"
   },
   {
     "name": "Dr. Vihaan Bhatia",
@@ -3728,7 +3851,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 12,
-    "bio": "Certified Gynecologist specialist at Arun Medical Centre providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified Gynecologist specialist at Arun Medical Centre providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-224"
   },
   {
     "name": "Dr. Kriti Kapoor",
@@ -3758,7 +3882,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 13,
-    "bio": "Certified Gynecologist specialist at Sri Vinayaka Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
+    "bio": "Certified Gynecologist specialist at Sri Vinayaka Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-225"
   },
   {
     "name": "Dr. Malavika Mehra",
@@ -3788,7 +3913,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 14,
-    "bio": "Certified Gynecologist specialist at Sri Lakshmi Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+    "bio": "Certified Gynecologist specialist at Sri Lakshmi Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-226"
   },
   {
     "name": "Dr. Myra Khanna",
@@ -3818,7 +3944,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 15,
-    "bio": "Certified Gynecologist specialist at Kauvery Hospital Chennai providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+    "bio": "Certified Gynecologist specialist at Kauvery Hospital Chennai providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-227"
   },
   {
     "name": "Dr. Pooja Malhotra",
@@ -3848,7 +3975,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 16,
-    "bio": "Certified Gynecologist specialist at Kovai Medical Center and Hospital (KMCH) providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+    "bio": "Certified Gynecologist specialist at Kovai Medical Center and Hospital (KMCH) providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-228"
   },
   {
     "name": "Dr. Rhea Sethi",
@@ -3878,7 +4006,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 17,
-    "bio": "Certified Gynecologist specialist at Velammal Medical College Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+    "bio": "Certified Gynecologist specialist at Velammal Medical College Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-229"
   },
   {
     "name": "Dr. Shobana Kapoor",
@@ -3908,7 +4037,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 18,
-    "bio": "Certified Gynecologist specialist at Vinayaka Mission Super Speciality Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+    "bio": "Certified Gynecologist specialist at Vinayaka Mission Super Speciality Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu.",
+    "doctorId": "DOC-TN-230"
   },
   {
     "name": "Dr. Kiara Mehra",
@@ -3938,7 +4068,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 19,
-    "bio": "Certified Ophthalmologist specialist at Dhanalakshmi Srinivasan Medical College Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+    "bio": "Certified Ophthalmologist specialist at Dhanalakshmi Srinivasan Medical College Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-231"
   },
   {
     "name": "Dr. Ayaan Kapoor",
@@ -3968,7 +4099,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 20,
-    "bio": "Certified Ophthalmologist specialist at Kauvery Hospital Chennai providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+    "bio": "Certified Ophthalmologist specialist at Kauvery Hospital Chennai providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-232"
   },
   {
     "name": "Dr. Zendaya Thomas",
@@ -3998,7 +4130,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 21,
-    "bio": "Certified Ophthalmologist specialist at Kovai Medical Center and Hospital (KMCH) providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+    "bio": "Certified Ophthalmologist specialist at Kovai Medical Center and Hospital (KMCH) providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-233"
   },
   {
     "name": "Dr. Arush Malhotra",
@@ -4028,7 +4161,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 22,
-    "bio": "Certified Ophthalmologist specialist at Velammal Medical College Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+    "bio": "Certified Ophthalmologist specialist at Velammal Medical College Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-234"
   },
   {
     "name": "Dr. Shruthi Sethi",
@@ -4058,7 +4192,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 8,
-    "bio": "Certified Ophthalmologist specialist at Vinayaka Mission Super Speciality Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+    "bio": "Certified Ophthalmologist specialist at Vinayaka Mission Super Speciality Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu.",
+    "doctorId": "DOC-TN-235"
   },
   {
     "name": "Dr. Kabir Bansal",
@@ -4088,7 +4223,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 9,
-    "bio": "Certified Ophthalmologist specialist at Frontline Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+    "bio": "Certified Ophthalmologist specialist at Frontline Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-236"
   },
   {
     "name": "Dr. Deepika Khanna",
@@ -4118,7 +4254,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 10,
-    "bio": "Certified Ophthalmologist specialist at Aravind Eye Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Ophthalmologist specialist at Aravind Eye Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-237"
   },
   {
     "name": "Dr. Reyansh Kapoor",
@@ -4148,7 +4285,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 11,
-    "bio": "Certified Ophthalmologist specialist at Scudder Memorial Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+    "bio": "Certified Ophthalmologist specialist at Scudder Memorial Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-238"
   },
   {
     "name": "Dr. Catherine Mehra",
@@ -4178,7 +4316,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 12,
-    "bio": "Certified Ophthalmologist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified Ophthalmologist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu.",
+    "doctorId": "DOC-TN-239"
   },
   {
     "name": "Dr. Nivaan Arora",
@@ -4208,7 +4347,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 13,
-    "bio": "Certified Ophthalmologist specialist at Vallalar Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+    "bio": "Certified Ophthalmologist specialist at Vallalar Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-240"
   },
   {
     "name": "Dr. Vihaan Kapoor",
@@ -4238,7 +4378,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 14,
-    "bio": "Certified Urologist specialist at Kauvery Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+    "bio": "Certified Urologist specialist at Kauvery Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-241"
   },
   {
     "name": "Dr. Ahan Malhotra",
@@ -4268,7 +4409,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 15,
-    "bio": "Certified Urologist specialist at Krishna Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Urologist specialist at Krishna Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-242"
   },
   {
     "name": "Dr. Kareena Sethi",
@@ -4298,7 +4440,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 16,
-    "bio": "Certified Urologist specialist at Scudder Memorial Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+    "bio": "Certified Urologist specialist at Scudder Memorial Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-243"
   },
   {
     "name": "Dr. Zayan Bhatia",
@@ -4328,7 +4471,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 17,
-    "bio": "Certified Urologist specialist at Abirami Kidney Care providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified Urologist specialist at Abirami Kidney Care providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu.",
+    "doctorId": "DOC-TN-244"
   },
   {
     "name": "Dr. Kiara Khanna",
@@ -4358,7 +4502,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 18,
-    "bio": "Certified Urologist specialist at Vallalar Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+    "bio": "Certified Urologist specialist at Vallalar Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-245"
   },
   {
     "name": "Dr. Arush Mehra",
@@ -4388,7 +4533,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 19,
-    "bio": "Certified Urologist specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+    "bio": "Certified Urologist specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu.",
+    "doctorId": "DOC-TN-246"
   },
   {
     "name": "Dr. Malavika Kapoor",
@@ -4418,7 +4564,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 20,
-    "bio": "Certified Urologist specialist at Rela Hospital Kanchipuram providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+    "bio": "Certified Urologist specialist at Rela Hospital Kanchipuram providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-247"
   },
   {
     "name": "Dr. Riaan Sethi",
@@ -4448,7 +4595,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 21,
-    "bio": "Certified Urologist specialist at Karpaga Vinayaga Institute of Medical Sciences providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+    "bio": "Certified Urologist specialist at Karpaga Vinayaga Institute of Medical Sciences providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu.",
+    "doctorId": "DOC-TN-248"
   },
   {
     "name": "Dr. Pooja Khanna",
@@ -4478,7 +4626,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 22,
-    "bio": "Certified Urologist specialist at Sri Kumaran Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+    "bio": "Certified Urologist specialist at Sri Kumaran Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-249"
   },
   {
     "name": "Dr. Advik Mehta",
@@ -4508,7 +4657,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 8,
-    "bio": "Certified Urologist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Urologist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-250"
   },
   {
     "name": "Dr. Alia Kapoor",
@@ -4538,7 +4688,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 9,
-    "bio": "Certified Plastic Surgeon specialist at Muthu Meenakshi Hospitals providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+    "bio": "Certified Plastic Surgeon specialist at Muthu Meenakshi Hospitals providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu.",
+    "doctorId": "DOC-TN-251"
   },
   {
     "name": "Dr. Kabir Malhotra",
@@ -4568,7 +4719,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 10,
-    "bio": "Certified Plastic Surgeon specialist at Sri Sankara Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+    "bio": "Certified Plastic Surgeon specialist at Sri Sankara Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-252"
   },
   {
     "name": "Dr. Deepika Sethi",
@@ -4598,7 +4750,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 11,
-    "bio": "Certified Plastic Surgeon specialist at Rela Institute & Medical Centre providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+    "bio": "Certified Plastic Surgeon specialist at Rela Institute & Medical Centre providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu.",
+    "doctorId": "DOC-TN-253"
   },
   {
     "name": "Dr. Ayaan Khanna",
@@ -4628,7 +4781,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 12,
-    "bio": "Certified Plastic Surgeon specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+    "bio": "Certified Plastic Surgeon specialist at Sree Abirami Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-254"
   },
   {
     "name": "Dr. Kriti Kapoor",
@@ -4658,7 +4812,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 13,
-    "bio": "Certified Plastic Surgeon specialist at Apollo Hospitals Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Plastic Surgeon specialist at Apollo Hospitals Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-255"
   },
   {
     "name": "Dr. Reyansh Bansal",
@@ -4688,7 +4843,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 14,
-    "bio": "Certified Plastic Surgeon specialist at Sri Ram Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Plastic Surgeon specialist at Sri Ram Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu.",
+    "doctorId": "DOC-TN-256"
   },
   {
     "name": "Dr. Myra Mehra",
@@ -4718,7 +4874,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 15,
-    "bio": "Certified Plastic Surgeon specialist at Annai Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+    "bio": "Certified Plastic Surgeon specialist at Annai Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-257"
   },
   {
     "name": "Dr. Zayan Kapoor",
@@ -4748,7 +4905,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 16,
-    "bio": "Certified Plastic Surgeon specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+    "bio": "Certified Plastic Surgeon specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu.",
+    "doctorId": "DOC-TN-258"
   },
   {
     "name": "Dr. Shobana Malhotra",
@@ -4778,7 +4936,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 17,
-    "bio": "Certified Plastic Surgeon specialist at Saveetha Medical College & Hospital providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
+    "bio": "Certified Plastic Surgeon specialist at Saveetha Medical College & Hospital providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-259"
   },
   {
     "name": "Dr. Nivaan Sethi",
@@ -4808,7 +4967,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 18,
-    "bio": "Certified Plastic Surgeon specialist at Ramana Maharshi Rangammal Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
+    "bio": "Certified Plastic Surgeon specialist at Ramana Maharshi Rangammal Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-260"
   },
   {
     "name": "Dr. Kiara Bansal",
@@ -4838,7 +4998,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 19,
-    "bio": "Certified Radiologist specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Radiologist specialist at Naganathar Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu.",
+    "doctorId": "DOC-TN-261"
   },
   {
     "name": "Dr. Vihaan Kapoor",
@@ -4868,7 +5029,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 20,
-    "bio": "Certified Radiologist specialist at Sri Devi Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+    "bio": "Certified Radiologist specialist at Sri Devi Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-262"
   },
   {
     "name": "Dr. Pooja Mehra",
@@ -4898,7 +5060,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 21,
-    "bio": "Certified Radiologist specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+    "bio": "Certified Radiologist specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu.",
+    "doctorId": "DOC-TN-263"
   },
   {
     "name": "Dr. Arush Sethi",
@@ -4928,7 +5091,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 22,
-    "bio": "Certified Radiologist specialist at ACS Medical College Hospital providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
+    "bio": "Certified Radiologist specialist at ACS Medical College Hospital providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-264"
   },
   {
     "name": "Dr. Malavika Khanna",
@@ -4958,7 +5122,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 8,
-    "bio": "Certified Radiologist specialist at Arunai Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
+    "bio": "Certified Radiologist specialist at Arunai Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-265"
   },
   {
     "name": "Dr. Ahan Bhatia",
@@ -4988,7 +5153,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 9,
-    "bio": "Certified Radiologist specialist at Hanifa Nursing Home providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified Radiologist specialist at Hanifa Nursing Home providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-266"
   },
   {
     "name": "Dr. Catherine Kapoor",
@@ -5018,7 +5184,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 10,
-    "bio": "Certified Radiologist specialist at VIMS Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
+    "bio": "Certified Radiologist specialist at VIMS Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-267"
   },
   {
     "name": "Dr. Riaan Malhotra",
@@ -5048,7 +5215,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 11,
-    "bio": "Certified Radiologist specialist at Sri Lakshmi Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+    "bio": "Certified Radiologist specialist at Sri Lakshmi Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-268"
   },
   {
     "name": "Dr. Deepika Arora",
@@ -5078,7 +5246,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 12,
-    "bio": "Certified Radiologist specialist at SIMS Hospitals - Multi Speciality Hospital providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+    "bio": "Certified Radiologist specialist at SIMS Hospitals - Multi Speciality Hospital providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-269"
   },
   {
     "name": "Dr. Advik Mehta",
@@ -5108,7 +5277,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 13,
-    "bio": "Certified Radiologist specialist at KG Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+    "bio": "Certified Radiologist specialist at KG Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-270"
   },
   {
     "name": "Dr. Kareena Kapoor",
@@ -5138,7 +5308,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 14,
-    "bio": "Certified Neonatologist specialist at Arun Medical Centre providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified Neonatologist specialist at Arun Medical Centre providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-271"
   },
   {
     "name": "Dr. Ayaan Malhotra",
@@ -5168,7 +5339,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 15,
-    "bio": "Certified Neonatologist specialist at Sri Vinayaka Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
+    "bio": "Certified Neonatologist specialist at Sri Vinayaka Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-272"
   },
   {
     "name": "Dr. Shobana Mehra",
@@ -5198,7 +5370,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 16,
-    "bio": "Certified Neonatologist specialist at Dhanalakshmi Srinivasan Medical College Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+    "bio": "Certified Neonatologist specialist at Dhanalakshmi Srinivasan Medical College Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-273"
   },
   {
     "name": "Dr. Vihaan Bansal",
@@ -5228,7 +5401,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 17,
-    "bio": "Certified Neonatologist specialist at SIMS Hospitals - Multi Speciality Hospital providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+    "bio": "Certified Neonatologist specialist at SIMS Hospitals - Multi Speciality Hospital providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-274"
   },
   {
     "name": "Dr. Kiara Sethi",
@@ -5258,7 +5432,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 18,
-    "bio": "Certified Neonatologist specialist at KG Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+    "bio": "Certified Neonatologist specialist at KG Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-275"
   },
   {
     "name": "Dr. Reyansh Kapoor",
@@ -5288,7 +5463,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 19,
-    "bio": "Certified Neonatologist specialist at Meenakshi Mission Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+    "bio": "Certified Neonatologist specialist at Meenakshi Mission Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-276"
   },
   {
     "name": "Dr. Pooja Khanna",
@@ -5318,7 +5494,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 20,
-    "bio": "Certified Neonatologist specialist at Manipal Hospital Salem providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+    "bio": "Certified Neonatologist specialist at Manipal Hospital Salem providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu.",
+    "doctorId": "DOC-TN-277"
   },
   {
     "name": "Dr. Zayan Mehra",
@@ -5348,7 +5525,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 21,
-    "bio": "Certified Neonatologist specialist at Apollo Speciality Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+    "bio": "Certified Neonatologist specialist at Apollo Speciality Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-278"
   },
   {
     "name": "Dr. Myra Kapoor",
@@ -5378,7 +5556,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 22,
-    "bio": "Certified Neonatologist specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Neonatologist specialist at Shifa Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-279"
   },
   {
     "name": "Dr. Arush Sethi",
@@ -5408,7 +5587,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 8,
-    "bio": "Certified Neonatologist specialist at Apollo KH Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+    "bio": "Certified Neonatologist specialist at Apollo KH Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-280"
   },
   {
     "name": "Dr. Alia Kapoor",
@@ -5438,7 +5618,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 9,
-    "bio": "Certified Geriatrician specialist at Meenakshi Mission Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+    "bio": "Certified Geriatrician specialist at Meenakshi Mission Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-281"
   },
   {
     "name": "Dr. Kabir Mehra",
@@ -5468,7 +5649,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 10,
-    "bio": "Certified Geriatrician specialist at Manipal Hospital Salem providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+    "bio": "Certified Geriatrician specialist at Manipal Hospital Salem providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu.",
+    "doctorId": "DOC-TN-282"
   },
   {
     "name": "Dr. Deepika Bansal",
@@ -5498,7 +5680,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 11,
-    "bio": "Certified Geriatrician specialist at KMC Speciality Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+    "bio": "Certified Geriatrician specialist at KMC Speciality Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-283"
   },
   {
     "name": "Dr. Ayaan Sethi",
@@ -5528,7 +5711,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 12,
-    "bio": "Certified Geriatrician specialist at Annai Velankanni Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu."
+    "bio": "Certified Geriatrician specialist at Annai Velankanni Hospital providing comprehensive clinical healthcare for patients in Tirunelveli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-284"
   },
   {
     "name": "Dr. Kriti Kapoor",
@@ -5558,7 +5742,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 13,
-    "bio": "Certified Geriatrician specialist at Apollo KH Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu."
+    "bio": "Certified Geriatrician specialist at Apollo KH Hospital providing comprehensive clinical healthcare for patients in Vellore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-285"
   },
   {
     "name": "Dr. Vihaan Khanna",
@@ -5588,7 +5773,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 14,
-    "bio": "Certified Geriatrician specialist at KMCH Speciality Hospital Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified Geriatrician specialist at KMCH Speciality Hospital Erode providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu.",
+    "doctorId": "DOC-TN-286"
   },
   {
     "name": "Dr. Malavika Mehra",
@@ -5618,7 +5804,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 15,
-    "bio": "Certified Geriatrician specialist at KG Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+    "bio": "Certified Geriatrician specialist at KG Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-287"
   },
   {
     "name": "Dr. Riaan Kapoor",
@@ -5648,7 +5835,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 16,
-    "bio": "Certified Geriatrician specialist at Aravind Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+    "bio": "Certified Geriatrician specialist at Aravind Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu.",
+    "doctorId": "DOC-TN-288"
   },
   {
     "name": "Dr. Pooja Sethi",
@@ -5678,7 +5866,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 17,
-    "bio": "Certified Geriatrician specialist at Meenakshi Medical College Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+    "bio": "Certified Geriatrician specialist at Meenakshi Medical College Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-289"
   },
   {
     "name": "Dr. Nivaan Bhatia",
@@ -5708,7 +5897,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 18,
-    "bio": "Certified Geriatrician specialist at Sree Renga Hospital providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+    "bio": "Certified Geriatrician specialist at Sree Renga Hospital providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu.",
+    "doctorId": "DOC-TN-290"
   },
   {
     "name": "Dr. Kiara Mehra",
@@ -5738,7 +5928,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 19,
-    "bio": "Certified Hepatologist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu."
+    "bio": "Certified Hepatologist specialist at Sudha Hospital providing comprehensive clinical healthcare for patients in Erode and across Tamil Nadu.",
+    "doctorId": "DOC-TN-291"
   },
   {
     "name": "Dr. Arush Kapoor",
@@ -5768,7 +5959,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 20,
-    "bio": "Certified Hepatologist specialist at KG Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu."
+    "bio": "Certified Hepatologist specialist at KG Hospital providing comprehensive clinical healthcare for patients in Thanjavur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-292"
   },
   {
     "name": "Dr. Kareena Malhotra",
@@ -5798,7 +5990,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 21,
-    "bio": "Certified Hepatologist specialist at City Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu."
+    "bio": "Certified Hepatologist specialist at City Hospital providing comprehensive clinical healthcare for patients in Dindigul and across Tamil Nadu.",
+    "doctorId": "DOC-TN-293"
   },
   {
     "name": "Dr. Vihaan Sethi",
@@ -5828,7 +6021,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 22,
-    "bio": "Certified Hepatologist specialist at Kanchi Kamakoti Childs Trust Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu."
+    "bio": "Certified Hepatologist specialist at Kanchi Kamakoti Childs Trust Hospital providing comprehensive clinical healthcare for patients in Kanchipuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-294"
   },
   {
     "name": "Dr. Shruthi Kapoor",
@@ -5858,7 +6052,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 8,
-    "bio": "Certified Hepatologist specialist at Chettinad Hospital & Research Institute providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu."
+    "bio": "Certified Hepatologist specialist at Chettinad Hospital & Research Institute providing comprehensive clinical healthcare for patients in Chengalpattu and across Tamil Nadu.",
+    "doctorId": "DOC-TN-295"
   },
   {
     "name": "Dr. Ayaan Bansal",
@@ -5888,7 +6083,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 9,
-    "bio": "Certified Hepatologist specialist at Kovai Medical Center & Hospital – Tiruppur providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+    "bio": "Certified Hepatologist specialist at Kovai Medical Center & Hospital – Tiruppur providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-296"
   },
   {
     "name": "Dr. Catherine Mehra",
@@ -5918,7 +6114,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 10,
-    "bio": "Certified Hepatologist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Hepatologist specialist at Amaravathi Hospital providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-297"
   },
   {
     "name": "Dr. Zayan Kapoor",
@@ -5948,7 +6145,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 11,
-    "bio": "Certified Hepatologist specialist at MC Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Hepatologist specialist at MC Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu.",
+    "doctorId": "DOC-TN-298"
   },
   {
     "name": "Dr. Malavika Sethi",
@@ -5978,7 +6176,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 12,
-    "bio": "Certified Hepatologist specialist at Ramnad Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+    "bio": "Certified Hepatologist specialist at Ramnad Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-299"
   },
   {
     "name": "Dr. Advik Khanna",
@@ -6008,7 +6207,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 13,
-    "bio": "Certified Hepatologist specialist at Holy Cross Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+    "bio": "Certified Hepatologist specialist at Holy Cross Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu.",
+    "doctorId": "DOC-TN-300"
   },
   {
     "name": "Dr. Rithvik Malhotra",
@@ -6038,7 +6238,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 14,
-    "bio": "Certified Hematologist specialist at Sri Kumaran Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu."
+    "bio": "Certified Hematologist specialist at Sri Kumaran Hospital providing comprehensive clinical healthcare for patients in Tiruppur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-301"
   },
   {
     "name": "Dr. Kiara Kapoor",
@@ -6068,7 +6269,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 15,
-    "bio": "Certified Hematologist specialist at Apollo Hospitals Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu."
+    "bio": "Certified Hematologist specialist at Apollo Hospitals Karur providing comprehensive clinical healthcare for patients in Karur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-302"
   },
   {
     "name": "Dr. Aarush Khanna",
@@ -6098,7 +6300,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 16,
-    "bio": "Certified Hematologist specialist at Sri Ram Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu."
+    "bio": "Certified Hematologist specialist at Sri Ram Hospital providing comprehensive clinical healthcare for patients in Nagapattinam and across Tamil Nadu.",
+    "doctorId": "DOC-TN-303"
   },
   {
     "name": "Dr. Deepika Mehra",
@@ -6128,7 +6331,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 17,
-    "bio": "Certified Hematologist specialist at K.S. Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu."
+    "bio": "Certified Hematologist specialist at K.S. Hospital providing comprehensive clinical healthcare for patients in Ramanathapuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-304"
   },
   {
     "name": "Dr. Vihaan Bhatia",
@@ -6158,7 +6362,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 18,
-    "bio": "Certified Hematologist specialist at Holy Cross Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu."
+    "bio": "Certified Hematologist specialist at Holy Cross Hospital providing comprehensive clinical healthcare for patients in Thoothukudi and across Tamil Nadu.",
+    "doctorId": "DOC-TN-305"
   },
   {
     "name": "Dr. Alia Sethi",
@@ -6188,7 +6393,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 19,
-    "bio": "Certified Hematologist specialist at Be Well Hospitals providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
+    "bio": "Certified Hematologist specialist at Be Well Hospitals providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-306"
   },
   {
     "name": "Dr. Zayan Kapoor",
@@ -6218,7 +6424,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 20,
-    "bio": "Certified Hematologist specialist at Abirami Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
+    "bio": "Certified Hematologist specialist at Abirami Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-307"
   },
   {
     "name": "Dr. Pooja Malhotra",
@@ -6248,7 +6455,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 21,
-    "bio": "Certified Hematologist specialist at Lakshana Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified Hematologist specialist at Lakshana Hospital providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-308"
   },
   {
     "name": "Dr. Myra Khanna",
@@ -6278,7 +6486,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 22,
-    "bio": "Certified Hematologist specialist at Muthu Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
+    "bio": "Certified Hematologist specialist at Muthu Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-309"
   },
   {
     "name": "Dr. Reyansh Mehra",
@@ -6308,7 +6517,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 8,
-    "bio": "Certified Hematologist specialist at Sri Lakshmi Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+    "bio": "Certified Hematologist specialist at Sri Lakshmi Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-310"
   },
   {
     "name": "Dr. Yuvika Menon",
@@ -6338,7 +6548,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 9,
-    "bio": "Certified Allergist & Immunologist specialist at Saveetha Medical College & Hospital providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu."
+    "bio": "Certified Allergist & Immunologist specialist at Saveetha Medical College & Hospital providing comprehensive clinical healthcare for patients in Tiruvallur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-311"
   },
   {
     "name": "Dr. Ayaan Kapoor",
@@ -6368,7 +6579,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 10,
-    "bio": "Certified Allergist & Immunologist specialist at Ramana Maharshi Rangammal Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu."
+    "bio": "Certified Allergist & Immunologist specialist at Ramana Maharshi Rangammal Hospital providing comprehensive clinical healthcare for patients in Tiruvannamalai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-312"
   },
   {
     "name": "Dr. Kriti Malhotra",
@@ -6398,7 +6610,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 11,
-    "bio": "Certified Allergist & Immunologist specialist at Hanifa Nursing Home providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu."
+    "bio": "Certified Allergist & Immunologist specialist at Hanifa Nursing Home providing comprehensive clinical healthcare for patients in Tiruvarur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-313"
   },
   {
     "name": "Dr. Zendaya Thomas",
@@ -6428,7 +6641,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 12,
-    "bio": "Certified Allergist & Immunologist specialist at VIMS Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu."
+    "bio": "Certified Allergist & Immunologist specialist at VIMS Hospital providing comprehensive clinical healthcare for patients in Villupuram and across Tamil Nadu.",
+    "doctorId": "DOC-TN-314"
   },
   {
     "name": "Dr. Kiara Sethi",
@@ -6458,7 +6672,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 13,
-    "bio": "Certified Allergist & Immunologist specialist at Dhanalakshmi Srinivasan Medical College Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu."
+    "bio": "Certified Allergist & Immunologist specialist at Dhanalakshmi Srinivasan Medical College Hospital providing comprehensive clinical healthcare for patients in Perambalur and across Tamil Nadu.",
+    "doctorId": "DOC-TN-315"
   },
   {
     "name": "Dr. Arush Mehra",
@@ -6488,7 +6703,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 14,
-    "bio": "Certified Allergist & Immunologist specialist at Apollo Hospitals Greams Lane providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu."
+    "bio": "Certified Allergist & Immunologist specialist at Apollo Hospitals Greams Lane providing comprehensive clinical healthcare for patients in Chennai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-316"
   },
   {
     "name": "Dr. Shobana Kapoor",
@@ -6518,7 +6734,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.8,
     "experience": 15,
-    "bio": "Certified Allergist & Immunologist specialist at Sri Ramakrishna Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu."
+    "bio": "Certified Allergist & Immunologist specialist at Sri Ramakrishna Hospital providing comprehensive clinical healthcare for patients in Coimbatore and across Tamil Nadu.",
+    "doctorId": "DOC-TN-317"
   },
   {
     "name": "Dr. Riaan Bhatia",
@@ -6548,7 +6765,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.9,
     "experience": 16,
-    "bio": "Certified Allergist & Immunologist specialist at Guru Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu."
+    "bio": "Certified Allergist & Immunologist specialist at Guru Hospital providing comprehensive clinical healthcare for patients in Madurai and across Tamil Nadu.",
+    "doctorId": "DOC-TN-318"
   },
   {
     "name": "Dr. Catherine Fernandes",
@@ -6578,7 +6796,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 5,
     "experience": 17,
-    "bio": "Certified Allergist & Immunologist specialist at Sri Gokulam Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu."
+    "bio": "Certified Allergist & Immunologist specialist at Sri Gokulam Hospital providing comprehensive clinical healthcare for patients in Salem and across Tamil Nadu.",
+    "doctorId": "DOC-TN-319"
   },
   {
     "name": "Dr. Anaya Khanna",
@@ -6608,7 +6827,8 @@ const SEED_DOCTORS = [
     ],
     "rating": 4.7,
     "experience": 18,
-    "bio": "Certified Allergist & Immunologist specialist at Maruti Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu."
+    "bio": "Certified Allergist & Immunologist specialist at Maruti Hospital providing comprehensive clinical healthcare for patients in Tiruchirappalli and across Tamil Nadu.",
+    "doctorId": "DOC-TN-320"
   }
 ];
 

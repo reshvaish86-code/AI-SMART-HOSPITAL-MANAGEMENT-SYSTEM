@@ -417,8 +417,9 @@ const PatientApp = {
 
       // 1. Pre-load default comprehensive doctor profiles (all 220 private hospital doctors)
       if (CONFIG.DEFAULT_DOCTORS && CONFIG.DEFAULT_DOCTORS.length > 0) {
-        CONFIG.DEFAULT_DOCTORS.forEach(doc => {
-          const key = getDocKey(doc) || doc._id;
+        CONFIG.DEFAULT_DOCTORS.forEach((doc, dIdx) => {
+          if (!doc.doctorId) doc.doctorId = `DOC-TN-${101 + dIdx}`;
+          const key = getDocKey(doc) || doc._id || doc.doctorId;
           if (key) doctorsMap.set(key, doc);
         });
       }
@@ -433,7 +434,14 @@ const PatientApp = {
         if (res && res.data && res.data.length > 0) {
           res.data.forEach(apiDoc => {
             const key = getDocKey(apiDoc) || apiDoc._id;
-            if (key) doctorsMap.set(key, apiDoc);
+            if (key) {
+              const existing = doctorsMap.get(key) || {};
+              doctorsMap.set(key, { 
+                ...existing, 
+                ...apiDoc, 
+                doctorId: apiDoc.doctorId || existing.doctorId || this.getDoctorUniqueId(apiDoc) 
+              });
+            }
           });
         }
       } catch (apiErr) {
@@ -441,6 +449,9 @@ const PatientApp = {
       }
 
       const allDoctors = Array.from(doctorsMap.values());
+      allDoctors.forEach(d => {
+        if (!d.doctorId) d.doctorId = this.getDoctorUniqueId(d);
+      });
       this.allDoctors = allDoctors;
 
       // Filter by specialty, district, search query, fee, rating, and experience
@@ -490,7 +501,7 @@ const PatientApp = {
       }
 
       const cardsHtml = filteredDoctors.map((doc, idx) => {
-        const docId = doc.doctorId || `DOC-TN-${101 + idx}`;
+        const docId = doc.doctorId || this.getDoctorUniqueId(doc);
         return `
         <div class="col-md-6 col-xl-4 mb-4">
           <div class="doctor-portal-card">
@@ -544,6 +555,28 @@ const PatientApp = {
     } catch (e) {
       container.innerHTML = '<div class="col-12 text-center text-danger py-4">Failed to load doctor directory.</div>';
     }
+  },
+
+  getDoctorUniqueId(doc) {
+    if (!doc) return 'DOC-TN-101';
+    if (doc.doctorId && typeof doc.doctorId === 'string' && doc.doctorId.startsWith('DOC-TN-')) {
+      return doc.doctorId;
+    }
+    const docName = (doc.user?.name || doc.name || '').trim().toLowerCase();
+    const docEmail = (doc.user?.email || doc.email || '').trim().toLowerCase();
+    const docIdStr = doc._id ? String(doc._id) : '';
+
+    if (CONFIG.DEFAULT_DOCTORS && CONFIG.DEFAULT_DOCTORS.length > 0) {
+      const idx = CONFIG.DEFAULT_DOCTORS.findIndex(d => 
+        (docIdStr && String(d._id) === docIdStr) ||
+        (docEmail && (d.user?.email || d.email || '').trim().toLowerCase() === docEmail) ||
+        (docName && (d.user?.name || d.name || '').trim().toLowerCase() === docName)
+      );
+      if (idx !== -1) {
+        return CONFIG.DEFAULT_DOCTORS[idx].doctorId || `DOC-TN-${101 + idx}`;
+      }
+    }
+    return doc.doctorId || 'DOC-TN-101';
   },
 
   openBookingModalByIdx(idx) {
@@ -636,7 +669,7 @@ const PatientApp = {
       selectedDoctorForBooking = doctor;
       selectedSlotForBooking = '10:30 AM';
 
-      const docId = selectedDoctorForBooking.doctorId || `DOC-TN-${101 + Math.max(0, (this.allDoctors || []).indexOf(selectedDoctorForBooking))}`;
+      const docId = this.getDoctorUniqueId(selectedDoctorForBooking);
       const docName = selectedDoctorForBooking.user?.name || selectedDoctorForBooking.name || 'Doctor';
 
       // Populate Step 1 Doctor Details safely
@@ -995,7 +1028,7 @@ const PatientApp = {
       // 3. Generate unique booking ID in exact format AISH-YYYYMMDD-XXXX
       const random4Digits = Math.floor(1000 + Math.random() * 9000);
       const generatedBookingId = `AISH-${dateCompact}-${random4Digits}`;
-      const assignedDoctorId = selectedDoctorForBooking.doctorId || `DOC-TN-${101 + Math.max(0, (this.allDoctors || []).indexOf(selectedDoctorForBooking))}`;
+      const assignedDoctorId = this.getDoctorUniqueId(selectedDoctorForBooking);
 
       // 4. Populate Step 3 Elements Instantly
       const confirmedBookingIdEl = document.getElementById('confirmedBookingId');
@@ -1168,7 +1201,7 @@ const PatientApp = {
 
       container.innerHTML = uniqueAppts.map((a, aIdx) => {
         const bId = a.bookingId || ('BK-' + (a._id && !String(a._id).startsWith('appt_') ? String(a._id).slice(-5).toUpperCase() : (82000 + (aIdx * 137) % 9000)));
-        const dId = a.doctor?.doctorId || a.doctorId || (a.doctorUser?.doctorId || `DOC-TN-${101 + (aIdx % 220)}`);
+        const dId = a.doctor?.doctorId || a.doctorId || (a.doctorUser?.doctorId) || this.getDoctorUniqueId(a.doctor || a.doctorUser);
         const docName = a.doctorUser?.name ? a.doctorUser.name : (a.doctor?.user?.name || a.doctor?.name || 'Doctor');
         
         return `
