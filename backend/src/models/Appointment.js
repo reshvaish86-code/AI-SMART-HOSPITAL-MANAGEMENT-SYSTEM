@@ -112,7 +112,6 @@ const appointmentSchema = new mongoose.Schema({
 appointmentSchema.index({ doctor: 1, appointmentDate: 1, timeSlot: 1 });
 appointmentSchema.index({ patient: 1, appointmentDate: 1 });
 appointmentSchema.index({ reminderSent: 1, status: 1 });
-appointmentSchema.index({ bookingId: 1 });
 
 appointmentSchema.pre('save', function (next) {
   if (!this.bookingId) {

@@ -87,7 +87,6 @@ const doctorSchema = new mongoose.Schema({
 
 // Text indexing for fast search by name, hospital, specialization and district
 doctorSchema.index({ specialization: 1, district: 1 });
-doctorSchema.index({ doctorId: 1 });
 
 doctorSchema.pre('save', function (next) {
   if (!this.doctorId) {
