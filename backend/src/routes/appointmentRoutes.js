@@ -13,6 +13,7 @@ router.get('/booked-slots', getBookedSlots);
 
 // Support both registered patients and instant guest booking with automated email dispatch
 router.post('/', optionalProtect, bookAppointment);
+router.get('/', optionalProtect, getMyAppointments);
 
 router.use(protect);
 

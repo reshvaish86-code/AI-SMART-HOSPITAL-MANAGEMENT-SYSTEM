@@ -228,13 +228,22 @@ const bookAppointment = async (req, res, next) => {
 const getMyAppointments = async (req, res, next) => {
   try {
     let query = {};
-    if (req.user.role === 'patient') {
+    if (req.user && req.user.role === 'patient') {
       query.$or = [
         { patientUser: req.user._id },
         { patientEmail: req.user.email }
       ];
-    } else if (req.user.role === 'doctor') {
+    } else if (req.user && req.user.role === 'doctor') {
       query.doctorUser = req.user._id;
+    } else if (req.query.email || req.query.patientEmail) {
+      const email = (req.query.email || req.query.patientEmail).trim().toLowerCase();
+      query.patientEmail = email;
+    } else if (!req.user) {
+      return res.status(200).json({
+        status: 'success',
+        count: 0,
+        data: []
+      });
     }
 
     if (req.query.bookingId) {
@@ -276,7 +285,12 @@ const getBookedSlots = async (req, res, next) => {
     let docFilterId = null;
     if (mongoose.Types.ObjectId.isValid(doctorId)) {
       docFilterId = doctorId;
-    } else {
+    } else if (typeof doctorId === 'string' && doctorId.toUpperCase().startsWith('DOC-')) {
+      const foundDoc = await Doctor.findOne({ doctorId: doctorId.trim().toUpperCase() });
+      if (foundDoc) docFilterId = foundDoc._id;
+    }
+
+    if (!docFilterId) {
       const cleanName = String(doctorId).replace(/^doc_dr__?/i, '').replace(/^doc_/i, '').replace(/_\d+$/, '').replace(/_/g, ' ').trim();
       if (cleanName) {
         const docUser = await User.findOne({ name: new RegExp(cleanName.replace(/^(dr\.?|doctor)\s+/i, '').trim(), 'i'), role: 'doctor' });
@@ -302,6 +316,8 @@ const getBookedSlots = async (req, res, next) => {
       status: 'success',
       doctorId,
       date,
+      results: bookedSlots.length,
+      data: bookedSlots,
       bookedSlots
     });
   } catch (error) {
