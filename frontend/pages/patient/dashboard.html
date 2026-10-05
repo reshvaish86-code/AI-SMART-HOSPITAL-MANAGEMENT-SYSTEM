@@ -14,12 +14,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="../../css/style.css?v=20260928_v1">
-  <link rel="stylesheet" href="../../css/dashboard.css?v=20260928_v1">
+  <link rel="stylesheet" href="../../css/style.css?v=20261005_v1">
+  <link rel="stylesheet" href="../../css/dashboard.css?v=20261005_v1">
 </head>
 <body>
 
-  <!-- Top Modern Portal Navbar -->
+  <!-- ========================================================================= -->
+  <!-- 1. MODERN TOP NAVIGATION HEADER                                           -->
+  <!-- ========================================================================= -->
   <nav class="portal-navbar">
     <div class="container-fluid px-lg-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
       
@@ -29,21 +31,21 @@
           <i class="fa-solid fa-hospital-user"></i>
         </div>
         <div>
-          <h5 class="fw-bold mb-0 text-dark">AI Smart Hospital</h5>
+          <h5 class="fw-bold mb-0 text-dark" style="font-family: 'Outfit', sans-serif; letter-spacing: -0.2px;">AI Smart Hospital</h5>
           <small class="text-muted" style="font-size: 0.72rem;"><i class="fa-solid fa-circle text-success me-1"></i> Patient Portal • Tamil Nadu</small>
         </div>
       </a>
 
-      <!-- Center Navigation Dashboards -->
+      <!-- Center Navigation Tabs -->
       <div class="portal-nav-tabs nav" id="patientPortalTabs" role="tablist">
         <button class="portal-tab-btn active" id="tab-doctors-btn" data-bs-toggle="pill" data-bs-target="#tab-doctors" type="button" role="tab">
           <i class="fa-solid fa-magnifying-glass text-primary"></i> Find & Book Doctor
         </button>
         <button class="portal-tab-btn" id="tab-appointments-btn" data-bs-toggle="pill" data-bs-target="#tab-appointments" type="button" role="tab">
-          <i class="fa-solid fa-calendar-check text-info"></i> Booked Appointments (<span id="statUpcomingBadge">0</span>)
+          <i class="fa-solid fa-calendar-check text-info"></i> My Appointments (<span id="statUpcomingBadge">0</span>)
         </button>
         <button class="portal-tab-btn" id="tab-records-btn" data-bs-toggle="pill" data-bs-target="#tab-records" type="button" role="tab">
-          <i class="fa-solid fa-folder-medical text-success"></i> Medical Records
+          <i class="fa-solid fa-folder-medical text-success"></i> Medical Records (<span id="recordsCountBadge">0</span>)
         </button>
         <button class="portal-tab-btn" id="tab-ai-btn" data-bs-toggle="pill" data-bs-target="#tab-ai" type="button" role="tab">
           <i class="fa-solid fa-robot text-danger"></i> AI Symptoms Checker
@@ -53,18 +55,24 @@
         </button>
       </div>
 
-      <!-- Right User Controls -->
-      <div class="d-flex align-items-center gap-3">
+      <!-- Right Action & User Controls -->
+      <div class="d-flex align-items-center gap-2">
+        <!-- Prominent Upload Lab Report Header Button -->
+        <button type="button" class="btn btn-outline-primary rounded-pill px-3 py-1 fw-semibold small d-flex align-items-center gap-2 shadow-sm" onclick="PatientApp.openUploadReportModal()" title="Upload Lab Report / Medical Document">
+          <i class="fa-solid fa-cloud-arrow-up text-primary"></i>
+          <span class="d-none d-sm-inline">📁 Upload Lab Report</span>
+        </button>
+
         <!-- User Profile Pill & Sign Out -->
-        <div class="d-flex align-items-center gap-2 bg-light p-1 pe-3 rounded-pill border">
-          <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 34px; height: 34px;">
-            <i class="fa-solid fa-user fs-6"></i>
+        <div class="d-flex align-items-center gap-2 bg-light p-1 pe-2 rounded-pill border">
+          <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px; font-size: 0.85rem;">
+            <i class="fa-solid fa-user"></i>
           </div>
           <div class="d-none d-md-block text-start me-1">
-            <span class="fw-bold small d-block text-dark auth-user-name" style="line-height: 1.1;">Patient</span>
+            <span class="fw-bold small d-block text-dark auth-user-name" style="line-height: 1.1;">Reshma</span>
           </div>
-          <button class="btn btn-outline-danger btn-sm rounded-pill px-2 py-1" onclick="Auth.logout()" title="Sign Out">
-            <i class="fa-solid fa-right-from-bracket"></i>
+          <button class="btn btn-outline-danger btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 28px; height: 28px; padding: 0;" onclick="Auth.logout()" title="Sign Out">
+            <i class="fa-solid fa-right-from-bracket" style="font-size: 0.75rem;"></i>
           </button>
         </div>
       </div>
@@ -72,307 +80,116 @@
     </div>
   </nav>
 
-  <!-- Main Container -->
+  <!-- ========================================================================= -->
+  <!-- MAIN CONTAINER                                                            -->
+  <!-- ========================================================================= -->
   <main class="container-fluid px-lg-4 py-4">
     <div class="tab-content" id="patientPortalTabsContent">
 
       <!-- ========================================================================= -->
-      <!-- DASHBOARD 1: FIND & BOOK DOCTOR                                          -->
+      <!-- TAB 1: FIND & BOOK DOCTOR (PRIMARY DASHBOARD AREA)                        -->
       <!-- ========================================================================= -->
       <div class="tab-pane fade show active" id="tab-doctors" role="tabpanel">
         
-        <!-- Clean Personalized Welcome Header -->
-        <div class="patient-welcome-card mb-4">
+        <!-- Clean Hero / Welcome Banner -->
+        <div class="patient-hero-banner mb-4">
           <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
             <div>
               <div class="d-inline-flex align-items-center gap-2 bg-primary-subtle text-primary px-3 py-1 rounded-pill small fw-semibold mb-2">
-                <i class="fa-solid fa-circle-check text-success"></i> Tamil Nadu Certified Specialist Network
+                <span class="pulse-green-dot me-1"></span> Serving Patients Across Tamil Nadu
               </div>
-              <h2 class="display-6 fw-bold mb-1 text-dark">
-                Welcome, <span id="heroPatientName" class="text-primary auth-user-name">Patient</span>!
+              <h2 class="display-6 fw-bold mb-1 text-dark" style="font-family: 'Outfit', sans-serif;">
+                Welcome back, <span id="heroPatientName" class="text-primary auth-user-name">Reshma</span>!
               </h2>
-              <p class="text-muted mb-0 max-w-750">
-                Search for a doctor or select a specialty below to view <strong>certified specialists across Tamil Nadu districts</strong>. When you book an appointment, automated <strong>Email & SMS notifications</strong> are dispatched instantly.
+              <p class="text-muted mb-0 max-w-750" style="font-size: 0.95rem;">
+                Manage your appointments, medical records, and healthcare needs in one place.
               </p>
             </div>
             <div class="d-flex align-items-center gap-2">
-              <div class="bg-light border rounded-4 p-3 d-flex align-items-center gap-3">
-                <div class="fs-2 text-warning"><i class="fa-solid fa-bell-concierge"></i></div>
-                <div>
-                  <div class="fw-bold small text-dark">Auto Email & SMS</div>
-                  <small class="text-muted">1-Hour Pre-Appointment Alarms</small>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- ========================================================================= -->
-        <!-- 3 USEFUL HEALTH SAAS CARDS (MY HEALTH ACTIVITY, INSIGHTS & QUICK ACTIONS)  -->
-        <!-- ========================================================================= -->
-        <div class="row g-4 mb-4">
-
-          <!-- 1. MY HEALTH ACTIVITY CARD -->
-          <div class="col-lg-4">
-            <div class="saas-feature-card">
-              <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
-                <div class="d-flex align-items-center gap-3">
-                  <div class="saas-card-icon bg-primary-subtle text-primary">
-                    <i class="fa-solid fa-chart-line"></i>
-                  </div>
-                  <div>
-                    <h5 class="fw-bold mb-0 text-dark" style="font-size: 1.05rem;">My Health Activity</h5>
-                    <small class="text-muted">Recent visits & clinical logs</small>
-                  </div>
-                </div>
-                <span class="badge bg-success-subtle text-success border border-success-subtle rounded-pill small">
-                  <span class="pulse-green-dot me-1"></span> Live Data
-                </span>
-              </div>
-
-              <div class="d-flex flex-column gap-2 flex-grow-1">
-                <!-- Recent Appointment Item -->
-                <div class="saas-activity-box">
-                  <div class="d-flex justify-content-between align-items-start mb-1">
-                    <div class="d-flex align-items-center gap-2">
-                      <span class="text-primary"><i class="fa-solid fa-calendar-check"></i></span>
-                      <strong class="text-dark small">Recent Appointment</strong>
-                    </div>
-                    <span id="quickActivityApptBadge" class="badge bg-primary-subtle text-primary rounded-pill small">Dr. Arun Kumar</span>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center small text-muted">
-                    <span id="quickActivityApptTime"><i class="fa-regular fa-clock me-1"></i> Tomorrow, 10:30 AM (Cardiology)</span>
-                    <a href="javascript:void(0)" onclick="PatientApp.switchTab('tab-appointments', 'tab-appointments-btn')" class="text-primary fw-semibold text-decoration-none">View <i class="fa-solid fa-chevron-right small"></i></a>
-                  </div>
-                </div>
-
-                <!-- Recent Medical Records Item -->
-                <div class="saas-activity-box">
-                  <div class="d-flex justify-content-between align-items-start mb-1">
-                    <div class="d-flex align-items-center gap-2">
-                      <span class="text-success"><i class="fa-solid fa-file-medical"></i></span>
-                      <strong class="text-dark small">Recent Medical Record</strong>
-                    </div>
-                    <span class="badge bg-success-subtle text-success rounded-pill small">Normal Vitals</span>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center small text-muted">
-                    <span><i class="fa-solid fa-heart-pulse text-danger me-1"></i> BP 120/80 mmHg • Pulse 72 bpm</span>
-                    <a href="javascript:void(0)" onclick="PatientApp.switchTab('tab-records', 'tab-records-btn')" class="text-success fw-semibold text-decoration-none">Records <i class="fa-solid fa-chevron-right small"></i></a>
-                  </div>
-                </div>
-
-                <!-- AI Consultations Item -->
-                <div class="saas-activity-box">
-                  <div class="d-flex justify-content-between align-items-start mb-1">
-                    <div class="d-flex align-items-center gap-2">
-                      <span class="text-danger"><i class="fa-solid fa-robot"></i></span>
-                      <strong class="text-dark small">AI Clinical Consultation</strong>
-                    </div>
-                    <span class="badge bg-danger-subtle text-danger rounded-pill small">Cardiology Triage</span>
-                  </div>
-                  <div class="d-flex justify-content-between align-items-center small text-muted">
-                    <span><i class="fa-solid fa-shield-halved text-primary me-1"></i> Triage complete: Low Risk</span>
-                    <a href="javascript:void(0)" onclick="PatientApp.switchTab('tab-ai', 'tab-ai-btn')" class="text-danger fw-semibold text-decoration-none">AI Chat <i class="fa-solid fa-chevron-right small"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 2. PERSONAL HEALTH INSIGHTS CARD -->
-          <div class="col-lg-4">
-            <div class="saas-feature-card">
-              <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
-                <div class="d-flex align-items-center gap-3">
-                  <div class="saas-card-icon bg-danger-subtle text-danger">
-                    <i class="fa-solid fa-heart-pulse heartbeat-pulse"></i>
-                  </div>
-                  <div>
-                    <h5 class="fw-bold mb-0 text-dark" style="font-size: 1.05rem;">Personal Health Insights</h5>
-                    <small class="text-muted">Adherence, frequency & trends</small>
-                  </div>
-                </div>
-                <span class="badge bg-primary-subtle text-primary rounded-pill small fw-bold">
-                  Score: 94% Optimal
-                </span>
-              </div>
-
-              <div class="d-flex flex-column gap-3 flex-grow-1 justify-content-between">
-                <!-- Medicine Adherence Ring / Bar -->
-                <div class="bg-light p-3 rounded-4 border">
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="small fw-bold text-dark"><i class="fa-solid fa-pills text-warning me-1"></i> Medicine Adherence Rate</span>
-                    <span class="badge bg-success text-white rounded-pill px-2 py-1 fw-bold">96% On-Track</span>
-                  </div>
-                  <div class="progress progress-thin mb-2">
-                    <div class="progress-bar bg-success" role="progressbar" style="width: 96%" aria-valuenow="96" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <div class="d-flex justify-content-between small text-muted">
-                    <span>4/4 daily dosage alarms confirmed</span>
-                    <a href="javascript:void(0)" onclick="PatientApp.switchTab('tab-reminders', 'tab-reminders-btn')" class="text-primary text-decoration-none fw-semibold">Alarms <i class="fa-solid fa-arrow-right small"></i></a>
-                  </div>
-                </div>
-
-                <!-- Appointment Frequency -->
-                <div class="bg-light p-3 rounded-4 border">
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="small fw-bold text-dark"><i class="fa-solid fa-calendar-days text-primary me-1"></i> Consultation Frequency</span>
-                    <span class="badge bg-primary-subtle text-primary rounded-pill">Quarterly Track</span>
-                  </div>
-                  <div class="progress progress-thin mb-2">
-                    <div class="progress-bar bg-primary" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                  <small class="text-muted d-block">3 scheduled specialist reviews in Tamil Nadu Network</small>
-                </div>
-
-                <!-- Recent Health Activity Tags -->
-                <div class="d-flex flex-wrap gap-2 pt-1">
-                  <span class="badge bg-light text-dark border rounded-pill px-3 py-2 small"><i class="fa-solid fa-heart-pulse text-danger me-1"></i> Normal BP (120/80)</span>
-                  <span class="badge bg-light text-dark border rounded-pill px-3 py-2 small"><i class="fa-solid fa-droplet text-info me-1"></i> Glucose (98 mg/dL)</span>
-                  <span class="badge bg-light text-dark border rounded-pill px-3 py-2 small"><i class="fa-solid fa-person text-success me-1"></i> BMI: 22.4 Healthy</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- 3. QUICK ACTIONS CARD -->
-          <div class="col-lg-4">
-            <div class="saas-feature-card">
-              <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
-                <div class="d-flex align-items-center gap-3">
-                  <div class="saas-card-icon bg-warning-subtle text-warning">
-                    <i class="fa-solid fa-bolt"></i>
-                  </div>
-                  <div>
-                    <h5 class="fw-bold mb-0 text-dark" style="font-size: 1.05rem;">Quick Actions</h5>
-                    <small class="text-muted">Primary clinical shortcuts</small>
-                  </div>
-                </div>
-                <span class="badge bg-light text-muted border rounded-pill small">1-Click Fast</span>
-              </div>
-
-              <!-- 4 Action Grid Buttons -->
-              <div class="quick-action-grid flex-grow-1">
-                <!-- Action 1: Book Doctor -->
-                <div class="quick-action-card-btn" onclick="PatientApp.switchTab('tab-doctors', 'tab-doctors-btn'); document.getElementById('searchDoctorQuery')?.focus();">
-                  <div class="quick-action-icon-circle bg-primary-subtle text-primary">
-                    <i class="fa-solid fa-user-doctor"></i>
-                  </div>
-                  <div>
-                    <div class="fw-bold text-dark small">Book Doctor</div>
-                    <small class="text-muted" style="font-size: 0.72rem;">220 Specialists</small>
-                  </div>
-                </div>
-
-                <!-- Action 2: Upload Report -->
-                <div class="quick-action-card-btn" onclick="PatientApp.openUploadReportModal()">
-                  <div class="quick-action-icon-circle bg-success-subtle text-success">
-                    <i class="fa-solid fa-cloud-arrow-up"></i>
-                  </div>
-                  <div>
-                    <div class="fw-bold text-dark small">Upload Report</div>
-                    <small class="text-muted" style="font-size: 0.72rem;">Lab scans & PDFs</small>
-                  </div>
-                </div>
-
-                <!-- Action 3: Download Prescription -->
-                <div class="quick-action-card-btn" onclick="PatientApp.downloadLatestPrescription()">
-                  <div class="quick-action-icon-circle bg-info-subtle text-info">
-                    <i class="fa-solid fa-file-prescription"></i>
-                  </div>
-                  <div>
-                    <div class="fw-bold text-dark small">Prescription</div>
-                    <small class="text-muted" style="font-size: 0.72rem;">Download e-Rx</small>
-                  </div>
-                </div>
-
-                <!-- Action 4: Contact Hospital -->
-                <div class="quick-action-card-btn" onclick="PatientApp.openContactHospitalModal()">
-                  <div class="quick-action-icon-circle bg-danger-subtle text-danger">
-                    <i class="fa-solid fa-phone-volume"></i>
-                  </div>
-                  <div>
-                    <div class="fw-bold text-dark small">Contact Hospital</div>
-                    <small class="text-muted" style="font-size: 0.72rem;">24/7 Helpline 108</small>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Interactive shortcut bar -->
-              <div class="mt-3 pt-2 border-top d-flex justify-content-between align-items-center">
-                <span class="small text-muted"><i class="fa-solid fa-robot text-danger me-1"></i> AI Symptom Triage</span>
-                <button class="btn btn-outline-primary btn-sm rounded-pill px-3 py-1" onclick="PatientApp.switchTab('tab-ai', 'tab-ai-btn')">
-                  Launch AI <i class="fa-solid fa-arrow-right small ms-1"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Specialty Filter Buttons (Horizontal Carousel) -->
-        <div class="mb-3">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <label class="small fw-bold text-secondary text-uppercase mb-0">
-              <i class="fa-solid fa-layer-group text-primary me-1"></i> Quick Specialty Filter:
-            </label>
-            <span class="badge bg-light text-muted border rounded-pill small">22 Medical Disciplines</span>
-          </div>
-          <div class="specialty-chips-wrap" id="specialtyChipsBar">
-            <!-- Loaded dynamically via PatientApp.populateDropdowns() -->
-          </div>
-        </div>
-
-        <!-- Filter & Search Controls Bar -->
-        <div class="filter-search-card">
-          <div class="row g-3 align-items-center">
-            <div class="col-md-5">
-              <div class="input-group">
-                <span class="input-group-text bg-white border-end-0 text-muted"><i class="fa-solid fa-magnifying-glass"></i></span>
-                <input type="text" id="searchDoctorQuery" class="form-control border-start-0 ps-0" placeholder="Search doctor name, specialty (e.g. Cardiologist), or district...">
-              </div>
-            </div>
-            <div class="col-md-3">
-              <select id="filterSpecialty" class="form-select" onchange="PatientApp.applyFilters()"></select>
-            </div>
-            <div class="col-md-3">
-              <select id="filterDistrict" class="form-select" onchange="PatientApp.applyFilters()"></select>
-            </div>
-            <div class="col-md-1">
-              <button id="btnFilterDoctors" class="btn btn-primary-custom w-100 rounded-3" onclick="PatientApp.applyFilters()" title="Apply Filter">
-                <i class="fa-solid fa-filter"></i>
+              <button class="btn btn-primary-custom rounded-pill px-4 py-2 fw-semibold d-flex align-items-center gap-2 shadow-sm" onclick="PatientApp.openUploadReportModal()">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <span>📁 Upload Lab Report</span>
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Results Counter Banner -->
-        <div class="d-flex justify-content-between align-items-center mb-3 px-1">
-          <div class="small text-muted">
-            Showing <strong id="doctorCountBadge" class="text-primary fs-6">10</strong> specialists for <strong id="currentFilteredSpecialty" class="text-dark fs-6">All Specialties</strong> across <span class="badge bg-info-subtle text-info border border-info-subtle rounded-pill">Tamil Nadu Districts</span>
+        <!-- Find The Right Doctor For You Search Section -->
+        <div class="doctor-search-section mb-4">
+          <div class="mb-3">
+            <h4 class="fw-bold text-dark mb-1" style="font-family: 'Outfit', sans-serif;">Find the Right Doctor for You</h4>
+            <p class="text-muted small mb-0">Search through 220 certified specialists across 22 Tamil Nadu districts with instant slot booking.</p>
           </div>
-          <div class="small text-muted d-none d-md-block">
+
+          <!-- Unified Search & Filter Controls -->
+          <div class="filter-search-card mb-3">
+            <div class="row g-3 align-items-center">
+              <!-- Search Bar -->
+              <div class="col-lg-5 col-md-12">
+                <div class="input-group">
+                  <span class="input-group-text bg-white border-end-0 text-muted"><i class="fa-solid fa-magnifying-glass text-primary"></i></span>
+                  <input type="text" id="searchDoctorQuery" class="form-control border-start-0 ps-0" placeholder="Search doctor or condition..." oninput="PatientApp.applyFilters()">
+                </div>
+              </div>
+
+              <!-- Specialty Selector Dropdown -->
+              <div class="col-lg-3 col-md-6">
+                <select id="filterSpecialty" class="form-select" onchange="PatientApp.onSpecialtyDropdownChanged(this.value)">
+                  <!-- Populated dynamically -->
+                </select>
+              </div>
+
+              <!-- District / Location Dropdown -->
+              <div class="col-lg-3 col-md-6">
+                <select id="filterDistrict" class="form-select" onchange="PatientApp.applyFilters()">
+                  <!-- Populated dynamically -->
+                </select>
+              </div>
+
+              <!-- Reset / Apply Action -->
+              <div class="col-lg-1 col-md-12">
+                <button id="btnFilterDoctors" class="btn btn-outline-secondary w-100 rounded-3" onclick="PatientApp.resetFilters()" title="Reset All Filters">
+                  <i class="fa-solid fa-rotate-left"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Specialty Pills Carousel -->
+          <div class="specialty-pills-container">
+            <div class="specialty-chips-wrap" id="specialtyChipsBar">
+              <!-- Rendered dynamically via PatientApp.populateDropdowns() -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Results Counter & Status Banner -->
+        <div class="d-flex justify-content-between align-items-center mb-3 px-1 flex-wrap gap-2">
+          <div class="small text-muted">
+            Showing <strong id="doctorCountBadge" class="text-primary fs-6">220</strong> specialists for <strong id="currentFilteredSpecialty" class="text-dark fs-6">All Specialties</strong> across <span id="districtCountBadge" class="badge bg-primary-subtle text-primary border border-primary-subtle rounded-pill">22 Tamil Nadu Districts</span>
+          </div>
+          <div class="small text-muted">
             <i class="fa-solid fa-shield-halved text-success me-1"></i> 100% Collision-Free Appointment Booking
           </div>
         </div>
 
-        <!-- Doctors Grid -->
-        <div id="doctorListContainer" class="row g-4">
-          <!-- Loaded dynamically via PatientApp.loadDoctors() -->
+        <!-- Available Doctor Cards Grid -->
+        <div id="doctorListContainer" class="row g-4 mb-4">
+          <!-- Rendered dynamically via PatientApp.loadDoctors() -->
         </div>
 
       </div>
 
       <!-- ========================================================================= -->
-      <!-- DASHBOARD 2: BOOKED APPOINTMENTS (AUTOMATIC EMAIL & SMS CONFIRMATIONS)   -->
+      <!-- TAB 2: MY APPOINTMENTS                                                    -->
       <!-- ========================================================================= -->
       <div class="tab-pane fade" id="tab-appointments" role="tabpanel">
         <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
           <div>
-            <h4 class="fw-bold mb-1 text-dark"><i class="fa-solid fa-calendar-check text-primary me-2"></i> Booked Appointments</h4>
-            <p class="text-muted small mb-0">Track your confirmed doctor consultations, unique Booking IDs, email/SMS receipts, and 1-hour pre-appointment alarms.</p>
+            <h4 class="fw-bold mb-1 text-dark" style="font-family: 'Outfit', sans-serif;"><i class="fa-solid fa-calendar-check text-primary me-2"></i> My Appointments</h4>
+            <p class="text-muted small mb-0">Track confirmed doctor consultations, unique Booking IDs, and instant notification receipts.</p>
           </div>
-          <button class="btn btn-primary-custom rounded-pill px-4" onclick="document.getElementById('tab-doctors-btn').click()">
+          <button class="btn btn-primary-custom rounded-pill px-4" onclick="PatientApp.switchTab('tab-doctors', 'tab-doctors-btn')">
             <i class="fa-solid fa-plus me-1"></i> Book New Doctor
           </button>
         </div>
@@ -383,19 +200,32 @@
       </div>
 
       <!-- ========================================================================= -->
-      <!-- DASHBOARD 3: MEDICAL RECORDS & CERTIFIED E-PRESCRIPTIONS                  -->
+      <!-- TAB 3: MEDICAL RECORDS & LAB REPORTS                                      -->
       <!-- ========================================================================= -->
       <div class="tab-pane fade" id="tab-records" role="tabpanel">
+        
+        <!-- Header with Upload Action -->
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3 p-3 bg-white border rounded-4 shadow-sm">
+          <div>
+            <h4 class="fw-bold text-dark mb-1" style="font-family: 'Outfit', sans-serif;"><i class="fa-solid fa-folder-medical text-primary me-2"></i> Medical Records & Lab Reports</h4>
+            <p class="text-muted small mb-0">Access your uploaded lab diagnostics, blood tests, clinical summaries, and digital prescriptions.</p>
+          </div>
+          <button type="button" class="btn btn-primary-custom rounded-pill px-4 py-2 fw-semibold d-flex align-items-center gap-2 shadow-sm" onclick="PatientApp.openUploadReportModal()">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span>📁 Upload Lab Report</span>
+          </button>
+        </div>
+
+        <!-- Records Grid -->
         <div class="row g-4">
-          
-          <!-- Clinical History & Vitals -->
-          <div class="col-lg-6">
+          <!-- Uploaded Diagnostic Reports & Clinical History -->
+          <div class="col-lg-7">
             <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
               <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-3">
-                <h5 class="fw-bold text-dark mb-0"><i class="fa-solid fa-file-medical text-primary me-2"></i> Clinical History & Vitals</h5>
-                <span class="badge bg-primary-subtle text-primary rounded-pill">Health Records</span>
+                <h5 class="fw-bold text-dark mb-0"><i class="fa-solid fa-file-medical text-primary me-2"></i> Diagnostic Reports & Clinical History</h5>
+                <span class="badge bg-primary-subtle text-primary rounded-pill">Encrypted Storage</span>
               </div>
-              <p class="text-muted small mb-3">Past clinical consultations, diagnosis, BP, pulse, and doctor remarks.</p>
+              <p class="text-muted small mb-3">All reports uploaded by you or issued by hospital diagnostic centers.</p>
               
               <div id="medicalRecordsContainer">
                 <!-- Loaded via PatientApp.loadMedicalRecords() -->
@@ -403,26 +233,26 @@
             </div>
           </div>
 
-          <!-- Certified Digital Prescriptions (e-Rx) -->
-          <div class="col-lg-6">
+          <!-- Digital Prescriptions (e-Rx) -->
+          <div class="col-lg-5">
             <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
               <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-3">
-                <h5 class="fw-bold text-dark mb-0"><i class="fa-solid fa-file-prescription text-success me-2"></i> Digital Prescriptions (e-Rx)</h5>
+                <h5 class="fw-bold text-dark mb-0"><i class="fa-solid fa-file-prescription text-success me-2"></i> Certified Prescriptions (e-Rx)</h5>
                 <span class="badge bg-success-subtle text-success rounded-pill">Printable Rx</span>
               </div>
-              <p class="text-muted small mb-3">Certified electronic prescriptions issued by consulting doctors.</p>
+              <p class="text-muted small mb-3">Doctor-signed medication schedules and dosages.</p>
               
               <div id="prescriptionsContainer">
                 <!-- Loaded via PatientApp.loadPrescriptions() -->
               </div>
             </div>
           </div>
-
         </div>
+
       </div>
 
       <!-- ========================================================================= -->
-      <!-- DASHBOARD 4: AI SYMPTOMS CHECKER & CLINICAL TRIAGE                        -->
+      <!-- TAB 4: AI SYMPTOMS CHECKER                                                -->
       <!-- ========================================================================= -->
       <div class="tab-pane fade" id="tab-ai" role="tabpanel">
         <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
@@ -431,8 +261,8 @@
               <i class="fa-solid fa-robot"></i>
             </div>
             <div>
-              <h5 class="fw-bold mb-1 text-dark">AI Clinical Symptoms Checker</h5>
-              <p class="text-muted small mb-0">Describe your symptoms to receive instant specialist recommendation and home care guidance</p>
+              <h5 class="fw-bold mb-1 text-dark" style="font-family: 'Outfit', sans-serif;">AI Clinical Symptoms Checker</h5>
+              <p class="text-muted small mb-0">Describe your symptoms to receive instant specialist recommendation and home care guidance.</p>
             </div>
           </div>
           
@@ -448,101 +278,76 @@
                 🩺 Skin Rash / Dermatitis
               </button>
               <button class="btn btn-outline-secondary btn-sm rounded-pill" onclick="document.getElementById('aiFullChatInput').value = 'Chest heaviness and shortness of breath when climbing stairs'; document.getElementById('btnAIFullChatSubmit').click();">
-                ❤️ Chest Tightness
+                ❤️ Chest Tightness / Cardiology
               </button>
-              <button class="btn btn-outline-secondary btn-sm rounded-pill" onclick="document.getElementById('aiFullChatInput').value = 'Throbbing migraine headache with dizziness and light sensitivity'; document.getElementById('btnAIFullChatSubmit').click();">
-                🧠 Severe Headache
-              </button>
-              <button class="btn btn-outline-secondary btn-sm rounded-pill" onclick="document.getElementById('aiFullChatInput').value = 'Persistent dry cough and mild fever for 4 days'; document.getElementById('btnAIFullChatSubmit').click();">
-                🌡️ Fever & Cough
-              </button>
-              <button class="btn btn-outline-secondary btn-sm rounded-pill" onclick="document.getElementById('aiFullChatInput').value = 'Sharp knee joint pain and swelling when bending leg'; document.getElementById('btnAIFullChatSubmit').click();">
-                🦴 Joint Pain
+              <button class="btn btn-outline-secondary btn-sm rounded-pill" onclick="document.getElementById('aiFullChatInput').value = 'High fever with body ache and sore throat'; document.getElementById('btnAIFullChatSubmit').click();">
+                🌡️ High Fever / General Medicine
               </button>
             </div>
           </div>
 
+          <!-- Chat Input -->
           <div class="mb-3">
-            <label class="form-label fw-bold small text-dark">Describe your symptoms, discomfort, or duration in detail:</label>
-            <textarea id="aiFullChatInput" class="form-control rounded-3" rows="4" placeholder="e.g. Mild itchy rash and redness on skin since yesterday with slight burning sensation..."></textarea>
+            <textarea id="aiFullChatInput" class="form-control rounded-3" rows="3" placeholder="Describe your symptoms in detail (e.g. onset duration, severity, existing medical conditions)..."></textarea>
           </div>
-          
-          <button id="btnAIFullChatSubmit" class="btn btn-primary-custom rounded-pill px-4">
-            <i class="fa-solid fa-wand-magic-sparkles me-1"></i> Analyze Symptoms with AI
-          </button>
-          
-          <div id="aiFullChatResponse" class="mt-4 d-none"></div>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted"><i class="fa-solid fa-lock text-success me-1"></i> HIPAA-compliant privacy encryption</small>
+            <button id="btnAIFullChatSubmit" class="btn btn-primary-custom rounded-pill px-4 py-2">
+              <i class="fa-solid fa-paper-plane me-1"></i> Analyze Symptoms
+            </button>
+          </div>
+
+          <div id="aiFullChatResponse" class="mt-4 d-none">
+            <!-- Dynamic AI Clinical Response -->
+          </div>
         </div>
       </div>
 
       <!-- ========================================================================= -->
-      <!-- DASHBOARD 5: MEDICINE ALARMS & LIVE DOSAGE TIMERS                        -->
+      <!-- TAB 5: MEDICINE ALARMS                                                    -->
       <!-- ========================================================================= -->
       <div class="tab-pane fade" id="tab-reminders" role="tabpanel">
         <div class="row g-4">
-          
-          <!-- Add Reminder Form -->
           <div class="col-lg-5">
             <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
-              <h5 class="fw-bold mb-3 text-dark"><i class="fa-solid fa-plus text-primary me-2"></i> Add Medicine Alarm</h5>
-              
-              <div class="mb-3">
-                <label class="form-label text-muted small fw-semibold">Patient Name for Voice & Email Alarm *</label>
-                <input type="text" id="remPatientName" class="form-control" placeholder="e.g. Reshma K">
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label text-muted small fw-semibold">Patient Mobile Number for SMS *</label>
-                <input type="text" id="remPatientMobile" class="form-control" placeholder="e.g. +91 9840123456">
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label text-muted small fw-semibold">Medicine Name *</label>
-                <input type="text" id="remMedName" class="form-control" placeholder="e.g. Tab. Cetirizine 10mg">
-              </div>
-
-              <div class="row g-2 mb-3">
-                <div class="col-6">
-                  <label class="form-label text-muted small fw-semibold">Dosage</label>
-                  <input type="text" id="remMedDosage" class="form-control" placeholder="1 Tablet">
+              <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-plus-circle text-primary me-2"></i> Add Medicine Alarm</h5>
+              <form id="medicineReminderForm" onsubmit="event.preventDefault(); PatientApp.saveMedicineReminder();">
+                <div class="mb-3">
+                  <label class="form-label text-dark fw-semibold small">Medicine Name *</label>
+                  <input type="text" id="remMedName" class="form-control" placeholder="e.g. Paracetamol / Metformin" required>
                 </div>
-                <div class="col-6">
-                  <label class="form-label text-muted small fw-semibold">Scheduled Time *</label>
-                  <input type="text" id="remMedTime" class="form-control" placeholder="08:00 AM">
+                <div class="mb-3">
+                  <label class="form-label text-dark fw-semibold small">Dosage *</label>
+                  <input type="text" id="remDosage" class="form-control" placeholder="e.g. 500mg, 1 tablet" required>
                 </div>
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label text-muted small fw-semibold">Frequency</label>
-                <input type="text" id="remMedFreq" class="form-control" placeholder="Daily (Morning / Night)">
-              </div>
-
-              <div class="mb-3">
-                <label class="form-label text-muted small fw-semibold">Instructions</label>
-                <input type="text" id="remMedInst" class="form-control" placeholder="Take after breakfast with water">
-              </div>
-
-              <button id="btnAddReminder" class="btn btn-primary-custom w-100 rounded-pill py-2">
-                <i class="fa-solid fa-bell me-1"></i> Save Reminder & Set Alarm
-              </button>
+                <div class="mb-3">
+                  <label class="form-label text-dark fw-semibold small">Time of Intake *</label>
+                  <input type="time" id="remTime" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label text-dark fw-semibold small">Food Relation</label>
+                  <select id="remFoodRelation" class="form-select">
+                    <option value="After Food">After Food</option>
+                    <option value="Before Food">Before Food</option>
+                    <option value="With Food">With Food</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary-custom w-100 py-2 rounded-pill fw-semibold">
+                  <i class="fa-solid fa-bell me-1"></i> Set Reminder Alarm
+                </button>
+              </form>
             </div>
           </div>
 
-          <!-- Active Reminders List -->
           <div class="col-lg-7">
-            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <h5 class="fw-bold text-dark mb-0"><i class="fa-solid fa-pills text-warning me-2"></i> Active Reminders & Live Alarms</h5>
-                <span class="badge bg-warning-subtle text-warning border border-warning-subtle rounded-pill">Synchronized with IST</span>
-              </div>
-              <p class="text-muted small mb-4">When dosage time arrives, the system dispatches an Email, plays an audio chime, and reads aloud the patient's name via voice alarm.</p>
-              
+            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white h-100">
+              <h5 class="fw-bold text-dark mb-3"><i class="fa-solid fa-pills text-warning me-2"></i> Active Medicine Schedules</h5>
               <div id="medicineRemindersContainer">
                 <!-- Loaded via PatientApp.loadReminders() -->
               </div>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -550,8 +355,7 @@
   </main>
 
   <!-- ========================================================================= -->
-  <!-- ========================================================================= -->
-  <!-- 3-STEP COLLISION-FREE DOCTOR APPOINTMENT BOOKING WIZARD MODAL             -->
+  <!-- 3-STEP DOCTOR APPOINTMENT BOOKING WIZARD MODAL                            -->
   <!-- ========================================================================= -->
   <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -559,22 +363,12 @@
         
         <div class="modal-body p-4 p-md-5">
 
-          <!-- =================================================================== -->
-          <!-- STEP 1: DOCTOR DETAILS & APPOINTMENT DETAILS (PAGE STRUCTURE)        -->
-          <!-- =================================================================== -->
+          <!-- STEP 1: DOCTOR DETAILS & APPOINTMENT DETAILS -->
           <div id="bookingStep1" class="booking-wizard-step">
-            <!-- Modal Header -->
             <div class="booking-modal-header text-center mb-4 pb-3 border-bottom position-relative">
               <div class="d-flex justify-content-between align-items-center mb-3">
                 <div class="d-flex align-items-center gap-2 fw-bold text-dark">
                   <span class="fs-5">🏥</span> <span class="fs-6 text-uppercase tracking-wider">AI SMART HOSPITAL</span>
-                </div>
-                <div class="small text-muted d-none d-sm-flex align-items-center gap-2">
-                  <span class="text-primary fw-semibold cursor-pointer" onclick="PatientApp.closeModal('bookingModal')">Home</span>
-                  <span>|</span>
-                  <span class="text-primary fw-semibold cursor-pointer" onclick="PatientApp.switchTab('tab-doctors', 'tab-doctors-btn'); PatientApp.closeModal('bookingModal');">Doctors</span>
-                  <span>|</span>
-                  <span class="text-primary fw-semibold cursor-pointer" onclick="PatientApp.switchTab('tab-appointments', 'tab-appointments-btn'); PatientApp.closeModal('bookingModal');">My Appointments</span>
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
@@ -670,12 +464,8 @@
             </div>
           </div>
 
-
-          <!-- =================================================================== -->
-          <!-- STEP 2: CONFIRM APPOINTMENT POPUP/PAGE                              -->
-          <!-- =================================================================== -->
+          <!-- STEP 2: CONFIRM APPOINTMENT FORM -->
           <div id="bookingStep2" class="booking-wizard-step d-none">
-            <!-- Modal Header -->
             <div class="booking-modal-header text-center mb-4 pb-3 border-bottom position-relative">
               <button type="button" class="btn btn-sm btn-outline-secondary rounded-pill position-absolute start-0 top-0 mt-1" onclick="PatientApp.goToStep(1)">
                 <i class="fa-solid fa-arrow-left me-1"></i> Back
@@ -760,7 +550,7 @@
               </div>
             </div>
 
-            <!-- Action Buttons: [ Cancel ] [ Confirm Booking ] -->
+            <!-- Action Buttons -->
             <div class="d-flex justify-content-between align-items-center pt-2">
               <button type="button" class="btn btn-outline-secondary rounded-pill px-4 py-2" onclick="PatientApp.goToStep(1)">
                 Cancel
@@ -771,14 +561,9 @@
             </div>
           </div>
 
-
-          <!-- =================================================================== -->
-          <!-- STEP 3: AFTER SUCCESSFUL BOOKING (APPOINTMENT CONFIRMED PASS)        -->
-          <!-- =================================================================== -->
+          <!-- STEP 3: APPOINTMENT CONFIRMED PASS -->
           <div id="bookingStep3" class="booking-wizard-step d-none">
             <div class="text-center p-2">
-              
-              <!-- Checkmark & Title -->
               <div class="d-inline-flex align-items-center justify-content-center bg-success-subtle text-success rounded-circle mb-3" style="width: 72px; height: 72px;">
                 <i class="fa-solid fa-check fs-2"></i>
               </div>
@@ -818,7 +603,7 @@
                 </div>
               </div>
 
-              <!-- Action Buttons: [ View Appointment ] [ Download Confirmation ] -->
+              <!-- Action Buttons -->
               <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
                 <button type="button" class="btn btn-primary-custom rounded-pill px-4 py-2 fw-semibold" onclick="PatientApp.viewConfirmedAppointments()">
                   <i class="fa-solid fa-calendar-check me-1"></i> View Appointment
@@ -838,107 +623,96 @@
   </div>
 
   <!-- ========================================================================= -->
-  <!-- PRINTABLE DIGITAL PRESCRIPTION MODAL                                      -->
+  <!-- 4. UPLOAD MEDICAL REPORT MODAL                                            -->
   <!-- ========================================================================= -->
-  <div class="modal fade" id="prescriptionDetailModal" tabindex="-1" aria-hidden="true">
+  <div class="modal fade" id="uploadReportModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4 border-0 shadow-lg overflow-hidden">
+        <div class="modal-header bg-primary text-white border-0 py-3">
+          <div class="d-flex align-items-center gap-2">
+            <i class="fa-solid fa-cloud-arrow-up fs-5"></i>
+            <h5 class="modal-title fw-bold mb-0">Upload Medical Report</h5>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4 bg-white">
+          <form id="uploadReportForm" onsubmit="event.preventDefault(); PatientApp.saveUploadedReport();">
+            
+            <!-- 1. Report Title / Test Name -->
+            <div class="mb-3">
+              <label class="form-label text-dark fw-semibold small">Report Title / Test Name *</label>
+              <input type="text" id="uploadReportTitle" class="form-control rounded-3" placeholder="e.g. Blood Test, ECG, MRI, Prescription Scan" list="reportTitleSuggestions" required>
+              <datalist id="reportTitleSuggestions">
+                <option value="Complete Blood Count (CBC) Panel"></option>
+                <option value="ECG / Cardiology Diagnostic Report"></option>
+                <option value="MRI Brain / Spine Scan"></option>
+                <option value="Chest X-Ray / CT Scan"></option>
+                <option value="Lipid Profile & Glucose Panel"></option>
+                <option value="Prescription & Medication Scan"></option>
+                <option value="Doctor Clinical Consultation Summary"></option>
+              </datalist>
+            </div>
+
+            <!-- 2. Doctor / Lab Name -->
+            <div class="mb-3">
+              <label class="form-label text-dark fw-semibold small">Doctor / Lab Name *</label>
+              <input type="text" id="uploadReportLabName" class="form-control rounded-3" placeholder="e.g. Apollo Diagnostics / Dr. Arun Kumar" required>
+            </div>
+
+            <!-- 3. Date of Report -->
+            <div class="mb-3">
+              <label class="form-label text-dark fw-semibold small">Date of Report *</label>
+              <input type="date" id="uploadReportDate" class="form-control rounded-3" required>
+            </div>
+
+            <!-- 4. File Upload (PDF, JPG, JPEG, PNG) -->
+            <div class="mb-3">
+              <label class="form-label text-dark fw-semibold small">File Upload (.pdf, .jpg, .jpeg, .png) *</label>
+              <div class="file-upload-dropzone p-3 text-center rounded-3 border border-2 border-dashed bg-light cursor-pointer" onclick="document.getElementById('uploadReportFileInput').click()">
+                <i class="fa-solid fa-file-arrow-up fs-2 text-primary mb-2"></i>
+                <div class="fw-semibold text-dark small" id="uploadFileNameDisplay">Click to browse or drop file here</div>
+                <small class="text-muted d-block" style="font-size: 0.75rem;">Supported formats: PDF, JPG, JPEG, PNG (Max: 10MB)</small>
+                <input type="file" id="uploadReportFileInput" class="d-none" accept=".pdf,.jpg,.jpeg,.png" onchange="PatientApp.handleFileSelection(this)">
+              </div>
+            </div>
+
+            <!-- 5. Optional Notes -->
+            <div class="mb-3">
+              <label class="form-label text-dark fw-semibold small">Optional Notes / Findings</label>
+              <textarea id="uploadReportNotes" class="form-control rounded-3" rows="2" placeholder="e.g. Normal readings, slight vitamin deficiency noted..."></textarea>
+            </div>
+
+            <!-- Modal Actions -->
+            <div class="d-flex justify-content-end gap-2 pt-2 border-top">
+              <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" id="btnSubmitReportUpload" class="btn btn-primary-custom rounded-pill px-4 fw-semibold shadow-sm">
+                <i class="fa-solid fa-cloud-arrow-up me-1"></i> Upload & Save to Records
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- REPORT VIEWER MODAL                                                       -->
+  <!-- ========================================================================= -->
+  <div class="modal fade" id="reportViewerModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content rounded-4 border-0 shadow-lg">
-        <div class="modal-header border-0 pb-0">
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body p-4" id="prescriptionModalBody">
-          <!-- Formatted printable Rx template loaded via PatientApp.viewPrescriptionModal() -->
-        </div>
-        <div class="modal-footer border-0 pt-0">
-          <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary rounded-pill px-4" onclick="window.print()">
-            <i class="fa-solid fa-print me-1"></i> Print Prescription
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- INTERACTIVE UPLOAD MEDICAL REPORT MODAL                                   -->
-  <!-- ========================================================================= -->
-  <div class="modal fade" id="uploadReportModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content rounded-4 border-0 shadow-lg">
         <div class="modal-header bg-light border-0 py-3">
-          <h5 class="modal-title fw-bold text-dark"><i class="fa-solid fa-cloud-arrow-up text-primary me-2"></i> Upload Medical Report</h5>
+          <h5 class="modal-title fw-bold text-dark" id="viewerModalTitle"><i class="fa-solid fa-file-lines text-primary me-2"></i> Medical Record Details</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
-        <div class="modal-body p-4">
-          <div class="mb-3">
-            <label class="form-label text-dark fw-semibold small">Report / Test Category *</label>
-            <select id="uploadReportCategory" class="form-select">
-              <option value="Blood Test / CBC Panel">Blood Test / Complete Blood Count (CBC)</option>
-              <option value="ECG / Cardiology Report">ECG / Cardiology Diagnostic Report</option>
-              <option value="Chest X-Ray / Scan">Chest X-Ray / CT Scan Report</option>
-              <option value="Lipid Profile / Metabolic">Lipid Profile & Metabolic Panel</option>
-              <option value="Clinical Consultation Summary">Doctor Clinical Consultation Summary</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label text-dark fw-semibold small">Diagnostic Center / Lab Name</label>
-            <input type="text" id="uploadReportLabName" class="form-control" placeholder="e.g. Apollo Diagnostics / KMC Labs">
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label text-dark fw-semibold small">Select Report Document (PDF, PNG, JPG) *</label>
-            <input type="file" id="uploadReportFileInput" class="form-control" accept=".pdf,.png,.jpg,.jpeg">
-            <small class="text-muted">Max file size: 10MB. Encrypted health record storage.</small>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label text-dark fw-semibold small">Clinical Notes / Doctor Instructions</label>
-            <textarea id="uploadReportNotes" class="form-control" rows="2" placeholder="e.g. Normal BP, slight vitamin deficiency noted..."></textarea>
-          </div>
+        <div class="modal-body p-4" id="reportViewerModalBody">
+          <!-- Populated dynamically via PatientApp.viewUploadedReport() -->
         </div>
         <div class="modal-footer bg-light border-0 py-3">
-          <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary-custom rounded-pill px-4" onclick="PatientApp.saveUploadedReport()">
-            <i class="fa-solid fa-cloud-arrow-up me-1"></i> Save to Health Records
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========================================================================= -->
-  <!-- 24/7 HOSPITAL EMERGENCY & HELPLINE CONTACT MODAL                          -->
-  <!-- ========================================================================= -->
-  <div class="modal fade" id="contactHospitalModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content rounded-4 border-0 shadow-lg">
-        <div class="modal-header bg-danger text-white border-0 py-3">
-          <h5 class="modal-title fw-bold"><i class="fa-solid fa-truck-medical me-2"></i> 24/7 Hospital Emergency & Helplines</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body p-4 bg-light">
-          <!-- Direct Emergency Dial Card -->
-          <div class="card border-0 rounded-4 shadow-sm p-3 bg-white mb-3 text-center">
-            <div class="text-danger fs-1 mb-1"><i class="fa-solid fa-phone-volume"></i></div>
-            <h5 class="fw-bold text-danger mb-1">Statewide Emergency Dispatch</h5>
-            <p class="text-muted small mb-3">Toll-free 24/7 immediate medical & ambulance response</p>
-            <div class="d-flex justify-content-center gap-2">
-              <a href="tel:108" class="btn btn-danger rounded-pill px-4 py-2 fw-bold"><i class="fa-solid fa-phone me-1"></i> Dial 108</a>
-              <a href="tel:112" class="btn btn-outline-danger rounded-pill px-4 py-2 fw-bold"><i class="fa-solid fa-phone me-1"></i> Dial 112</a>
-            </div>
-          </div>
-
-          <!-- Hospital Central Desk Info -->
-          <div class="card border-0 rounded-4 shadow-sm p-3 bg-white">
-            <h6 class="fw-bold text-dark mb-2"><i class="fa-solid fa-hospital-user text-primary me-2"></i> AI Smart Hospital Help Desk</h6>
-            <div class="small text-muted mb-1"><i class="fa-solid fa-phone me-2 text-primary"></i> <strong>Central Helpline:</strong> +91 44 2836 7000</div>
-            <div class="small text-muted mb-1"><i class="fa-solid fa-envelope me-2 text-info"></i> <strong>Patient Care Email:</strong> support@aismarthospital.tn.gov.in</div>
-            <div class="small text-muted"><i class="fa-solid fa-location-dot me-2 text-danger"></i> <strong>Network:</strong> 22 Selected Districts across Tamil Nadu</div>
-          </div>
-        </div>
-        <div class="modal-footer bg-white border-0 py-3">
           <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary rounded-pill px-4" onclick="window.print()">
+            <i class="fa-solid fa-print me-1"></i> Print / Save PDF
+          </button>
         </div>
       </div>
     </div>
@@ -949,11 +723,11 @@
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../../js/config.js?v=20260929_v1"></script>
-  <script src="../../js/api.js?v=20260929_v1"></script>
-  <script src="../../js/auth.js?v=20260929_v1"></script>
-  <script src="../../js/ai-assistant.js?v=20260929_v1"></script>
-  <script src="../../js/patient-dashboard.js?v=20260929_v1"></script>
+  <script src="../../js/config.js?v=20261005_v1"></script>
+  <script src="../../js/api.js?v=20261005_v1"></script>
+  <script src="../../js/auth.js?v=20261005_v1"></script>
+  <script src="../../js/ai-assistant.js?v=20261005_v1"></script>
+  <script src="../../js/patient-dashboard.js?v=20261005_v1"></script>
   <script>
     // AI Chat Submission
     document.getElementById('btnAIFullChatSubmit')?.addEventListener('click', async () => {
